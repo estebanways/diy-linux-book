@@ -1,0 +1,69 @@
+# Ignore submodule directories
+Module1.2
+Module2.2
+Module3.2
+Module4.2
+Module5.2
+Module6.2
+Module7.2
+
+# Ignore the directory publications
+Publications
+
+# Ignore all directories that appear anywhere in your repository, including any
+# subdirectories.
+# Copyrighted materials
+**/References/
+**/"Extra References"/
+
+# Ignore both directories and files with this name
+#**/my directory/
+#**/my directory/*
+
+# Ignore certain files within a directory with spaces
+#my\ directory/*.txt
+
+# Ignore all files with a certain pattern that includes spaces in their name
+#*my* *.txt
+
+# The next group does not work with GitHub then video files are excluded
+# individually.
+# Ignore all files by extension, regardless of their location
+*.mp4
+*.MP4
+*.FLV
+*.flv
+*.WEBM
+*.webm
+
+# Ignore video files individually
+# mp4
+"/Module4/Boot Loaders and Dual Boot/References/Boot Loaders/Grub2/Edit menu/Cambiar orden y tiempo de arranque de Linux FÃ¡cil.mp4"
+"/Module4/3D Acceleration and VR/References/Graphics devices/Nvidia/Enable GPU rendering for Blender in Linux Mint.mp4"
+"/Module5/Zsh/Extra References/[GNOME 3.28] PowerLevel9k -  The Most Cool Linux Shell EVER!.mp4"
+"/Module3/Install the new Live Disc ISO in a Flash drive with persistence/Extra References/How to create a Debian bootable USB with command line.mp4"
+"/Module4/3D Acceleration and VR/References/OpenCL and CUDA/How to get Blender 2.69 to work with AMD graphics cards (enable OpenCL) part 1.mp4"
+"/Module7/Proxies/References/How to View Blocked Websites.mp4"
+"/Module4/3D Acceleration and VR/References/OpenCL system installation alternatives/OpenCL Virtualization/Virtualbox Linux Mint or Ubuntu/Instalación Driver AMD Radeon Crimson en Ubuntu 14.04 15.04 15.10.mp4"
+"/Module5/Kingsoft Office/References/Instalar Wps office y Ponerlo en español y Diccionario para ubuntu-Debian y derivados.mp4"
+"/Module4/3D Acceleration and VR/References/OpenCL system installation alternatives/OpenCL Virtualization/Virtualbox Linux Mint or Ubuntu/Install AMD Catalyst 15.9 on Ubuntu-Mint.mp4"
+"/Module5/VirtualBox/Extra References/phpVirtualBox/Installation of 'phpVirtualBox' Using 'PhpVirtualBox' Manage VirtualBox Web By Amit Pandey.mp4"
+"/Module4/3D Acceleration and VR/References/OpenCL system installation alternatives/OpenCL Virtualization/Virtualbox Linux Mint or Ubuntu/Installing Proprietary AMD Drivers on Linux Mint 17.2 and Ubuntu.mp4"
+"/Module4/Mount and repair CD-DVD ROM ISO or HDs-SSDs/Extra References/Debian booting into emergency mode due to conflict Systemd VS fsck/journalctl -xb output errors.mp4"
+"/Module5/Docker/References/Learn Docker in 12 Minutes 🐳.mp4"
+"/Module3/Similar interesting projects/Extra References/live build (lb) including debian installer, APT software, XFCE, and VirtualBox/Live Build - Creating My Own Debian Based Linux Distro.mp4"
+"/Module5/Zoom/Pictures/Meeting example.mp4"
+"/Module5/Parlatype/References/Reproduce typing in Translate and send to Parlatype to get timestamps/Parlatype - Audio player for transcription [Flatpak - GNOME 3.26].mp4"
+"/Module5/Proteus/References/Proteus/Proteus en Ubuntu 14.04.mp4"
+"/Module5/Google Drive/References/Grive/Sincronizar Archivos de Google Drive en Ubuntu-Linux Mint-Debian.mp4"
+"/Module4/Install an extra SSD or HDD in the DVD unit of a Laptop/Pictures/005. MOUNTING THE NEW SSD in the DVD SATA connector/02. Hardware installation/ssd in caddy.mp4"
+"/Module3/Set up custom DIY Linux post install scripts/Scripts/DIY Linux post install/WORKSPACE/XFCE Multimedia menu.mp4"
+# flv
+"Module5/Compiz-Fusion/Pictures/GET THE 3D CUBE WORKING IN UBUNTU 11.04 ( THE EASY WAY ) NO TERMINAL NEEDED! - YouTube.FLV"
+# webm
+"/home/esteban/Developer/diy-linux-book/Module5/Compiz-Fusion/Pictures/GET THE 3D CUBE WORKING IN UBUNTU 11.04 ( THE EASY WAY ) NO TERMINAL NEEDED! - YouTube.FLV"
+
+# Ignore files individually
+ContentsPending.txt
+"Propose a change in a comment.png"
+"READ THIS FIRST.txt"
