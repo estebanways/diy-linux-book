@@ -36,7 +36,7 @@ Publications
 *.WEBM
 *.webm
 
-# Ignore video files individually
+# Ignore video files in directories "Picture/" individually
 # mp4
 "/Module4/Boot Loaders and Dual Boot/References/Boot Loaders/Grub2/Edit menu/Cambiar orden y tiempo de arranque de Linux FÃ¡cil.mp4"
 "/Module4/3D Acceleration and VR/References/Graphics devices/Nvidia/Enable GPU rendering for Blender in Linux Mint.mp4"
