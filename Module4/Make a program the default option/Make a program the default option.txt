@@ -1,0 +1,16 @@
+To make programs default in the system, use update-alernatives
+For example, to default Google Chrome as the Web Broser, use: 
+$ sudo update-alternatives --config x-www-browser
+
+To list all the software with update-alternatives available:
+$ update-alternatives --get-selections
+
+To list help:
+$ update-alternatives --help
+
+To read any selection configuration:
+$ update-alternatives --display x-www-browser
+
+References:
+Guide: 3D Acceleration and VR
+

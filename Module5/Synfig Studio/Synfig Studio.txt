@@ -1,0 +1,11 @@
+synfig is a vector based 2D animation package. It is
+designed to be capable of producing feature­film quality
+animation. It eliminates the need for tweening, preventing the
+need to hand­draw each frame.
+
+References:
+Web: https://packages.debian.org/jessie/synfi gstudio
+File: Debian -- Details of package synfigstudio in jessie.pdf
+Web: https://packages.debian.org/jessie/synfig
+File: Debian -- Details of package synfig in jessie.pdf
+

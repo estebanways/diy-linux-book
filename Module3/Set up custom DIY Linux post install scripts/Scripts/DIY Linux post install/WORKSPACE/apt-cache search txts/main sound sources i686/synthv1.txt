@@ -1,0 +1,3 @@
+synthv1 - old-school polyphonic synthesizer - standalone
+synthv1-common - old-school polyphonic synthesizer - common files
+synthv1-lv2 - old-school polyphonic synthesizer - LV2 plugin

@@ -1,0 +1,60 @@
+I am using VeraCrypt due to my Western Digital storage drive encryption software is unavailable for Linux. Also, the software is not working with 'wine'.
+VeraCrypt is available for Linux, OSX and MS Windows, so I can use my External HD within the 3 operating systems, and in a very secure way.
+References: 
+Web: https://forum.winehq.org/viewtopic.php?t=12694
+File: WineHQ Forums - View topic - Unlocking Windows-LOCKED HDD.pdf
+Web: https://community.wd.com/t/linux-users-stay-away-from-wd/26840
+File: Linux Users Stay Away from WD - WD Software & Mobile Apps _ WD Software - WD Community.pdf
+
+Installation:
+Go to: https://veracrypt.codeplex.com/releases/view/619351
+Downlaod the Linux version, file: veracrypt-1.17-setup.tar.bz2
+Extrack the directory: veracrypt-1.17-setup
+Copy the directory to /opt:
+$ sudo mv veracrypt-1.17-setup /opt
+Enter the directory: veracrypt-1.17-setup:
+$ cd veracrypt-1.17-setup
+Run the installer:
+$ ./veracrypt-1.17-setup-gui-x64
+Install the program.
+Start the program:
+Search in the applications menu.
+
+Create a volume:
+In my case, I only need a private directory to store private files, it is not necessary to encrypt the complete external WD drive. To create the private volume which is going to contain the private files click on the button Create Volume and follow the steps.
+References:
+Topic: Tutorial for beginners
+Web: https://veracrypt.codeplex.com/wikipage?title=Beginner%27s%20Tutorial
+File: VeraCrypt - Documentation.pdf
+
+VeraCrypt in the command line:
+I strongly recommend using VeraCrypt in the command line, to understand the program and avoid making mistakes.
+References:
+Topic: How to use VeraCrypt in the terminal emulator.
+Web: http://linuxg.net/install-veracrypt-on-linux/
+File: How To Install VeraCrypt 1.12 on The Most Popular Linux Systems _ LinuxG.pdf
+
+How to re-mount and unmount volumes (not drives):
+Actual status of VeraCrypt is that works, but the options to re-mount dismount volumes don't work well, with my NTFS-FAT hard drives at least in Debian 8, codename Jessie, and maybe in other Linux distros. For example:
+You created the volume in a file, mounted the volume in Nautilus, added private files to it and after a period of time attempted to dismount from Nautilius (Files), to take the drive to another computer, but the unmount action shows the message: "One or more applications are keeping the volume busy" and the options to choose from "CANCEL" and "Unmount anyway". At this point click CANCEL and follow these steps to unmount correctly:
+Obviously this command is not going to work at this point:
+$ veracrypt3 -d volume.hc
+Show the mounted partitions:
+$ df -h
+For example, the last options in the output are:
+Filesystem              Size  Used Avail Use% Mounted on
+/dev/sde1               932G  833G   99G  90% /media/esteban/WD2
+/dev/mapper/veracrypt3  9.8M  4.3M  5.5M  44% /media/esteban/6BEAD59153CB8DEB
+End of output.
+Just information, to display the real device used by veracrypt3:
+$ ls -hal /dev/mapper/veracrypt3
+The output will say the device used is something starting with 'dm' /dev/dm*. You can use the symlink veracrypt3 or dm-* to de-busy the veracrypt volume, which won't unmount.
+More information, but his time to see fuse is cause of the busy volume:
+$ lsof | grep '/dev/mapper/veracrypt3'
+More information. This finds the process before killing it:
+$ fuser -m /dev/mapper/veracrypt3
+And next command is to de-busy the volume:
+$ fuser -km /dev/mapper/veracrypt3
+
+CAUTION:
+Every time you transfer updates to a volume without rebooting the computers in transfer or  synchronization process, mount the volume in a new slot, otherwise you will see the information no updates, in the state after the last local dismount.

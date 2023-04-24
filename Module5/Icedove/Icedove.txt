@@ -1,0 +1,11 @@
+Search on the Gnome apps and you'll find Evolution. It's is all right to me, but to the most of the people Mozilla Thunderbird is the best Mail User Agent available.
+
+In my case I am not going to use local email clients to support the use of the Web, but your company or the bulk email may force me to change my mind. There is a big difference between Icedove and Thunderbird in Debian. Consider that if you install the real Thunderbird instead of Icedove you will have to set up Thunderbird to update the application manually, but if you forget it will compromise the security of your email account.
+
+Today I am going to show you the installation of Icedove:
+$ sudo apt-get update
+$ sudo apt-get install icedove
+
+References:
+Web: http://unix.stackexchange.com/questions/95982/how-to-install-the-real-thunderbird-on-debian-wheezy
+File: How to install real Thunderbird.pdf

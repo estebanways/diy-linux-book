@@ -1,0 +1,19 @@
+To work on partitions and more:
+The tool I like the most is Gparted, but also you can use fdisk, and Disks:
+To install Gparted:
+Need to setup repos main, contrib and non-free to install NTFS package ntfs-3g:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get install gparted
+Note: To work on the active primary partition you can boot up the computer from a distro like Knoppix, which is Live DVD and also has a Gparted out of the Box.
+
+
+To use fsck since Gparted:
+To check the file system on your Ubuntu partition...
+boot to the GRUB menu.
+choose Advanced Options.
+choose Recovery mode.
+choose Root access.
+at the # prompt, type sudo fsck -f / or sudo fsck -f /dev/sda1.
+repeat the fsck command if there were errors.
+type reboot.

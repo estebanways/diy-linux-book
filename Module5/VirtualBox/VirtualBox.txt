@@ -1,0 +1,477 @@
+Use VirtualBox to virtualize OSX Snow Leopard, Windows, DOS, Linux, BSD, etc.
+
+------->
+
+Update version: 1
+Update for Debian 10 codename "Buster":
+
+The steps are easier than before, but anyway read the complete guide to know about the evolution of the installation through the different Debian releases and be able to resolve any issue on the road.
+
+Important topics to consider:
+* All the steps for Debian are in the Official VirtualBox page, currently here:
+https://www.virtualbox.org/wiki/Linux_Downloads, read the section "Debian-based Linux distributions"
+* Do not install virtualbox from the official Debian repos.
+* Remember to create the back-up copy of /etc/apt/source.list before add the (Oracle) VirtualBox repo
+* I used the section "combine downloading and registering" for the registration the new repository.
+* When ready with the installation visit the (Oracle) VirtualBox FTP (see the link below), to find out the correspondent guest additions and extension pack, and install them following the instructions (below). I installed the version 6.1.4 of the three packages Vbox, additions and ext pack, you can notice it in the logs at the 'apt install' command, or using dpkg commands. There is a guide a about DPKG.
+
+References:
+Guide:
+System Package Managers_ Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+File: ./Debian 10 Buster installation/Linux_Downloads – Oracle VM VirtualBox.pdf
+
+------->
+
+Update version: 3
+Update for Debian 9 codename "Stretch":
+
+For this version, I have written the steps of the virtualization of USB devices in the VM guest, which was pending since I got a compatibility problem between the VirtualBox "Extension pack" and "Guest Additions" during the installation of VirtualBox for GNU/Debian 8, codename "Jessie", the release of the distribution before "Stretch".
+
+Steps to add pendrive to guest:
+Requirements:
+Working Extension Pack
+Working VirtualBox and VM
+Root user access
+You want to add the USB to th Guest VM but you don't see the attached devices under settings > USB in VirtualBox. What you need is to add your user to the group of the VirtualBox users. The fastest way to do that is:
+$ su
+and then enter root password,
+or use sudo:
+Copy the file back-up:
+$ sudo cp -dpR /etc/groups /etc/groupsBAK
+$ sudo /etc/groups
+Go the line vboxusers:x:128: 
+and add your user, in my case "esteban". The line should look like this:
+vboxusers:x:128:esteban
+Save changes and close the file
+Logout session
+Login session
+Open VirtualBox, and then go to Settings > USB. Here click add the second USB filter, you will see and choose the USB device to add to the VM, from the list. Save settings changes.
+Open the VM and check whetther the VM recognizes the USB or not.
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+I limited this update to log the steps of installation. To know the installation process and know more VirtualBox, read the Debian 9 codename "Jessie" guide below.
+
+References:
+Topic: Official page to Download VirtualBox for Linux Hosts
+Web: https://www.virtualbox.org/wiki/Linux_Downloads
+File: Official page to Download VirtualBox for Linux Hosts.pdf
+Topic: VirtualBox
+Web: https://wiki.debian.org/VirtualBox 
+Topic: How to Install VirtualBox 5.1 on Debian 9 (Stretch)
+Web: https://www.linuxtechi.com/install-virtualbox-5-1-on-debian-9-stretch/
+File: How to Install VirtualBox 5.1 on Debian 9 (Stretch).pdf
+Topic: How to Install VirtualBox Guest Additions in a Debian 9 Virtual Machine
+Web: https://www.linuxbabe.com/debian/install-virtualbox-guest-additions-debian-9-stretch
+File: How to Install VirtualBox Guest Additions in Debian 9 Virtual Machine.pdf
+Topic: VirtualBox Extension Pack explanation and contents 
+Web: https://en.wikipedia.org/wiki/VirtualBox
+File: VirtualBox Extension Pack.pdf
+Topic: VBoxGuestAdditions_5.1.22.iso and VirtualBox download FTP page
+Web: http://download.virtualbox.org/virtualbox/5.1.22/
+File: VBoxGuestAdditions_5.1.22.iso and VirtualBox download FTP page.pdf
+
+Steps:
+Backports still don't have VirtualBox:
+$ sudo nano /etc/apt/sources.list
+Add backports line, and update:
+$ sudo apt-get update
+$ apt-cache search virtualbox
+No results
+References:
+Topic: How to install a backport. 
+Web: https://backports.debian.org/Instructions/
+Guide: Manage traditional software repositories
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+Instead of backports, I setup Oracle repository:
+Create repo file:
+$ sudo touch /etc/apt/sources.list.d/virtualbox.list
+Review the correct permissions of the file:
+$ ls -hal /etc/apt/sources.list.d/virtualbox.list
+Output:
+-rw-r--r-- 1 root root    0 Dec 23 22:45 virtualbox.list
+End of output.
+Add the repo to new repo file:
+deb http://download.virtualbox.org/virtualbox/debian stretch contrib
+$ sudo nano /etc/apt/sources.list.d/virtualbox.list
+Add Oracle VirtualBox public key:
+$ wget https://www.virtualbox.org/download/oracle_vbox_2016.asc
+$ sudo apt-key add oracle_vbox_2016.asc
+Install virtualbox-5.1:
+$ sudo apt-get update
+$ sudo apt-get install virtualbox-5.1
+Download Guest Additions iso and Extension Pack from VirtualBox FTP: http://download.virtualbox.org/virtualbox/5.1.22/ 
+The Guest addition but especially extension pack must be the same version of VirtualBox. I downloaded the files:
+(virtualbox-5.1_5.1.22-115126~Debian~stretch_amd64.deb)
+Oracle_VM_VirtualBox_Extension_Pack-5.1.22-115126.vbox-extpack
+VBoxGuestAdditions_5.1.22.iso
+Install Extension Pack:
+Open VirtualBox as root:
+# virtualbox
+File –> Preferences –>Extensions and select the ‘vbox-extpack’ file  and then click on Install.
+Before run any installation of the very first Virtual Machine, otherwise you will get the error: "Kernel Driver not installed...":
+$ sudo apt-get update
+$ sudo apt-get -u upgrade
+$ sudo apt-get install build-essential module-assistant dkms
+$ sudo apt-get install linux-headers-4.9.0-3-amd64
+# /sbin/vboxconfig
+References:
+Guide: DKMS (Dynamic Kernel Module Support).
+After vbox kernel module compilation, updated to 5.1.30, I check for update to update extension pack. As root:
+# virtualbox
+I open Oracle VirtualBox and the go to File->Check for updates...
+When the update is ready close VirtualBox and to run the very first VM reopen the program as user.
+Install Guest Additions on a guest virtual Machine:
+$ sudo apt-get update
+$ sudo apt-get -u upgrade
+$ sudo apt-get install build-essential module-assistant dkms
+Once the above packages are installed, prepare your Debian 9 system to build kernel module, which is done with the command below (But i think we can skip the compilation step by step, because we installed dkms which is an alternative to m-a (module-assistant)).
+# m-a prepare
+Then in the VirtualBox window, select Devices > Insert Guest Additions CD image.
+I shared a folder from XP machine for testing, and notices that after that, in Debian Stretch,
+I simply accessed the share folder by opening the File manager (Thunar 1.6.11) and Browsing the Network. The only I need to get the share folder is the name of the Windows guest host and its administrator password.
+
+Extra notes:
+I installed all the Office 2010 requirements:
+
+I resized the Virtual Machine disc (VDI) from 10 to 15 GB:
+$ VBoxManage modifyhd XPSP2.vdi --resize 15000
+References:
+Boot VM from Linux Knoppix iSO to resize C:\ unit.
+Topic: Resize a VirtualBox guest Linux VDI Disk under Windows Host. This is for a Linux guest, but you can also boot from Linux Knoppix ISO to run the Gparted partition tool in a Windows guest.
+Web: http://derekmolloy.ie/resize-a-virtualbox-disk/
+File: Resize a VirtualBox guest Linux VDI Disk under Windows Host.pdf
+Topic: First resizing does not work if the guest has snapshots
+Web: https://forums.virtualbox.org/viewtopic.php?f=35&t=50661
+File: First resizing does not work if the guest has snapshots.pdf
+Topic: KVM virtualization VMs can run in Virtual Machine. See the section: "- Load KVM images in VirtualBox".
+Guide: KVM.
+
+------->
+
+I searched for it for Jessie in the Debian repos Web site.
+I need to add the "contrib" repos to the default configuration to be able to install the program.
+
+References:
+https://www.debian.org/distrib/packages
+Web: https://packages.debian.org/jessie/virtualbox
+
+Edit /etc/apt/sources.list. According to my configuration I am going to uncomment the section to activate the "contrib" repo:
+# Jessie default + contrib. Disable above while 
+# installing from this duplicate repo.
+# Packages: Flash plugin non-free, java-package, VirtualBox
+deb http://ftp.us.debian.org/debian/ jessie main contrib
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib
+
+And comment out the default lines in the file to do not receive the duplicate repository error when running the command # apt-get update:
+#deb http://ftp.us.debian.org/debian/ jessie main
+#deb-src http://ftp.us.debian.org/debian/ jessie main
+
+Save the file changes and then proceed with the installation:
+$ sudo apt-get update
+$ sudo apt-get install virtualbox
+Output:
+[...]
+The following extra packages will be installed:
+  dkms libgsoap5 libqt4-network libvncserver0 virtualbox-dkms
+  virtualbox-qt
+Suggested packages:
+  vde2 virtualbox-guest-additions-iso
+Recommended packages:
+  linux-image
+The following NEW packages will be installed:
+  dkms libgsoap5 libqt4-network libvncserver0 virtualbox
+  virtualbox-dkms virtualbox-qt
+[...]
+Do you want to continue? [Y/n] y
+
+Restore the previous version of the file /etc/apt/sources.list.
+
+Restart the system, due to kernel version is 3.16, 3.19 or similar and VirtualBox is dkms package. To do not reboot you require kernel 3.20 or later.
+$ uname -r
+References:
+Guide: DKMS (Dynamic Kernel Module Support)
+
+Start VirtualBox:
+$ virtualbox
+
+
+If you require to Migrate a VM (Virtual Machine) from VMware to VirtualBox:
+
+In this case you need to install VMware to find OVFTool:
+# find OVFTool /
+The tool is here, so run it like this:
+# cd /usr/lib/vmware-ovftool/
+Command Synthax: ovftool source.vmx export.ovf
+# ovftool /home/esteban/Downloads/XPGames/XPGames.vmx /home/esteban/Downloads/XPGames/XPGames.ovf
+If the execution fails remove the cdrom from the vmx file and re-execute the tool. The Error output would look like this:
+Opening VMX source: /home/esteban/Downloads/XPGames/XPGames.vmx
+Error: Failed to open file: /home/esteban/Downloads/XPGames/C:\Users\AEsteban\Desktop\Combat Flight Simulator 3\CFS3_CD2.iso
+Completed with errors
+End of Error output.
+The process takes a lot o time like 2 hours. The virtual machine I used is called XPGames which has pretty much 22 GB of installation with a container of more or less 100 GB. The final message says:
+Disk Transfer Completed.
+Change mode to new files 
+# chmod 777 XPGames-disk1.vmdk  (Hard Drive)
+# chmod 777 XPGames.ovf   (Configuration)
+Run VirtualBox:
+$ virtualbox
+Create a test machine to generate the directory VirtualBox VMs/
+Import the appliance with the new file XPGames.ovf
+The process is taking a long time, more or less 2 hours.
+Next, paste VM in the VMs directory of VirtualBox.
+Add the VM to VirtualBox GUI and setup sound, video, resolution, acceleration and if possible NIC card.
+Remove the old VMware files vmx and vmdk.
+Note:
+When I installed VirtualBox the programs worked but the games won't, but I had no 3D card acceleration. To test 3D games:
+Before installing and make work a 3D game to test the virtualization of the Video card with 3D acceleration, you got to install virtualbox guest additions. I can't certificate that the VMware machine games are going to work under Linux after the pass from VirtualBox for Windows to VirtualBox for Linux, due to the virtual drivers used during the system installation. I experienced similar problems between VMware versions due to the network card was incompatible in the new Virtual Appliance Machine. If everything is set up and the games fail you'd better create a new VM from scratch and reinstall the games on it.
+
+
+Install virtualbox guest additions on Linux:
+
+Reference:
+Web: http://www.binarytides.com/virtualbox-guest-additions-debian-wheezy/
+File: virtualbox guest additions.pdf
+
+Steps:
+Click the About menu in VirtualBox to check the program version.
+The current version is: 4.3.18.
+
+I search "virtualbox-guest-additions-iso" in the Debian packages repository and the Web returns a message that says:
+You have searched for paths that end with virtualbox-guest-additions-iso in suite jessie, all sections, and all architectures.
+Sorry, your search gave no results
+
+The package tracker: https://tracker.debian.org/pkg/virtualbox-guest-additions-iso
+has the next news at the top:
+[2015-05-25] Accepted virtualbox-guest-additions-iso 4.3.28-1 (source all) into unstable (Ritesh Raj Sarraf)
+[2015-05-05] virtualbox-guest-additions-iso 4.3.26-2 MIGRATED to testing (Britney)
+[2015-04-30] Accepted virtualbox-guest-additions-iso 4.3.26-2 (source all) into unstable (Ritesh Raj Sarraf)
+[2015-04-01] virtualbox-guest-additions-iso 4.3.18-3 MIGRATED to testing (Britney)
+[2015-03-26] Accepted virtualbox-guest-additions-iso 4.3.18-3 (source all) into unstable (Ritesh Raj Sarraf)
+[2015-03-21] virtualbox-guest-additions-iso REMOVED from testing (Britney)
+[2015-03-18] Accepted virtualbox-guest-additions-iso 4.3.26-1 (source all) into experimental (Ritesh Raj Sarraf)
+[2015-03-14] Accepted virtualbox-guest-additions-iso 4.3.18-2 (source all) into unstable (Ritesh Raj Sarraf)
+[2015-03-04] Accepted virtualbox-guest-additions-iso 4.3.24-1 (source all) into experimental (Ritesh Raj Sarraf)
+[2015-02-14] Accepted virtualbox-guest-additions-iso 4.3.22-1 (source all) into experimental (Ritesh Raj Sarraf)
+[2014-12-04] Accepted virtualbox-guest-additions-iso 4.3.20-1 (source all) into experimental (Ritesh Raj Sarraf)
+[2014-10-29] virtualbox-guest-additions-iso 4.3.18-1 MIGRATED to testing (Britney) 
+
+Let's take a look at the line:
+[2015-03-26] Accepted virtualbox-guest-additions-iso 4.3.18-3 (source all) into unstable (Ritesh Raj Sarraf)
+
+It says that the version 4.3.18-3 of the ISO is in the "unstable" repository.
+
+I click on the link and it takes me to the main acceptance message. In summary in the body I read the reason why the package is "unstable", due to: "* Conflict with upstream proprietary packages 4.3 series...", ... and we must wait for the Virtual Box team to debug the issue.
+
+I go back to search again the package as UNSTABLE in the Debian Web, here: https://www.debian.org/distrib/packages
+
+And the results show the package in the sid repo:
+https://packages.debian.org/search?keywords=virtualbox-guest-additions-iso&searchon=names&suite=unstable&section=all
+
+When I enter to the description to check the package description, i note that the package recommends to use another version of VirtualBox, here:
+https://packages.debian.org/sid/virtualbox-guest-additions-iso
+"Other Packages Related to virtualbox-guest-additions-iso
+    rec: virtualbox (>= 4.3.28)
+        x86 virtualization solution - base binaries"
+
+I click to see the VirtualBox version and the site takes me to: https://packages.debian.org/sid/virtualbox
+
+In conclusion, I have nothing to loose but perhaps stability, installing the new VirtualBox version. I also have to consider the new dependencies the new VirtualBox version could require.
+
+First, I would try to install the package virtualbox-guest-additions-iso 4.3.18-3, and if the installation fails, install the new VirtualBox from sid.
+
+To setup sid in Debian Jessie:
+Select a code mirror from the list, add the new lines to the sources file:
+$ sudo nano /etc/apt/sources.list
+
+# Sid mirror in North America
+# Packages: virtualbox-guest-additions-iso 4.3.18-3,
+deb http://ftp.us.debian.org/debian sid main non-free
+
+Save changes and install the package:
+$ sudo apt-get update
+$ sudo apt-get install virtualbox-guest-additions-iso
+Output:
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  virtualbox-guest-additions-iso
+0 upgraded, 1 newly installed, 0 to remove and 810 not upgraded.
+Need to get 40.0 MB of archives.
+After this operation, 58.3 MB of additional disk space will be used.
+Get:1 http://ftp.us.debian.org/debian/ sid/non-free virtualbox-guest-additions-iso all 4.3.28-1 [40.0 MB]
+End of output.
+
+Notice how the priority of the program works: It downloads the latest version available no matter where the source does come from.
+
+Danger: 
+Don't forget to disable the sid repo when the installation process finished.
+
+Note:
+Last times when I installed previous version of VirtualBox I use to run these commands to install the ISO VBoxGuestAdditions_4.1.18.iso:
+$ sudo mount -o loop VBoxGuestAdditions_4.1.18.iso /mnt/disk
+$ sudo cd /mnt/disk
+$ sudo ./VBoxLinuxAdditions.run
+But this time I did't use them, because the content of the ISO has been installed as package.
+
+Those are the two installation options available for these ISOs. However I still need an ISO to install on the guest operating systems, for example Windows XP.
+
+In the same page of the page of the Official repo, which has the title: 
+"Package: virtualbox-guest-additions-iso (4.3.28-1) [non-free]"
+ I find a link to all the files: " [list of files] ", I click on the page and it shows me the location of the files after the installation:
+/usr/share/doc/virtualbox-guest-additions-iso/changelog.Debian.gz
+/usr/share/doc/virtualbox-guest-additions-iso/copyright
+/usr/share/virtualbox/VBoxGuestAdditions.iso
+
+The third file is the ISO itself. I save a copy in my personal repo directory and remember the location to install it on the guest VM OS.
+
+In case of MS Windos XP, the system is going to ask you to install the additions in safe mode. To restart the system in safe mode reboot during the boot up press F8.
+
+Issues:
+VirtualBox Guest additions service doesn't want to start, so I am unable to attach USB devices to the virtual machine:
+$ sudo systemctl
+Output extract:
+● vboxadd-service.service           loaded failed failed    LSB: VirtualBox Additions service
+● vboxadd.service                   loaded failed failed    LSB: VirtualBox Linux Additions ke
+End of Output extract.
+To list all the services:
+$ sudo sustemctl
+To restart a systemd service:
+$ systemctl restart vboxadd-service-service
+References:
+Pic: systemd vbox service issues.jpg
+Sometimes services are not working with systemd yet so you use the old /etc/init.d/service start command, but it's not the case. 
+I think that the problem could be related to systemd, because the VirtualBox documentation on the Web site says that the version 4.3.18_Debianr96516 has been made to Debian Wheezy, and Wheezy had not systemd,Wheezy used sysVinit. If you want more information on systemd, look for my systemd guide.
+
+However, I went ahead documenting the steps to use every VirtualBox feature, and hope to see this issue resolved as soon as possible. Anyway remember that VirtualBox is not the only Virtualization solution. BTW, KVM is my first option.
+
+
+Steps to install Extension Packs:
+
+To verify the extension packs installed:
+$ sudo vboxmanage list extpacks
+Output:
+Extension Packs: 1
+Pack no. 0:   VNC
+Version:      4.3.18
+Revision:     96516
+Edition:      
+Description:  VNC plugin module
+VRDE Module:  VBoxVNC
+Usable:       true 
+Why unusable: 
+End of Output.
+
+The Output shows only the pack VNC, to access virtual machines desktops remotely. But we require the Extension Pack to attach USB devices to the Virtual Machine.
+
+The Extension Pack cannot be downloaded from the Debian Official repo, include "main" "contrib" as we did with VirtualBox. Take a look at the configuration file: /etc/apt/sources.list.
+$ apt-cache search 'virtualBox'
+You have to download the Extension Pack matching the current VirtualBox version installed. To see the version open VirtualBox and then go to the section "About", or use:
+$ man vboxmanage
+$ vbox manage -v 
+Output:
+4.3.18_Debianr96516
+End of Output.
+
+I find out the file Oracle_VM_VirtualBox_Extension_Pack-4.3.18-96516.vbox-extpack, to all platforms, in the section (old builds), in the Official VirtualBox downloads Web site.
+References:
+Web: https://www.virtualbox.org/wiki/Download_Old_Builds_4_3_pre24
+File: Find out compatible extension pack.pdf
+
+Go to the Downloads diretory and install the Pack by typing:
+$ sudo vboxmanage extpack install Oracle_VM_VirtualBox_Extension_Pack-4.3.18-96516.vbox-extpack
+Output:
+0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+Successfully installed "Oracle VM VirtualBox Extension Pack".
+esteban@ProLiant:~/Downloads/Debian 8 Jessie repo/VirtualBox 4.3.18 Extension Pack
+End of Output.
+
+Verify the installation:
+$ sudo vboxmanage list extpacks
+
+References:
+Web: http://www.itzgeek.com/how-tos/mini-howtos/how-to-install-virtualbox-extension.html
+File: How to install VirtualBox Extension Pack.pdf
+Web: https://forums.virtualbox.org/viewtopic.php?f=7&t=44337
+File: Console Extension Pack installation.pdf
+
+Something important about USB Flash drives:
+I don't recommend the usage of the USB, mostly because the USB ports can transfer viruses between the Virtual machine and our the Development Desktop. Either way, sometimes we could need to add a Flash drive or a Hard drive to any Virtual Machine, and if so, try to prevent the security risks potentially associated to this operation, for example having an updated active flash drive connection antivirus like Kaspersky in the virtual machine.
+Next are the instructions to get USB working on Virtual Machines:
+
+Issues:
+Open Virtual Box and set up your Virtual Machine to accept USB attached to your Linux Box. (Check the two USB check boxes, and choose what drive to attach since Linux).
+It is supposed that the next step is Open the Virtual Machine and accept the connection.
+The problem seems the remaining issue with the Guest Additions, the cause seems is not the Extension Packs.
+
+
+
+
+The real problem behind the Guest Additions and the Extension Packs issues:
+
+I required to open an encrypted External USB Hard drive that I have. 
+The hard drive encryption program has not Linux version to allow access to the HD data.
+
+Solution 1:
+Mount the hard drive normally.
+Next, I open a Windows virtual machine and enter the encryption password in Windows
+Next, I dettach the hard drive drive from Windows to let Linux re-take the control of the decrypted hard drive.
+Failure: Guest Additions and Extension Packs issues don't allow the VM to read the HD content.
+
+Solution 2:
+I mounted the HD (hard drive) on /media/cdrom0 as a network folder since VirtualBox configuration, auto-monted and Full access permissions was set to active, but once in Windows VM I can only read html files due to the encryption file .exe. Executable files like the program which asks for the password to decrypt the hard drive content are inaccessible this way.
+References:
+Pictures:
+(Pending)
+
+Solution 3:
+One solution is to have different Hds to every system, NTFS HDs for Windows and EXT4 HDs for Linux, but unfortunately, I don't have more HDs.
+
+Solution 4:
+One solution is to install Wine and attempt to run the Windows executable of the program to decrypt the content of the HD. I did it but the HDs' encryption software is not supported by Wine.
+
+Solution 5 (What is actually going on):
+I Decrypted the most of the hard drive, keeping the secret files under VeraCrypt directories. I can only create share directories from the VM with accesses from the network machines, and create share directories in the virtualization server machine with access from the VMs.
+References:
+Topic: Encrypt External HD Drive you will share with Windows.
+Guide: Veracrypt
+Topic: Encrypt USB drives
+Guide: LUKS
+Topic: Share directories in the virtualization server machine with access from the VMs.
+Guide: Share system directories across the network
+
+
+Install a new Machine with Windows XP SP2:
+
+The network configuration is:
+Adapter 1:
+Bridged adapter: br0
+To be able to pass through the only network NIC from Virtual Machines to the network using we require to Bridge the Ethernet networking. To create this bridge you have to pause this guide and go to read the sections "- Bridge the Ethernet networking" and "- Bridge the Wireless networking" of the guide "Basic Networking" (LINK).
+Allow All
+Cable connected.
+Share /home/esteban in the VM configuration.
+After the installation I share a folder from the XP machine no the local area network (LAN):
+Add the machine to the workgroup WORKGROUP.
+Activate the option to share folders and printers and don't choose to create the network client installation disc.
+Paste the folder into the the shared directory.
+Right click and share with write access from the rest of users in the network.
+When the shared is ready on windows and you see the network folder, simply go to Nautilus and access the network, you don't need to install samba or other software.
+Send photoshop CS3 with Bridge and CS4 to the shared folder from Nautilus and install the programs.
+Set the option to Show files extensions in the file explorer.
+
+Back-up the Virtual Machine:
+Use the VirtualBox cloning tool to CLONE a copy of the VM on the WD HD. Don't copy and paste VMs to save statuses like instances or snapshots because every VM has a UUID and then if you don't clone when you attempt to re-open it in another place is not going to work.
+
+More Virtualbox Tricks:
+Reference:
+Topic: 10 VirtualBox Tricks and Advanced Features You Should Know About.
+Web: http://www.howtogeek.com/171228/10-virtualbox-tricks-and-advanced-features-you-should-know-about/
+File: 10 virtualbox tricks and advanced features.pdf
+Drag and Drop is not working:
+Web: http://askubuntu.com/questions/575056/bidirectional-dragn-drop-is-not-working-with-virtualbox-and-ubuntu-14-04
+File: Bidirectional drag'n drop is not working with VirtualBox and ubuntu 14.pdf
+

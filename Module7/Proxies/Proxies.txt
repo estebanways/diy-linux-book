@@ -1,0 +1,31 @@
+Proxies are basic networking and routing tools but also help to unblock internet restrictions, and navigate anonymously and privately:
+
+- Proxy Clients:
+Use Kproxy in Google Chrome (limited to 40 minutes no payment)
+
+Other web options:
+
+(Pending)
+
+References:
+Topic: More web options
+File: (Spanish) Proxys gratuitos para evitar limitaciones, restricciones y garantizar el anonimato y la privacidad.pdf
+
+References:
+Topic: To setup a Proxy client in Debian
+Guide: Basic Networking
+Topic: More software that improve their security with proxies
+Guide: OpenVPN
+Guide: TOR
+Guide: Basic Networking
+
+- Proxy Servers:
+
+Privoxy:
+
+(Pending)
+
+References:
+(Pending)
+
+

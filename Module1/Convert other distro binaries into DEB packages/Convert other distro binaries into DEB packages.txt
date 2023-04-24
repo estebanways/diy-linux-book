@@ -1,0 +1,14 @@
+Software sources available:
+- Any RPM or alternative Linux binary package repo or source
+
+Use the command 'alien' to Debianize RPM packages, I mean to create a DEB package from RPM package. This option is not going to work with all the packages, but supports conversion among packages such as Linux Standard Base (LSB), RPM, DEB, Stampede ans Slackware.
+Some people says the command is some old and it is better to build the source instead of translating the package to be able to install it on Debian.
+
+This installation example works: 
+Guide:
+ProjectLibre
+
+References:
+Topic: Installing and using the command 'alien' in Debian. Converting .rpm Packages To Debian/Ubuntu .deb Format.
+Web: https://www.howtoforge.com/converting_rpm_to_deb_with_alien
+File: Converting .rpm Packages To Debian_Ubuntu .pdf

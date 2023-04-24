@@ -1,0 +1,52 @@
+Warning: I stopped using OpenShot as the Jessie version crashed, at least using Oracle Java, but curiously the video playback works better with Oracle Java than the with Open Java version. I replaced OpenShot with Kdelive. See the sections: 
+KDE Desktop Environment
+KXStudio
+Cinelerra
+
+Resources: 
+Web: http://www.kdenlive.org/
+Web: https://www.youtube.com/watch?v=1eHEAfNFJ0k
+
+
+With Openshot you have almost all the features in a lightweight editor, I.E. effects and transitions, non linear edition with many audio and video channels you can add to render great movies in many formats like mp4 for YouTube.
+
+Resources:
+Web: http://www.cyberciti.biz/faq/howto-install-openshot-under-debian-ubuntu-linux/
+
+You can use synaptic and search for the package openshot, otherwise use APT.
+
+$ sudo apt-get update
+$ sudo apt-get install openshot
+
+To launch the program:
+$ openshot
+$ openshot &
+$ openshot [filename]
+
+I also recommend that you install Inkscape, a SVG (Scalable Vector Graphics) editor. Inkscape allows you to edit Titles in OpenSHOT. SVG comes by default with the Gnome desktop environment, but just in case:
+$ sudo apt-get install inkscape
+
+If has not been installed yet in the system the OpenSHOT installation downloads hte latest version of OpenJDK (Free Java) as a dependency in Debian Wheezy. However, Thank God! it is not happening in Jessie. In Wheezy, I required to remove or switch from OpenJDK to Oracle JDK. In my experience, openshot works a little bit better with the Oracle version in Wheezy.
+
+Note: There is a minimal java runtime installation running no full java in the Jessie system:
+$ dpkg -l | grep 'java'
+
+To choose from Java versions, see guide: Java
+
+Issues:
+Openshot hanged up in my 64bit Debian. Some people say that there is aproblem with dependency libraries you can replace. However, did not replaced anything and chosen to install a more professional video edition software such as Cinelerra and Kdenlive.
+References:
+Guides:
+Kdenlive
+KDE
+FFmpeg
+Cinelerra
+Video Card
+3D Acceleration and VR
+Sound
+Natron
+KXStudio
+Synfig Studio
+SimpleScreenRecorder
+Audacity
+Handbrake

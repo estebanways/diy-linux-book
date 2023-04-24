@@ -1,0 +1,1 @@
+Debian Wheezy comes with an option in Totem video player, but in Jessie the option disappears from Totem and you have to use the program Screenshot.

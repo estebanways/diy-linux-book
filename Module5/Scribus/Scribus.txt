@@ -1,0 +1,70 @@
+Scribus can be used for many tasks; from brochure design to newspapers, magazines, newsletters and posters to technical documentation. Is the current MS Publisher of the free software.
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search scribus
+$ sudo apt-cache show scribus
+Note for Software Developers: 
+Caution with the next step: If you install the scribus package suggestion 'texlive-latex-recommended' (the render frame) APT is going to install ruby as a dependency, the same case of the installation of KDE Desktop Environment.
+References:
+Guides:
+RVM
+KDE
+The complete installation command is:
+$ sudo apt-get install scribus blt-demo tix python-tk-dbg icc-profiles scribus-doc scribus-template texlive-latex-recommended python-gdbm-dbg ri ruby-dev bundler perl-tk latexdiff latexmk dvidvi fragmaster lacheck purifyeps chktex dvipng psutils t1utils libtcltk-ruby texlive-latex-extra dot2tex
+Output:
+The following extra packages will be installed:
+  blt cups-bsd fonts-lmodern hyphen-sh icc-profiles-free libfile-homedir-perl
+  libfile-which-perl libpodofo0.9.0 libpoppler-qt4-4 libpotrace0 libptexenc1
+  libpython-dbg libpython2.7-dbg libruby2.1 libsynctex1 libyaml-0-2
+  libyaml-tiny-perl libzzip-0-13 lmodern prerex prosper ps2eps python-dbg
+  python-tk python2.7-dbg ruby ruby2.1 rubygems-integration tex-common
+  texlive-base texlive-binaries texlive-extra-utils texlive-font-utils
+  texlive-generic-recommended texlive-latex-base texlive-latex-base-doc
+  texlive-latex-recommended-doc texlive-pictures texlive-pictures-doc
+  texlive-pstricks texlive-pstricks-doc tk8.6-blt2.5 ttf-bitstream-vera
+  vprerex
+Suggested packages:
+  python2.7-gdbm-dbg python2.7-tk-dbg python-gdbm-dbg ri ruby-dev bundler
+  perl-tk latexdiff latexmk dvidvi fragmaster lacheck purifyeps xindy chktex
+  dvipng psutils t1utils libtcltk-ruby texlive-latex-extra dot2tex
+Recommended packages:
+  hyphen-hyphenation-patterns
+The following NEW packages will be installed:
+  blt blt-demo cups-bsd fonts-lmodern hyphen-sh icc-profiles
+  icc-profiles-free libfile-homedir-perl libfile-which-perl libpodofo0.9.0
+  libpoppler-qt4-4 libpotrace0 libptexenc1 libpython-dbg libpython2.7-dbg
+  libruby2.1 libsynctex1 libyaml-0-2 libyaml-tiny-perl libzzip-0-13 lmodern
+  prerex prosper ps2eps python-dbg python-tk python-tk-dbg python2.7-dbg ruby
+  ruby2.1 rubygems-integration scribus scribus-doc scribus-template
+  tex-common texlive-base texlive-binaries texlive-extra-utils
+  texlive-font-utils texlive-generic-recommended texlive-latex-base
+  texlive-latex-base-doc texlive-latex-recommended
+  texlive-latex-recommended-doc texlive-pictures texlive-pictures-doc
+  texlive-pstricks texlive-pstricks-doc tix tk8.6-blt2.5 ttf-bitstream-vera
+  vprerex
+0 upgraded, 52 newly installed, 0 to remove and 41 not upgraded.
+Need to get 445 MB of archives.
+After this operation, 727 MB of additional disk space will be used.
+Do you want to continue? [Y/n] 
+End of output.
+
+References:
+Topic: Scribus uses LaTeX
+Guides:
+TeXstudio
+
+References:
+Topic: Scribus stable in the Debian documentation
+Web: https://packages.debian.org/jessie/scribus
+File: Debian -- Details of package scribus in jessie.pdf
+Topic: Guides related to MS Office suite and their free software replacements
+Guides:
+Libre Office
+Kingsoft Office
+KVM
+VirtualBox
+Photoshop
+GIMP
+Inkscape

@@ -1,0 +1,4 @@
+frescobaldi - LilyPond sheet music text editor
+python-ly - Tool and library for manipulating LilyPond files (Python 2)
+python-ly-doc - Tool and library for manipulating LilyPond files (documentation)
+python3-ly - Tool and library for manipulating LilyPond files (Python 3)

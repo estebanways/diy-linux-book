@@ -1,0 +1,27 @@
+K Desktop Environment (KDE)
+
+General:
+Topic: Debian mail lists.
+Web: https://lists.debian.org/
+Topic: Debian-KDE teams
+Web: http://pkg-kde.alioth.debian.org/join.html
+
+Installation:
+References:
+Web: https://wiki.debian.org/KDE
+File: KDE in Debian.pdf
+
+$ sudo apt-get update
+$ sudo apt-get -u upgrade
+$ sudo apt-get install aptitude tasksel
+$ sudo aptitude install ~t^desktop$ ~t^kde-desktop$
+
+(This is what DebianInstaller would have installed in a new system, but you might want/need to uninstall the current display manager). 
+
+The appearance of GTK-applications in Plasma
+To get gtk-applications look native in Plasma you need install these packages and configure appearance of them through System Settings > Application appearance:
+
+kde-config-gtk-style. KDE configuration module for GTK+ 2/3.x style selection
+kde-config-gtk-style-preview.
+gtk2-engines-oxygen. Oxygen widget theme for GTK2+-based applications
+gtk3-engines-oxygen. Oxygen widget theme for GTK3+-based applications (Debian Wheezy) 

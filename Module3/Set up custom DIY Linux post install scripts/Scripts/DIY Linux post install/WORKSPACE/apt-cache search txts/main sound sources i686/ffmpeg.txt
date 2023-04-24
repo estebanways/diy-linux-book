@@ -1,0 +1,69 @@
+python-audioread - Backend-agnostic audio decoding Python package
+python3-audioread - Backend-agnostic audio decoding Python 3 package
+libavifile-0.7-bin - toolkit for libavifile
+libavifile-0.7-common - toolkit for libavifile
+libavifile-0.7c2 - shared libraries for AVI read/writing
+baresip - portable and modular SIP user-agent - metapackage
+baresip-core - portable and modular SIP user-agent - core parts
+baresip-ffmpeg - portable and modular SIP user-agent - FFmpeg codecs and formats
+baresip-gstreamer - portable and modular SIP user-agent - GStreamer pipelines
+baresip-gtk - portable and modular SIP user-agent - GTK+ front-end
+baresip-x11 - portable and modular SIP user-agent - X11 features
+cmus-plugin-ffmpeg - lightweight ncurses audio player (FFmpeg plugin)
+ffmpeg - Tools for transcoding, streaming and playing of multimedia files
+ffmpeg-doc - Documentation of the FFmpeg multimedia framework
+libav-tools - Compatibility links for libav-tools (transitional package)
+libavcodec-dev - FFmpeg library with de/encoders for audio/video codecs - development files
+libavcodec-extra - FFmpeg library with extra codecs (metapackage)
+libavcodec-extra57 - FFmpeg library with additional de/encoders for audio/video codecs
+libavcodec57 - FFmpeg library with de/encoders for audio/video codecs - runtime files
+libavdevice-dev - FFmpeg library for handling input and output devices - development files
+libavdevice57 - FFmpeg library for handling input and output devices - runtime files
+libavfilter-dev - FFmpeg library containing media filters - development files
+libavfilter-extra - FFmpeg library with extra filters (metapackage)
+libavfilter-extra6 - FFmpeg library with extra media filters - runtime files
+libavfilter6 - FFmpeg library containing media filters - runtime files
+libavformat-dev - FFmpeg library with (de)muxers for multimedia containers - development files
+libavformat57 - FFmpeg library with (de)muxers for multimedia containers - runtime files
+libavresample-dev - FFmpeg compatibility library for resampling - development files
+libavresample3 - FFmpeg compatibility library for resampling - runtime files
+libavutil-dev - FFmpeg library with functions for simplifying programming - development files
+libavutil55 - FFmpeg library with functions for simplifying programming - runtime files
+libpostproc-dev - FFmpeg library for post processing - development files
+libpostproc54 - FFmpeg library for post processing - runtime files
+libswresample-dev - FFmpeg library for audio resampling, rematrixing etc. - development files
+libswresample2 - FFmpeg library for audio resampling, rematrixing etc. - runtime files
+libswscale-dev - FFmpeg library for image scaling and various conversions - development files
+libswscale4 - FFmpeg library for image scaling and various conversions - runtime files
+ffmpeg2theora - Theora video encoder using ffmpeg
+ffmpegthumbnailer - fast and lightweight video thumbnailer
+ffmpegthumbnailer-dbg - debugging information for ffmpegthumbnailer
+libffmpegthumbnailer-dev - development files for ffmpegthumbnailer
+libffmpegthumbnailer4v5 - shared library for ffmpegthumbnailer
+ffmpegthumbs - video thumbnail generator using ffmpeg
+ffmsindex - Command line tool to create ffms2 index files
+libffms2-4 - Cross platform ffmpeg wrapper library
+libffms2-dev - Development files for libffms2
+gmerlin-encoders-ffmpeg - ffmpeg encoders for Gmerlin
+harvid - HTTP Ardour Video Server
+imagination - DVD slide show maker
+imagination-common - DVD slide show maker - common files
+libk3b6-extracodecs - KDE CD/DVD burning application library - extra decoders
+kdenlive - non-linear video editor
+kdenlive-data - non-linear video editor (data files)
+kdenlive-dbg - non-linear video editor (debugging symbols)
+kmplayer - media player for KDE
+mkchromecast - Cast your Linux audio to your Google Cast devices
+moc-ffmpeg-plugin - ncurses based console audio player - ffmpeg plugin
+qmmp - feature-rich audio player with support of many formats
+silan - commandline tool to detect silence in audio-files
+squeezelite - lightweight headless Squeezebox emulator - ALSA version
+squeezelite-pa - lightweight headless Squeezebox emulator - PortAudio version
+tumbler-plugins-extra - D-Bus thumbnailing service (additional plugins)
+vokoscreen - easy to use screencast creator
+winff - graphical video and audio batch converter using ffmpeg or avconv
+winff-data - winff data files
+winff-doc - winff documentation
+winff-gtk2 - GTK+ variant of winff
+winff-qt - Qt variant of winff
+libxine2-ffmpeg - MPEG-related plugins for libxine2

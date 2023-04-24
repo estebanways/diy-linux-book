@@ -1,0 +1,6 @@
+yoshimi - software synthesizer originally based on ZynAddSubFX2
+yoshimi-data - Presets for Yoshimi
+zynadd - ZynAddSubFX engines converted to LV2 plugin format
+zynaddsubfx - Realtime software synthesizer for Linux
+zynaddsubfx-data - Realtime software synthesizer for Linux (data)
+zynaddsubfx-dssi - dssi plugin of zynaddsubfx

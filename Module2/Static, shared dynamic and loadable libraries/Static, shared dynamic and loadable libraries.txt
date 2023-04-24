@@ -1,0 +1,28 @@
+
+You can resolve system problems and software installation problems working with Linux libraries.
+
+References:
+Topic: Understand libraries in Linux
+Web: http://www.yolinux.com/TUTORIALS/LibraryArchives-StaticAndDynamic.html
+File: Static, Shared Dynamic and Loadable Linux Libraries.pdf
+
+Topic: Writing a library
+Web: https://blog.feabhas.com/2014/04/static-and-dynamic-libraries-on-linux/
+File: Static and Dynamic Libraries on Linux - Sticky BitsSticky Bits.pdf
+
+Topic: Mentions to the program 'update-alternatives' to re-link libraries depending on the user needs.
+Guides:
+3D Acceleration and VR
+Java
+Change the default login screen
+
+Topic: OBS software is not working in Debian Jessie. For the installation attempt I downloaded a pre-compiled version and tested the dependencies before proceed with the installation which could damage the system. I tried to resolve the problem linking and renaming libraries carefully and logging everything but the workaround won't work. The problem is libraries version mistmatches within OBS and the OS.
+Guide:
+OBS
+
+Topic: In these guides I create symbolic links for executable files. Symlinks are also used to link libraries.
+Guides:
+Sublime Text Editor
+Netbeans IDE
+
+Containers virtualization techniques such as the used by LXC (Linux Containers) or Oracle Solaris OS virtualization take advantages of shared libraries, to avoid duplicate libraries between virtual machines.

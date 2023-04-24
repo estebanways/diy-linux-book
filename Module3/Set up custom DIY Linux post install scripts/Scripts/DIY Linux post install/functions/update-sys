@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function update-sys {
+ echo "Not implemented yet:"
+ echo "Fuction: update-sys"
+ exit 99
+}

@@ -1,0 +1,7 @@
+Pending to test LinuxBrew installation, otherwise look for Linux binaries.
+
+Web: http://braumeister.org/search/Cassandra
+
+References:
+Guide: Linuxbrew - MongoDB
+

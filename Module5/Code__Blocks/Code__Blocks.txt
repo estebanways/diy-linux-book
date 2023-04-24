@@ -1,0 +1,3 @@
+It's a free C, C++ and Fortran IDE built to meet the most demanding needs of its users. It is designed to be very extensible and fully configurable.
+Netbeans also is used to program in C++.
+You can install the program from the Official Debian repos or look for a newer version.

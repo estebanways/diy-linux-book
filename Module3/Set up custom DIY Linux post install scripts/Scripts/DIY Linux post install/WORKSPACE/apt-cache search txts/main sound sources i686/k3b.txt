@@ -1,0 +1,8 @@
+juk - music jukebox / music player
+k3b - Sophisticated CD/DVD burning application
+k3b-data - Sophisticated CD/DVD burning application - data files
+k3b-extrathemes - Sophisticated CD/DVD burning application - extra themes
+k3b-i18n - Sophisticated CD/DVD burning application - localizations files
+libk3b-dev - KDE CD/DVD burning application library - development files
+libk3b6 - KDE CD/DVD burning application library - runtime files
+libk3b6-extracodecs - KDE CD/DVD burning application library - extra decoders

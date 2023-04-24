@@ -1,0 +1,149 @@
+python-audioread - Backend-agnostic audio decoding Python package
+autoradio - radio automation software
+baresip - portable and modular SIP user-agent - metapackage
+baresip-core - portable and modular SIP user-agent - core parts
+baresip-ffmpeg - portable and modular SIP user-agent - FFmpeg codecs and formats
+baresip-gstreamer - portable and modular SIP user-agent - GStreamer pipelines
+baresip-gtk - portable and modular SIP user-agent - GTK+ front-end
+baresip-x11 - portable and modular SIP user-agent - X11 features
+brasero - CD/DVD burning application for GNOME
+gir1.2-clutter-gst-3.0 - Gobject introspection data for Clutter GStreamer elements
+gstreamer1.0-clutter-3.0 - Clutter PLugin for GStreamer 1.0
+libclutter-gst-3.0-0 - Open GL based interactive canvas library GStreamer elements
+libclutter-gst-3.0-dev - Open GL based interactive canvas library GStreamer elements (development files)
+libclutter-gst-3.0-doc - Open GL based interactive canvas library GStreamer elements (documentation)
+gir1.2-coglgst-2.0 - GObject introspection data for the CoglGst 2.0 library
+libcogl-gst20 - Object oriented GL/GLES Abstraction/Utility Layer
+gstreamer1.0-crystalhd - Crystal HD Video Decoder (GStreamer plugin)
+fso-deviced-player-gstreamer - GStreamer player module for fso-deviced
+gambas3-gb-media - Gambas media component
+gnome-sushi - sushi is a quick previewer for nautilus
+gnome-twitch-player-backend-gstreamer-cairo - Player backend for GNOME Twitch based on gstreamer+cairo
+gnome-twitch-player-backend-gstreamer-clutter - Player backend for GNOME Twitch based on gstreamer+clutter
+gnome-twitch-player-backend-gstreamer-opengl - Player backend for GNOME Twitch based on gstreamer+opengl
+gnome-video-effects - Collection of GStreamer effects
+gnome-video-effects-dev - Development files for gnome-video-effects
+gnome-video-effects-frei0r - GNOME Video Effects - frei0r plugins
+goobox - CD player and ripper with GNOME 3 integration
+gstreamer1.0-fluendo-mp3 - Fluendo mp3 decoder GStreamer 1.0 plugin
+gstreamer1.0-libav - libav plugin for GStreamer
+gstreamer1.0-libav-dbg - libav plugin for GStreamer (debug symbols)
+gir1.2-gst-plugins-bad-1.0 - GObject introspection data for the GStreamer libraries from the "bad" set
+gstreamer1.0-plugins-bad - GStreamer plugins from the "bad" set
+gstreamer1.0-plugins-bad-dbg - GStreamer plugins from the "bad" set (debug symbols)
+gstreamer1.0-plugins-bad-doc - GStreamer documentation for plugins from the "bad" set
+libgstreamer-plugins-bad1.0-0 - GStreamer development files for libraries from the "bad" set
+libgstreamer-plugins-bad1.0-dev - GStreamer development files for libraries from the "bad" set
+gir1.2-gst-plugins-base-1.0 - GObject introspection data for the GStreamer Plugins Base library
+gstreamer1.0-alsa - GStreamer plugin for ALSA
+gstreamer1.0-plugins-base - GStreamer plugins from the "base" set
+gstreamer1.0-plugins-base-apps - GStreamer helper programs from the "base" set
+gstreamer1.0-plugins-base-dbg - GStreamer plugins from the "base" set
+gstreamer1.0-plugins-base-doc - GStreamer documentation for plugins from the "base" set
+gstreamer1.0-x - GStreamer plugins for X11 and Pango
+libgstreamer-plugins-base1.0-0 - GStreamer libraries from the "base" set
+libgstreamer-plugins-base1.0-dev - GStreamer development files for libraries from the "base" set
+gstreamer1.0-espeak - GStreamer plugin for eSpeak speech synthesis
+gstreamer1.0-plugins-good - GStreamer plugins from the "good" set
+gstreamer1.0-plugins-good-dbg - GStreamer plugins from the "good" set
+gstreamer1.0-plugins-good-doc - GStreamer documentation for plugins from the "good" set
+gstreamer1.0-pulseaudio - GStreamer plugin for PulseAudio
+gstreamer1.0-plugins-ugly - GStreamer plugins from the "ugly" set
+gstreamer1.0-plugins-ugly-dbg - GStreamer plugins from the "ugly" set (debug symbols)
+gstreamer1.0-plugins-ugly-doc - GStreamer documentation for plugins from the "ugly" set
+python-gst-1.0 - GStreamer GObject Introspection overrides for Python
+python-gst-1.0-dbg - GStreamer GObject Introspection overrides for Python (debug extensions)
+python3-gst-1.0 - GStreamer GObject Introspection overrides for Python (Python 3)
+python3-gst-1.0-dbg - GStreamer GObject Introspection overrides for Python (Python 3, debug extensions)
+gir1.2-gst-rtsp-server-1.0 - GObject introspection data for the GStreamer RTSP Server
+gstreamer1.0-rtsp - RTSP plugin for GStreamer
+gstreamer1.0-rtsp-dbg - RTSP plugin for GStreamer
+libgstrtspserver-1.0-0 - GStreamer RTSP Server (shared library)
+libgstrtspserver-1.0-0-dbg - GStreamer RTSP Server (debug symbols)
+libgstrtspserver-1.0-dev - GStreamer RTSP Server (development files)
+libgstrtspserver-1.0-doc - GStreamer RTSP Server (documentation)
+gst123 - GStreamer based command line media player
+ges1.0-tools - Tools for use with the GStreamer editing services
+gir1.2-ges-1.0 - GObject introspection data for the GES library
+libges-1.0-0 - GStreamer editing services (shared library)
+libges-1.0-0-dbg - GStreamer editing services (debug symbols)
+libges-1.0-dev - GStreamer editing services (development files)
+libges-1.0-doc - GStreamer editing services (documentation)
+gstreamer1.0-vaapi - VA-API plugins for GStreamer
+gstreamer1.0-vaapi-doc - GStreamer VA-API documentation and manuals
+gir1.2-gstreamer-1.0 - GObject introspection data for the GStreamer library
+gstreamer1.0-doc - GStreamer core documentation and manuals
+gstreamer1.0-tools - Tools for use with GStreamer
+libgstreamer1.0-0 - Core GStreamer libraries and elements
+libgstreamer1.0-0-dbg - Core GStreamer libraries and elements
+libgstreamer1.0-dev - GStreamer core development files
+libgstreamermm-1.0-1 - C++ wrapper library for GStreamer (shared libraries)
+libgstreamermm-1.0-dev - C++ wrapper library for GStreamer (development files)
+libgstreamermm-1.0-doc - C++ wrapper library for GStreamer (documentation)
+libcanberra-gstreamer - GStreamer backend for libcanberra
+gir1.2-nice-0.1 - ICE library (GObject introspection)
+gstreamer1.0-nice - ICE library (GStreamer plugin)
+libnice-dbg - ICE library (debugging symbols)
+libnice-dev - ICE library (development files)
+libnice-doc - ICE library (documentation)
+libnice10 - ICE library (shared library)
+gstreamer-qapt - GStreamer plugin to install codecs using QApt
+gstreamer0.10-qapt - transitional dummy package
+libreoffice - office productivity suite (metapackage)
+libreoffice-avmedia-backend-gstreamer - GStreamer backend for LibreOffice
+liquidsoap-plugin-gstreamer - audio streaming language -- GStreamer plugin
+lua-lgi - Lua bridge to GObject based libraries
+lua-lgi-dbg - Lua bridge to GObject based libraries
+mkchromecast-gstreamer - Gstreamer dependencies to cast with mkchromecast
+libgstreamer-ocaml - OCaml interface to the gstreamer library -- runtime files
+libgstreamer-ocaml-dev - OCaml interface to the gstreamer library -- development files
+gstreamer1.0-packagekit - GStreamer plugin to install codecs using PackageKit
+parole - media player based on GStreamer framework
+parole-dev - development files for Parole media player
+phonon-backend-gstreamer - Phonon GStreamer 1.0 backend
+phonon-backend-gstreamer-common - Phonon GStreamer 1.0.x backend icons
+phonon4qt5-backend-gstreamer - Phonon Qt5 GStreamer 1.0 backend
+pitivi - non-linear audio/video editor using GStreamer
+playitslowly - Plays back audio files at a different speed or pitch
+gstreamer1.0-pocketsphinx - Speech recognition tool - gstreamer plugin
+pulseaudio - PulseAudio sound server
+libqt5glib-2.0-0 - C++ bindings library for GLib and GObject with a Qt-style API - Qt 5 build
+libqt5gstreamer-1.0-0 - C++ bindings library for GStreamer with a Qt-style API - Qt 5 build
+libqt5gstreamer-dev - Development headers for QtGStreamer - Qt 5 build
+libqt5gstreamerquick-1.0-0 - QtGStreamerQuick library - Qt 5 build
+libqt5gstreamerui-1.0-0 - QtGStreamerUi library - Qt 5 build
+libqt5gstreamerutils-1.0-0 - QtGStreamerUtils library - Qt 5 build
+libqtglib-2.0-0 - C++ bindings library for GLib and GObject with a Qt-style API
+libqtgstreamer-1.0-0 - C++ bindings library for GStreamer with a Qt-style API
+libqtgstreamer-dev - Development headers for QtGStreamer
+libqtgstreamerui-1.0-0 - QtGStreamerUi library
+libqtgstreamerutils-1.0-0 - QtGStreamerUtils library
+qml-module-qtgstreamer - QML plugins from QtGStreamer - Qt 5 build
+qt5gstreamer-dbg - Debug symbols for QtGStreamer - Qt 5 build
+qtgstreamer-dbg - Debug symbols for QtGStreamer
+qtgstreamer-declarative - QML plugins from QtGStreamer
+qtgstreamer-doc - QtGStreamer API documentation
+qtgstreamer-plugins - GStreamer plugins from QtGStreamer
+qtgstreamer-plugins-qt5 - GStreamer plugins from QtGStreamer - Qt 5 build
+libqgsttools-p1 - GStreamer tools for  Qt 5 Multimedia module
+libqt5multimedia5-plugins - Qt 5 Multimedia module plugins
+roarplaylistd-codechelper-gst - roarplaylistd helper script for GStreamer codecs
+ruby-gstreamer - GStreamer bindings for the Ruby language
+librygel-renderer-gst-2.6-2 - GNOME UPnP/DLNA services - renderer library
+rygel - GNOME UPnP/DLNA services
+rygel-gst-launch - GNOME UPnP/DLNA services - gst-launch plugin
+rygel-playbin - GNOME UPnP/DLNA services - GStreamer Media Renderer plugin
+sound-juicer - GNOME CD Ripper
+soundconverter - GNOME application to convert audio files into other formats
+subtitlecomposer - Subtitles editor for KDE
+subtitleeditor - Graphical subtitle editor with sound waves representation
+tap-plugins - Tom's Audio Processing LADSPA plugins
+tap-plugins-doc - TAP-plugins documentation
+libtelepathy-qt4-farstream2 - Telepathy/Farsight integration - Qt 4 library
+libtelepathy-qt5-farstream0 - Telepathy/Farsight integration - Qt 5 library
+totem - Simple media player for the GNOME desktop based on GStreamer
+transmageddon - video transcoder for Linux and Unix systems built using GStreamer
+vim-syntax-gtk - Syntax files to highlight GTK+ keywords in vim
+vlevel - Levelling audio filter as command-line tool and LADSPA/JACK plugin
+voctomix - Full-HD Software Live-Video-Mixer
+volti - control audio volume from system tray/notification area

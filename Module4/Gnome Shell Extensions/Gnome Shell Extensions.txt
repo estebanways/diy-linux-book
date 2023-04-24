@@ -1,0 +1,192 @@
+Manage extensions:
+To manage extensions, include set ON/OFF, configure and upgrade, visit https://extensions.gnome.org/local/
+You can also go to menu Applications > Tweak Tool > Extensions
+
+Install the Battery Percentage extension:
+References:
+Web: https://extensions.gnome.org/extension/818/battery-percentage/
+
+Install Battery Power Statistics Shortcut:
+References:
+Web: https://extensions.gnome.org/extension/175/battery-power-statistics-shortcut/
+
+Install the Caffeine extension:
+References:
+https://extensions.gnome.org/extension/517/caffeine/
+Topic: This extension and the Gnome screensaver stop working when you install a similar program called Xscreensaver. Caffeine is all right to deactivate the countdown to a blank screen or a screensaver when watching movies, but to build software I prefer to sacrifice these apps and install something a little bit more powerful and with all the options I need in one place. 
+References:
+Guide: Xscreensaver
+
+Install Multi Monitors extension:
+References:
+Web: https://extensions.gnome.org/extension/921/multi-monitors-add-on/
+
+Install fix-multi-monitors extension:
+References:
+Web: https://extensions.gnome.org/extension/1066/fix-multi-monitors/
+
+Install display button extension:
+References:
+Web: https://extensions.gnome.org/extension/939/display-button/
+
+Install cpufreq extension:
+References:
+Web: https://extensions.gnome.org/extension/1082/cpufreq/
+
+Install Hibernate Status Button:
+References:
+Web: https://extensions.gnome.org/extension/755/hibernate-status-button/
+Topic: Learn how to Hibernate
+Guide: Systemd
+
+Install Hubic Indicator extension:
+Sync devices in the Cloud
+References:
+Web: https://extensions.gnome.org/extension/793/hubic-indicator/
+Web: https://github.com/DoudTechData/hubic-indicator
+Web: https://forums.hubic.com/showthread.php?272-hubiC-for-Linux-beta-3-is-out-
+Web: http://mir7.ovh.net/ovh-applications/hubic/hubiC-Linux/2.1.0/
+Web: https://wiki.debian.org/es/hubiC
+File: Install Hubic Indicator.pdf (Spanish)
+Steps to install the Hubic service:
+References:
+Guide: 
+Hubic
+
+Install the Transparent windows extension:
+You need to install a Gnome extension.
+References:
+Web: https://extensions.gnome.org/extension/684/transparent-windows/
+
+Gnome extensions is on Beta version and Transparency is not working very good as the GitHub says.
+References:
+Web: https://github.com/saysilence/transparentwindows
+
+You should install the app manually like this:
+References:
+Topic: How to download the Extension from GitHub.com and then save the extracted file in: /home/esteba/.local/shell/gnome-shell/extensions
+Web: http://askubuntu.com/questions/196884/how-to-install-gnome-shell-extensions-offline
+
+After installation you will go to Tweak tool and see next Error:
+The controls to switch features on and off are not working.
+And the solution to the transparency Work in 3.14 is a manual change of the file metadata.json of the extension to add  current version ("3.14") to the chain, like this:
+...
+"shell-version": ["3.10", "3.14"] ,
+...
+Why version 3.14?:
+$ gnome-shell --version
+
+Terminals transparency is set up with this extension rather than in the previous Gnome 2. Read the instructions in GitHub. You can also switch from everything transparent to everything opaque easily.
+
+DO NOT Install the Dynamic Panel Transparency extension, because is ugly and awesome terminal transparency is not going to work if this extension is toggled ON:
+Web: https://extensions.gnome.org/extension/1011/dynamic-panel-transparency/
+
+Install the MMOD Panel extension:
+References:
+Web: https://extensions.gnome.org/extension/898/mmod-panel/
+
+Install the Windows Blur Effects extension:
+References:
+Web: https://extensions.gnome.org/extension/891/windows-blur-effects/
+
+Install the Transparent Top Bar extension:
+References:
+Web: https://extensions.gnome.org/extension/857/transparent-top-bar/
+
+Install the extension PulseAudio Loopback Device:
+References:
+Web: https://extensions.gnome.org/extension/954/pulseaudio-loopback-device/
+
+Install the cpufreq extension:
+References:
+Web: https://extensions.gnome.org/extension/1082/cpufreq/
+
+Install the Language extension:
+This extension shows up instantly, when you add a second language in the system settings.
+References:
+Web: Hasn't web page.
+
+Install the User Themes extension:
+References:
+Web: https://extensions.gnome.org/extension/19/user-themes/
+
+To download themes:
+http://gnome-look.org/?xcontentmode=191
+
+I test downloading Granite:
+Web: http://gnome-look.org/content/show.php/Granite?content=170283&PHPSESSID=eg77j33asa4fhenl4cqm4pf4v1
+See the web to verify gnome Shell versions and specific instructions.
+Minimum required: GNOME 3.x
+Downloads: 1902
+Submitted: Jun 7 2015
+Updated: Jun 14 2015
+Description:
+A cleaned up and simplified Gnome Shell 3.16 theme inspired by GTK's dark theme layout and color scheme.
+INSTALLATION INSTRUCTIONS
+Install Gnome Tweak Tool and enable the User Themes extension: https://extensions.gnome.org/extension/19/user-themes/.
+Go to Appearance->Shell Theme and browse for the downloaded .zip file. The theme will get installed and you have to select it from the drop down list.
+Cheers!
+
+I also downloaded Glassfull 3.14:
+http://gnome-look.org/content/show.php/Glassfull+3.14?content=166572&PHPSESSID=eg77j33asa4fhenl4cqm4pf4v1
+Minimum required: GNOME 3.x
+Downloads: 8491
+Submitted: Aug 14 2014
+Updated: May 26 2015
+Description:
+GNU/Linux = Debian 8 Jessie
+Gnome-Shell = 3.14.1
+Quite sharp corners and transparent elements with 1px border and blue selected.
+
+I also downloaded Novashell.
+Web: http://gnome-look.org/content/show.php/NovaShell?content=151522
+Visit the web site to follow the installation instructions and follow the icons link.
+
+To install themes:
+Use the tweak tool to install the zip file.
+
+Installation path:
+/home/esteban/.local/share/themes
+
+Themes recommended:
+References:
+Web: http://www.maketecheasier.com/8-gnome-shell-themes/
+File: 8 good-looking Gnome shell themes.pdf
+This article is part of the Linux Desktop Themes series, and has link to great theme articles:
+5 Beautiful Icon Themes for Linux
+5 Great GTK Themes for Linux
+8 Good-looking Gnome Shell Themes
+5 Great Openbox Themes
+9 Great KDE Plasma Themes
+9 Awesome Conky Themes
+9 Great Mate Themes [Linux]
+9 Great Themes for XFCE4
+9 Great LXDE Themes
+
+To install/change icons:
+References:
+Web: http://www.maketecheasier.com/5-beautiful-icon-themes-for-linux/
+
+How to install icon themes:
+
+Icon themes can be installed in two ways. You can install your icons to the system directory, effectively making your icon theme accessible to every user on the system. Alternatively, it’s possible to just enable it for one user only.
+
+Download an icon theme of your choice and extract the files inside the archive. For instance, if you’ve chosen to download Dalisha (see the link below), you’d be extracting “Dalisha_2_2.tar.gz”. Once extracted, a folder will appear (in this case it’s called Dalisha). Open a terminal window and enter the command(s) below to install the icon themes.
+
+Installing systemwide:
+$ sudo mv /path/to/icon/theme/folder/ /usr/share/icons/ -r
+
+Installing for one user:
+$ mv /path/to/icon/theme/folder/ ~/.icons -r
+
+* Remember to change the filepath to where you have extracted the icon theme archive.
+
+Once the theme has been installed, enable the icon theme inside your desktop environment with the DE’s own configuration tool. Or, using your tool of choice. If you are not sure what tool to use, check out Gnome Tweak Tool (it works with most GTK desktops). If you’re on KDE, just open the KDE application menu and search icons. It should be pretty straight-forward.
+
+Note:
+/home/esteban/.icons doesn't exist. If I want to install icons locally, do I have to recreate the directory before or is there another directory?
+I also found this place in my home/:
+/home/esteban/.local/share/icons
+
+If some theme do not charge before restart reload the desktop configuration like this:
+Press and hold ALT + F2, and then press R and then hit ENTER.

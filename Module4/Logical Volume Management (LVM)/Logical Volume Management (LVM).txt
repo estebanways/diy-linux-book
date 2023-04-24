@@ -1,0 +1,43 @@
+Some notes about wmdiskmon and the LVMs:
+
+I believe RAID and LVMs are not only for Servers with HDs in RAIDs like SANs. In some cases a servers run without LVMs, for example my Virtualization server runs KVM (Linux native) and I create VMs on the LVM, and VMs could be installed without LVM.
+
+To run to check just partitions:
+# df -h
+# mount
+# nano /etc/fstab
+
+IE:
+# df -h
+Filesystem                 Size  Used Avail Use% Mounted on
+rootfs                     145G   18G  120G  13% /
+udev                        10M     0   10M   0% /dev
+tmpfs                       88M  716K   87M   1% /run
+/dev/mapper/ProLiant-root  145G   18G  120G  13% /
+tmpfs                      5.0M     0  5.0M   0% /run/lock
+tmpfs                      175M   72K  175M   1% /run/shm
+/dev/sda1                  228M   19M  198M   9% /boot
+
+New tool to check LVM:
+# pvs
+Output:
+PV         VG       Fmt  Attr PSize   PFree
+/dev/dm-0  ProLiant lvm2 a--  148.80g    0 
+
+More options to LVM:
+This is relatively easy. Use lvdisplay to show logical volumes, vgdisplay to show volume groups (including free space available) and pvdisplay to show physical volumes.
+You should get all the data you need from those three commands, albeit with some work to figure out what all the various bits of data mean.
+
+# vgs
+# lvs
+
+pvs, vgs and lvs are convenient easy-to-read alternatives to pvdisplay, vgdisplay and lvdisplay if you only need a summary.
+The "maps" option is what you are after. This works at the lv level as well as pv.
+So if you want to see what room an LV is taking up on a volume, do:
+# lvdisplay -m <volumegroupname>
+If you want to see the usage of PVs, do:
+#pvdisplay -m
+
+Reference:
+Web: http://serverfault.com/questions/262541/how-to-display-used-devices-free-space-when-using-lvm
+File: LVM stats commands.pdf.

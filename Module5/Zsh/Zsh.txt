@@ -1,0 +1,19 @@
+Z-shell (Oh My Zsh):
+
+Remember to install as non root user
+
+References:
+Install in order:
+File: Install Z-shell (Oh My Zsh) on Ubuntu 18.04 LTS.pdf
+File: Syntax Highlighting  (complete lines).txt
+
+When you are ready with the installation:
+Change default shell:
+$ chsh -s /bin/zsh
+Logout
+Login
+$ zsh
+To return to bash shell:
+$ bash
+
+NO need to default a shell

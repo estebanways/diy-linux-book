@@ -1,0 +1,313 @@
+abcde - A Better CD Encoder
+alsaplayer-common - audio player (common files)
+amarok - easy to use media player based on the KDE Platform
+ample - simple MP3 server easy to use
+libassimp3v5 - 3D model import library
+asterisk-mp3 - MP3 playback support for the Asterisk PBX
+asunder - graphical audio CD ripper and encoder
+audacious - small and fast audio player which supports lots of formats
+audacious-dev - audacious development files
+libaudcore3 - audacious core engine library
+libaudgui3 - audacious media player (libaudgui shared library)
+libaudqt0 - audacious media player (libaudqt shared library)
+libaudtag2 - audacious media player (libaudtag shared library)
+audacious-plugins - Base plugins for audacious
+audacity - fast, cross-platform audio editor
+audiolink - makes managing and searching for music easier
+btag - interactive command-line based multimedia tag editor
+burn - command-line tool for writing optical media
+cdcat - media catalog program
+cdlabelgen - generates front cards and tray cards for CDs and DVDs
+clamz - command-line program to download MP3's from Amazon
+clementine - modern music player and library organizer
+cmus - lightweight ncurses audio player
+cmus-plugin-ffmpeg - lightweight ncurses audio player (FFmpeg plugin)
+coccinella - Communication tool (XMPP/Jabber) with a built-in whiteboard
+cplay - A front-end for various audio players
+crip - terminal-based ripper/encoder/tagger tool
+cue2toc - converts CUE files to cdrdao's TOC format
+cynthiune.app - Music player for GNUstep
+darkice - Live audio streamer
+detox - replace problematic characters in filenames
+dir2ogg - audio file converter into ogg-vorbis format
+draai - Command-line music player for MPD
+easytag - GTK+ editor for audio file tags
+ebook2cw - convert ebooks to Morse MP3s/OGGs
+ebook2cwgui - GUI for ebook2cw
+entagged - graphical audio file tagger with freedb support
+eyed3 - Display and manipulate id3-tags on the command-line
+python-eyed3 - Python module for id3-tags manipulation
+ezquake - modern QuakeWorld client
+ezstream - easy media streaming client over icecast servers
+fadecut - toolset to rip audiostreams, cut, fade in/out and tag the resulting audiofiles
+fapg - Fast Audio Playlist Generator
+fatsort - utility for sorting FAT directory structures
+flac - Free Lossless Audio Codec - command line tools
+libflac++-dev - Free Lossless Audio Codec - C++ development library
+libflac++6v5 - Free Lossless Audio Codec - C++ runtime library
+libflac-dev - Free Lossless Audio Codec - C development library
+libflac-doc - Free Lossless Audio Codec - library documentation
+libflac8 - Free Lossless Audio Codec - runtime C library
+gjay - An automatic and learning DJ for audacious
+libgmp3-dev - Multiprecision arithmetic library developers tools
+gmusicbrowser - graphical jukebox for large music collections
+gnome-sound-recorder - simple and modern sound recorder for GNOME
+gpodder - podcast client and feed aggregator
+gstreamer1.0-fluendo-mp3 - Fluendo mp3 decoder GStreamer 1.0 plugin
+gst123 - GStreamer based command line media player
+python-hachoir-metadata - Program to extract metadata using Hachoir library
+icecast2 - streaming media server
+id3tool - Command line editor for id3 tags
+id3v2 - A command line id3v2 tag editor
+idjc - graphical shoutcast/icecast client
+imagination - DVD slide show maker
+irssi-scripts - collection of scripts for irssi
+jack - Rip and encode CDs with one command
+libjs-jquery-jplayer - HTML5 Audio & Video for jQuery with a Flash fallback
+jsymphonic - File manager for Sony's MP3 players
+libk3b6-extracodecs - KDE CD/DVD burning application library - extra decoders
+python-kaa-metadata - Media Metadata for Python
+kid3 - KDE audio tag editor
+kid3-cli - Command line audio tag editor
+kid3-core - Audio tag editor core libraries and data
+kid3-qt - Audio tag editor
+kradio4 - comfortable radio application for KDE
+lame - MP3 encoding library (frontend)
+lame-dbg - MP3 encoding library (debugging symbols)
+lame-doc - MP3 encoding library (documentation)
+libmp3lame-dev - MP3 encoding library (development)
+libmp3lame0 - MP3 encoding library
+libanydata-perl - simple tied hash interface for files and data structures
+libapache2-mod-musicindex - Browse, stream, download and search through MP3/Ogg/FLAC/MP4 files
+mod-musicindex-common - Common files for mod-musicindex
+libaudclient-dev - audacious D-Bus remote control library (development files)
+libaudclient2 - audacious D-Bus remote control library
+libaudio-file-perl - Perl audio file abstraction library
+libaudio-flac-decoder-perl - Perl module providing an object-oriented FLAC decoder
+libaudio-scan-perl - module for reading metadata from common audio file formats
+libaudiomask-dev - Audio masking threshold estimation lib headers, docs and examples
+libaudiomask1 - Audio masking threshold estimation library
+libcddb-perl - module to query CDDB and freedb servers
+extract - displays meta-data from files of arbitrary type
+libextractor3 - extracts meta-data from files of arbitrary type (library)
+libjaudiotagger-java - library for editing tags like ID3 in audio files such as MP3s
+libjlayer-java - library to decode, convert and play MP3 files
+libjlayer-java-doc - library to decode, convert and play MP3 files - documentation
+libmad0 - MPEG audio decoder library
+libmad0-dev - MPEG audio decoder development library
+libmediainfo-dev - library reading metadata from media files -- headers
+libmediainfo-doc - library for reading metadata from media files -- documentation
+libmediainfo0v5 - library for reading metadata from media files -- shared library
+python-mediainfodll - library for reading metadata from media files -- shared library
+python3-mediainfodll - library for reading metadata from media files -- shared library
+libmp3-info-perl - Perl MP3::Info - Manipulate / fetch info from MP3 audio files
+libmp3-tag-perl - Module for reading tags of MP3 audio files
+libmp3spi-java - interface to support MP3 (MPEG 1/2/2.5 Layer 1/2/3) audio format
+libmp3splt-dev - development files for libmp3splt0
+libmp3splt0 - library for splitting MP3 and Ogg Vorbis files
+libmp3splt0-flac - FLAC plugin for mp3splt
+libmp3splt0-mp3 - MP3 plugin for mp3splt
+libmp3splt0-ogg - Ogg Vorbis plugin for mp3splt
+libmp4-info-perl - Fetch info from MPEG-4 files
+libmpeg3-2 - MPEG streams decoding library
+libomxil-bellagio0-components-mad - MAD MP3 decoder components for Bellagio OpenMAX IL
+libsdl2-mixer-2.0-0 - Mixer library for Simple DirectMedia Layer 2, libraries
+libsdl2-mixer-dbg - Mixer library for Simple DirectMedia Layer 2, debugging
+libsdl2-mixer-dev - Mixer library for Simple DirectMedia Layer 2, development files
+libshout3 - MP3/Ogg Vorbis broadcast streaming library
+libshout3-dev - MP3/Ogg Vorbis broadcast streaming library (development)
+libpacketdump3 - network packet parsing and human-readable display library
+libpacketdump3-dev - development headers for the libpacketdump library
+liburi-title-perl - common interface to get the titles of things on the web
+liquidsoap-plugin-lame - audio streaming language -- Lame plugin
+liquidsoap-plugin-mad - audio streaming language -- Mad plugin
+liquidsoap-plugin-shine - audio streaming language -- Shine plugin
+lltag - Automatic command-line mp3/ogg/flac file tagger and renamer
+madplay - MPEG audio player in fixed point
+magicrescue - recover files by looking for magic bytes
+mat - Metadata anonymisation toolkit
+mediainfo - command-line utility for reading information from audio/video files
+mediainfo-gui - graphical utility for reading information from audio/video files
+mixxx - Digital Disc Jockey Interface
+mixxx-data - Digital Disc Jockey Interface -- data files
+mkchromecast - Cast your Linux audio to your Google Cast devices
+moc - ncurses based console audio player
+moosic - Daemon/client combo to easily queue music files for playing
+mp3blaster - Full-screen console mp3 and Ogg Vorbis player
+mp3burn - burn audio CDs directly from MP3, Ogg Vorbis, or FLAC files
+mp3cd - Burns normalized audio CDs from lists of MP3s/WAVs/Oggs/FLACs
+mp3check - tool to check mp3 files for consistency
+mp3diags - find issues in MP3 files and help to solve them
+mp3fs - FUSE filesystem for transcoding FLAC to MP3 on the fly
+mp3info - An MP3 technical info viewer and ID3 1.x tag editor
+mp3info-gtk - MP3 info viewer and ID3 1.x tag editor -- GTK+ version
+mp3rename - Rename mp3 files based on id3tags
+mp3report - Script to create an HTML report of MP3 files in a directory
+mp3roaster - Perl hack for burning audio CDs out of MP3/OGG/FLAC/WAV files
+mp3val - program for MPEG audio stream validation
+mp3wrap - Utility for MP3 wrapping (rolling multiple MP3s into one)
+mpc123 - command-line Musepack audio player
+mpd - Music Player Daemon
+libmpg123-0 - MPEG layer 1/2/3 audio decoder (shared library)
+libmpg123-dev - MPEG layer 1/2/3 audio decoder (development files)
+libout123-0 - MPEG layer 1/2/3 audio decoder (libout123 shared library)
+mpg123 - MPEG layer 1/2/3 audio player
+mpg123-el - front-end to mpg321/ogg321 media players for Emacs
+mpg321 - Simple and lightweight command line MP3 player
+mpgtx - toolbox to manipulate MPEG files (video, system, and audio)
+mencoder - MPlayer's Movie Encoder
+mupen64plus-rsp-hle - high-level rsp emulation for mupen64plus
+music123 - Command-line shell for sound-file players
+musiclibrarian - A simple GUI tool to organize collections of music
+mussort - simple tool that sorts a music collection
+pypy-mutagen - audio metadata editing library (PyPy)
+python-mutagen - audio metadata editing library
+python-mutagen-doc - audio metadata editing library - documentation
+python3-mutagen - audio metadata editing library (Python 3)
+ncdt - Display directory tree
+libsnmp30 - SNMP (Simple Network Management Protocol) library
+libsnmp30-dbg - SNMP (Simple Network Management Protocol) library debug
+normalize-audio - adjusts the volume of WAV, MP3 and OGG files to a standard volume level
+browser-plugin-vlc - multimedia plugin for web browsers based on VLC
+libxcomp3 - NX X compression library
+libxcomp3-dbg - nx-X11 compression library (debug package)
+libcry-ocaml-dev - MP3/Ogg Vorbis broadcast OCaml module
+libflac-ocaml - OCaml interface to the flac library -- runtime files
+libflac-ocaml-dev - OCaml interface to the flac library -- development files
+libmp3lame-ocaml - OCaml interface to the lame library -- runtime files
+libmp3lame-ocaml-dev - OCaml interface to the lame library -- developpement files
+libmad-ocaml - OCaml bindings for the MAD library (Runtime library)
+libmad-ocaml-dev - OCaml bindings for the MAD library (Development package)
+libshine-ocaml - OCaml interface to the shine library -- runtime files
+libshine-ocaml-dev - OCaml interface to the shine library -- developpement files
+libshout-ocaml - OCaml bindings for the shout library
+libshout-ocaml-dev - OCaml bindings for the shout library
+libagrep-ocaml - Wu-Manber algorithm for string searching with errors
+libagrep-ocaml-dev - Wu-Manber algorithm for string searching with errors
+libogmrip-dev - Application for ripping and encoding DVD - development files
+libogmrip1 - Application for ripping and encoding DVD - libraries files
+ogmrip - Application for ripping and encoding DVD
+ogmrip-doc - Application for ripping and encoding DVD - Documentation files
+oidua - audio file metadata lister
+libopenal1 - Software implementation of the OpenAL audio API (shared library)
+libosmcomp3 - InfiniBand subnet manager - component library
+pacpl - multi-purpose audio converter/ripper/tagger script
+paulstretch - Extreme sound time-stretch
+pd-iemlib - collection of general purpose objects and filters for Pure Data
+pd-unauthorized - library of Pd objects for streaming and GUI control
+phonon-backend-gstreamer - Phonon GStreamer 1.0 backend
+phonon-backend-gstreamer-common - Phonon GStreamer 1.0.x backend icons
+phonon4qt5-backend-gstreamer - Phonon Qt5 GStreamer 1.0 backend
+poc-streamer - MP3/Ogg multicast/HTTP streamer and MP3 cutting tool
+podracer - podcast aggregator/downloader
+psi4 - Quantum Chemical Program Suite
+puddletag - simple, powerful audio tag editor
+pulseaudio-dlna - Stream audio to DLNA devices and Chromecasts
+pykaraoke - free CDG/MIDI/MPEG karaoke player
+pykaraoke-bin - free CDG/MIDI/MPEG karaoke player
+python-pykaraoke - free CDG/MIDI/MPEG karaoke player
+python-pymad - Python wrapper to the MPEG Audio Decoder library (Python 2)
+python-pymad-dbg - Python wrapper to the MPEG Audio Decoder library (Python 2 debug)
+python3-pymad - Python wrapper to the MPEG Audio Decoder library (Python 3)
+python3-pymad-dbg - Python wrapper to the MPEG Audio Decoder library (Python 3 debug)
+python-pymtp - Pythonic binding to LibMTP to interact with MTP devices
+python-id3 - Python module for id3-tags manipulation
+qmmp - feature-rich audio player with support of many formats
+quelcom - Command line editing tools for MP3 and WAV files
+exfalso - audio tag editor for GTK+
+quodlibet - audio library manager and player for GTK3
+gir1.2-rb-3.0 - GObject introspection data for the rhythmbox music player
+librhythmbox-core10 - support library for the rhythmbox music player
+rhythmbox - music player and organizer for GNOME
+rhythmbox-data - data files for rhythmbox
+rhythmbox-dev - development files for the rhythmbox music player
+rhythmbox-doc - documentation files for the rhythmbox music player
+rhythmbox-plugin-cdrecorder - burning plugin for rhythmbox music player
+rhythmbox-plugins - plugins for rhythmbox music player
+rio - Command line Diamond Rio MP3 player controller
+ripit - Textbased audio CD ripper
+ripperx - GTK-based audio CD ripper/encoder
+ruby-mp3tag - Ruby library for manipulating ID3V1.1 tags in MP3
+libsdl-mixer1.2 - Mixer library for Simple DirectMedia Layer 1.2, libraries
+libsdl-mixer1.2-dbg - Mixer library for Simple DirectMedia Layer 1.2, debugging
+libsdl-mixer1.2-dev - Mixer library for Simple DirectMedia Layer 1.2, development files
+libsdl-sound1.2 - Sound library for Simple DirectMedia Layer 1.2, libraries
+libsdl-sound1.2-dev - Sound library for Simple DirectMedia Layer 1.2, development files
+libshine-dev - Fixed-point MP3 encoding library - development files
+libshine3 - Fixed-point MP3 encoding library - runtime files
+shineenc - Fixed-point MP3 encoding library - frontend binary
+silverjuke - jukebox, karaoke, and kiosk mode mp3 player
+libsmpeg-dev - SDL MPEG Player Library - development files
+libsmpeg0 - SDL MPEG Player Library - shared libraries
+smpeg-gtv - SMPEG GTK+ MPEG audio/video player
+smpeg-plaympeg - SMPEG command line MPEG audio/video player
+libsnack-alsa - Sound extension to Tcl/Tk and Python/Tkinter - ALSA files
+libsnack-oss - Sound extension to Tcl/Tk and Python/Tkinter - OSS files
+python-tksnack - Sound extension to Tcl/Tk and Python/Tkinter - Python 2.x library
+python3-tksnack - Sound extension to Tcl/Tk and Python/Tkinter - Python 3.x library
+tcl-snack - Sound extension to Tcl/Tk and Python/Tkinter - Tcl/Tk library
+tcl-snack-dev - Sound extension to Tcl/Tk and Python/Tkinter - development files
+tcl-snack-doc - Sound extension to Tcl/Tk and Python/Tkinter - documentation
+sound-juicer - GNOME CD Ripper
+soundconverter - GNOME application to convert audio files into other formats
+libsox-fmt-mp3 - SoX MP2 and MP3 format library
+sox - Swiss army knife of sound processing
+squeezelite - lightweight headless Squeezebox emulator - ALSA version
+squeezelite-pa - lightweight headless Squeezebox emulator - PortAudio version
+sweep - Audio editor and live playback tool
+sweep-dev - Audio editor and live playback tool (development)
+swish-e - Simple Web Indexing System for Humans - Enhanced
+taggrepper - search and match tags of audio files against regular expressions
+libtag1-dev - audio meta-data library - development files
+libtag1-doc - audio meta-data library - API documentation
+libtag1v5 - audio meta-data library
+libtag1v5-vanilla - audio meta-data library - vanilla flavour
+libtagc0 - audio meta-data library - C bindings
+libtagc0-dev - audio meta-data library - development files for C bindings
+python-tagpy - Python module for manipulating tags in music files
+tagtool - Tool to tag and rename MP3 and Ogg Vorbis files
+terminatorx - realtime audio synthesizer
+testdisk - Partition scanner and disk recovery tool, and PhotoRec file recovery tool
+texlive-metapost - TeX Live: MetaPost and Metafont packages
+libtwolame-dev - MPEG Audio Layer 2 encoder (development files)
+libtwolame0 - MPEG Audio Layer 2 encoding library
+twolame - MPEG Audio Layer 2 encoder (command line frontend)
+unmo3 - Uncompress and extract samples from MO3 modules
+vbrfix - corrects MP3 files that have incorrect VBR information
+vdr-plugin-mp3 - MP3 playback plugin for VDR
+libvlc-bin - tools for VLC's base library
+libvlc-dev - development files for libvlc
+libvlc5 - multimedia player and streamer library
+libvlccore-dev - development files for libvlccore
+libvlccore8 - base library for VLC and its modules
+vlc - multimedia player and streamer
+vlc-bin - binaries from VLC
+vlc-data - Common data for VLC
+vlc-l10n - Translations for VLC
+vlc-plugin-access-extra - multimedia player and streamer (extra access plugins)
+vlc-plugin-base - multimedia player and streamer (base plugins)
+vlc-plugin-fluidsynth - FluidSynth plugin for VLC
+vlc-plugin-jack - Jack audio plugins for VLC
+vlc-plugin-notify - LibNotify plugin for VLC
+vlc-plugin-qt - multimedia player and streamer (Qt plugin)
+vlc-plugin-samba - Samba plugin for VLC
+vlc-plugin-sdl - SDL video and audio output plugin for VLC
+vlc-plugin-skins2 - multimedia player and streamer (Skins2 plugin)
+vlc-plugin-svg - SVG plugin for VLC
+vlc-plugin-video-output - multimedia player and streamer (video output plugins)
+vlc-plugin-video-splitter - multimedia player and streamer (video splitter plugins)
+vlc-plugin-visualization - multimedia player and streamer (visualization plugins)
+vlc-plugin-zvbi - VBI teletext plugin for VLC
+vokoscreen - easy to use screencast creator
+xcfa - X Convert File Audio
+xcfa-dbg - X Convert File Audio - debugging symbols
+libxine2 - xine media player library – meta-package
+libxine2-all-plugins - xine video/media player library ‒ meta-package for all plugins
+libxine2-dev - xine video player library – development packages
+libxine2-doc - xine video player library – documentation files
+libxine2-plugins - xine video/media player library ‒ meta-package for commonly-used plugins
+xmms2 - Client/server based media player system
+xmms2-plugin-mad - XMMS2 - libmad based mp3 decoder
+xmms2-plugin-mpg123 - XMMS2 - libmpg123 based mp3 decoder
+xwax - open-source vinyl emulation software for Linux
+youtube-dl - downloader of videos from YouTube and other sites

@@ -1,0 +1,11 @@
+Bluefish is a powerful editor targeted towards programmers and web developers, with many options to write websites, scripts and programming code. Bluefish supports a wide variety of programming and markup languages and has many features.
+References:
+Topic: Debian documentation
+Web: https://packages.debian.org/jessie/web/bluefish
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search bluefish
+$ sudo apt-cache show bluefish
+$ sudo apt-get install bluefish csstidy tidy dos2unix pylint weblint-perl weblint

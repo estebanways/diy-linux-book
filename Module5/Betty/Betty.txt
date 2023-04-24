@@ -1,0 +1,12 @@
+Betty, a new tool under development, which is responsible for translating English words clear to terminal commands. It is something like Siri or Google Now, just not as powerful yet but
+we hope it will very soon
+
+Installation:
+References:
+Web: http://linuxg.net/get-a-siri-like-assistance-command-line-only-no-support-for-voice-commands-on-your-ubuntu-linux-mint-debian-and-derivative-system/
+File: Get A Siri-Like Assistance (Command-Line Only, No Support For Voice Commands) On Your Ubuntu, Linux Mint, Debian And Derivative System _ LinuxG
+
+
+References:
+Web: http://ultimate-solution.com.pk/2014/06/betty-siri-for-linux-terminal-command-line/
+File: Betty _ Siri for Linux terminal (command line) _ Ultimate Solution.pdf

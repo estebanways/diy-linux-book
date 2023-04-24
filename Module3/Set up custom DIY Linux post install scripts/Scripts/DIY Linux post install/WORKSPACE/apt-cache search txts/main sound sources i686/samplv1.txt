@@ -1,0 +1,3 @@
+samplv1 - polyphonic sampler synthesizer - standalone
+samplv1-common - polyphonic sampler synthesizer - common files
+samplv1-lv2 - polyphonic sampler synthesizer - LV2 plugin

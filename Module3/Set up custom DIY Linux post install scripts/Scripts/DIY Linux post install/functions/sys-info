@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function sys-info {
+ echo "Not implemented yet:"
+ echo "Fuction: sys-info"
+ exit 99
+}

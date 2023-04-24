@@ -1,0 +1,4 @@
+ams - Realtime modular synthesizer for ALSA
+blepvco - LADSPA, minBLEP-based, hard-sync-capable oscillator plugins
+fomp - collection of LV2 audio plugins
+mcp-plugins - LADSPA plugins designed for Alsa Modular Synth

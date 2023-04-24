@@ -1,0 +1,869 @@
+This package is a Speech Recognition Software. It's not exactly a personal assistant but it does everything you want it to do almost like its competitors:  Siri (Apple), Now (Google) and Cortana (Microsoft).
+
+Install Palaver dependencies:
+
+Note: Before I installed LiSpeak I installed another application of the same developer which is Palaver. Are these LiSpeak requirements? I am not sure, I guess they are just for the Palaver plugins, but I will leave them here for you to install them in case of LiSpeak installation does not work in your system.
+$ sudo apt-get update
+$ sudo apt-get install sox python-argparse libsox-fmt-mp3 mutt xvkbd xautomation
+Output:
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'libpython2.7-stdlib' instead of 'python-argparse'
+mutt is already the newest version.
+libpython2.7-stdlib is already the newest version.
+libpython2.7-stdlib set to manually installed.
+sox is already the newest version.
+The following extra packages will be installed:
+  xaw3dg
+The following NEW packages will be installed:
+  libsox-fmt-mp3 xautomation xaw3dg xvkbd
+
+Unfortunately there a message:
+WARNING: The following packages cannot be authenticated!
+  xaw3dg libsox-fmt-mp3 xvkbd xautomation
+
+But you can agree to continue the installation of these packages and complete the whole process.
+
+
+Now, it's time to install the notifier:
+
+Note: The notifier is a requirement for Palaver and LiSpeak. It comes out of the box in Ubuntu, but I need to install it explicitly on my Debian GNU/Linux Box.
+$ dpkg -l | grep 'notify-osd'
+No results for osd
+$ dpkg -l | grep 'notify'
+Results only for the notification daemon
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache 'notify-osd'
+notify-osd - daemon that displays passive pop-up notifications
+$ sudo apt-get install notify-osd
+
+References:
+Web: http://ubuntuhandbook.org/index.php/2014/04/customize-on-screen-notification-ubuntu-1404/
+
+
+Installation of LiSpeak:
+
+Note: The creator of the application says that this program supports plugins better than Palaver, and this was the reason for him to deprecate its development.
+Installation:
+Download the program from GitHub: https://github.com/BmanDesignsCanada/LiSpeak
+Copy to /usr/src
+Extract the file LiSpeak-master.zip
+$ unzip LiSpeak-master.zip
+cd to the new folder LiSpeak-master
+Run the installation:
+$ sudo ./lispeak --setup --debug
+(I use --debug to see whats happening "behind the scenes". FYI: "--debug" has two single or en dashes instead of one em dash").
+Running the installation displays an error:
+Output:
+Reading state information... Done
+E: Unable to locate package serial
+ error
+End of output.
+
+$ sudo nano lispeak
+
+I have removed the import parameter serial because analyzed the code and "serial" is used only in a class called Arduino.
+
+I re-run the installation:
+$ sudo ./lispeak --setup --debug
+I skip the distro error and continue. 
+A new screen opens a dialog, and I hit the button 'Continue'.
+A new message says that I have missing dependencies and give the option to install them but I will try to install them by myself and rerun the installation script after that, due to this is not one of the approved distros in the code of the script.
+
+The list of dependencies required:
+espeak
+python-appindicator
+xdotool
+mpg123
+python-alsaaudio
+
+I abort the installation with the abort button to proceed searching the dependencies.
+
+$ sudo apt-get install espeak python-appindicator xdotool mpg123 python-alsaaudio
+Output:
+The following extra packages will be installed:
+  javascript-common libjs-jquery libjs-underscore libxdo3
+Suggested packages:
+  apache2 lighttpd httpd jackd nas oss-compat oss4-base
+The following NEW packages will be installed:
+  espeak javascript-common libjs-jquery libjs-underscore libxdo3 mpg123
+  python-alsaaudio python-appindicator xdotool
+
+WARNING: The following packages cannot be authenticated!
+  espeak javascript-common libjs-jquery libjs-underscore mpg123
+  python-alsaaudio python-appindicator libxdo3 xdotool
+
+Press y and hit the key ENTER.
+
+At the end of the installation of the dependencies I am ready to rerun the installation script:
+$ sudo ./lispeak --setup --debug
+
+The installation requests me the following information:
+First name: Esteban
+Last name: Herrera
+Email: me@example.com
+Language: English, but there is Spanish, French, Italian and Polski.
+Speak responses: Set to ON
+TTS Engine: The choices are: espeak, Google TTS or pico2wave
+Autostart: Set to ON
+
+Plugin installation:
+BansheeControl ON
+GeditControl ON
+HTTPServer ON
+MediaControl ON
+SteamLaunch ON
+
+Hit on the install button and on the individual install buttons that appear for every plugin.
+
+
+Setup the keyboard keys:
+
+Go to the system "Settings" => keyboard:
+Select the tab "shortcuts".
+Select custom shortcuts and click on the plus sign to add yours.
+In the box custom shortcut fill the options:
+Name: Voice
+For options the path to the file 'hotkey' of our new installation, in my case:
+Options: /usr/src/LiSpeak-master/hotkey
+Press Add
+The command is ready
+Press on Disable on the voice record and press your key combination: CTRL + L
+Close the window
+
+Launch the program:
+CTRL + L
+
+I log me out and log me back in to make sure that the Key is working and properly.
+
+
+Go to setup the dictionary:
+
+$ cd /usr/src/LiSpeak-master/Recognition/modes
+$ sudo cp -dpR main.dic main.dicBAK
+$ sudo nano main.dic
+
+The dictionary has nothing to show. My conclusion at this point is that something went wrong during the installation. 
+Later on I found the cause of the problem, it was that I was installing everything in /usr/src and the program only installs correctly under my home dir.
+
+To install the program in home:
+The rest of the process has been done before this step, for example the installation of dependencies and of the notifier, and the keyboard setup.
+Is the same process but remember to do not use 'sudo', as user 'esteban'. The installation will ask for the root pass before allow you to start the program at a later point in the installation.
+Copy the zip file to /home/esteban and extract it as well.
+$ cd
+$ cd LiSpeak-master/
+$ nano lispeak
+Remove "serial" from the line of imports.
+Run the local installation:
+$ ./lispeak --setup --debug
+Complete and finish the installation.
+One of the message says that the installation is going to launch the program.
+
+
+Looking for the LiSpeak location and modifying the settings:
+Move the mouse to the bottom of the screen and/or from the left corner to the right or from the right to the left to make the notification area of Gnome appear. The notification has a new Microphone Icon on the right side. Take the mouse to focus the microphone and make RIGHT CLICK on it, and then choose settings from the new options menu.
+
+Here is a summary of my working custom "Settings":
+Tab general:
+This tab is left blank. Here you can setup options like "Run on Startup" and "Check for messages".
+Tab Speech:
+Language: English
+Continuous Mode (Beta): Unset
+Speak responses: Unset
+TTS Engine: Google TTS
+Tab Appearance:
+Notification Style: LiSpeak
+Tab Plug-ins:
+This area is not ready yet.
+Restart the daemon from the Microphone icon menu.
+
+
+To test the program for a first time:
+$ cd LiSpeak-master/
+$ ./recognize "open gedit"
+The program must open gedit and if happens is working.
+
+
+Configuration files:
+Take a look at the dictionary files 'main' and 'programs' to identify what words we can say. This time the files has been made under the directory "en":
+$ cd ~/LiSpeak-master/Setup/defaults/modes/en
+$ nano main.dic
+$ nano programs.dic
+
+Next are default copies of these files.
+
+File main.dic:
+
+<say,speak> (LINE words)
+  say "$words$"
+<type,write> (LINE words)
+  type "$words$\\r"
+undo
+  xType "keydown Control_L" "key z" "keyup Control_L"
+redo
+  xType "keydown Shift_L" "keydown Control_L" "key z" "keyup Shift_L" "keyup Control_L"
+cut
+  xType "keydown Control_L" "key x" "keyup Control_L"
+paste[ text]
+  xType "keydown Control_L" "key v" "keyup Control_L"
+copy[ text]
+  xType "keydown Control_L" "key c" "keyup Control_L"
+select all[ text]
+  xType "keydown Control_L" "key a" "keyup Control_L"
+
+go[ ]to (LINE site)
+  goto "$site$"
+  
+read[ this][ text]
+  read
+  
+<increase,raise> [my ][screen ]brightness
+  brightness set higher
+<decrease,lower> [my ][screen ]brightness
+  brightness set lower
+half brightness
+  brightness set half
+<full,max,highest,maximum> brightness
+  brightness set full
+<lowest,low,minimum,min> brightness
+  brightness set low
+  
+lock[ my][ computer]
+  result_from_call "gnome-screensaver-command -l" "false"
+  
+<open,show> [my ]<documents,files>[ folder]
+  open "xdg-open `xdg-user-dir DOCUMENTS`"
+<open,show> [my ]music[ folder]
+  open "xdg-open `xdg-user-dir MUSIC`"
+<open,show> [my ]home[ folder]
+  open "xdg-open `xdg-user-dir`"
+<open,show> [my ]videos[ folder]
+  open "xdg-open `xdg-user-dir VIDEOS`"
+<open,show> [my ]pictures[ folder]
+  open "xdg-open `xdg-user-dir PICTURES`"
+<open,show> [my ]downloads[ folder]
+  open "xdg-open `xdg-user-dir DOWNLOAD`"
+
+<search,google> (LINE question)
+  goto "http://www.google.com/search?q=$question$"
+<wolfram,wolf RAM>[ alpha] (LINE question)
+  goto "www.wolframalpha.com/input/?i=$question$"
+youtube (LINE video)
+  goto "https://www.youtube.com/results?search_query=$video$"
+
+where is (LINE place)
+  goto "https://maps.google.com/maps?q=$place$&hl=\$LANG"
+
+<open,launch>[ application] (LINE app)
+  program "$app$"
+  
+date
+  date date
+
+[<show,display,what[ is]>][ the][ ]date[is it][ <today,[right ]now>]
+  date date
+what is todays date
+  date date
+[show,display,what][ is][ the][ ]time[ ][is it][ ][today,[right ]now]
+  date time
+  
+[show,display,what,how][ is][ the][ ]weather[ ][is it,like][ ][today,[right ]now]
+  weather
+
+<whats,what is> my <ip,internet[ protocol]>[ address]
+  UserInformation ip
+<whats,what is> my name
+  UserInformation name
+  
+play (LINE song)
+  media "$song$"
+play[ <media,song,video>]
+  media play
+pause[ <media,song,video>]
+  media pause
+stop[ <media,song,video>]
+  media stop
+next[ <song,file,media,video>]
+  media next
+<previous,last>[ <song,file,media,video>]
+  media prev
+[volume ]mute[ volume]
+  media volume_mute
+<<increase,raise,more,higher> volume,volume <up,increase,higher,raise>>
+  media volume_up
+<<decrease,lower,less,down> volume,volume <decrease,lower,less,down>>
+  media volume_down
+[what[ is][ <the,this>] ]<current[ly],playing,song>[ playing][ song][ is <playing,on,this>][ right[ now]]
+  mediaAdv
+
+[start,enter,begin][ ]dictation mode
+  mode dictation
+  
+(LINE word)
+  wolf "$word$"
+
+
+File programs.dic:
+
+###########################
+#   INTERNET BROWSERS
+###########################
+[<internet,web> ]browser
+  open xdg-open http://
+  
+[google ]chome
+  open google-chrome
+  
+[mozilla ]fire[ ]fox
+  open firefox
+
+###########################
+#   GRAPHICS
+###########################
+blender
+  open blender
+
+gimp
+  open gimp
+
+###########################
+#   OFFICE PROGRAMS
+###########################
+[[libre][ ][office] ]<writer,word>
+  open "/usr/lib/libreoffice/program/soffice.bin" --writer
+  
+[[libre][ ][office] ]<impress,power[ ]point>
+  open "/usr/lib/libreoffice/program/soffice.bin" --impress
+  
+[[libre][ ][office] ][data]base
+  open "/usr/lib/libreoffice/program/soffice.bin" --base
+  
+[[libre][ ][office] ][math ]formula
+  open "/usr/lib/libreoffice/program/soffice.bin" --math
+  
+[[libre][ ][office] ]<spread[ ]sheet,excel,calc>
+  open "/usr/lib/libreoffice/program/soffice.bin" --calc
+  
+[[libre][ ][office] ]draw[ing]
+  open "/usr/lib/libreoffice/program/soffice.bin" --draw
+  
+###########################
+#   AUDIO
+###########################
+audacity
+  open audacity
+  
+###########################
+#   GAMES
+###########################
+  
+suduko
+  open gnome-suduko
+  
+tee[ ]world[s]
+  open teeworld
+  
+<mines,mine[ sweeper]>
+  open gnome-mines
+  
+###########################
+#   MISC
+###########################
+[<text,file> ]editor
+  open gnome-text-editor
+
+<terminal,command line[ interface]>
+  open gnome-terminal
+
+calculator
+  open gnome-calculator
+  
+disks
+  open gnome-disks
+
+###########################
+#   GNOME CONTROL CENTER
+###########################
+power stat<istics,s>
+  controlpanel power-statistics
+
+appearance[ settings]
+  controlpanel unity-appearance
+  
+mouse[ settings]
+  controlpanel mouse
+  
+network[ settings]
+  controlpanel network
+  
+online accounts[ settings]
+  controlpanel credentials
+  
+<screen,brightness,lock,brightness and lock>[ settings]
+  controlpanel screen
+  
+<privacy,security,security and privacy,privacy and security>[ settings]
+  controlpanel activity-log-manager
+  
+keyboard[s][ settings]
+  controlpanel keyboard
+  
+bluetooth[ <settings,devices>]
+  controlpanel bluetooth
+  
+power[ settings]
+  controlpanel power
+  
+<display[s],monitor[s],resolution>[ settings]
+  controlpanel display
+  
+<sound,speaker[s]>[ settings]
+  controlpanel sound-nua
+  
+#############################################
+
+(LINE word)
+  open "$word$"
+
+End of the configuration files.
+
+
+Voice commands overview:
+
+Syntax:
+CTRL + L to start, COMMAND, CTRL + L to Finish and wait for the program to answer.
+
+For example:
+CTRL + L, What is my IP address, CTRL + L...
+CTRL + L, Open... Firefox, CTRL + L...
+CTRL + L, Search... Michael Jackson, CTRL + L...
+CTRL + L, What is my name, CTRL + L...
+CTRL + L, Start... dictation mode, CTRL + L...
+CTRL + L, Stop... dictation mode, CTRL + L...
+CTRL + L, Date, CTRL + L...
+
+Keywords:
+"Open..."
+"Say..."
+"Type..."
+"Search..."
+"Start,enter,begin, stop..."
+"Date"
+MORE WORKS...
+
+See the complete list of commands in the config files.
+
+
+Test the file programs.dic:
+
+Example #1:
+"open cairo-dock"
+
+"open youtube dot com"
+
+Create custom commands:
+
+To create custom commands in Palaver and run shell scripts as voice commands, you required to backup the file main.dic and insert new entries on it, depending on the language installed, for example:
+
+terminal
+   open x-terminal-emulator
+cairo
+   open cairo-dock
+kill conky
+	kill-conky
+
+Where:
+kill conky = The keyword say: "Open... kill conky" 
+kill-conky = The name of the script to run.
+
+But LiSpeak works differently and is more rigid: It only runs programs, for example, the editor Netbeans IDE have not been added to any file but when I say to the assistant to open it like this:
+CTRL + L, open Netbeans, CTRL + L
+the program opens normally. With Palaver you required to add the program explicitly to the setup files.
+So, the only way to run a shell script is to make the script a program.
+
+Steps to make scripts programs:
+1. Create the shell script.
+2. test the shell script running the script:
+$ sh script.sh
+3. Optionally, make the shell script a systemd or a sysvinit service. Guides to create the script as a service:
+References:
+Guide:
+Systemd
+4. Create a symlink from the program to a bin directory, /usr/bin or /usr/local/bin. Review this guide to install Sublime Text Editor to proceed with the creation of the link: 
+References:
+Guide: Sublime Text Editor
+5. Test your new program or service:
+$ myprogram
+
+Once the program is ready, just use LiSpeak to run it:
+$ open myprogram
+
+Tip:
+Create scripts to run as programs to close programs, for example:
+$ tuxclosefirefox
+$ bubbleshutdown
+
+
+Testing the file main.dic:
+
+Speak something the program should say or write in the notifier (Later on we will notice the are two places where program can write, the Bubble and a slicer window that appears from the notification are of Gnome):
+Say: "This is Esteban Herrera. How are you? May I have your name?"
+
+Transcribe words into text:
+
+If you wan to use LiSpeak at this point CTRL + L + "open editor", and gedit should show start. Otherwise, open Gedit, click on the page to focus and practice to transcribe words into texts. 
+
+Say: "Type..., Is there anything else I can help you with?" 
+
+That's it!
+
+
+Troubleshooting:
+
+The programs does not respond:
+If you got any problem or connection problems simply restart the servers from the notifications' area of the Gnome desktop.
+
+Stop the service:
+Use the Micro in the notification area of Gnome, or:
+$ ps - aux
+and serch for:
+python /home/esteban/.lispeak/services/HTTPServer.service
+or while recording:
+python /home/esteban/.lispeak/services/HTTPServer.service
+and:
+rec -r 16000 -q -b 16 /tmp/lispeak_esteban/speech.flac
+
+To start the service manually:
+$ python /home/esteban/.lispeak/services/HTTPServer.service
+
+To start the service and recording simultaneously:
+CTRL + L
+
+The program as a startup App:
+It is not required because CTRL + L will start the service and record simultaneously, but if you want to add the program as a startup application:
+
+IMPORTANT: The best way to make the program a startup app is to focus the Mic on the Gnome notifications' area, and then make RIGHT CLICK on it, and then choose the menu option "settings", and then click the tab "general" and check the right option.
+Also, it is possible to (untested):
+Add the program as a service to systemd or sysvinit
+Add the program as a startup app in Gnome or Fluxbox
+See my Screensaver guide here for details:
+References:
+Guide:
+Xscreensaver
+Use the command: python /home/esteban/.lispeak/services/HTTPServer.service
+
+
+How to install a graphical tool to configure Notify-OSD:
+
+You can find the Ubuntu source in the Ubuntu PPA: https://launchpad.net/ubuntu/+ppas
+Search for: 'notifyosdconfig'.
+Click on the package, to reach the page with the link "View package details" and then click on it. At this point you are here: https://launchpad.net/~amandeepgrewal/+archive/ubuntu/notifyosdconfig/+packages
+
+There is package list with many versions to the different Ubuntu releases, include the latest LTS (Long term Support), but the latest package available is not the first on the list and seems "stable" because the field Build status is checked. I think the newest packages have the "configuration" feature included. The list looks like this:
+
+notify-osd - 0.9.35+14.04.20140213-0ubuntu1-leolik~ppa1 	
+notify-osd - 0.9.35+13.10.20130917.1-0ubuntu1-leolik~ppa0 	
+notify-osd - 0.9.35daily12.11.28-0ubuntu1-leolik~ppa1 	
+notify-osd - 0.9.34-0ubuntu5-leolik~ppa0 	
+notify-osd - 0.9.34-0ubuntu2-leolik~ppa0 	
+notify-osd - 0.9.29-0ubuntu2-leolik~ppa3 	
+notifyosdconfig - 0.3+22+201404260950~ubuntu14.04.1 	
+notifyosdconfig - 0.3+22+201404260949~ubuntu14.10.1 	
+notifyosdconfig - 0.3+22+201312291021~ubuntu12.10.1 	
+notifyosdconfig - 0.3+22+201312291018~ubuntu12.04.1 	
+notifyosdconfig - 0.3+22+201312291017~ubuntu13.04.1 	
+notifyosdconfig - 0.3+22+201312291016~ubuntu13.10.1 	
+notifyosdconfig - 0.1-6~lucid1 
+notifyosdconfig - 0.1-6~karmic5 
+[....]
+
+Next, click on the first notification configuration package available: notifyosdconfig - 0.3+22+201404260950~ubuntu14.04.1 to expand the section to show the download options.
+Fortunately there is a message that says the package is supported in 64bit platforms. Otherwise we have the option to try to configure the build environment to i386-i686 (32bit) by adding the i386 architecture and building in that way. Say that try to use only 64bit architecture. i386 architecture will be obsolete by the year 2038. 
+
+Right click on the package files:
+notifyosdconfig_0.3+22+201404260950~ubuntu14.04.1.dsc (756 bytes)
+notifyosdconfig_0.3+22+201404260950~ubuntu14.04.1.tar.gz (194.0 KiB)
+to copy their link locations.
+
+Download the packages:
+$ wget -c https://launchpad.net/~amandeepgrewal/+archive/ubuntu/notifyosdconfig/+files/notifyosdconfig_0.3%2B22%2B201404260950%7Eubuntu14.04.1.dsc https://launchpad.net/~amandeepgrewal/+archive/ubuntu/notifyosdconfig/+files/notifyosdconfig_0.3%2B22%2B201404260950%7Eubuntu14.04.1.tar.gz
+
+The option -c  of wget is going to resume a package partially downloaded. See the man of the program:
+$ man wget
+In order to compile the program I must prepare the build environment. I already prepared one to the installation of the program "SimpleScreenRecorder". Take a look at this howto guides here:
+References:
+Build packages from source
+SimpleScreenRecorder
+
+Remove the screenrecorder remaining directory, and then prepare the workspace directory:
+$ cd /
+Remove the directory:
+$ sudo rm -rf /wrk
+Create the working directory:
+$ sudo mkdir wrk
+$ sudo chmod 777 wrk
+$ ls -hal /
+$ cd wrk
+Copy the files downloaded to the current directory:
+$ cp -dpR notifyosdconfig_0.3+22+201404260950~ubuntu14.04.1.dsc notifyosdconfig_0.3+22+201404260950~ubuntu14.04.1.tar.gz /wrk
+
+The process downloads some files from the repositories. Please double check the repos are ok with in the repos file:
+$ nano /etc/apt/sources.list
+$ sudo apt-get update
+$ ping www.yahoo.com
+
+Build for jessie, so set-up the command accordingly:
+$ sbuild -d jessie *.dsc
+
+Install the package with gdebi:
+$ sudo gdebi *.deb
+
+Run the application:
+$ notifyosdconf
+
+THIS IS NOT WORKING:
+The program is not changing the notificator appearance. I am going to unistall:
+notifiy-osd and notifyosdconf and try to replace them with a newer app build from sources that I think contains all inclusive:
+
+$ dpkg -l | grep 'notifyosdconf'
+$ dpkg -l | grep 'notify-osd'
+$ sudo apt-get remove notifyosdconfig
+$ sudo apt-get remove notify-osd
+
+
+Go to the PPA: https://launchpad.net/ubuntu/+ppas
+Search for: 'notify osd'.
+I found: Leolik's PPA - Notify-OSD
+
+I click on the package's name to show the description:
+
+Notify-OSD with additional features:
+1) Themes support (change color, width, height or other options of bubble );
+2) Timeout ( "-t" option), work in this version;
+3) Display notifications in different corners of the screen.
+      type in console (Ubuntu <= 11.04):
+      $ gconftool-2 -s /apps/notify-osd/gravity --type=int [number]
+      type in console (Ubuntu >= 11.10):
+      $ gsettings set com.canonical.notify-osd gravity [number]
+      where [number]:
+      1 - top-right corner
+      2 - middle-right
+      3 - bottom-right corner
+      4 - bottom-left corner
+      5 - middle-left
+      6 - top-left corner
+4) Two options from Faheem Pervez (https://launchpad.net/~qwerty12/+archive/notifyosd):
+      bubble-prevent-fade: Stops the bubble from fading out when the mouse pointer hovers over it;
+      bubble-close-on-click: Closes a notification when clicked on.
+5) New option from Ubuntu 12.04:
+      bubble-as-desktop-bg: Used Dash background color for bubble background color
+6) Move settings from .notify-osd file to gsettings (In progress...)
+
+And then, I click to download the package on the option 'View package details': 
+
+I copy the link of the source files:
+notify-osd_0.9.35+15.04.20150126-0ubuntu1-leolik~ppa3.dsc (1.6 KiB)
+notify-osd_0.9.35+15.04.20150126-0ubuntu1-leolik~ppa3.tar.gz (275.2 KiB) 
+
+I fetch the files:
+$ wget -c https://launchpad.net/~leolik/+archive/ubuntu/leolik/+files/notify-osd_0.9.35%2B15.04.20150126-0ubuntu1-leolik%7Eppa3.dsc https://launchpad.net/~leolik/+archive/ubuntu/leolik/+files/notify-osd_0.9.35%2B15.04.20150126-0ubuntu1-leolik%7Eppa3.tar.gz
+
+I prepare the workspace:
+$ cd /
+$ sudo mkdir wrk2
+$ ls -hal /
+$ sudo chmod 777 wrk2
+$ ls -hal /
+The background of the dir should be green.
+$ cd wrk2
+
+Copy the source files to the directory:
+$ cp  -dpR notify-osd_0.9.35+15.04.20150126-0ubuntu1-leolik~ppa3.dsc notify-osd_0.9.35+15.04.20150126-0ubuntu1-leolik~ppa3.tar.gz /wrk2
+
+Check the repos:
+The build is going to download all the dependencies to the existent chroot environment.
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ ping www.yahoo.com
+Free the CPU and system resources. No wallpaper or other interruptions, please.
+
+Before building the package a note that there are two files from the previous programs removed, in my home:
+$ cd
+$ ls -hal
+-rw-r--r--  1 esteban esteban  606 Jun  4 01:21 .notify-osd
+drwxr-xr-x  2 esteban esteban 4.0K Jun  4 01:18 .notifyosdconf
+
+Build from sources:
+$ sbuild -d jessie *.dsc
+
+Install the package with gdebi:
+$ sudo gdebi *.deb
+
+New Error message:
+Output:
+This package is uninstallable
+Breaks existing package 'notification-daemon' that conflict: 'notification-daemon'. But the 'notify-osd_0.9.35+15.04.20150126-0ubuntu1-leolik~ppa3_amd64.deb' provides it via: 'notification-daemon'
+
+$  dpkg -l | grep 'notif'
+Output:
+ii  notification-daemon                    0.7.6-2                                    amd64        daemon for displaying passive pop-up notifications
+rc  notify-osd                             0.9.34-2                                   amd64        daemon that displays passive pop-up notifications
+ii  python-notify                          0.1.1-4                                    amd64        Python bindings for libnotify
+ii  vlc-plugin-notify                      2.2.0~rc2-2                                amd64        LibNotify plugin for VLC
+
+How to see the Current State of the package:
+"rc" means the files are marked for removal, but still there are the config files.
+Reference:
+Web: https://linuxprograms.wordpress.com/2010/05/11/current-state-package-ubuntu/
+File: How to see the Current State of a package.pdf 
+
+
+Try to install the package un-installing the 'notification-daemon':
+
+$ sudo apt-get remove notification-daemon
+$ sudo gdebi *.deb
+The program installs. Now I am going to test it.
+
+At this point:
+I rebooted the machine because I didn't see the Microphone in the notification area.
+I still can't see the Microphone but the area, and the program LiSpeak is working.
+Run again the the command to review the packages:
+$  dpkg -l | grep 'notif'
+Now, the program 'notification-daemon' has the "rc" mark. There is a command to purge these files but I don't remember it right now. I am not scared about the un-installation, due to the installation of 'notify-osd' said that it would provide a 'notification-daemon'. However there's not 'notification-daemon' in the commands. It seems integrated in the 'notify-osd', but I want to verify the notification area at the bottom to make sure the notifications are working fine.
+
+
+Try to setup the new notify-osd appearance:
+There is not any command like notifyosdconf.
+Re-install the package with gdebi:
+$ cd /wrk
+$ sudo gdebi *.deb
+
+
+Run the configuration:
+I have applied the configuration.
+I have restarted the LiSpeak by focusing on the Mic place in the notification area of Gnome. The Mic has reappeared.
+The program responds faster, simply due to the version is experimental, but the text bubble appearance... it still the default.
+Show the programs files:
+$ cd
+$ ls - hal
+-rw-r--r--  1 esteban esteban  606 Jun  4 04:05 .notify-osd
+drwxr-xr-x  2 esteban esteban 4.0K Jun  4 01:18 .notifyosdconf
+$ nano .notify-osd
+
+File .notify-osd:
+
+slot-allocation = fixed
+bubble-expire-timeout = 10sec
+bubble-vertical-gap = 5px
+bubble-horizontal-gap = 5px
+bubble-corner-radius = 37px
+bubble-icon-size = 30px
+bubble-gauge-size = 6px
+bubble-width = 240px
+bubble-background-color = 131313
+bubble-background-opacity = 90%
+text-margin-size = 10px
+text-title-size = 100%
+text-title-weight = bold
+text-title-color = eaeaea
+text-title-opacity = 100%
+text-body-size = 90%
+text-body-weight = normal
+text-body-color = eaeaea
+text-body-opacity = 100%
+text-shadow-opacity = 100%
+location = 1
+bubble-prevent-fade = 1
+bubble-close-on-click = 0
+bubble-as-desktop-bg = 0
+
+Backup the file:
+$ cp -dpR .notify-osd .notify-osdBAK
+$ ls -hal .notify*
+
+Changes made in the files are not reflected in the bubble.
+Also there are not themes in the notifyosdconf program.
+And also can't change the the bubble position. Anyway I am going to show how:
+
+To change the bubble location, run:
+$ gsettings set com.canonical.notify-osd gravity NUMBER
+
+Where the NUMBER can be:
+    1 – top-right corner
+    2 – middle-right
+    3 – bottom-right corner
+    4 – bottom-left corner
+    5 – middle-left
+    6 – top-left corner
+Enjoy!
+
+Optionally, according to some web articles:
+$ gconftool-2 -s /apps/notify-osd/gravity --type=int 5
+
+
+CONCLUSIONS:
+
+There is nothing to do you can't change how the bubble looks like in Debian GNU/Linux Jessie.
+References:
+Web: http://www.linuxquestions.org/questions/linux-software-2/debian-jessie-trying-to-setup-notify-osd-4175534060/
+Web: https://launchpad.net/debian/sid/+source/notify-osd
+
+However there is a post that Shows how to make changes since the source, before compilation:
+http://www.mupuf.org/blog/2010/01/14/how_to_change_notify-osd_s_behaviour_and_theme/
+But again, the colors shown, like the blue background, do not correspond to the colors described in the source under /wrk, so the system is doing something after that to show me another look.
+
+What happened to notification-daemon? It's kind of confusing:
+The program 'notification-daemon' was substituted with the notify-osd from the PPA repos.
+
+Alternative Solution:
+Use the notification style = system instead of = LiSpeak:
+You will see the notifications like a slider message box showing up since the notifications area, instead of in a bubble on the left top of the screen.
+
+
+CUSTOMIZATION:
+
+Activate the option to Speak responses:
+RIGHT CLICK on the Mic on the Gnome notifications area an select "settings".
+You will hear a voice answering your questions.
+
+Create or download more plugins:
+Point your browser at, and create an account here: http://lispeak.bmandesigns.com/home
+
+Test espeak TTS:
+$ espeak -v mb-us1 "This is a test"
+$ echo "Hello World" > texttospeech.txt
+$ espeak -v mb-us1 -f texttospeech.txt
+
+TTSs:
+References:
+Web: http://askubuntu.com/questions/53896/natural-sounding-text-to-speech
+Web: http://blends.debian.org/accessibility/tasks/speechsynthesis
+
+pico2wave: 
+This TTS is not installed but the option appears in the LiSpeak settings.
+The package that corresponds to this TTS is logged in the Official Debian repositories as a non-free, named "svox" here: https://packages.debian.org/source/jessie/svox
+On the page, do the section Download the source:
+Make right click in the files to copy their locations.
+Download the files.
+Build the DEB package from sources.
+Install the package.
+Note: I received an error during the installation step after building.
+Output:
+	This package is uninstallable
+	Dependency is not satisfiable: libttspico-data
+End of output.
+Solution: Search the dependency and install it before rerun the TTS installation.
+Rerun installation with gdebi.
+Test the new Engine with LiSpeak.
+
+
+References:
+Video: https://www.youtube.com/watch?v=pxom292XW_g
+Video (Spanish): https://www.youtube.com/watch?v=Kq23o3L5ELA 
+Topic: Sirius, a personal Assistant with Artificial Intelligence (AI)
+Web: http://www.pcworld.com/article/2898148/meet-sirius-the-open-source-siri-clone-that-runs-on-ubuntu.html
+Web: http://sirius.clarity-lab.org
+Topic: Siri VS cortana VS Google Now.
+Web: https://www.youtube.com/watch?v=Hg8mjR1TCNs

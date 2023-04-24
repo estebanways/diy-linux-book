@@ -1,0 +1,153 @@
+It's a cool and useful system monitor... and more.
+
+Press ALT + F2 to see the command prompt, and then type "gnome-terminal" and hit ENTER.
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install conky conky-all
+Aditional programs to check the processor temperature, etc:
+$ sudo apt-get install curl lm-sensors hddtemp
+
+curl: Improves the file transfers through the protocols HTTP,HTTPS and FTP.
+lm-sensors: Temperature and state of the CPU, fans and the voltage.
+hddtemp: HDD temperature.
+
+Run the application as program:
+$ conky
+
+Stop the application:
+$ pkill conky
+
+Run the application as a daemon:
+$ conky -d
+
+$ ps -aux | grep 'conky'
+Output:
+esteban   4640  0.4  0.1 516912  1456 ?        Sl   14:42   1:54 conky -d
+esteban   7862  0.0  0.2  12724  1952 pts/3    S+   21:40   0:00 grep conky
+
+Kill the daemon:
+$ kill 4640
+
+Create the file /home/esteban/.conkyrc and add the custom configuration for your user session:
+$ touch /home/esteban/.conkyrc
+$ gedit /home/esteban/.conkyrc
+
+File .conkyrc:
+
+# Data position, size, etc.
+background no
+font Snap.se:size=8
+xftfont Snap.se:size=8
+use_xft yes
+xftalpha 0.1
+update interval 3.0
+total_run_times 0
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+minimum_size 200 6
+maximum_width 300
+default_color ffffff
+default_shade_color 000000
+default_outline_color 000000
+alignment top_right
+gap_x 10
+gax_y 10
+no_buffers yes
+cpu_avg_samples 2
+override_utf8_locale no
+uppercase no
+use_spacer no
+own_window_argb_visual yes
+
+TEXT
+# Configuration of the data to show
+# System name and kernel version
+${font Debian:style=bold:size:12}$sysname $alignr $kernel
+
+# Information about the processor and usage status bar
+${font Debian:style=bold:size=12}Processors $hr
+${font Debian:style=bold:size=8}CPU1: ${cpu cpu1}% ${cpubar cpu1}
+CPU2: ${cpu cpu2}% ${cpubar cpu2}
+
+# Processor temperature
+Temperature: $alignr ${acpitemp} C
+
+# Status of the main partitions, RAM and swap
+${font Debian:style=bold:size=12}HDs, RAM and swap  $hr
+${font Debian:style=bold:size=8}HOME $alignr ${fs_used /} / ${fs_size /} 
+${fs_bar /}
+${font Debian:style=bold:size=8}RAM $alignr $mem / $memmax
+${membar}
+${font Debian:style=bold:size=8}SWAP $alignr $swap / /$swapmax
+$swapbar
+
+# Status of the network interfaces
+${font Debian:style=bold:size=12}Network interface $hr
+${font Debian:style=bold:size=8}Down $alignr ${downspeed eth0}/s
+${downspeedgraph eth0 30,210 01df01 10fd10}
+${font Debian:style=bold:size=8}Up $alignr ${upspeed eth0}/s
+${upspeedgraph eth0 30,210 0000ff ff0000}
+
+# Usage of CPU
+${font Debian:style=bold:size=12}CPU usage $hr
+${font Debian:style=bold:size=8}${top name 1}$alignr${top cpu 1}%
+${top name 2}$alignr${top cpu 2}%
+${top name 3}$alignr${top cpu 3}%
+
+# Usage of RAM
+${font Debian:style=bold:size=12}RAM usage $hr
+${font Debian:style=bold:size=8}${top_mem name 1}$alignr${top_mem mem 1}%
+${top_mem name 2}$alignr${top_mem mem 2}%
+${top_mem name 3}$alignr${top_mem mem 3}
+
+End of the file.
+
+
+Start Conky again to see the new changes:
+$ conky -d
+
+Add to the main menu:
+Gnome > Applications > Main Menu
+Command: conky -d
+Icon: /Usr/share/icons/gnome/48x448/mimetyes/appication-x-addon.png
+
+If you want to add Conky as a startup App, you can choose between:
+Add the program as a service to systemd or sysvinit
+Add the program as a startup app in Gnome or Fluxbox
+See my Screensaver guide here for details:
+References:
+Guide: Xscreensaver
+
+Skins and themes:
+Reference:
+Web: http://www.noobslab.com/2012/07/conky-collection-for-ubuntulinux.html
+
+For example, I am gong to install "Conky Lua":
+Web: http://www.noobslab.com/2012/06/install-conky-lua-in-ubuntulinux.html
+Steps:
+$ cd && wget -O lua-noobslab-gray.zip http://drive.noobslab.com/data/conky/Lua/conky-lua-gray.zip
+Unzip the files into /home/esteban, where the old .conkyrc resides:
+$ unzip conky-lua-gray.zip
+drwxr-xr-x  2 esteban esteban 4.0K Jul 12  2012 .conky
+-rw-r--r--  1 esteban esteban 2.5K Mar 18  2013 .conkyrc
+If the program was turned off, just type ALT + F2 and start the program.
+
+Conky Manager:
+You can try to donwload the program from the PPAs of Ubuntu and build the program from source. You can learn to build packages from source with this guide:
+References:
+Guide:
+Build packages from source
+SimpleScreenRecorder
+
+I've found this web site and decided to download a version of the package from here: http://www.teejeetech.in/2014/06/conky-manager-v2-released.html
+Anyway, I don't recommend to donwload packages this way, because we can't certificate the providers, who can be you and me.
+Run the program:
+$ conky-manager
+The program is going to show up in the Gnome apps menu.

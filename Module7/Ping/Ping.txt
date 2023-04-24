@@ -1,0 +1,28 @@
+Ping sends ICMP packages from computer to computer.
+Review ping statistics.
+
+Use ping to keep active the Internet access:
+$ ping www.yahoo.com
+
+Send 1 GB ping to attack/defend
+$ man ping
+
+$ apt-cache search ping
+$ apt-cache show ping
+$ dpkg -l | grep ping
+$ sudo apt-get install ping
+Output:
+Package ping is a virtual package provided by:
+  iputils-ping 3:20161105-1
+  inetutils-ping 2:1.9.4-2+b1
+End of.
+Choose one packages from the list and install it.
+
+Usage:
+$ ping www.yahoo.com
+
+
+References:
+Guide: Basic networking
+Guide: Iproute2
+Guide: Net-tools

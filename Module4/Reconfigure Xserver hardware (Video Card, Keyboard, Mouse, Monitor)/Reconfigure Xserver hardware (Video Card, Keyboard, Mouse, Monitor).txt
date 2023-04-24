@@ -1,0 +1,44 @@
+This HowTo Guide is primarily for users who cannot get into the GUI after a fresh install, a dist-upgrade, a new video card install, or a video driver upgrade, and for users who cannot set their screen resolutions correctly from within the GUI.
+Unfortunately, this command is not going to show anything anymore, because xorg configuration rely more in auto-detection.
+References:
+Web: https://ubuntuforums.org/showthread.php?t=690760
+File: HowTo_ Reconfigure X with “dpkg-reconfigure xserver-xorg”.pdf
+Web: https://wiki.debian.org/Xorg
+File: Xorg - Debian Wiki.pdf
+
+Run the command to reconfigure xserver-xorg to configure the Xsever hardware:
+$ dpkg-reconfigure xserver-xorg
+
+Once the hardware is all right, in Gnome, go to the menu Settings to set up the options available for the Xserver hardware:
+Keyboard
+Display
+Mouse & Touchpad
+
+Take care with the video card. Reconfigure xserver xorg is going to overwrite your xorg.conf file. If you want to proceed, back-up the video card configuration first.
+To setup video card:
+References:
+Guides:
+Video Card
+3D Acceleration and VR
+
+To configure keyboard:
+References:
+Guide: Set Keyboard, Local options, Region and Language
+
+To check the hardware configuration:
+References:
+Guide: Check hardware information
+
+Xrandr:
+xrandr is a command-line tool to interact with the X RandR extension [see x.org, wikipedia], which allows for live (re)configuration of the X server (i.e. without restarting it): It provides automatic discovery of modes (resolutions, refresh rates, etc.) together with the ability to configure outputs dynamically (resize, rotate, move, etc.).
+References:
+Topic: Installation, configuration and usage
+Web: https://pkg-xorg.alioth.debian.org/howto/use-xrandr.html
+File: How to use xrandr.pdf
+Web: http://superuser.com/questions/1131179/how-to-install-and-use-xrandr-in-debian
+File: resolution - How to install and use xrandr in Debian_ - Super User.pdf
+Web: http://askubuntu.com/questions/377937/how-to-set-a-custom-resolution
+File: xrandr - How to set a custom resolution_ - Ask Ubuntu.pdf
+Web: http://unix.stackexchange.com/questions/82352/multiple-screens-on-debian
+File: xrandr - Multiple screens on debian - Unix & Linux Stack Exchange.pdf
+

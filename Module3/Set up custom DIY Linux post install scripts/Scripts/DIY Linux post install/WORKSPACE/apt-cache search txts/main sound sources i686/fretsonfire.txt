@@ -1,0 +1,4 @@
+fretsonfire - game of musical skill and fast fingers
+fretsonfire-game - game of musical skill and fast fingers - Game files
+fretsonfire-songs-muldjord - game of musical skill and fast fingers - Songs Package
+fretsonfire-songs-sectoid - game of musical skill and fast fingers - Songs Package

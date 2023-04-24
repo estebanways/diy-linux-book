@@ -1,0 +1,74 @@
+NodeJS is a server side JavaScript for full stack apps.
+Reference:
+Web: http://blog.teamtreehouse.com/install-node-js-npm-mac
+
+NPM is the Node.js package manager for javascript.
+npm makes it easy for JavaScript developers to share and reuse code, and it makes it easy to update the code that you're sharing.
+References:
+Web: https://www.npmjs.com/#explicit
+Web:https://docs.npmjs.com/getting-started/what-is-npm
+
+Installation:
+
+Dependency tree:
+Node:
+Requires the following formulae to be installed:
+icu4c
+openssl
+pkg-config
+
+icu4c:
+No dependencies
+
+OpenSSL:
+Requires makedepend to be installed.
+
+makedepend:
+Requires pkg-config to be installed.
+
+pkg-config:
+No dependencies
+
+Update LinuxBrew:
+$ brew update
+
+Search the formula:
+Go to http://braumeister.org/browse/s/8
+$ brew search node
+
+Install a formula:
+$ brew install node
+
+Output:
+==> Installing node dependency: pkg-config
+==> Downloading http://pkgconfig.freedesktop.org/releases/pkg-config-0.28.tar.gz
+#################################################################### ############################################################################################################################################# 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/pkg-config/0
+==> make
+==> make check
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/pkg-config/0.28: 10 files, 644K, built in 2.1 minutes
+==> Installing node
+==> Downloading https://nodejs.org/dist/v0.12.4/node-v0.12.4.tar.gz
+
+[...]
+
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/node/0.12.4/
+==> make install
+==> Caveats
+
+Bash completion has been installed to:
+  /home/esteban/.linuxbrew/etc/bash_completion.d
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/node/0.12.4: 2589 files, 33M, built in 1.3 minutes
+
+NPM:
+NPM comes with node, is the "Node Package Manager".
+To install and update NPM packages always use -g as flag, which means global, to avoid going to the installation path of the package program to run it and simplify processes like the creation of project folders no matter where you are in the system, for example:
+relative path:~ $ express proj1_space_dir
+Note: In the case of Express, an app to develop MVC apps, the program will ask node to install new project dependencies. Also, you will have to install the node app, and the node_modules in the same path to complete the express type of project structure.

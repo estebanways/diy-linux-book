@@ -1,0 +1,275 @@
+Is a replacement for sysVinit. I like it especially because supports the system security, but the detractors say is taking over much system commands like "su", poweroff, etc, could originate security vulnerabilities due to its complexity, affects existent programs and commands because they are not compatible, and works in favor of private like companies as Read Hat or other giant corporations.
+
+Some important systemd commands and directories are:
+Restart a service, system daemon:
+$ systemctl restart name.service
+Stop a service, system daemon:
+$ systemctl stop name.service
+Start a service, system
+daemon:
+$ systemctl start name.service
+Halts system:
+$ systemctl halt
+Reboots system:
+$ systemctl reboot
+Shuts down system:
+$ systemctl poweroff
+Suspends system:
+$ systemctl suspend
+Hibernates system:
+$ systemctl hibernate
+All log files are under this directory:
+var/log/
+Default values for many daemons and services:
+etc/default/
+
+
+Now, I am going to use a USB flash drive as RAM in order to explain how to use systemd instead of sysVinit.
+
+Plug it in.
+Use the graphcal tool to see the Pendrive, and format it as ext3 or 4.
+You also can use:
+#fdisk -l
+Output:
+Disk /dev/sdc: 1.9 GiB, 2003795968 bytes, 3913664 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+# lsusb
+# df -h
+# mount
+
+The Pendrive device os /dev/sdc
+You can mount using nautilus or Drive tool to skip commands
+Now the Pendrive device is /dev/sdc1
+Unmount the device:
+# umount /dev/sdc1
+Type: 
+# mkswap /dev/sdc1 
+(or whatever your device path is. To use all the space available, otherwise you can create a swap file with:
+dd if=/dev/zero of=/media/YOURSTICK/swap bs=4096 count=131072. This creates a 512 MB file (512 * 1024^2 / 4096 = 131072))
+Output:
+Setting up swapspace version 1, size = 1955804 KiB
+no label, UUID=af83b920-2e90-43e0-9954-b93db0834fc5
+Then type: 
+# swapon -p 32767 /dev/sdc1
+(the 32767 makes it a higher priority and will thus be used before the hard drive swap drive) 
+To make sure everything went well, type:
+# cat /proc/swaps
+Output:
+Filename				Type		Size	Used	Priority
+/dev/dm-2                               partition	1835004	287144	-1
+/dev/sdc1                               partition	1955804	0	0
+If you need to take the stick out, type:
+# swapoff /dev/sdc1
+
+It’s obviously not as fast as physical RAM, but it’s a cheap and quick way to get a performance boost.
+
+Create a script to run the steps at system boot as a ReadyBoost drive in Wondows,
+and another to stop the steps at poweroff (Runlevel).
+
+This is a typical sysVinit service script:
+
+#! /bin/sh
+# /etc/init.d/blah
+#
+
+# Some things that run always
+touch /var/lock/blah
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo "Starting script blah "
+    echo "Could do more here"
+    ;;
+  stop)
+    echo "Stopping script blah"
+    echo "Could do more here"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/blah {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
+
+For example:
+
+ReadyBoost-start.sh:
+
+#!/bin/bash
+# Using a USB flash drive as RAM
+swapon -p 32767 /dev/sdc1
+
+exit 1
+
+ReadyBoost-stop.sh:
+
+#!/bin/bash
+# Using a USB flash drive as RAM
+swapoff /dev/sdc1
+
+exit 1
+
+To set the service file permissions:
+# chmod 755 /etc/init.d/blah
+
+To make the file executable:
+# chmod +x 755 /etc/init.d/blah
+
+Too add the file to the system start:
+# cd /etc/init.d
+# update-rc.d blah defaults
+systemd - description and features.pdf
+
+However, I am going to create a new  service with systemd:
+Reference: https://wiki.debian.org/systemd/Packaging
+File: systemd packaging.pdf
+Reference: https://wiki.debian.org/systemd
+File: systemd - system and service manager.pdf
+File: (SERVICE SECURITY) systemd-nluug-2014.pdf
+File: 5_Lennart_Poettering_-_Systemd.webm
+Web: https://wiki.debian.org/systemd/Packaging
+File: systemd - description and features.pdf
+
+Description:
+systemd is a replacement for sysvinit. It is
+dependency-based and able to read the LSB
+init script headers in addition to parsing
+rcN.d links as hints.
+Debian Resources:
+It also provides process supervision using
+cgroups and the ability to not only depend
+on other init script being started, but also
+availability of a given mount point or dbus
+service.
+Installing the systemd package will not
+switch your init system unless you boot with
+init=/bin/systemd or install systemd-sysv in
+addition.
+
+To create the service:
+# cd /usr/lib/systemd
+Create the file /usr/lib/systemd/scripts/ReadyBoo:
+# mkdir scripts
+# touch scripts/ReadyBoo
+# chmod 755 scripts/ scripts/ReadyBoo
+# chmod +x scripts/ReadyBoo
+Create the file /usr/lib/systemd/system/ReadyBoo.service:
+# mkdir system
+# touch system/ReadyBoo.service
+# chmod 755 system/ system/ReadyBoo.service
+
+
+File /usr/lib/systemd/system/ReadyBoo.service:
+
+[Unit]
+Description=ReadyBoo - USB flash device used as RAM
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/swapon -p 32767 /dev/sdc1
+ExecStop=/sbin/swapoff /dev/sdc1
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+2nd version to set a switch (For example the ATI Radeon Video card profile):
+
+[Unit]
+Description=ReadyBoo - USB flash device used as RAM
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "echo OFF > /whatever/vga_pwr_gadget/switch"
+ExecStop=/bin/sh -c "echo ON > /whatever/vga_pwr_gadget/switch"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+3rd version to run shell script files:
+
+[Unit]
+Description=ReadyBoo - USB flash device used as RAM
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /usr/lib/systemd/scripts/ReadyBoo start
+ExecStop=/bin/sh /usr/lib/systemd/scripts/ReadyBoo stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+WantedBy means runlevels, for example multi-user.target, graphical.target, etc.
+
+File /usr/lib/systemd/scripts/ReadyBoo:
+
+!#/bin/sh
+
+start() {
+  exec /sbin/swapon -p 32767 /dev/sdc1
+}
+
+stop() {
+  exec /sbin/swapoff /dev/sdc1
+}
+
+case $1 in
+  start|stop) "$1" ;;
+esac
+
+To test starting and stoppping the service use:
+# systemctl start ReadyBoo.service
+# systemctl stop ReadyBoo.service
+Or the new systemd without the "." nor "service":
+# systemctl start ReadyBoo
+# systemctl stop ReadyBoo
+# cat /proc/swaps
+
+Once you have the files in place and configured you can enable the service:
+# systemctl enable ReadyBoo.service
+Output:
+Created symlink from /etc/systemd/system/multi-user.target.wants/ReadyBoo.service to /usr/lib/systemd/system/ReadyBoo.service.
+
+It should then start automatically after a system reboot.
+Don't boot from the USB flash. Setup your system BIOS accordingly.
+
+To see if the service runs:
+# systemctl
+And look for the service in the list by the service name.
+To verify the service status:
+# systemctl status ReadyBoo.service
+
+
+Check the scripts are working as expected:
+Open a 3D game and do enter:
+# cat /proc/swaps
+Filename				Type		Size	Used	Priority
+/dev/dm-2                               partition	1835004	0	-1
+/dev/sdc1                               partition	1955804	8972	32767
+
+To disabled the service:
+# systemctl disable ReadyBoo.service
+The action removes the symlinks.
+
+I DIDN'T DO THIS STEP, IT'S NOT NECESSARY:
+Since I’ll be leaving this in the back of my desktop, first I got the UUID of the drive by typing:
+# ls -l /dev/disk/by-uuid/
+And then I added the following line to my /etc/fstab to have it automount as swap:
+UUID=af83b920-2e90-43e0-9954-b93db0834fc5	none	swap	sw,pri=32767	0	0
+# nano /etc/fstab
+
+
+References:
+Web: http://unix.stackexchange.com/questions/47695/how-to-write-startup-script-for-systemd
+File: How to write a startup script for systemd.pdf
+File: debconf13-making-your-package-work-with-systemd.pdf (For package developers).
+Topic: Devuan project: Debian GNU/Linux no systemd.
+Web: https://devuan.org/
+Topic: Debateinitsystemopenrc
+Web: https://wiki.debian.org/Debate/initsystem/openrc

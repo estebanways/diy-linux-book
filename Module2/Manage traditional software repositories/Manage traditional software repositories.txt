@@ -1,0 +1,170 @@
+Before any installation using APT follow these steps:
+
+Backup a version of the repositories file:
+$ ls /etc/apt
+$ sudo cp -dpR /etc/apt/sources.list /etc/apt/sources.listBAK
+To create more file versions:
+$ sudo cp -dpR /etc/apt/sources.list /etc/apt/sources.listBAK2
+Open the repositories file:
+$ sudo nano /etc/apt/sources.list
+Activate/install only the repos that contain the package to install and its dependecies, usually sections main, contrib and non-free.
+Search and find the package:
+$ sudo apt-cache search package
+Show package information:
+$ sudo apt-cache show package
+Review the repo section in the repos pool. 
+At this point you could need to reopen sources.list or something under /etc/apt/ or /etc/apt/sources.list.d/ to activate-deactivate another or more repos. You can also search for packages on www.debian.org to avoid disabling/enabling many times.
+Update sources.list, /etc/apt and /etc/apt/sources.list.d/ installed repos in the APT database:
+$ sudo apt-get update
+Finally youa are allowd to install the package:
+$ sudo apt install <package-name>
+
+
+Next is a copy of my file /etc/apt/sources.list, include important information to understand how to use repositories:
+
+# 
+
+# deb cdrom:[Debian GNU/Linux 8.0.0 _Jessie_ - Official Multi-architecture amd64/i386 NETINST #1 20150425-17:05]/ jessie main
+
+#deb cdrom:[Debian GNU/Linux 8.0.0 _Jessie_ - Official Multi-architecture amd64/i386 NETINST #1 20150425-17:05]/ jessie main
+
+# Original configuration after system installation, disabled
+#deb http://ftp.us.debian.org/debian/ jessie main
+#deb-src http://ftp.us.debian.org/debian/ jessie main
+
+#deb http://security.debian.org/ jessie/updates main
+#deb-src http://security.debian.org/ jessie/updates main
+# jessie-updates, previously known as 'volatile'
+#deb http://ftp.us.debian.org/debian/ jessie-updates main
+#deb-src http://ftp.us.debian.org/debian/ jessie-updates main
+
+# Jessie default + 'contrib'. Disable above while 
+# installing from this duplicate repo.
+# Packages: Flash plugin non-free, java-package, VirtualBox,
+#deb http://ftp.us.debian.org/debian/ jessie main contrib
+#deb-src http://ftp.us.debian.org/debian/ jessie main contrib
+
+# Jessie default + 'non-free'. Disable above while 
+# installing from this duplicate repo.
+# Packages: libfaac-dev,
+#deb http://ftp.us.debian.org/debian jessie main non-free
+
+# Copy of the Original configuration after system installation, include 
+# sections (repos) "contrib" and non-free 
+# This the configuration I use the most, no fear of installation fails
+# because they are all Official repos.
+# Free software puritans would remove 'non-free'
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+
+# Testing in progress for Debian 8 "Jessie" (These packages were in testing for a 
+# while after I installed the newest Debian GNU/Linux Jessie, version 8.0, but later
+# on have been moved to the Official repos)
+# Packages: ATI drivers, Steam,
+#deb http://http.debian.net/debian/ jessie main contrib non-free
+
+# Backports are made to add new functionality to programs, and this sometimes
+# involves security.
+
+# Backports are packages taken from the next Debian release (called
+# "testing"), adjusted and recompiled for usage on Debian stable.
+# Because the package is also present in the next Debian release, you
+# can easily upgrade your stable+backports system once the next
+# Debian release comes out. (In a few cases, usually for security
+# updates, backports are also created from the Debian unstable
+# distribution.)
+# Backports cannot be tested as extensively as Debian stable, and
+# backports are provided on an as­is basis, with risk of
+# incompatibilities with other components in Debian stable. Use with
+# care!
+# It is therefore recommended to only select single backported
+# packages that fit your needs, and not use all available backports.
+# Taken from: http://backports.debian.org/
+# You can specify backports in the command line to do not disable the
+# Official repos sections main, contrib and non-free, for example:
+# $ sudo apt-get install -t wheezy-backports  "package"
+# $ sudo aptitude install -t wheezy-backports  "package"
+# Remember to type the actual running release to do not make installation 
+# mistakes.
+# Instructions: http://backports.debian.org/Instructions/
+
+# Official Jessie Backports:
+# Packages: ffmpeg (But also Kdenlive, KDE and KXStudio install it as a 
+# dependency package),
+# deb http://ftp.debian.org/debian jessie-backports main
+
+# Some time after the release of Jessie I added the new backports repo. 
+# Backports are made to add new functionality to programs, and this sometimes
+# involves security.
+# Kodi specifications: Starting with Debian Jessie, Debian provides kodi via its 
+# backports repository remember that those packages are not supported by team kodi
+# Packages: Kodi,
+#deb http://http.debian.net/debian jessie-backports main
+
+# It's a second backports repo I have added:
+# Packages: wine-development,
+#deb http://httpredir.debian.org/debian jessie-backports main 
+
+# Sid (no codename) = Unstable Debian:
+# Packages: Gnash,
+#deb http://ftp.us.debian.org/debian sid main
+
+# A new configuration for the same sid include non free repos
+# Packages: virtualbox-guest-additions-iso 4.3.18-3, tlp,
+#deb http://ftp.us.debian.org/debian sid main non-free
+
+# Install only packages for your distribution realease to avoid damaging your system.
+# You could require section conventions to create sandboxes and for virtualization,
+# as follows: 
+# Use 'stable' (Jessie), 'testing' (Stretch), 'unstable' ("sid", no codename yet) 
+# or release-name when looking for old package versions, for example 'Squeeze'
+
+# An Official 'stable' mirror in Denmark just in case:
+#deb http://ftp.de.debian.org/pub/debian stable main contrib non-free 
+
+# Unofficial (External) repositories. Proceed carefully:
+
+# Mint repo to install packages. It does not say the type which should mean is stable,
+# or more exactly "latest stable" no matter what is the stable release (meanwhile is
+# Jessie). No main, contrib or non-free have been specified, which means everything
+# is mixed here.
+# Packages: Firefox,
+#deb http://packages.linuxmint.com debian import
+
+# Deb multimedia repo. This repo is Unofficial and untrusted in the MIT but in their 
+# own key servers. Some people recommends not to use it at all)
+# Packages: Avidemux(Qt),
+#deb http://deb-multimedia.org/ stable main non-free
+#deb-src http://deb-multimedia.org/ stable main non-free
+# Packages: libvidstab1.0,
+#deb http://deb-multimedia.org/ sid main non-free
+#deb-src http://deb-multimedia.org/ sid main non-free
+
+# Experimental are repos and packages rather than and considered after the  old-stable, 
+# stable, testing and unstable ones.
+
+End of file.
+
+Notes: 
+The file does not contain installation repos under /etc/apt/ like KXStudio, or /etc/apt/sources.list.d/ like Compiz-Fusion and Google Chrome.
+I don't install everything this way. There are many alternatives to install software in Linux and Debian.
+Somethimes you have to decide where from and what version to install, having more than one options available. 
+To applications manually downloaded from the Internet I have a separate Repo folder instead of the copy of the cached packages under /var/cache/apt/archives.
+
+References:
+Topic: To use Debian and Tor repos Services available as Onion Services:
+Guide: TOR
+Topic: Sometimes you require the machine to act as a Proxy client, and skip or route the access from the client to the Official repos via HTTP, etc. Look for the sections: "Proxy support for Synaptic Package Manager:" and" "Setting up apt-get to use a http-proxy:"
+Guide: Basic Networking
+Topic: How to set up proxies.
+Guide: Proxies
+
+References:
+Web: https://wiki.debian.org/SourcesList
+File: SourcesList - Debian Wiki.pdf

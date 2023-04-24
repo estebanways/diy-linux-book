@@ -1,0 +1,189 @@
+A- Verify the integrity of the packages downloaded already:
+
+Verify the repo setup:
+$ sudo nano /etc/apt/sources.list
+Update the repos:
+$ sudo apt-get update
+Search the program in the repos:
+$ sudo apt-cache search 'debsums'
+Output:
+debsums - tool for verification of installed package files against MD5 checksums
+End of Output.
+Show program information, include description, MD5, SHA1 ans SHA2 (256) checksum numbers and dependencies:
+$ sudo apt-cache show 'debsums'
+Install the program:
+$ sudo apt-get install debsums
+Runs simple verifications:
+$ debsums | head -10
+$ debsums | more
+Use the keys CTRL + C to return to the shell prompt.
+Debsums will verify the files on your system against the files in the package repositories (and tell you if they differ)
+The complete Output is too large an then we need to filter the results to get what checksum verification has another status rather than "OK".
+Most packages include the necessary info to verify them against the repositories, but some don't, so first up, run codes:
+Dont run '$ sudo apt-get clean' prior to every '$ sudo debsums_init', the action will remove all the files in /var/cache/apt/archives:
+$ sudo debsums_init
+This will generate file hashes for any packages that lack them (note, this involves downloading the package from the repositories)
+My Output displays:
+Finished generating md5sums!
+Checking still missing md5files...
+End of output.
+Maybe some packages could not be verified. But let's continue.
+Take a look at the manuals:
+$ man debsums
+To list only packages without MD5 verification:
+$ sudo debsums -l
+To list "silently" only the packages with verification problem:
+$ sudo debsums -s
+This process can take a log time to finish.
+I you get any problem you can remove the program with issues, for example:
+$ sudo apt-get remove APPLICATION_NAME
+Or you'd better purge the package with:
+$ sudo dpkg -P APPLICATION_NAME
+
+To interpret the results:
+Read the debsums man page:
+$ man debsums
+RESULTS are:
+OK     		The file's md5sum is good.
+FAILED 		The file's md5sum does not match.
+REPLACED 	The file has been replaced by a file from a different package.
+
+To verify individual applications:
+You can use debsums against individual packages:
+$ sudo debsums nano netbeans
+The operation will show the nano Output but is going to show netbeans as not installed, because we have not installed netbeans with apt-get or dpkg.
+
+To verify individual applications with dpkg:
+Next match the local and repo MD5 checksums. Both pin numbers must be the same. Usually when you download a package there is a file with the MD5 checksum, to match on the applications download site (web or FTP). But for the Debian repos use:
+$ sudo dpkg -V
+The option -V, or --verify [package-name...], verifies the integrity of package-name or all packages if omitted,  by  comparing  information  from  the files installed by a package with the files metadata information stored in  the  dpkg database.  The  origin  of the files metadata information in the database is the binary packages themselves. That  metadata  gets collected   at  package  unpack  time  during  the  installation process.
+Currently the only functional check performed is an md5sum verification against the stored value in the files database. It will only get checked if the database contains the  file  md5sum.  To check for any missing metadata in the database, the --audit command can be used.
+The output format is selectable with the --verify-format option, which  by  default uses the rpm format, but that might change in the future, and as such, programs parsing  this  command  output should be explicit about the format they expect.
+
+Good method for intrusion detection?
+However I would NOT view this as a poor mans intrusion detection system. I would use something like Tripwire or OSSEC if you're really serious about doing something like this. Relying on any these types of capabilities isn't really what they were intended to do. Rather these are more to confirm that no intentional changes were made to the system, which have now resulted in the files being out of sync.
+A would-be hacker could easily "play games" and change the database that the files' checksums are checked against whether it's locally stored or online somewhere.
+True intrusion detection would require that the database of checksums be kept off line and only brought into the mix when a check wanted to be performed, and it would be brought in, in a readonly mode only!
+
+If you run unintentionally '$ sudo apt-get clean' to setup debsums, note that you have removed all the files in /var/cache/apt/archives. Follow these steps to restore the files from a backup:
+Firstly, restore all the files from your hard drive in /var/cache/apt/archives. Skip the existent files and folders like lock and partial/ to preserve the system permissions.
+For example we have installed debsums recently so that the files is not in teh backup. We require to know the correct file permissions. To know what are the file permissions purge the program debsums and reinstall it.
+In the terminal, go to archives/ to run a massive permissions change:
+$ cd /var/cache/apt/archives
+Verify the system permissions of debsums:
+$ ls -hal debsums*
+Output:  
+-rw-r--r-- 1 root root 48K Mar 18 15:20 debsums_2.0.53_all.deb
+Verify the system permissions of the file lock:
+$ ls -hal lock
+Output:  
+-rw-r----- 1 root root 0 May  5 19:07 lock
+Verify the system permissions of the folder ./partial:
+$ cd ./partial
+$ ls -dhal
+Output: 
+drwxr-xr-x 2 root root 4.0K Aug 24 00:57 .
+List the content in partial:
+ls -hal
+Change the permissions of all the files under partial as the debsum permissions:
+$ sudo chmod 644 *
+Go back to the directory (or folder) archives:
+$ cd ..
+Change the permissions of all the files under archives as the debsum permissions:
+$ sudo chmod 644 *
+Restore the previous previous permissions of the file lock:
+$ sudo chmod 640 lock
+Restore the previous previous permissions of the directory partial:
+$ sudo chmod 755 partial
+
+References:
+Topic: Integrity verification after Debian packages downloads.
+Web: http://ubuntuforums.org/showthread.php?t=1646925
+File: Verify the integrity A.pdf
+Web: https://lists.debian.org/debian-user/2002/11/msg05664.html
+File: Verify the integrity B.pdf
+Web: http://unix.stackexchange.com/questions/115415/verifying-debian-ubuntu-packages-integrity-when-booting-from-a-read-only-dvd
+File: Verify the integrity C.pdf
+
+
+B- Verify the integrity of a new package installation:
+
+This option is better than simply double check changes between the programs and the checksum databases, as debsums and dpkg do, but anyways running these programs is good to detect system intrusions and other integrity issues, at later point in the system’s life.
+Before download the packages check the MD5, SHA1 or SHA2 (256 bit, best option available) checksums.
+Verify the repo configuration file.
+After that update:
+$ sudo apt-get update
+Search the package to install, for example elvis:
+$ sudo apt-cache search 'elvis'
+Show the package information, in accordance with the results of the search:
+$ sudo apt-cache show elvis-tiny
+The output will show the next info:
+MD5sum: 183f5a37245fb3495b2724a67b112880
+SHA1: 0c568f73f5a9de1f80fd8ab481133cf02fdcced2
+SHA256: 367f8f33cc1f00918cf06526ffe26aa10c4770962af806f9c7b2baf26e44f38f
+Now, it's time to install the package:
+$ sudo apt-get install elvis-tiny
+To check verify the package use debsums, dpkg or the next method:
+Let's go to look for the package under archives:
+$ cd /var/cache/apt/archives
+List elvis-tiny:
+$ ls -hal *elvis*
+Verify that the cache MD5sum number and the local MD5sum are equal:
+$ md5sum elvis-tiny_1.4-23_amd64.deb
+Output:
+183f5a37245fb3495b2724a67b112880  elvis-tiny_1.4-23_amd64.deb
+The numbers are equal so for that the package downloaded is a copy of the program in the repos and you can trust it.
+
+You can also install these programs to verify download integrity:
+GtKHash
+winMd5Sum (for Windows)
+
+
+The problem of Who watches the watcher?
+Sometimes happened that a hacker modified the Release file of the application to include their pirate Application version checksums so you downloaded and installed an untrusted package with malware. It's time to introduce the concepts of Digital Signature, Web of Trust and Chain of Trust. These topics aren't easy to understand but if you need more information browse The Network. Signatures are used to recognize who the hell the software package does come from.
+
+For example, the Web The Digital signatures are visible in your Web browsers, in the Certificate Manager. This usage of signatures helps to identify phising attacks to your browser while navigating.
+
+Also, the software repositories keyrings are in /usr/share/keyrings, so the programs like APT verify the existent signatures inside a keyring before download packages:
+esteban@ProLiant:/usr/share/keyrings$ ls
+debian-archive-keyring.gpg           debian-maintainers.gpg
+debian-archive-removed-keys.gpg      debian-nonupload.gpg
+debian-edu-archive-keyring.gpg       debian-role-keys.gpg
+debian-edu-archive-removed-keys.gpg  falktx.gpg
+debian-keyring.gpg                   kxstudio-debian.gpg
+debian-keyring.pgp
+
+PGP:
+Means Pretty Good Privacy
+
+GnuPG:
+It is a free implementation of PGP. gpg is the OpenPGP only version of the GNU Privacy Guard (GnuPG). It is a tool to provide digital encryption and  signing  services  using  the OpenPGP  standard.  gpg  features complete key management and all bells and whistles you can expect from a decent OpenPGP implementation.
+See the complete manual:
+$ man gpg
+For example, when I download software from sources set-up in sources directories such as the file /etc/apt/sources.list and the key is unavailable I use gpg to retrieve new keys from keys servers I know I will find these keys like this. The two commands as root, if you lack of sudo:
+$ gpg --keyserver pgpkeys.mit.edu --recv-key 01809745730456
+$ gpg -a --export 01809745730456 | sudo apt-key add -
+References:
+Topic: GnuPG Documentation
+Web: https://www.gnupg.org/documentation/
+
+Seahorse:
+It is a graphical user interface (GUI) for GnuPG.
+Install Seahorse:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search seahorse
+$ sudo apt install seahorse
+With seahorse I can easily:
+- Create my own keys
+- Export my key
+- Import a key
+- Sign a key
+- Synchronize keys with keys servers
+- Revoke my key
+
+What can do with my keys?:
+I.E: Facilitate the public part of the key through email messages with Evolution (MUA) to a contact in my Chain of Trust.
+
+References:
+Book: PC Cuadernos, El Placer de aprender. Linux Ubuntu. Consejos y Trucos.

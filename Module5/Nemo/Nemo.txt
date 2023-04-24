@@ -1,0 +1,5 @@
+
+Works better than any other to transfer big amounts of data in Desktops Environments, at the moment.
+It comes with Cinnamon desktop environment.
+References:
+Guide: Cinnamon

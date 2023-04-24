@@ -1,0 +1,14 @@
+I require this program but also it has some extra routing functions very helpful and system no admin accounts can read the IP address.
+
+$ apt-cache search iproute
+$ apt-cache show iproute2
+$ dpkg -l | grep iproute
+$ sudo apt-get install iproute2
+
+Usage:
+$ ip addr show
+$ man ip
+
+References:
+Guide: Basic networking
+Guide: Net-tools

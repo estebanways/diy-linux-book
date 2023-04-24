@@ -1,0 +1,24 @@
+Download 32 package and follow the steps:
+
+For the 64-bit package:
+# dpkg -i teamviewer_linux_x64.deb
+
+In case “dpkg” indicates missing dependencies, complete the installation by executing the following command:
+# apt-get update
+# apt-get install -f
+
+Notes to Multiarch:
+On newer 64-bit DEB-systems with Multiarch-support (Debian 7) teamviewer_linux_x64.deb cannot be installed because the package ia32-libs is not available anymore on these systems. In this case you can use teamviewer_i386.deb instead.
+
+In case you get the error “wrong architecture i386” you have to execute the following command lines as an administrator:
+# dpkg --add-architecture i386
+# apt-get update
+Note: At this point I have installed Debian multiarchitecture to support 32 bit programs.
+Install the 32 bit:
+# dpkg -i teamviewer_10.0.37742_i386.deb
+Note:
+At this point the system says that there is a dependency error an I re-run before installation:
+# apt-get install -f
+
+Run teamviewer as user:
+$ teamviewer

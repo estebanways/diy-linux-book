@@ -1,0 +1,10 @@
+Is not open source or free software, is proprietary, the free versions lack of basic features present in Kdenlive and/or Cinelerra (See guides), and you need Wine to run the program to transcode files to allow the program to load them.
+Is appropriate due to the Pro version is compatible with some important video studios hardware/software.
+
+References:
+Topic: Download Lightworks for Linux 64-bit
+Web: http://www.lwks.com/index.php?option=com_lwks&view=download&Itemid=206&tab=1
+File: Downloads.pdf
+Installation process details:
+Web: https://www.linux.com/learn/pro-level-video-editing-lightworks-linux
+File: Pro-Level Video Editing with LightWorks on Linux _ Linux.pdf

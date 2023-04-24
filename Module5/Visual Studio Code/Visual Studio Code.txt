@@ -1,0 +1,40 @@
+Cleansed and update able installation steps for Debian 11, codename "Bullseye":
+
+Go to downloads:
+$ cd ~/Downloads
+
+We need to add a key that has been used to sign the packages of this coding platform. Otherwise, the system will not accept the VSCode repository to download the required packages:
+$ curl -sSL https://packages.microsoft.com/keys/microsoft.asc -o microsoft.asc
+$ gpg --no-default-keyring --keyring ./ms_vscode_key_temp.gpg --import ./microsoft.asc
+$ gpg --no-default-keyring --keyring ./ms_vscode_key_temp.gpg --export > ./ms_vscode_key.gpg
+$ sudo mv ms_vscode_key.gpg /etc/apt/trusted.gpg.d/
+
+Add VS Code Repository on Debian 11:
+$ echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
+
+Run system update:
+$ sudo apt-get update
+
+Install Visual Studio Code:
+$ sudo apt-ge install code
+
+At this point you can remove the temporary installation files from Downloads:
+$ rm -rf microsoft.asc  ms_vscode_key_temp.gpg  ms_vscode_key_temp.gpg~
+
+Verify the installed version:
+$ code --version
+Current output:
+1.66.1
+End of current output.
+
+Find the program in the Desktop Environment menus:
+Just type in "vs"
+
+Uninstallation (optional):
+$ sudo apt remove code
+$ sudo rm /etc/apt/sources.list.d/vscode.*
+$ sudo rm /etc/apt/trusted.gpg.d/ms_vscode_key.gpg
+
+References:
+Web: https://www.how2shout.com/linux/ways-to-install-vscode-on-debian-11-bullseye-linux/
+File: 2 Ways to install VS code on Debian 11 Bullseye Linux - Linux Shout.pdf

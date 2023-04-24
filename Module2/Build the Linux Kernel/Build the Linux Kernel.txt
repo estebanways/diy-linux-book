@@ -1,0 +1,67 @@
+If you don't have an Internet connection, for some distributions as SUSE the re-compilation process is easier, because it comes with the needed software sources. In Debian GNU/Linux the re-compilation process explains you need to get some software not included in the installation disc, at least the Netinstall. The Debian way looks like easiest method in the market of distributions, because during the process you create a DEB package to install with DPKG in the final step. Nobody compiles the kernel frequently. Anyways here the written process I use to compile Debian Squeeze which should work for the Jessie release.
+1- Update the system:
+# apt-get update
+2- Install the needed packages:
+# apt-get install kernel-package libncurses5-dev fakeroot wget bzip2 build-essential
+3- Download the kernel sources corresponding to your custom version of kernel and the patch, if necessary. If needed, visit the kernel web site to know the correct HTTP route. The site is: http://www.kernel.org/pub/linux/kernel/v2.6/. In the command line, verify the kernel value corresponding to the kernel version and the compressed and packaged file extensions, for example: 2.6.21.3.tar.bz2. If needed run command 'uname -r' to know your actual kernel's version, before any download.
+# cd /usr/src
+# wget http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.28.7.tar.bz2
+# wget http://www.kernel.org/pub/linux/kernel/v2.6/patch-2.6.28.7.bz2 
+4- Create the directory from the compressed file:
+# tar xjf linux-2.6.28.7.tar.bz2
+5- Create a symbolic link to the “linux” directory:
+# ln -s linux-2.6.28.7.tar.bz2 linux
+6- Apply the patch to the kernel sources (if patch is needed for you). Include in the commands the correct patch version before execute them. Be careful, but if you fail this command remove the kernel directory and repeat the command sequence since the kernel sources decompression:
+# cd /usr/src/linux
+# bzip2 -dc /usr/src/patch-2.6.28.7.bz2 | patch -p1 --dry-run
+# bzip2 -dc /usr/src/patch-2.6.28.7.bz2 | patch -p1
+7- Clean the 'make' utility. Use a copy of your current working kernel configuration file as base to your new kernel .config file:
+# make clean && make mrproper
+# cp /boot/config-`uname -r` ./.config
+8- Configure the kernel:
+# make menuconfig
+And activate and deactivate the things you need. You have to know your system can stop running at all after a kernel with a wrong configuration, so touch items but knowing what you are doing. 
+For example, if you define you the objective to recompile a kernel to create a physical bridge using an old computer machine with two or more ethernet cards to communicate two sub-nets of the same Intranet, you need to activate these kernel features:
+Next option replaces the old ipchains. I activated as * all the things inside the framework, because sometimes the kernel menus are changing.
+[*] Network packet filtering (Netfilter)
+Next option have not be activated, to avoid lot of logs on screen:
+[ ] Network packet filtering debugging (NEW)
+Next Ethernet options activated like * (incorporated to the kernel, not as module “m”).
+<*> 802.1d Ethernet Bridging
+[*] netfilter (firewalling) support (NEW) 
+Activate the other things of Netfilter to let NAT working correctly. This is needed to built a Linux router or a brouter (bridge + router).
+9- Build the kernel:
+# make-kpkg clean
+# fakeroot make-kpkg --initrd --append-to-version=-custom kernel_image kernel_headers
+After --append-to-version= you can write any string that helps you identify the kernel, but it must begin with a minus (-) and must not contain whitespace. E.g.: “custom” as is used in the last set of commands.
+Wait while the kernel compiling ends.
+10- Install the kernel:
+# cd /usr/src/
+# ls -l
+# dpkg -i linux-image-2.6.28.7-custom_2.6.28.7-custom-10.00.Custom_i386.deb
+# dpkg -i linux-headers-2.6.28.7-custom_2.6.28.7-custom-10.00.Custom_i386.deb
+The packages create the /boot/grub/menu.lst. To verify the installed and used kernel version after rebooting the system:
+# uname -r
+This should display something like: 2.6.21.3-custom.
+
+References:
+Web: https://wiki.debian.org/HowToRebuildAnOfficialDebianKernelPackage
+File: How To Rebuild An Official Debian Kernel Package.pdf
+File: saveonlywithswriter.doc
+
+References:
+Topic: Compile drivers in the Linux Kernel. Section drivers.
+Web: http://www.aboutdebian.com/compile.htm
+File: Compiling Software With Debian Linux.pdf
+
+References:
+Topic: The Linux Kernel.
+Web: https://en.wikipedia.org/wiki/Linux_kernel
+File: Wikipedia - Linux Kernel.pdf
+Topic: Hacking the Linux Kernel
+Web: https://kernelnewbies.org/KernelHacking
+File:  KernelHacking - Linux Kernel Newbies.pdf
+Topic: Install alternative kernels. XanMod is a Linux kernel compilation with custom modifications. Optimized to take full advantage of high-performance Workstations, PC Games,
+Media Centers and others. Supports all recent 64-bit versions of Debian and Ubuntu-based systems. 
+Web: https://xanmod.org/
+File: download - XanMod Kernel.pdf

@@ -1,0 +1,14 @@
+
+
+
+PENDING
+
+
+References:
+Topic: How to clone an encrypted Disk to another one
+Web:https://askubuntu.com/questions/761763/cloning-encrypted-ssd-to-larger-ssd
+File: encryption - Cloning Encrypted SSD to larger SSD - Ask Ubuntu.pdf
+Web: https://smallbusiness.chron.com/clone-encrypted-hard-drive-57682.html
+File: How to Clone an Encrypted Hard Drive _ Small Business - Chron.com.pdf
+
+

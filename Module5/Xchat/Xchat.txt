@@ -1,0 +1,9 @@
+Install x-chat:
+# apt-get update
+# apt-get install xchat
+
+Start the program in the menu and look for the freenode.
+
+Don't use the program or use it through a network like Tor because other users can see your IP and attempt to attack you.
+
+If you want to set up Xchat as server use SSL certified connections within your teams.

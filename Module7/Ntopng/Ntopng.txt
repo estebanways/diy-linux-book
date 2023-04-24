@@ -1,0 +1,9 @@
+
+
+Pending
+
+
+References:
+Web: https://blog.desdelinux.net/ntopng-excelente-monitor-trafico-red-nueva-generacion/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+desdelinuxweb+%28Desde+Linux%29&utm_content=FaceBook&fbclid=IwAR1rCOShkL3u4o9j0VgIxzpNovAMsfdUUjBp3nitUTBFXyO0hH7KulacNFg
+
+Web: https://www.howtoforge.com/how-to-install-ntopng-network-monitor-on-debian-10/

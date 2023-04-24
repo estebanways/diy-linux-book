@@ -1,0 +1,18 @@
+Software sources available:
+- Microsoft's Windows world source code sources
+- Web site, P2P and Developers repositories
+
+Installation examples: 
+- Any C# code built with Mono, or adapted to Linux
+- Any code built for Windows
+
+For running MS Windows code:
+Write Windows code, for example .NET C# code in Visual Studio and attempt to run this code in Linux, for example using Mono. 
+You can also modify or write this code from scratch with tools like DotGNU, in Linux. 
+
+Otherwise, compile the code in Windows and then use Wine in Linux to run it.
+References:
+Guides: 
+Windows or DOS executable binaries
+Wine
+Proteus

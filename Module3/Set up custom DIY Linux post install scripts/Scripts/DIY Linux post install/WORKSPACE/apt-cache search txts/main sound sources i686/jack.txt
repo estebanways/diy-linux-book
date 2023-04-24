@@ -1,0 +1,205 @@
+a2jmidid - Daemon for exposing legacy ALSA MIDI in JACK MIDI systems
+aj-snapshot - make snapshots of JACK connections
+libasound2-plugins - ALSA library additional plugins
+alsa-tools-gui - GUI based ALSA utilities for specific hardware
+alsaplayer-jack - alsaplayer output module for JACK
+ams - Realtime modular synthesizer for ALSA
+apf-firewall - easy iptables based firewall system
+ardour - the digital audio workstation
+asterisk - Open Source Private Branch Exchange (PBX)
+baresip - portable and modular SIP user-agent - metapackage
+baresip-core - portable and modular SIP user-agent - core parts
+baresip-ffmpeg - portable and modular SIP user-agent - FFmpeg codecs and formats
+baresip-gstreamer - portable and modular SIP user-agent - GStreamer pipelines
+baresip-gtk - portable and modular SIP user-agent - GTK+ front-end
+baresip-x11 - portable and modular SIP user-agent - X11 features
+python-beaker - cache and session library
+python3-beaker - cache and session library for Python 3
+bitmeter - diagnosis tool for JACK audio software
+calf-plugins - Calf Studiogear - audio effects and sound generators
+multimedia-jack - JACK (Jack Audio Connection Kit) and ALSA related packages
+din - digital audio synthesizer
+drumkv1 - old-school drum-kit sampler - standalone
+drumkv1-common - old-school drum-kit sampler - common files
+drumkv1-lv2 - old-school drum-kit sampler - lv2-plugin
+dssi-host-jack - Example of DSSI host
+ebumeter - Loudness measurement according to EBU-R128
+ebumeter-doc - Loudness measurement EBU-R128 - documentation
+faust - functional programming language for realtime audio applications
+faust-common - functional programming language for realtime audio applications - common files
+foo-yc20 - YC-20 organ emulation
+fortunes-it - Data files containing Italian fortune cookies
+freecontact - fast protein contact predictor
+libfreecontact-dev - fast protein contact predictor library - development files
+libfreecontact-doc - documentation for libfreecontact
+libfreecontact0-dbg - debugging symbols for libfreecontact
+libfreecontact0v5 - fast protein contact predictor library
+freewheeling - live looping musical instrument
+ghostess - A graphical DSSI plugin host
+gjacktransport - access to the JACK's transport mechanism as touchable slider
+gmidimonitor - GTK+ application that shows MIDI events
+golang-github-elazarl-goproxy-dev - HTTP proxy library for Go
+golang-github-jackpal-gateway-dev - library for discovering the address of a LAN gateway
+golang-github-natefinch-lumberjack-dev - Go package for writing logs to rolling files
+golang-gopkg-natefinch-lumberjack.v2-dev - Go package for writing logs to rolling files
+gtklick - simple metronome GUI for JACK
+guitarix - Rock guitar amplifier for Jack
+guitarix-common - Guitarix - Common files
+guitarix-doc - Guitarix - Development documentation
+guitarix-ladspa - Guitarix - ladspa plugins
+guitarix-lv2 - Guitarix - LV2 plugins
+gxw-glade - Guitarix - GTK+ library Glade support
+libgxw-dev - Guitarix - GTK+ library (development files)
+libgxw0 - Guitarix - GTK+ library
+libgxwmm-dev - Guitarix - GTK+ C++ widget library (development files)
+libgxwmm0 - Guitarix - GTK+ C++ widget library
+gxtuner - Tuner for Jack
+horgand - JACK capable organ softsynth
+horgand-data - JACK capable organ softsynth (data files)
+hydrogen - advanced drum machine/step sequencer
+idjc - graphical shoutcast/icecast client
+jaaa - audio signal generator and spectrum analyser
+jack - Rip and encode CDs with one command
+jackd1 - JACK Audio Connection Kit (server and example clients)
+jackd1-firewire - JACK Audio Connection Kit (FFADO backend)
+libjack-dev - JACK Audio Connection Kit (development files)
+libjack0 - JACK Audio Connection Kit (libraries)
+jack-capture - program for recording soundfiles with jack
+jack-keyboard - Virtual MIDI keyboard for JACK MIDI
+jack-midi-clock - JACK client that sends MIDI beat clock pulses
+jack-mixer - JACK Audio Mixer
+jack-stdio - program to pipe audio-data from and to JACK
+jack-tools - various JACK tools: dl, record, scope, osc, plumbing, udp, play, transport
+jackd - JACK Audio Connection Kit (default server package)
+jackd2 - JACK Audio Connection Kit (server and example clients)
+jackd2-firewire - JACK Audio Connection Kit (FFADO and FreeBoB backends)
+libjack-jackd2-0 - JACK Audio Connection Kit (libraries)
+libjack-jackd2-dev - JACK Audio Connection Kit (development files)
+jackeq - routes and manipulates audio from/to multiple sources
+jackmeter - a basic command line meter for the JACK audio system
+libjackrabbit-java - content repository implementation (JCR API)
+libjackson2-annotations-java - fast and powerful JSON library for Java -- annotations
+libjackson2-annotations-java-doc - Documentation for Jackson-annotations
+libjackson2-core-java - fast and powerful JSON library for Java -- core library
+libjackson2-core-java-doc - Documentation for Jackson-core
+libjackson2-databind-java - fast and powerful JSON library for Java -- data binding
+libjackson2-databind-java-doc - Documentation for jackson-databind
+libjackson2-dataformat-cbor - Jackson data format module for RfC7049 Concise Binary Object Representation
+libjackson2-dataformat-cbor-doc - Documentation for jackson-dataformat-cbor
+libjackson2-dataformat-smile - fast and powerful JSON library for Java -- Smile dataformat
+libjackson2-dataformat-smile-doc - Documentation for Jackson-dataformat-smile
+libjackson2-dataformat-xml-java - fast and powerful JSON library for Java -- XML dataformat
+libjackson2-dataformat-xml-java-doc - Documentation for Jackson-dataformat-XML
+libjackson2-dataformat-yaml - fast and powerful JSON library for Java -- YAML dataformat
+libjackson2-dataformat-yaml-doc - Documentation for jackson-dataformat-yaml
+libjackson2-datatype-guava-java - Jackson support for JSON serialization of Guava collection types
+libjackson2-datatype-guava-java-doc - Documentation for Jackson serialisation of Guava collection types
+libjackson2-datatype-joda-java - fast and powerful JSON library for Java -- Joda datatypes
+libjackson2-datatype-joda-java-doc - Documentation for jackson-datatype-joda
+libjackson2-jaxrs-providers-java - Jackson JAX-RS providers
+libjackson2-module-jaxb-annotations-java - Fast and powerful JSON library for Java -- JAXB annotations
+jacksum - computes checksums, CRCs and message digests
+jacktrip - high-quality system for audio network performances
+jalv - tool to run LV2 plugins as stand-alone applications
+jamin - Audio mastering from a mixed down multitrack source with JACK
+japa - JACK and ALSA Perceptual Analyser
+jconvolver - Convolution reverb Engine for JACK
+jkmeter - horizontal or vertical bargraph audio level meter for Jack Audio Connection Kit
+jmeters - multichannel audio level meter
+jnoise - white and pink noise generator
+klick - advanced metronome for JACK
+kluppe - loop-player and recorder designed for live use
+laborejo - music notation workshop
+gladish - graphical interface for LADI Session Handler
+ladish - session management system for JACK applications
+ladish-dbg - Debugging symbols for ladish
+laditools - Linux Audio Desktop Integration Tools
+python-laditools - Python module to control and monitor the LADI system
+libambix-utils - AMBIsonics eXchange library (utilities)
+libaudio-ecasound-perl - Perl binding to the ecasound sampler, recorder, fx-processor
+libb-hooks-op-annotation-perl - module to allow annotation and delegation of hooked OPs
+libcrypto++-dev - General purpose cryptographic library - C++ development
+libcrypto++-doc - General purpose cryptographic library - documentation
+libcrypto++-utils - General purpose cryptographic library - utilities and data files
+libfreecontact-perl - fast protein contact predictor - binding for Perl
+libjackson-json-java - streaming fast powerful standard conformant json processor in java
+libjackson-json-java-doc - standard conformant json processor in java - API documentation
+liblist-maker-perl - Perl module to generate more sophisticated lists than just $a..$b
+libltcsmpte-dev - Development files for libltcsmpte
+libltcsmpte-doc - Documentation for libltcsmpte
+liblwp-protocol-psgi-perl - override LWP's HTTP/HTTPS backend with your own PSGI application
+libmoosex-has-options-perl - module for succinctly declaring options for Moose attributes
+liquidsoap-plugin-jack - audio streaming language -- JACK plugin
+meterbridge - Collection of Audio meters for the JACK audio server
+mhwaveedit - Simple and fast GTK2 sound editor
+mididings - MIDI router and processor based on Python
+mididings-doc - mididings Documentation
+python-mididings - MIDI routing library for Python
+midisnoop - MIDI monitor and prober
+mixxx - Digital Disc Jockey Interface
+mixxx-data - Digital Disc Jockey Interface -- data files
+mpg123 - MPEG layer 1/2/3 audio player
+libbjack-ocaml - OCaml blocking interface to jack audio connection kit
+libbjack-ocaml-dev - OCaml blocking interface to jack audio connection kit
+patchage - modular patch bay for Jack audio and Alsa Midi
+libifd-cyberjack6 - REINER SCT cyberJack USB chipcard reader user space driver
+pd-mediasettings - programmatically modify the audio and MIDI settings from within Pd
+petri-foo - MIDI controllable audio sampler - successor of specimen
+phasex - Phase Harmonic Advanced Synthesis EXperiment
+phasex-dbg - Debugging symbols for PHASEX
+playitslowly - Plays back audio files at a different speed or pitch
+pnmixer - Simple mixer application for system tray
+projectm-jack - projectM JackAudio module
+pulseaudio - PulseAudio sound server
+pulseaudio-module-jack - jackd modules for PulseAudio sound server
+python-freecontact - fast protein contact predictor - binding for Python
+python-fudge - Python 2 module for using fake objects for tests
+python-fudge-doc - Python module for using fake objects for tests, documentation package
+python3-fudge - Python 3 module for using fake objects for tests
+python-jack-client - JACK Audio Connection Kit (JACK) Client for Python
+python3-jack-client - JACK Audio Connection Kit (JACK) Client for Python 3
+qjackctl - User interface for controlling the JACK sound server
+qjackrcd - Qt4 application to record JACK server outputs
+qmidiarp - MIDI arpeggiator for ALSA
+qmmp - feature-rich audio player with support of many formats
+qsapecng - symbolic analyzer and solver of linear analog circuits
+qtractor - MIDI/Audio multi-track sequencer application
+radium-compressor - audio compressor for JACK
+rotter - JACK client for transmission recording and audio logging
+librtaudio-dev - C++ library for realtime audio input/ouput (development files)
+librtaudio5a - C++ library for realtime audio input/ouput
+librtmidi-dev - C++ library for realtime MIDI input/ouput (development files)
+librtmidi3 - C++ library for realtime MIDI input/ouput
+ruby-lumberjack - Lumberjack is a logging implementation in Ruby
+samplv1 - polyphonic sampler synthesizer - standalone
+samplv1-common - polyphonic sampler synthesizer - common files
+samplv1-lv2 - polyphonic sampler synthesizer - LV2 plugin
+showq - MIDI controllable audio player
+silentjack - silence detector for the JACK audio system
+simplescreenrecorder - Feature-rich screen recorder for X11 and OpenGL
+snd-gtk-jack - Sound file editor (GTK+ user interface - JACK)
+snd-nox - Sound file editor (cmdline)
+sndfile-tools - Collection of programs for operating on sound files
+sooperlooper - Looping Sampler
+sslstrip - SSL/TLS man-in-the-middle attack tool
+tetraproc - Tetrahedral Microphone Processor for Ambisonic Recording
+texlive-latex-extra - TeX Live: LaTeX additional packages
+timemachine - JACK audio recorder for spontaneous and conservatory use
+timidity - Software sound renderer (MIDI sequencer, MOD player)
+tinyeartrainer - A tool to learn recognizing musical intervals
+tuxguitar-jack - tuxguitar plugin for sound playback using JACKD
+twclock - World clock for ham radio operators
+vlc - multimedia player and streamer
+vlc-plugin-jack - Jack audio plugins for VLC
+vlevel - Levelling audio filter as command-line tool and LADSPA/JACK plugin
+xen-tools - Tools to manage Xen virtual servers
+xjadeo - Video player with JACK sync
+xmms2-plugin-jack - XMMS2 - JACK output
+xscreensaver-data-extra - Extra screen saver modules for screensaver frontends
+zam-plugins - Collection of LV2, LADSPA, LINUX-VST and JACK plugins
+zita-ajbridge - alsa to jack bridge
+zita-alsa-pcmi-utils - Two simple demo programs zita-alsa-pcmi library
+zita-at1 - JACK autotuner
+zita-lrx - Command line jack application providing crossover filters
+zita-mu1 - organise stereo monitoring for Jack Audio Connection Kit
+zita-njbridge - Jack clients to transmit multichannel audio over a local IP network

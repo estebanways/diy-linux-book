@@ -1,0 +1,353 @@
+
+Topics:
+- Install the repositories, using the repository file
+- Install KXstudio
+- Install extra Audio and Music apps I like the most / required
+- Setting up KXStudio
+- Strict Steps to turn on Jack (ALSA to JACK - JACK to ALSA)
+- Install the Real Time RT Kernel Patch on Debian Real Time Kernel
+- Sample Format and Sample Rate
+- Steps to Record clean Sound using OBS Studio
+- Plugins in Linux
+- MS Windows VST plugins in Linux
+- Further readings
+
+
+The KXStudio repositories support all Debian versions since Jessie and Ubuntu 14.04 or above.
+
+- Install the repositories, using the repository file
+---------------------------------------------------------------------------------+
+
+These packages contain:
+Various sources files that activates the separate repositories
+GPG keys used for package and repository signing
+A post-install script that enables an extra, Ubuntu-specific repository
+
+Reference:
+Topic: The installation changes depending on the updates in the development of KXStudio. So that I am sharing the steps, but if you want to install or update CORRECTLY visit this site and choose the option that matches your needs. I have noticed that they also update approximately 6 months after a new Debian release, which was the case of Debian 9 "Stretch", an appropriate time period to wait before change from a stable to next stable release of the GNU/Linux distribution. Note: All the versions of the packages mentioned have to match unless the site documentation tells the contrary. The current version is 9.5.1, as you can see in the name of the following packages.
+Web: https://kxstudio.linuxaudio.org/Repositories
+File: Add KXStudio Repositories.pdf
+
+Install required dependencies if needed:
+$ sudo apt-get install apt-transport-https software-properties-common wget
+Download package file:
+$ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_9.5.1~kxstudio3_all.deb
+Alternatively download it by putting the address in your favorite browser's address bar.
+Install it:
+$ sudo dpkg -i kxstudio-repos_9.5.1~kxstudio1_all.deb
+
+If you're using a system newer or equal to Debian Stretch or Ubuntu 15.10 you'll also need to enable GCC5 packages. You can do so by installing this deb file - kxstudio-repos-gcc5.deb, or manually by running this:
+Download package file:
+$ wget https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos-gcc5_9.5.1~kxstudio1_all.deb
+Install it:
+$ sudo dpkg -i kxstudio-repos-gcc5_9.5.2~kxstudio1_all.deb
+
+When the repository is installed, update the system repositories under /etc/apt:
+$ sudo apt-get update
+If you get a repository error message about GPG keys issue, read this guide to resolve it:
+References:
+Topic: Resolve GPG keyring issue. Read the sections: "The problem of Who watches the watcher?", "PGP", GnuPG, and Seahorse. The section "GnuPG" gives you the problem solution.
+Guide:
+Verify download integrity, PGP, GPG, GNUPG, Seahorse
+
+- Install KXstudio
+---------------------------------------------------------------------------------+
+
+References:
+Web: http://libremusicproduction.com/answer/i-am-running-ubuntudebian-how-do-i-update-kxstudio-without-having-do-reinstall
+File: Update to KXStudio from Ubuntu and Debian.pdf
+
+Once you have the KXStudio repositories installed, you will have a larger selection of software to choose from. You can now do one of two things, install individual packages, or else update your system to KXStudio (recommended).
+
+There are two ways to go about updating your system to KXStudio. The first involves installing all of KXStudio available software packages AND updating your desktop environment to KDE, which is the default used in KXStudio. If you want to do this, go to your software center/package manager and install the following packages:
+$ sudo apt-get install kxstudio-desktop
+$ sudo apt-get install kxstudio-meta-all
+
+One way in Debian to install a Desktop Environment is running tasksel:
+$ sudo tasksel
+
+If you would like to install all software packages from KXstudio but keep your existing desktop environment as default (Unity, XFCE, LXDE) you can install the following packages:
+$ sudo apt-get install kxstudio-default-settings
+
+Say.. use the packages since a new Desktops Environment like Gnome. KXStudio Desktop spends much resources like the swapping partition. Also Gnome was the only Desktop environment fully supporting digital USB sound and microphones, such as my Microsoft LX 3000 Headset, probably because it is fully supported by the Debian project. Neither XFCE or LXDE supported this device at least in their out of the box installations some time ago.
+
+Potential downsides:
+KXStudio is working perfectly, and the migration to Debian is almost done, but depending on the Desktop Environments libraries versions when you run their apps since Gnome you'll notice that the apps look very basic, perhaps QTK or pure basic GTK or QT. Besides, due to Gnome uses GTK and KDE QT to generate desktop GUIs. Anyway, I am not losing KXStudio applications features and the issue helps me to free RAM memory. Also, newer versions of the most of the KXStudio applications (not all with the same names) I need are currently available in the stable Debian repositories, due to the fact that the KXStudio team is updating their Debian repos from kind of old Ubuntu versions:
+$ ls /etc/apt/sources.list.d/
+$ nano /etc/apt/sources.list.d/kxstudio-debian.list
+$ nano /etc/apt/sources.list.d/kxstudio-debian.new.list
+And look for the Ubuntu releases dates.
+
+- Install extra Audio and Music apps I like the most / required
+---------------------------------------------------------------------------------+
+
+$ sudo nano /etc/apt/sources.lit 
+$ sudo apt-get update
+$ sudo apt-get install qjackctl
+$ sudo apt-get install vmpk
+And if they are not present:
+$ sudo apt-get install pavucontrol
+(or an alternative version of it, which usually depends on the Desktop Environment used)
+$ sudo apt-get install alsamixer
+mplayer, includes FFMPEG, SMPlayer and MVP light player:
+$ sudo apt-get install mplayer
+
+Required for MIDI (Daemon for exposing legacy ALSA MIDI in JACK MIDI systems):
+$ sudo apt-cache search a2j
+$ apt-cache show a2jmidid
+TO know if it is already present (installed):
+$ dpkg -l | grep "a2jmidid"
+
+References:
+Topic: Get more sound applications. Read the section "Get sound applications:" in the guide.
+Guide: Sound
+
+- Setting up KXStudio
+---------------------------------------------------------------------------------+
+
+The configuration depends on the person's objectives.
+One of the most important steps is to Setup the Audio Device in the Tab "Tools" in Cadence.
+References:
+Topic: I wrote an illustrated book regarding professional audio with KXStudio. You can find it here:
+Web: http://liquidsmok.hopto.org/books
+
+- Strict Steps to turn on Jack (ALSA to JACK - JACK to ALSA)
+---------------------------------------------------------------------------------+
+
+01. Connect the external mixer to the computer and turn it on.
+02. Open QjackCtl, and press on the Connect button. Select the external mixer as DEVICE. Don't Start QjaclCtl yet.
+03. Open Cadence. Select External mixer as DEVICE in Configure. Start Cadence. Start ALSA Audio = ALSA -> Loop -> Jack. Stop ALSA MIDI if not using it (a2j connections) (EG: for OBS Studio recordings). Allow PulseAudio to start and run bridged to JACK (without autostart at login, this will display PulseAudio JACK Sink OUTs and PulseAudio KACK Source IN in Connect).
+04. Start QjackCtl. Check "Connect". Connect alsa2jack OUTs and jack2alsa INs, if they are not present.
+05. Open "Sound Settings" in Cinnamon. Setup Jack INPUT as SOURCE. Setup the OUTPUT as HEADPHONES (or SPEAKERS). Check the MIC gain is working.
+
+** If you change something in the configuration, include Claudia or Catia (Cadence Tools) or something goes wrong, like when you see the "Failure message" starting Jack from Cadence, try: 
+A. The option Force Restart from Cadence. 
+B. But, if that doesn't help, stop JACK, close QjackCtl and Cadence and repeat the steps from 02. 
+C. Otherwise, stop JACK, close QjackCtl and Cadence, and close your user session, and then re-login and repeat all the steps, until there is no errors and JACK is properly up and running.
+
+- Install the Real Time RT Kernel Patch on Debian Real Time Kernel
+---------------------------------------------------------------------------------+
+
+References:
+Topic: (In Spanish)
+Web: https://blog.desdelinux.net/utilizando-un-kernel-rt-de-baja-latencia/
+Topic: DebianMultimedia Wiki
+Web: https://wiki.debian.org/DebianMultimedia
+Topic: Debian Packages
+Web: https://packages.debian.org/buster/linux-image-rt-amd64
+
+If you experience any problem with the new RT kernel or want to switch back to the previous one later on. The first step is to boot from the advanced GRUB2 menu, and then choose a different/previous kernel to boot the system from.
+Guide:
+How to delete old unused Kernels
+
+- Sample Format and Sample Rate
+---------------------------------------------------------------------------------+
+
+Some information to consider always before start recording and even buying any sound hardware/tool:
+
+File Formats:
+16bit/44-48 KHz. <~ Human voice and most musical instruments. Rock and Classic, CDA (Audio CD).
+24bit/48+ 92, etc. <~ 48+ some musical instruments. Gun shoot.
+32bit. <~ Volcano. Negative sound under the absolute 0, also 8 extra bits over 24 just in case.
+For 24 bit and beyond, special hardware is required for audios to work well, since production to audition (eg: headphones or speakers for audiophiles).
+
+Mixer Specifications (Mixer Manual):
+EG:
+USB connector that works at 48000 Hz max (48KHz). (Compare to HDMI connector/optic (as an alternative to digital), etc)
+It doesn't specify if works at 16, 24, or 32 bits. I should test recording in all format just to know what formats work well, without producing clips (noise, red signal in the VUmeter) or clips that we cannot remove at the edition (Involves the software/plugins for that). If I just can record 16 bit format, there a possibility to increase the room (container) of the file (sample format, and its size by default), for example, to 32bit, in software like Ableton Live, if we need to work with that format (especially in a pre-master recording, to send the file prepared to our sound's Architect.)
+
+Topic: To change the Sample format and Sample rate
+
+References:
+Topic: Sound card audio limits in bit and sample rate.
+Web: https://ubuntuforums.org/showthread.php?t=2315414
+Topic: How do I know if my system is capable of playing 24bit/96kHz sound?
+Web: https://askubuntu.com/questions/19212/how-do-i-know-if-my-system-is-capable-of-playing-24bit-96khz-sound
+Topic: Pros/cons of running PulseAudio at 24 Bits to match hardware?
+Web: https://askubuntu.com/questions/868842/pros-cons-of-running-pulseaudio-at-24-bits-to-match-hardware
+Topic: How do I Configure audio output for 24 bit depth?
+Web: https://ubuntuforums.org/showthread.php?t=2188686
+
+Cards information but the output DOESN'T TELL ANYTHING USEFUL FOR US RIGHT KNOW:
+$ cat /proc/asound/card0/codec#0
+$ cat /proc/asound/card0/codec#3
+
+Check my card, CODEC in /proc/asound:
+$ ls -l
+OUTPUT shows link from CODEC to CARD2
+
+$ cat stream0 | grep 32
+OUTPUT:
+    Rates: 32000, 44100, 48000
+    Rates: 32000, 44100, 48000
+    Rates: 32000, 44100, 48000
+    Rates: 32000, 44100, 48000
+    Rates: 32000, 44100, 48000
+    Rates: 32000, 44100, 48000
+    Rates: 32000
+    Rates: 32000
+
+esteban@shark:/proc/asound/CODEC$ cat stream0 | grep 16
+OUTPUT:
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Format: S16_LE
+    Rates: 16000
+    Format: S16_LE
+    Rates: 16000
+    Rates: 16000
+    Rates: 16000
+    Format: S16_LE
+    Altset 16
+    Format: S16_LE
+
+
+NO output for 24 bit. So I assume the USB Mixer soundcard is just 16bit.
+
+ONLY if 24 or 32 bit where there in the Format: OUTPUT I would continue with the next steps:
+
+On how to configure (pulseaudio): edit with sudo and your favorite editor /etc/pulse/daemon.conf and look for the following lines:
+; default-sample-format = s16le
+; default-sample-rate = 44100
+uncomment by removing the ';' and change settings to your liking. E.g.:
+default-sample-format = s24le
+default-sample-rate = 192000
+Then restart pulseaudio (with your user account, no sudo):
+$ pulseaudio --help
+$ pulseaudio -k
+or pulseaudio --kill
+$ pulseaudio --start
+I also rebooted, and turned Jack cadence back on.
+
+You can confirm settings changed with:
+$ pacmd list-sinks
+
+$ pacmd list-sinks | grep "s24le"
+$ pacmd list-sinks | grep "s32le"
+
+Output example:
+	sample spec: s32le 2ch 48000Hz
+	sample spec: s32le 2ch 44100Hz
+
+Other References:
+Topic: Bit rate
+Web: https://en.wikipedia.org/wiki/Bit_rate#Audio
+Topic: Sampling (signal processing)
+Web: https://en.wikipedia.org/wiki/Sampling_(signal_processing)
+Topic: Audio File Size Calculator
+Web: https://www.omnicalculator.com/other/audio-file-size
+Topic: USB DAC (USB Digital-to-Analog-Converter)
+Web: https://encyclopedia2.thefreedictionary.com/USB+DAC
+
+- Steps to Record clean Sound using OBS Studio
+---------------------------------------------------------------------------------+
+
+Open OBS Studio. Setup or revise the next options:
+Stream:
+Service = Twitch.
+Output:
+Audio Bitrate = 320 Kbps. 
+Audio:
+Sample Rate = 48 KHz
+Channels = Stereo (Mono is all right)
+Mic/Auxiliary Audio: Jack Source (PulseAudio JACK Source)
+Audio (Right Click on the Pinion icon of Mic/Aux VUmeter, and select Properties):
+Device = Jack Source (PulseAudio JACK Source)
+Audio (Right Click on the Pinion icon of Mic/Aux VUmeter, and select Filter):
+Select filter Noise Reduction, Speex for MICs with physical Pop Filter or RNNoise for MICs without Pop Filter, or record your own tests, before decide your own recording filter.
+
+- Plugins in Linux
+---------------------------------------------------------------------------------+
+
+Manage the plugins using Carla (Cadence Tool)
+
+OBS uses the following file locations to look for the .so files for the VSTs on Linux:
+/usr/lib/vst/
+/usr/lib/lxvst/
+/usr/lib/linux_vst/
+/usr/local/lib64/vst/
+/usr/local/lib64/lxvst/
+/usr/local/lib64/linux_vst/
+$HOME/.vst/
+$HOME/.lxvst
+I somewhat arbitrarily chose to make a ~/.vst folder and dropped the .so files in there. Cheers!
+
+Scanning more folders for plugins (Waveform (DAW)):
+/usr/lib/vst/
+/usr/local/lib/vst/
+/home/esteban/.vst/
+/usr/lib/vst3/
+/usr/local/lib/vst3/
+/home/esteban/.vst3/
+/usr/lib/ladspa/
+/usr/local/lib/ladspa
+/home/esteban/.ladspa
+
+Cadence Tweaks TAB directories:
+/home/esteban/.ladspa
+/usr/lib/ladspa
+/usr/loca/lib/ladspa
+/home/esteban/.dssi
+/usr/lib/dssi
+/usr/loca/lib/dssi
+/home/esteban/.lv2
+/usr/lib/lv2
+/usr/loca/lib/lv2
+/home/esteban/.vst
+/usr/lib/vst
+/usr/loca/lib/vst
+
+Carla VST host directories:
+It has more paths than the Cadence Tweaks TAB, the next Plugin Paths:
+/home/esteban/.vst3
+/usr/lib/vst3
+/usr/loca/lib/vst3
+/home/esteban/.sounds/sf2/home/esteban/.sounds/sf3
+/usr/share/soundfonts
+/usr/share/sounds/sf2
+/usr/share/sounds/sf3
+/home/esteban/.sounds/sfz
+/usr/share/sounds/sfz
+
+Audacity directories:
+Resources:
+Web:
+https://manual.audacityteam.org/man/installing_effect_generator_and_analyzer_plug_ins_on_linux.html
+https://manual.audacityteam.org/man/effect_menu.html#nyquist_effects
+
+- MS Windows VST plugins in Linux
+---------------------------------------------------------------------------------+
+
+
+
+- Further readings
+---------------------------------------------------------------------------------+
+
+References:
+Topic: KXStudio discussion in Linux Musicians
+Web: https://linuxmusicians.com/viewforum.php?f=47
+File: KXStudio Discussion - LinuxMusicians.pdf
+Topic: Related guides
+Guides:
+Audacity
+Frescobaldi
+Linthesia
+Sound Recorder
+3D Acceleratin and VR
+K3b
+FFmpeg
+Handbrake
+Kdenlive
+Topic: KXStudio alternative. This is a good option but is some old, based on Debian 6.0, Squeeze. I sometimes boot it from USB Pendrives, but I almost left it when I found KXStudio. I love pre-installed distributions like this, to avoid massive program installation and configuration.
+Web: https://distrowatch.com/table.php?distribution=avlinux
+File: DistroWatch.pdf
+Topic: Increase the system, cpu and kernel optimization and performance
+Guide: Optimization and performance, speed up computer, save battery power

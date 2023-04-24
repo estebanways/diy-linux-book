@@ -1,0 +1,24 @@
+References:
+Topic: Restore a complete partition which includes the lost information
+Guide: Mount and repair CD-DVD ROM ISO or HDs-SSDs
+
+
+Installation of e2fsprogs and extundelete
+
+$ apt-cache search e2fsprogs
+Output:
+e2fsck-static - statically-linked version of the ext2/ext3/ext4 filesystem checker
+e2fsprogs - ext2/ext3/ext4 file system utilities
+e2fsprogs-dbg - debugging information for e2fsprogs
+libuuid-perl - Perl extension for using UUID interfaces as defined in e2fsprogs
+End of Output
+
+$ sudo apt-cache search extundelete
+Output:
+extundelete - utility to recover deleted files from ext3/ext4 partition
+End of Output
+
+References:
+Web: http://arkit.co.in/linux/recover-deleted-files-in-rhel-6/
+File: Recover Deleted files in RHEL 6 - Tech Tutorials.pdf
+

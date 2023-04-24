@@ -1,0 +1,41 @@
+The scanner worked out of the box in Debian Wheezy and Jessie. 
+I re-installed the Cups driver manually instead of the Default Epson driver installed by default this time by Gnome in Jessie.
+
+To open the scanner:
+# simple-scan 
+
+If you have problems with the scanner you can use:
+# sane-find-scanner
+Example of Output when something goes wrong:
+
+  # sane-find-scanner will now attempt to detect your scanner. If the
+  # result is different from what you expected, first make sure your
+  # scanner is powered up and properly connected to your computer.
+
+  # No SCSI scanners found. If you expected something different, make sure that
+  # you have loaded a kernel SCSI driver for your SCSI adapter.
+
+could not fetch string descriptor: Pipe error
+could not fetch string descriptor: Pipe error
+found USB scanner (vendor=0x04b8, product=0x083a) at libusb:001:007
+  # Your USB scanner was (probably) detected. It may or may not be supported by
+  # SANE. Try scanimage -L and read the backend's manpage.
+
+  # Not checking for parallel port scanners.
+
+  # Most Scanners connected to the parallel port or other proprietary ports
+  # can't be detected by this program.
+root@ProLiant:/var/cache/apt/archives# scanimage -L
+
+No scanners were identified. If you were expecting something different,
+check that the scanner is plugged in, turned on and detected by the
+sane-find-scanner tool (if appropriate). Please read the documentation
+which came with this software (README, FAQ, manpages).
+
+Or you can try with scanimage but with a non-working scanner nothing is going to happen.
+# scanimage -L
+
+Are you still running in troubles?, start googling and visit the Debian Wiki.
+Resources:
+https://wiki.debian.org/Scanner
+https://wiki.debian.org/SaneOverNetwork

@@ -1,0 +1,19 @@
+dssi-dev - Header file for compiling DSSI plugins and hosts
+dssi-example-plugins - Examples of DSSI plugin
+dssi-host-jack - Example of DSSI host
+dssi-utils - Command-line utilities for sending commands to DSSI plugins
+fluidsynth-dssi - DSSI wrapper for the FluidSynth SoundFont-playing synthesizer
+ghostess - A graphical DSSI plugin host
+hexter - Yamaha DX7 modeling DSSI plugin
+libdssialsacompat-dev - DSSI ALSA compatibility library (development files)
+libdssialsacompat0 - DSSI ALSA compatibility library for non-Linux platforms
+liquidsoap-plugin-dssi - audio streaming language -- DSSI plugin
+ll-scope - an oscilloscope DSSI plugin
+naspro-bridges - collection of bridges to LV2
+nekobee - Simple single-oscillator DSSI plugin
+libdssi-ocaml - OCaml interface to DSSI plugins -- runtime files
+libdssi-ocaml-dev - OCaml interface to DSSI plugins -- developpement files
+whysynth - DSSI Soft Synth Interface
+wsynth-dssi - hack on Xsynth-DSSI to allow wavetable synthesis
+xsynth-dssi - classic-analog (VCOs-VCF-VCA) style software synthesizer
+zynaddsubfx-dssi - dssi plugin of zynaddsubfx

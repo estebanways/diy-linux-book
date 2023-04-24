@@ -1,0 +1,4 @@
+To read the MicroSD simply attach the USB cable to connect the phone
+Desktop environments like Gnome should offer you a default program to whatch the pictures or play the music in the memory, but it depends on the system configuration.
+
+In the case iPhones, you can use a player called Amarok in KDE to modify your iTunes library. Also you can install PLayonLinux and from the menu Multimedia download and install an old version of iTunes and Quick Time for Windows.

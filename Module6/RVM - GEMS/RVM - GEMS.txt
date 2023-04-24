@@ -1,0 +1,176 @@
+Install Ruby gems:
+Reference:
+Web: http://ndever.net/articles/linux/installing-sass-and-compass-ubuntu-1210-1304
+The page describes a complete installation with the command: $ sudo apt-get install ruby-full rubygems1.8, but I am going to use RVM instead of APT.
+
+Gem is the frontend to RubyGems, the Ruby package manager.
+
+$ gem (PRESS TAB to see available options)
+
+$ man gem
+$ man gem2.1
+
+Show all the available commands:
+$ gem help commands
+$ gem2.1 help commands
+
+If you want or require to update the RubyGems system software:
+$ gem update --system
+
+For example to search a gem:
+$ gem search rails
+
+Output:
+*** REMOTE GEMS ***
+
+aa-rails4 (0.6.0)
+aaronchi-jrails (0.5.1)
+aavkontakte-rails3 (0.1.9)
+abcjs-rails (2.1)
+access-granted-rails (0.1.0)
+access_policy_rails (0.0.2)
+accountingjs-rails (0.0.4)
+ace-rails (0.0.2)
+ace-rails-ap (3.0.3)
+ace_editor-rails (0.0.1)
+ace_vimtura-rails (0.1.3)
+aced_rails (0.2.1)
+ack_rails_admin_jcrop (0.0.6)
+act-fluent-logger-rails (0.1.6)
+activeform-rails (0.0.4)
+activerecord-import-rails4 (0.5.0)
+activerecord_authorails (1.0.0)
+activo-rails (1.0.1)
+acts_as_audited_rails3 (1.1.2)
+acts_as_fu_rails3 (0.0.1)
+acts_as_list-rails3 (0.0.4)
+acts_as_rails3_generator (0.0.1)
+acts_as_tree_rails3 (0.1.0)
+acts_as_versioned_rails3 (0.6.2)
+acts_as_versioned_rails3.1.3 (0.6.0)
+adamsalter-sunspot_rails (0.10.5)
+adaptable_tests_for_rails (1.1.0)
+adaptive-evil-blocks-rails (0.1.3)
+add-to-homescreen-rails (3.2.2)
+address_picker-rails (0.3.0)
+addresslogic_rails (1.0.0)
+adhearsion-rails (1.0.0)
+adminlte-rails (1.3.3)
+adminlte-rails4 (1.3.3)
+adminlte2-rails (0.0.6)
+ads-rails (0.2.1)
+adzap-mustache-rails (0.2.3)
+Agiley-ec2onrails (0.9.10)
+agilityjs-rails (0.1.3.1)
+ahaymond-extjs4-rails (4.1.1)
+ahn-rails (0.1.0)
+aight-rails (0.1)
+aightbox-rails (0.1.3)
+aigu-rails (0.1.1)
+aipim-rails (0.0.182)
+ajax-chosen-rails (0.2.3)
+ajax-datatables-rails (0.3.0)
+ajax-datatables-rails-coveralls (0.0.1)
+ajax_table_rails (0.0.3)
+ajaxify_rails (0.9.7)
+ajaxmanager-rails (3.12)
+ajp-rails (0.1.0)
+akatus-rails (1.0.2)
+aker-rails (3.0.2)
+akitaonrails-activerecord-sqlserver-adapter (1.1.1)
+akitaonrails-dry_scaffold (0.3.3)
+akitaonrails-locarails (1.2.0)
+akitaonrails-lw-pagto-certo (0.0.5)
+akitaonrails-mygist (0.0.1)
+akitaonrails-resource_controller (0.5.3)
+akitaonrails-shift_subtitle (1.1.1)
+akitaonrails-utility_belt (1.0.13)
+akm-selectable_attr_rails (0.3.7)
+aktion_test_rails (0.3.0)
+akupchanko-astrails-safe (0.3.1)
+albanpeignier-geokit-rails (1.1.0)
+aleenee-rails (0.0.1)
+alef-rails (0.0.1)
+alertify-rails (0.2.0)
+alertify-rails-4 (0.1.0)
+alertifyjs-rails (1.4.1)
+alerts-sweet-rails (0.0.2)
+alexyoung-loom-exceptions-rails-plugin (2.0)
+algoliasearch-rails (1.12.2)
+allorails (0.5.3)
+aloha-rails (0.0.2)
+aloha-rails-improved (0.2.2)
+aloha_rails (0.1.5)
+alpaca_rails (0.1.1)
+alt159-rails (0.0.3)
+amber-rails (0.1.0)
+
+[...]
+
+The next step is to install any gems that you require. For example, if you want to work with Ruby on Rails. Rails works like a Framework for Web apps. I like the feature to do not care of the Relational DB design because Ruby turns the Model independent of the programming language, moreless like Pear does to PHP. OO programming.
+Installation command:
+$ gem install rails
+Output:
+Successfully installed rails-4.2.2
+Parsing documentation for rails-4.2.2
+Done installing documentation for rails after 2 seconds
+1 gem installed
+
+Test rails:
+$ rails -v
+
+With update, updates rubygems for selected ruby variant and version:
+Usage:
+$ rvm rubygems [x.y.z|latest-x.y|latest|remove]
+
+Named Gem Sets:
+RVM gives you compartmentalized independent ruby setups. This means that ruby, gems and irb are all separate and self-contained - from the system, and from each other.
+You may even have separate named gemsets.
+Let's say, for example, that you are testing two versions of a gem, with ruby 2.1.1. You can install one to the default 2.1.1, then create a named gemset for the other version, and switch between them easily. 
+More information on this topic here: https://rvm.io/gemsets/basics
+
+To see the name of the current gemset:
+$ rvm gemset use teddy
+$ rvm gemset name
+Output:
+teddy
+To list all named gemsets for all interpreters:
+$ rvm gemset list_all
+For more information on this useful topic, see the documentation: https://rvm.io/gemsets/listing
+
+
+References:
+Topic: Official installation web site
+Web: https://rvm.io/rvm/install
+Topic: Installation with RVM
+Web: http://code.tutsplus.com/tutorials/how-to-install-ruby-on-a-mac--net-21664
+
+Topic: Gem Install Request Hijacking: 
+Video: https://vimeo.com/130781378
+Topic: Attacking Ruby Gem Security with CVE-2015-3900
+Web: https://www.trustwave.com/Resources/SpiderLabs-Blog/Attacking-Ruby-Gem-Security-with-CVE-2015-3900/
+Topic: CVE-2015-3900 Request hijacking vulnerability in RubyGems 2.4.6 and earlier:
+Web: http://blog.rubygems.org/2015/05/14/CVE-2015-3900.html
+
+
+Software Testing and QA gems:
+
+** Note: You can also look for the equivalent or competitor of these ruby gems as linuxbrew taps or nodejs apps
+
+Watir:
+Watir has an IDE -> To test Ruby applications -> Which runs in the Browsers Firefox, Internet Explorer and Chrome -> As an addon or extension 
+Watir has a Web Driver (Buildwise) -> To test applications -> Which runs in Windows Internet Explorer (Spartan, Edge)
+$ gem search watir
+
+Selenium:
+Selenium has an IDE -> To test applications
+Selenium has a Web Driver -> To test applications -> Which runs in Internet Explorer -> And can be installed from Ruby as a gem or from Nodejs (NPM)
+More info:
+To use Selenium in Windows Internet Explorer:
+- Download the core (See section "Selenium Client & WebDriver Language Bindings" of the downloads page). It is also required for the sever version (Selenium RC, Selenium Remote WebDriver).
+- Next, install one version (Ruby or (Node)JS)
+- Next setup the test suits
+- (INTERNAL NOTE: Next, Run the tests with the manual of Avantica "QA Manual Selenium v2.1.pdf")
+
+
+

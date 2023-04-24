@@ -1,0 +1,18 @@
+OpenSCAD is a software for creating solid 3D CAD objects. It focuses on CAD aspects rather than artistic ones.
+References:
+Topic: Debian documentation
+Web: https://packages.debian.org/jessie/openscad
+File: Debian -- Details of package openscad in jessie.pdf
+Topic: CAD applications in Linux
+Web: http://www.techdrivein.com/2011/08/8-best-cad-apps-for-linux.html
+File: CAD apps in Linux.pdf
+Topic: Top 10 Free CAD Software
+Web: http://beebom.com/free-cad-software/
+File: Top 10 Free CAD Software For 2016 _ Beebom.pdf
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search openscad
+$ sudo apt-cache show openscad
+$ sudo apt-get install openscad

@@ -1,0 +1,8 @@
+Installation:
+
+$ apt-cache search speedtest-cli
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt get-install speedtest-cli
+$ speedtest-cli
+$ speedtest-cli --bytes --share

@@ -1,0 +1,3 @@
+References:
+Web: http://www.linux-magazine.com/Online/Features/Tune-Your-Hard-Disk-with-hdparm
+File: Tune Your Hard Disk with hdparm - Linux Magazine.pdf

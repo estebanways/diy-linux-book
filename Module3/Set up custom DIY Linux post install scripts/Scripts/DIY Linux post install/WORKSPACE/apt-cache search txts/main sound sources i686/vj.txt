@@ -1,0 +1,9 @@
+libcsvjdbc-java - read-only JDBC driver that uses CSV or DBF files as database tables
+libcsvjdbc-java-doc - Documentation for csvjdbc
+golang-github-vjeantet-grok-dev - simple library to use/parse grok patterns with Go
+libtie-ical-perl - module for tieing iCal files to Perl hashes
+lives - Video Editing system allowing users to edit and create video
+lives-data - Data files for LiVES
+lives-plugins - LiVES plugins pack
+liblavjpeg-2.1-0 - MJPEG capture/editing/replay and MPEG encoding toolset (library)
+prosody-modules - Selection of community modules for Prosody

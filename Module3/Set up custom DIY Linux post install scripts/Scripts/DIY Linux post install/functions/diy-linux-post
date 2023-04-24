@@ -1,0 +1,31 @@
+#!/bin/bash
+
+dir="$(dirname "$0")"
+
+source $dir/functions/diylinuxpost/soundng
+source $dir/functions/diylinuxpost/ofsources
+source $dir/functions/diylinuxpost/unofsources
+source $dir/functions/diylinuxpost/everything
+
+# Install DIY Linux Post-Install option
+function diy-linux-post {
+	eval `resize`
+	IDIYLINUXPOST=$(whiptail \
+		--notags \
+		--title "Install DIY Linux Post-Install" \
+		--menu "\nWhat option would you like to choose?" \
+		--cancel-button "Go Back" \
+		$LINES $COLUMNS $(( $LINES - 12 )) \
+		'soundng'	'Install SoundNG Studio' \
+		'ofsources'	'Install software from Official sources' \
+		'unofsources'	'Install software from Unofficial sources' \
+		'everything'    'Install everything' \
+		3>&1 1>&2 2>&3)
+	 
+	exitstatus=$?
+	if [ $exitstatus = 0 ]; then
+		$IDIYLINUXPOST
+	else
+		main
+	fi
+}

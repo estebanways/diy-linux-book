@@ -1,0 +1,350 @@
+I personally decided to install Gnome to use it sometimes and also to use gnome apps since FluxROX or other Window Managers, for example I usually open or execute files from Nautilus, the default file browser. You can also install KDE which stands for K Desktop Environment to call the file manager Dolphin.
+
+Today's Fluxbox's default installation could or couldn't include the packages that create personal files and directories, for example pictures, video, etc. If you don't install Gnome nor KDE and don't see these directories under home you may install those packages (I don't remember their names) and remember to install Xorg server and start the X server manually like this: $ startx, you also should have to setup every app on ROX but let's say it takes a long time, but increase the RAM memory and/or CPU performance in old computers. 
+
+References: 
+Web: https://wiki.debian.org/FluxBox
+Topic: Configuration customization and usage.
+Web: http://fluxbox.org/features/
+Web: https://www.linux.com/learn/tutorials/467792:creating-the-perfect-fluxbox-desktop-on-linux
+
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install fluxbox
+
+Slit:
+# apt-cache search 'wm'
+# apg-get install wmnd
+# apg-get install wmcpuload
+# apg-get install wmmoonclock
+# apg-get install wmweather
+# apg-get install wmmatrix
+
+Add the Slit Widgets to the file /home/esteban/.fluxbox/starup:
+wmnd  &
+wmcpuload &
+wmmoonclock &
+wmweather -s KBKE &
+wmmatrix &
+
+To reflux:
+$ fluxbox 
+or:
+RIGHT CLICK MENU:  Windows Managers > fluxbox
+RIGHT CLICK MENU:  reconfigure
+RIGHT CLICK MENU:  restart
+
+To add my staff to the file /home/esteban/.fluxbox/menu:
+After you add a new menu cascade menu "MyStaff" and two times the option "gedit", the file should look like this:
+
+[begin] (fluxbox)
+[include] (/etc/X11/fluxbox/fluxbox-menu)
+	[submenu] (MyStuff) {}
+         	[exec] (gedit) {/usr/bin/gedit} </usr/share/pixmaps/gedit-icon.xpm> 
+		[exec] (gedit) {/usr/bin/gedit} </usr/share/pixmaps/gedit-icon.xpm> 
+      	[end]
+[end]
+
+And restart fluxbox to see the new changes in the menu.
+
+Set wallpaper:
+Choose a wallpaper that fits your Desktop resolution or the 
+command will fail:
+$ fbsetbg -f /usr/share/images/desktop-base/debian-blueish-wallpaper-640x480.png
+$ fbsetbg -f /home/esteban/.fluxbox/backgrounds/1024x7682.jpeg
+
+To group apps via the apps file:
+http://bbs.archbang.org/viewtopic.php?id=2103
+
+The file "apps" will look like this (my copy):
+
+[startup]  {sublime_text}
+[startup]  {gnome-terminal}
+[startup]  {firefox}
+[app] (name=fbrun)
+  [Position]  (CENTER)  {0 0}
+  [Layer] {2}
+[end]
+[group]
+ [app] (name=gnome-terminal)
+  [Layer] {4}
+[end]
+[group]  (workspace=[current])
+ [app] (name=firefox) (title=.*Mozilla Firefox.*)
+ [app] (name=google-chrome)
+  [Dimensions]  {0 0}
+  [Position]  (UPPERRIGHT)  {1024 768}
+[end]
+[app] (name=Navigator) (class=Firefox) (role=browser)
+  [Deco]  {NORMAL}
+[end]
+
+Here is a copy of the file apps apps automatically modified by fluxbox later on when I started to make the apps to remember their dimensions form the window menu (RIGHT CLICK):
+
+File sections:
+- Apps to startup with Fluxbox.
+- A group with all windows called "special-term", appears on layer 4 (bottom)
+- A group that only looks for windows on the current workspace
+
+Notes about the file:
+The second group [group] (workspace) does not work with gnome installed and new apps like those browsers, but with minimal system installations and for example terminals works fine.
+I noted that for the apps added to this file, when I start a new windows instances from the terminal the terminal does not open a new app instance and instead opens window in the same app session and send you back to the term so you can reuse it to open more windows or to do other staff as well.
+
+References:
+Topic: More app file info.
+http://fluxbox-wiki.org/category/howtos/en/Editing_the_apps_file.html
+
+Topic: To install a theme. Download a theme.
+Web: http://box-look.org/
+For example, I have downloaded: 121360-Matrix-Flux.tar.gz
+
+Topic: Modify the init file with the file Fluxbox - a howto for beginners.
+Topic 2: Setup keys file to execute commands with key combinations.
+Web: http://www.debianuserforums.org/viewtopic.php?f=9&t=208
+
+Hide apps to save space:
+Remember to use double click on the application bar to hide it!
+
+To move any window:
+Use KEYS ALT + MOUSE
+
+Mouse to focus a window:
+RIGHT CLICK MENU:  Configuration > Focus Model > Click to focus
+
+App sticky in all the desktops (workspaces):
+There is a button on the very top left of Fluxbox application windows. Its appearance varies in different themes; its purpose is to make the application sticky and appear in all workspaces, or in just one.
+
+FluxROX:
+Use this command to install:
+# apt-get update
+# apt-get install rox-file
+
+Reference:
+Topic: Setup Rox.
+Web: http://forums.debian.net/viewtopic.php?t=5382
+File: Fluxbox basic configuration.pdf
+
+To make ROX take an action (start a program, open a file as text, etc) when clicking an icon:
+Right click on an icon (for example text.txt)
+Go to the menu " File 'text.txt' "
+Click "Set run action"
+On the bottom of the window there is a box "Enter a shell command:"
+the "$@" is a variable and represents the file in question.
+Add the name of the program to open the file with, for example:
+abiword "$@"
+Now click the box "Use Command" on the right bottom
+Now when you click on the icon "text.txt" the file will open with Abiword
+Abiword will now open any *.txt file in fact
+This only needs to be set once and some settings are already configured in ROX
+
+To execute rox:
+$ rox
+# rox
+
+You also can add it as [startup] to the apps file of fluxbox.
+
+Window transparency:
+# apt-get update
+# apt-get install xcompmgr
+
+First run in the gnome terminal:
+$ xcompmgr -C
+And setup the transparency in the terminal default profile.
+With the terminal windows in full screen but double clicked to hide in the top of the screen, you can maximize it with two clicks and do $ xcompmgr -C to see what is behind the term
+no leaving it.
+You can also execute the command and to enter to transparent mode and return to the shell by:
+$ xcompmgr -C &
+And to rturn to normal mode:
+$ ps -aux | grep 'xc'
+
+To make a script to start and end the program instantly:
+
+This beautiful script include the command and parameters but has been made to SysVinit. Fortunately we can run it as a new Systemd service. I show how to create a systemd service here: 
+References:
+Guide:
+Systemd
+References:
+Topic: Tips and tricks - Start/Stop Xcompmgr on demand section
+Web: https://wiki.archlinux.org/index.php/Xcompmgr
+File: Xcompmgr.pdf
+
+To make the script executable and of root:
+$ chmod +x comp.sh
+$ chmod 755
+# chown root comp.sh
+# chgrp root comp.sh
+# cp -dpR comp.sh /etc/init.d/
+# ln -s /etc/init.d/com.sh /usr/bin/comp
+
+With the script comp.sh ready use commands:
+Start xcompmgr:
+$ comp
+Stop xcompmgr:
+$ comp -s
+
+Add the LSB tag (Linux Standard Base) to the top of the script script to avoid these messages on the terminal:
+insserv: warning: script 'comp.sh' missing LSB tags and overrides
+insserv: warning: script 'comp.sh' missing LSB tags and overrides
+
+You can add the script to the RCs or add execute commands at the beginning of the X user session - before the Window manager is started , in order to to start fluxbox transparent, but I am going to show you the best way to start fluxbox with comp right now.
+Go to your home:
+$ cd
+Open the file apps:
+$ nano .fluxbox/apps
+Add new comand comp as an app to the top of the file:
+[startup]     {comp}
+
+Reference:
+Web: https://wiki.archlinux.org/index.php/Xprofile
+File: Xprofile.pdf
+
+Make fluxbox menu transparent:
+Use the menu configuration > transparency to force pseudo-transparency to true (checked), and set all values to 0.
+
+Fluxbox remote:
+You can use Fluxbox through X session with ssh, but I am not configuring this because I am using teamviewer and it is a lightweight program.
+
+Transparent task bar:
+RIGHT CLICK and set ALPHA = 0
+
+Set default program dimension:
+RIGHT CLICK on a Windows bar > Remember > Dimensions
+
+Set-up Slit:
+RIGHT CLICK > Layer > Desktop
+RIGHT CLICK > Placement > Right Top
+
+The Force Pseudo Transparency option:
+The Force Pseudo Transparency option will force fluxbox to ignore the xcomposite extension and use pseudo-transparency instead of true transparency. Note: When pseudo-transparency is on, the transparency values here only affect titlebars, not window contents.
+References:
+Topic: About window transparency.
+Web: http://www.fluxbox.org/help/man-fluxbox.php
+
+To make the slit transparent:
+It's possible to make the border transparent by:
+RIGHT CLICK and set ALPHA, but the apps can't change. These dockapps are made to another Windows Manager, maybe XFCE or Openbox.
+
+To setup the weather dockapp search the 4 letter code here (Is not working! I think because the nearest Weather Station is out of order or not sending signals):
+
+Identify the Station here http://www.nws.noaa.gov/tg/siteloc.php and then setup the slit accordingly, for example edit in the startup file the location Chacarita, in Costa Rica:
+wmweather -s MRCH &
+Exit from flushbox and reenter.
+
+There are more configuration options.
+Reference:
+Topic: wmweather - dockable weather monitor
+Web: http://manpages.ubuntu.com/manpages/gutsy/man1/wmweather.1.html
+
+To add more useful wm dockapps to Slit:
+
+You can install the apps using the APT and then add them to the Fluxbox file startup:
+# apt-get update
+# apt-cache search 'wm'
+# apt-get install wmmemload
+# apt-get install wmmixer
+# apt-get install wmrack
+# apt-get install wmressel
+# apt-get install wmwork
+# apt-get install wmdiskmon
+# apt-get install wmbattery
+# apt-get install wmhdplop
+# apt-get install wmpuzzle
+
+Add to startup file:
+wmmemload &
+wmmixer &
+wmrack &
+wmressel &
+wmwork &
+wmdiskmon -p /dev/mapper/ProLiant-root -p /dev/sdb2 -p /dev/sda1 & 
+wmbattery &
+wmhdplop &
+wmpuzzle &
+
+Order the dockapps in the slit.
+
+This is a short description of every dockapp I have added to the Slit:
+wmnd - Dockapp monitoring network interfaces.
+wmcpuload - Shows the CPU load.
+wmmoonclock - Shows the moon phase.
+wmweather -  Shows the weather.
+wmmatrix - Shows the matrix fall.
+wmmemload -  Shows the RAM load.
+wmmixer - Shows basic volume controls.
+wmrack -  Shows music player and mixer controls.
+wmressel - Dock app to change X11 resolutions.
+wmwork - Is a task time tracker.
+wmdiskmon - dockapp to display disk usage.
+wmbattery -  Shows the charge of battery in laptops.
+wmhdplop - hard drive activity monitor dockapp.
+wmpuzzle - Shows a puzzle game.
+
+A copy of my file home/esteban/.fluxbox/startup include all the new apps:
+
+#!/bin/sh
+#
+# fluxbox startup-script:
+#
+# Lines starting with a '#' are ignored.
+
+# Change your keymap:
+xmodmap "/home/esteban/.Xmodmap"
+
+# Applications you want to run with fluxbox.
+# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+#
+# unclutter -idle 2 &
+# wmnd &
+# wmsmixer -w &
+# idesk &
+#
+# Debian-local change:
+#   - fbautostart has been added with a quick hack to check to see if it
+#     exists. If it does, we'll start it up by default.
+which fbautostart > /dev/null
+if [ $? -eq 0 ]; then
+    fbautostart
+fi
+
+nm-applet &
+
+wmnd  &
+wmcpuload &
+wmmoonclock &
+wmweather -s MRCH &
+wmmatrix &
+wmmemload &
+wmmixer &
+wmrack &
+wmressel &
+wmwork &
+wmdiskmon -p /dev/mapper/ProLiant-root -p /dev/sdb2 -p /dev/sda1 & 
+wmbattery &
+wmhdplop &
+wmpuzzle &
+
+# And last but not least we start fluxbox.
+# Because it is the last app you have to run it with ''exec'' before it.
+exec fluxbox
+# or if you want to keep a log:
+# exec fluxbox -log "/home/esteban/.fluxbox/log"
+
+Reference:
+Web: http://www.maketecheasier.com/8-of-the-best-linux-dockapps/
+
+Use the 3D cube desktop:
+Fluxbox does not support 3ddesk anymore, it was an application to make desktop work like Compiz-fusion (include cube). The app was developed to x server xfree86 but Debian now uses Xorg server and xorg and 3ddesktop are incompatible. 
+
+Compiz with Fluxbox:
+Are Fluxbox and Compiz friendly?
+No, there both window managers, only 1 wm at a time can be used. So the only way, if you want to use compiz (cube):
+Try xfce4, it's faster than gnome, works with compiz.
+$ sudo apt-get install xfce4
+Logout and select xfce4
+
+Note: Compiz has a lot of errors and perhaps will be deprecated in Ubuntu.
+
+References:
+Web: http://linuxreviews.org/features/3ddesktop/
+Web: http://desk3d.sourceforge.net/index.php
+Web: https://davejamesmiller.com/blog/installing-3d-desktop-under-fluxbox-on-linux

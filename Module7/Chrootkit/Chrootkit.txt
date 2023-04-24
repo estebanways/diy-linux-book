@@ -1,0 +1,3 @@
+Pending
+References:
+File: Detectar rootkits y Malware.pdf (Spanish)

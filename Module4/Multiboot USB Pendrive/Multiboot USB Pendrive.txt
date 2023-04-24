@@ -1,0 +1,2 @@
+Use YUMI for Windows, the "current" Debian version of teh softwar works but does not create the bootable USB memory
+

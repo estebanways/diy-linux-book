@@ -1,0 +1,239 @@
+Preload:
+Preload monitors applications that users run, and by analyzing this data, predicts what applications users might run, and fetches those binaries and their dependencies into memory for faster startup times.
+Note that installing preload will not make your system boot faster and that preload is a daemon that runs with root priviledges.
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install preload
+
+
+Startup Applications:
+There are certain applications which are configured to run when the system
+starts.
+To remove apps you don't need at startup:
+Go to Applications menu > Tweak Tool > Startup applications
+Set up accordingly
+
+
+nice:
+Use the command nice to modify a process priority
+References:
+Web: https://www.lifewire.com/uses-of-commands-nice-renice-2201087
+File: Example Uses of the Commands _nice_ and _renice_.pdf
+
+
+Limit CPU usage with CPULimit:
+The program xmrig takes the 99.3-99.7 %CPU usage. I limit it using CPULimit.
+Install cpulimit:
+$ sudo apt-get update
+$ sudo apt-get -u upgrade
+$ apt-cache search cpulimit
+$ sudo apt install cpu limit
+The command to run the miner is:
+$ cpulimit -l 80 ./xmrig
+Now you can see  that the CPU usage have decreased from 100% to 78.5-81.8% almost 80%:
+$ top
+To stop the program and its processes use:
+$ killall xmrig
+References:
+Topic: How to test CPULimit
+Web: https://www.howtoforge.com/how-to-limit-cpu-usage-with-cpulimit-on-ubuntu-linux
+
+
+Services:
+Go to Applcations menu Services, and then stop the services you don't want to keep running.
+
+
+Bum:
+You can also install Boot Up Manager (BUM) to control all start up applications scripts and services:
+$ sudo apt-get update
+$ sudo apt-get install bum
+$ sudo bum
+
+
+Script stop services and kill programs.sh:
+Is my script to free system resources in certain ocassions, for example software compilation, screencasting, rendering or playing games.
+
+#! /bin/sh
+
+# This script stops services and kills applications that are unnecessary
+# to play games and/or to edit and render videos, to spend all the computer
+# power in these tasks
+
+# systemctl services:
+#systemctl
+systemctl stop cups.service
+systemctl stop exim4.service
+systemctl stop inetd.service
+systemctl stop ModemManager.service
+systemctl stop mongod.service
+systemctl stop ReadyBoo.service
+systemctl stop teamviewerd.service
+systemctl stop timidity.service
+systemctl stop virtualbox.service
+systemctl stop wicd.service
+systemctl stop libvirtd.service
+systemctl stop libvirt-guests.service
+
+# Applications:
+#top
+pkill conky
+pkill conky-manager
+pkill cairo-dock
+
+
+# Pending:
+# Send logs to terminal and file like:
+#systemctl status virtualbox.service
+# Verify the command execution is complete
+# Create a second script to restart these services to go back
+# to previous status, automagically, with commands like:
+#sytemctl start virtualbox.service
+#wicd
+
+
+Notes: 
+Create another script to do the contrary: restart programs and services.
+For more systemd information, visit the guide systemd (LINK)
+
+
+Swappiness:
+The swappiness parameter manages the ability of the kernel to shift processes out of physical memory and onto the swap disk. Disks being much slower than RAMs, this can cause slower response times of system and applications if processes are too aggressively moved out of memory.
+To check current status of Swappiness, use this command:
+$ cat /proc/sys/vm/swappiness
+Default value of swappiness is 60. You can change it by editing this file:
+$ sudo nano /etc/sysctl.conf
+Locate this line (if not found, add it. I found it in /etc/sysctl.d/10-kxstudio-sysctl-rules.conf):
+vm.swappiness=10
+Save the file and reboot the system for the changes to take effect.
+
+Note: There are many options you can add to this directory files to improve system performance. For more information see the guide "Sysctl".
+
+
+Disable Grub Boot Menu:
+Whenever the system starts, it will display Grub Boot Menu on your screen. To disable it, enter following command:
+$ sudo nano /etc/default/grub
+Search for GRUB_TIMEOUT and set its value to zero:
+GRUB_TIMEOUT=0
+
+
+Cache preassure:
+It is the kernel ability to move amounts of data from the RAm to the SWAP partition. With less than 4 GB RAM, a value of 100 means that teh RAM is going to be busy.
+$ sudo cat /proc/sys/vm/vfs_cache_pressure
+I don't have the problem because Gnome manages the Swap very good attempting to do not touch it as possible, but if you want to test the difference or use another Desktop like KDE this change should help.
+To test the new value:
+$ sudo sysctl ‐w vm.vfs_cache_pressure=50
+And then open a HQ video or something
+To make the change permanent:
+$ sudo cp -dpR /etc/sysctl.conf /etc/sysctl.confBAK
+$ sudo nano /etc/sysctl.conf
+And then add the line:
+vm.vfs_cache_pressure=50
+To verify changes:
+$ sudo cat /proc/sys/vm/vfs_cache_pressure
+
+
+System Startup Optimization:
+If you are using Multi-core CPU, you can use all its core during system startup. To configure your computer as such, enter following commands:
+$ sudo gedit /etc/init.d/rc
+Locate the line CONCURRENCY=none and change it to CONCURRENCY=makefile
+
+
+Reduce visual FXs:
+Reducing or disabling all unnecessary visual effects can improve functionality of your system.
+I personally dislike compiz, but if you use it, this can be implemented by using Compizconfig Settings Manager.
+To install it, enter:
+$ sudo apt-get install compizconfig-settings-manager
+
+
+TMPFS:
+When read/write operations are performed on a hard disk, /tmp folder comes into picture. By shifting this overload from hard disk to RAM, operations can be speeded up.
+For this, edit /etc/fstab file:
+$ sudo nano /etc/fstab
+Insert following two lines at the end of the file, Save and Reboot:
+# Move /tmp to RAM
+tmpfs /tmp tmpfs defaults,noexec,nosuid 0 0
+
+
+Force Google Chrome to send the program cache to RAM:
+$ sudo nano /usr/share/applications/google­chrome.desktop
+Add text to the line Exec=/usr/bin/google­chrome­stable %U an option to launch the navigator in other way:
+Exec=/usr/bin/google­chrome­stable %U --­­disk-­cache-­dir="/tmp/ram/"
+Note: We are also freeing space due to the RAM does not preserves files in it. Previously cache stored data in: ~/.cache/google­chrome
+We require to make this change every time after the program is updated.
+
+
+Reduce overheating of the computer with TLP and CPUFreq:
+
+Install cpufreq:
+$ sudo apt-get install cpufreqd cpufrequtils
+$ cpufreq-info
+
+Verify temperature:
+$ sudo apt-get install lm-sensors fancontrol sensord read-edid i2c-tools
+$ sensors
+
+The overheated computer is much work slower at loading or opening programs, identify this program with TLP, a program made to Save battery power on laptops.
+This package is not in the Debian Jessie repositories so you need to add a line to the file /etc/apt/sources.list to install it.
+deb http://ftp.de.debian.org/debian sid main
+(See the list of mirrors, here: https://packages.debian.org/sid/all/tlp/download)
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install tlp tlp-rdw smartmontools ethtool linux-tools acpi-call-dkms
+I am sorry I cannot finish the installation due to dependencie issues, and decided to wait until the first program version available in Debian GNU/Linux 9, codename Stretch.
+Thinkpads also need these packages:
+$ sudo apt-get install tp-smapi-dkms acpi-call-tools
+Note: acpi-call-tools does not exist neither in the new sid Debisn source.
+
+Usage:
+$ sudo tlp start
+$ sudo tlp stat
+
+Alternatives:
+Use Gnome Power application
+Attempt to build tlp from source for Debian Jessie
+Use alternatives to TLP, like Powertop
+
+
+TLP VS Powertop VS udev:
+TLP is more intelligent than powertop. For example, it can have two separate profiles, one when the laptop is connected with AC, and one when it is running by battery. And by default, when in AC mode it disables lots of battery saving settings to improve performance.
+Now, you can probably do this with udev too, however it is a pain considering someone already had all the work to make this works as it should.
+LMT and TLP conflict with each other. Powertop isn't what I would use for power management as TLP/LMT does a much better job controlling the same settings since it provides different modes for A/C vs Battery. I do use it to monitor power usage of certain applications.
+Reference:
+Web: https://www.reddit.com/r/archlinux/comments/3s2fyt/there_are_so_many_power_management_tools_lmt_tlp/
+File: There are so many power management tools, LMT, TLP, pm-utils, powertop...pdf
+
+To install Powertop:
+(Disable the sid repo, added to install tlp)
+$ sudo apt-get update
+$ sudo apt-get install powertop
+Run the program:
+$ sudo powertop
+Use tab to change the tabs.
+
+
+Use video card low profile:
+Change Video card power profile to 'low' in the Gnome shell extensions panel
+
+To increase web cam speed when it is slow:
+Topic: Look for the section "- Webcam software: Guvcview"
+Guide: Webcam
+
+Increase fans speed:
+Increase fan speed or change cooler system improve system performance.
+
+References:
+Web: https://packages.debian.org/sid/main/tlp
+File: Debian -- Details of package tlp in sid.pdf
+Web: https://packages.debian.org/sid/all/tlp/download
+File: Debian -- Package Download Selection -- tlp_0.8-1_all.pdf
+
+Tune Your Hard Disk with hdparm:
+Hdparm allows you to increase the storage devices spped.
+References:
+Web: http://www.linux-magazine.com/Online/Features/Tune-Your-Hard-Disk-with-hdparm
+File: Tune Your Hard Disk with hdparm - Linux Magazine.pdf
+
+Kernel Performance:
+You can increase and customize the kernel performance, for example, installing a kernel optimized for low latency like XanMod (almost real time, and there is one RT kernel version)
+References:
+Guide: Build the Linux Kernel

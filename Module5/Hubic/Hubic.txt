@@ -1,0 +1,91 @@
+Steps to install the Hubic service:
+First of all, have to create an account on their web site:
+Web: https://hubic.com/en/
+When the account is ready log in and then go the section My Account > Developers.
+Under Developers Click on 'Add an application'.
+Last Name: Herrera Cloud
+Redirection Domain: http://localhost/
+Click on Details of the Cloud.
+The cloud has been created.
+To search hubic applications in repos:
+$ sudo apt-cache search hubic
+To install the mono dependencies and other dependencies:
+$ sudo apt-get install mono-runtime libmono-posix4.0-cil libmono-sqlite4.0-cil libmono-system4.0-cil libmono-system-configuration4.0-cil libmono-system-core4.0-cil libmono-system-data4.0-cil libmono-system-data-datasetextensions4.0-cil libmono-system-runtime-serialization4.0-cil libmono-system-xml4.0-cil libmono-system-xml-linq4.0-cil dbus
+To resolve dependencies error during dependencies installation:
+$ sudo apt-get -f install
+An then,  rerun the command to install the mono dependencies and other dependencies.
+To install hubic as filesystem integration in the user space, from the Official Debian repositories (Support for mounting Hubic drive):
+# apt-get install hubicfuse
+This is the GitHub to download the hubic token:
+Web: https://github.com/TurboGit/hubicfuse
+Download the ZIP.
+Unzip the file:
+$ unzip hubicfuse-master.zip
+Find the file hubic_token and copy it to Documents:
+$ cp -dpR hubic_token /home/esteban/Documents
+Assign execution permissions for the file:
+$ chmod +x  hubic_token
+Execute the file:
+$ sh hubic_token
+Enter the information requested, in accordance with your application information on the web site: 
+Web: https://hubic.com/en/
+Log in and then go the section My Account > Developers.
+Under Developers Click on Herrera Cloud.
+After that, answer the following questions entering the character in parenthesis:
+For the scope -what you authorize your app to do-, enter characters as suggested in parenthesis, or just hit return if you don't need the item authorized.
+Get account usage (r): 
+Get all published links in one call (r): 
+Get OpenStack credentials, eg. access to your files (r): 
+Send activation email (w): 
+Add new/Get/Delete published link (wrd): 
+Next, copy the message returned. Something like:
+# Here is what your app needs to connect to hubiC:
+client_id=api_hubic_C24sTNNNNxxxxx999999TTTTTssssZZZ
+client_secret=AAAAAAbbbbbbbbb1111111111ccccccccc222222222222DDDDDDDDeeeee33333ffff
+refresh_token=gggggYYYYYYLLLLLL8888888ffffffaaaaalllllleee555555555eeeeeeeeeNNNNN444 
+Next, create a new file which is going to include the information copied.
+$ sudo nano /root/.cloudfuse
+Add the next information and save changes:
+username=my_hubic_email@server.com
+password=MyhubicPASS
+client_id=api_hubic_C24sTNNNNxxxxx999999TTTTTssssZZZ
+client_secret=AAAAAAbbbbbbbbb1111111111ccccccccc222222222222DDDDDDDDeeeee33333ffff
+refresh_token=gggggYYYYYYLLLLLL8888888ffffffaaaaalllllleee555555555eeeeeeeeeNNNNN444
+redirect_uri= http://localhost/
+verify_ssl=True
+Back-up the file:
+$ sudo cp -dpR .cloudfuse /home/esteban/Documents/.cloudfuseBAK
+Mount the storage service somewhere, for example /mnt:
+$ sudo hubicfuse /mnt  -o noauto_cache,sync_read,allow_other,umask=0007
+Go to /mnt:
+$ cd /mnt
+The new directory 'default' is going to appear.
+Every reboot the cloud directory has to be re-mounted. It is not possible to add this mount point to the file /etc/fstab because mounting precedes networking. To mount the cloud directory when the system starts create a systemd service. Remember to setup the drive/file read and write permissions depending on your needs. See the systemd guide for details.
+References:
+Guide: Systemd
+To add the drive to Nautilus (Files):
+Open nautilus
+In the main manu go to Bookmarks
+Add /mnt/default as Herrera Cloud Drive
+Test the drive synchronization adding an image and verifying the synchronization on the hubic web site.
+Now, it is time to sync a local directory in the cloud:
+Download the (beta version) file from:
+Web: http://mir7.ovh.net/ovh-applications/hubic/hubiC-Linux/2.1.0/
+Install the package:
+$ sudo dpkg -i hubiC-Linux-2.1.0.53-linux.deb
+Create the local directory to sync, for example "Documents":
+$ mkdir ~/MyLocalHubic
+Use the service:
+$ hubic login my_email@server.com ~/MyLocalHubic
+Add files to the folder. The service will start to sync the folder rapidly. If you have the hubic cloud drive in /mnt a second copy of the files sync are going to be saved under default/.
+Note that sync a local directory in the hubiC Cloud is fast meanwhile the support for mounting a Hubic drive is slow. The service is very useful to sync files in many devices, for example, a desktop computer, a tablet and a smartphone. 
+
+References:
+Web: https://wiki.debian.org/es/hubiC
+File: Install Hubic Indicator.pdf (Spanish)
+
+Test the Hubic Indicator Gnome Shell Extension:
+Topic: Look for the section: "Install Hubic Indicator extension:". You can pause sync and go ahead later on.
+References:
+Guide: Gnome Shell Extensions
+

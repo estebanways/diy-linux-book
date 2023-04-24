@@ -1,0 +1,2 @@
+From Gnome Desktop search for the application Sound Recorder or from the terminal:
+$ gnome-sound-recorder

@@ -1,0 +1,24 @@
+
+Intallation:
+Is very easy with Logitech controllers and joysticks.
+Some brands could require installation and/or compilation of proprietary drivers.
+See the controller/joystick installation instructions for Linux and Debian or llok for the driver support on the web and Debian.org
+References:
+(PENDING)
+
+Test the Game controller and Joystick installing:
+Supertuxkart
+Flight Gear simulator
+
+See guides:
+Video Card
+3D Acceleration and VR
+Basic networking (Too learn of the WI-FI card driver installation)
+Source code & Debian forks source code
+Software sources available
+Build the Linux Kernel
+DKMS (Dynamic Kernel Module Support)
+Build packages from source
+
+You can also turn your Joystick into a "mouse", but you have to uninstall the joystick to be able to do so.
+(PENDING)

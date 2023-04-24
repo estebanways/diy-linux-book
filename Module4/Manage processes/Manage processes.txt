@@ -1,0 +1,17 @@
+Changes are when you face issues such as a screen frozen. For that types of cases, this guide will be very useful.
+
+To change to alternative terminals:
+CTRL and/or ALT+F1 to F10
+
+# free
+# top
+and then PRESS KEY: #1
+# kill -9 PROCESS#
+# pkill APPNAME
+# pkill -u USERNAME
+
+
+References:
+Topic: Gradually reboot the computer in case of significant system failures
+Guide: Emergency keys combinations
+

@@ -1,0 +1,31 @@
+Aptana Studio is a complete Development Studio for Python, Ruby, PHP, HTML5, CSS3 and JavaScript.
+
+I appreciated much a few features it has, like the.. SVN Plugin, and the tool to review differences between file versions. Aptana Studio 3 is based on Eclipse, and is good to program PHP like Netbeans. Aptana Studio 3 comes with Java embedded (Hotspot), so you don't need to install Java at all. But, well Java is actually running on the system. 
+
+Hotspot references:
+Web: http://stackoverflow.com/questions/16568253/difference-between-jvm-and-hotspot
+Read: JVM VS Hotspot.pdf
+
+Installation steps:
+Download site: http://www.aptana.com/products/studio3/download.html
+Copy the compressed file to /opt. This file is a pre-compiled directory which works without any compilation after the extraction, as the program Sublime Text Editor.
+# cp -dpR Aptana_Studio_3_Setup_Linux_x86_64_3.6.1.zip /opt
+# unzip Aptana_Studio_3_Setup_Linux_x86_64_3.6.1.zip
+Fix the permission as the other applications in this directory:
+# ls -hal
+# chmod 755 Aptana_Studio_3
+# cd Aptana_Studio_3
+Run the program. Change to user:
+$ ./AptanaStudio3
+You can modify the permissions of the directory to allow or block other system users from using the Studio.
+Create the symlink to the program:
+$ sudo ln -s /opt/Aptana_Studio_3/AptanaStudio3 /usr/bin/AptanaStudio3
+After that to execute use:
+$ AptanaStudio3
+Add the program to the Main Menu in Gnome.
+Icon: /opt/Aptana_Studio_3/icon.xpm
+
+References:
+Topic: Setup the web server and the default external browser.
+Web: http://www.nairabytes.net/blog/62-geek/346-how-to-install-aptana-studo-3-on-debian-linux
+File: Aptana Studio on Debian Linux.pdf.

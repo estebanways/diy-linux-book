@@ -1,0 +1,28 @@
+If you want to correct the laptop screen brightness, install xbacklight:
+
+Set up sources file(s):
+Add or activate repos main, contrib and non-free
+$ sudo nano /etc/apt/sources.list
+Update repos:
+$ sudo apt-get update
+Install the application:
+$ sudo apt-get install xbacklight
+Test the xbacklight support:
+$ xbacklight -get
+Set Brightness to 00%:
+$ xbacklight -set 00%
+
+To add the program to the system boot up in Gnome:
+Add the command to Applications > Main menu
+Add the command made with the main menu to Applications > Tweak Tool > Startup Applications
+
+References:
+File: xbacklight _ Corregir el brillo en linux _ Yo amo la informática.pdf
+
+Issues:
+Xbaclight does not work in all laptops.
+
+Cairo-Dock:
+For the brightness adjustment to work you require Gnome Desktop or Xbacklight, but if they won't work try installing Cairo-dock app and when the apps dock is ready make right click on it, and then go to menu configure and then add Luminosity. Luminosity is going to change the screen Brightness not only in Laptops but also in Desktop computers.
+References:
+Guide: Cairo-dock

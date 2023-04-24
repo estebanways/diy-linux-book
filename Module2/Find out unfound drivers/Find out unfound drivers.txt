@@ -1,0 +1,33 @@
+Most of Windows and Linux drivers a re acompatible with all the main ditributions.
+Surprisingly, there are more drives for Linux than for Windows, because the most of Windows drivers are compatible with Linux, but there are many Linux drivers incompatible with Windows.
+Think of and treat drivers as if they were software to install, because the most of drivers come as package or inside a package such as DEB, RPM or source code tarballs to build. Also there is a kernel core or module (for example module.ko) to support the device you want to install.
+Topic: Compile drivers in the Linux Kernel. Section drivers.
+Web: http://www.aboutdebian.com/compile.htm
+File: Compiling Software With Debian Linux.pdf
+
+Whether there is not possibility to find a driver suitable for your case in the Official Debian repositories, search for it:
+- In the device drivers' vendor/manufacturer CDROM or web site.
+- Third driver web sites and FTPs like http://www.linux-drivers.org
+- Review the most important distro hardware compatibility lists, like the Ubuntu compatibility list.
+- There is always a way, for example, reverse engineering or driver development, otherwise replace the device by a Linux compatible one. Remember to notify the vendor about the problem.
+
+References:
+Topic: Linux Hardware Compatibility Lists
+Web: http://www.linux-drivers.org/
+Topic: Ubuntu Certified hardware
+Web: http://www.ubuntu.com/certification/
+Topic: ALSA sound drivers and kernel modules list
+Web: http://www.alsa-project.org/main/index.php/Matrix:Main
+Guides (Some are):
+Basic networking
+Webcam
+Printer
+Sound
+Video Card
+3D acceleration and VR
+Scanner
+Game Controllers and Joystick
+Topic: Analyze hardware information
+Guide: Check hardware information
+
+

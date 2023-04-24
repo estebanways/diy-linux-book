@@ -1,0 +1,483 @@
+MongoDB alternatives:
+Instead of MongoDB, which is still a development in progress, I would recommend something more prepared for replication, like Cassandra, or RIAK for key values.
+Cassandra is a combination of the NoSQL ability, queries support, and replication and scalability capacity.
+References:
+Topic: Riak Wikipedia
+Web: https://en.wikipedia.org/wiki/Riak
+File: Riak - Wikipedia, the free encyclopedia.pdf
+Topic: Is Riak a good alternative to MongoDb?
+Web: https://www.quora.com/Is-Riak-a-good-alternative-to-MongoDb#
+File: Is Riak a good alternative to MongoDb_ - Quora.pdf
+Topic: How do Riak and MongoDB compare?
+Web: https://www.quora.com/How-do-Riak-and-MongoDB-compare
+File: How do Riak and MongoDB compare_ - Quora.pdf
+Topic: System Properties Comparison MongoDB vs. Riak KV
+Web: http://db-engines.com/en/system/MongoDB%3BRiak+KV
+File: MongoDB vs.pdf
+
+MongoDB is a nosql (Not Only SQL) and can work with NoSQL. NoSQL is a proprietary soft of Oracle Corporation.
+
+Update LinuxBrew:
+$ brew update
+
+$ brew search mongodb
+Output:
+homebrew/versions/mongodb24   homebrew/versions/mongodb26
+I see a new tap versions but I am not going to add the tap, but to install the newest mongodb version available. I am logging this matter also because I could need an old version of a bottle to x project.
+
+Or use:
+Go to http://braumeister.org/browse/s/8
+
+Dependencies list:
+Boost: icu4c.
+icu4c: Has not dependencies.
+go: has not dependencies.
+openssl: makedepend (Both already installed)
+$ whereis ssl
+Output: 
+ssl: /usr/lib/ssl /etc/ssl
+scons: Has not dependencies.
+
+Install a formula:
+$ brew install mongodb
+Output:
+[...]
+==> Installing mongodb
+==> Downloading https://fastdl.mongodb.org/src/mongodb-src-r3.0.4.tar.gz
+######################################################################## 100.0%
+==> Cloning https://github.com/mongodb/mongo-tools.git
+Cloning into '/home/esteban/.cache/Homebrew/mongodb--github.com-mongodb-mongo-tools--git'...
+[...]
+
+Output Error:
+[...]
+/usr/bin/g++-4.9 -o build/linux2/cc__usr_bin_gcc-4.9/cxx__usr_bin_g++-4.9/mongo/db/auth/action_set.o -c -Wnon-virtual-dtor -Woverloaded-virtual -std=c++11 -fPIC -fno-strict-aliasing -ggdb -pthread -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -pipe -Werror -O3 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fno-builtin-memcmp -DBOOST_ALL_NO_LIB -D_SCONS -DMONGO_EXPOSE_MACROS -DPCRE_STATIC -DSUPPORT_UTF8 -DMONGO_OPTIMIZED_BUILD -DMONGO_BYTE_ORDER=1234 -D_FILE_OFFSET_BITS=64 -DMONGO_HAVE___THREAD -DMONGO_HAVE_CXX11_ATOMICS -DMONGO_HAVE_HEADER_UNISTD_H -DMONGO_HAVE_POSIX_MONOTONIC_CLOCK -DMONGO_HAVE_EXECINFO_BACKTRACE -Isrc/third_party/s2 -Isrc/third_party/pcre-8.37 -Isrc/third_party/boost -Ibuild/linux2/cc__usr_bin_gcc-4.9/cxx__usr_bin_g++-4.9 -Isrc src/mongo/db/auth/action_set.cpp
+scons: *** [build/linux2/cc__usr_bin_gcc-4.9/cxx__usr_bin_g++-4.9/mongo/db/auth/action_type.o] AttributeError : 'Dir' object has no attribute 'dir'
+scons: building terminated because of errors.
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+[...]
+End of output error.
+
+Show a summary of the Homebrew build environment:
+$ homebrew --env
+-bash: homebrew: command not found
+esteban@ProLiant:~$ brew --env
+CC: /usr/bin/gcc => /usr/bin/gcc-4.9
+CXX: /usr/bin/g++ => /usr/bin/g++-4.9
+OBJC: /usr/bin/gcc
+OBJCXX: /usr/bin/g++
+CFLAGS: -Os -w -pipe -march=core2
+CXXFLAGS: -Os -w -pipe -march=core2
+CPPFLAGS: -isystem/home/esteban/.linuxbrew/include
+LDFLAGS: -L/home/esteban/.linuxbrew/lib -Wl,-rpath,/home/esteban/.linuxbrew/lib
+MAKEFLAGS: -j2
+CMAKE_PREFIX_PATH: /home/esteban/.linuxbrew
+PKG_CONFIG_LIBDIR: /home/esteban/.linuxbrew/lib/pkgconfig:/usr/lib/pkgconfig
+PATH: /home/esteban/.rvm/gems/ruby-2.2.1/bin:/home/esteban/.rvm/gems/ruby-2.2.1@global/bin:/home/esteban/.rvm/rubies/ruby-2.2.1/bin:/home/esteban/.linuxbrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/esteban/.rvm/bin:/home/esteban/.rvm/bin:/home/esteban/.linuxbrew/Library/ENV/scm
+
+
+Note:
+The error is of a directory of scons. I attempt to re-install scons:
+$ brew install scons
+Output:
+Warning: scons-2.3.5 already installed
+The dependency version is all right.
+
+Show brew options:
+$ brew
+
+Run the brew doctor:
+$ brew doctor
+The app shows the error of opencv during the attempt to install xmoto.
+
+Know what installed at this point:
+$ brew list
+Output:
+bzip2   isl    lua         ode     readline   sdl_ttf
+freetype  jpeg     makedepend  openssl     scons      sip
+gettext   libmpc   mpfr        pcre    sdl        xz
+gmp   libpng   nginx       pkg-config  sdl_mixer  zlib
+go    libxml2  node        qt    sdl_net
+
+
+At this point I just stay calm and think in the option to resolve this issue:
+1. I can attempt to download the source code instead of bottle and try to build the formula no changes.
+2. I can attempt to create debug and test my own formula:
+Web: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md
+File: Formula cookbook.pdf
+3. I can attempt to install a previous version of MongoDB by adding the a new tap homebrew/versions. I may verify the dependencies installed and to install as well.
+4. Install MongoDB in the system. In the real life this option is all right. The web and/or MongoDB server in production is the 70% of times Linux/Unix, and the other 30% percent is Windows, but almost never is MAc. It is very common to have an old version of MongoDB in the database and the newest in everything else, when the work is on an existent project. It is easier to update the development apps than migrate a database from a version into another. Either way, the MongoDB server instance of the development Team should be running on another machine, and the team members access it remotely.
+
+In my case I will try to install a previous version of MongoDB to master Homebrew, and after that change to the latest system version no matter the results of this experiment.
+
+Installing a previous version of MongoDB:
+
+List installed taps:
+$ brew tap
+
+List man:
+$ man brew
+
+Installing the versions shown at the beginning of the installation with search:
+
+Double search the mongodb availability:
+$ brew search mongodb
+Output:
+homebrew/versions/mongodb24   
+homebrew/versions/mongodb26
+
+See the all the available homebrew taps:
+Web: http://braumeister.org
+Taps:
+Homebrew/homebrew-apache
+Homebrew/homebrew-binary
+Homebrew/homebrew-boneyard
+Homebrew/homebrew-completions
+Homebrew/homebrew-dupes
+Homebrew/homebrew-games
+Homebrew/homebrew-headonly
+Homebrew/homebrew-python
+Homebrew/homebrew-science
+Homebrew/homebrew-versions
+davidchall/homebrew-hep
+josegonzalez/homebrew-php
+
+Tapping the repo:
+$ brew tap homebrew/versions
+
+Review the dependencies of the formula:
+Web: http://braumeister.org/formula/vegeta
+Or use:
+See the dependencies for a given brew:
+$ brew deps mongodb
+Output:
+boost
+bzip2
+git
+go
+icu4c
+makedepend
+openssl
+pkg-config
+scons
+zlib
+End of output.
+
+Ask brew to tell you which brews use a particular formula:
+$ brew uses --installed mongodb
+Output:
+NO Output to show.
+(You can test this command with openssl to display nginx and node)
+
+List all dependencies of all brews (in color):
+Reference:
+Web: http://zanshin.net/2014/02/03/how-to-list-brew-dependencies/
+File: Brew print dependencies of a formula.pdf
+
+Review installed version of scons (when there is one installed):
+$ brew list scons --version
+Output:
+scons 2.3.5
+
+Review all the versions installed of a certain formula:
+$ brew list scons --versions
+Output:
+/home/esteban/.linuxbrew/Cellar/scons/2.3.5/bin/scons
+/home/esteban/.linuxbrew/Cellar/scons/2.3.5/bin/scons-time
+/home/esteban/.linuxbrew/Cellar/scons/2.3.5/bin/sconsign
+/home/esteban/.linuxbrew/Cellar/scons/2.3.5/libexec/scons-local/ (395 files)
+/home/esteban/.linuxbrew/Cellar/scons/2.3.5/libexec/ (3 files)
+/home/esteban/.linuxbrew/Cellar/scons/2.3.5/share/man/ (3 files)
+
+Locate some the files of the formula unable to install (to remove):
+$ locate mongodb
+/home/esteban/.linuxbrew/Library/Formula/mongodb.rb
+/usr/share/nmap/nselib/mongodb.lua
+/usr/share/nmap/scripts/mongodb-brute.nse
+/usr/share/nmap/scripts/mongodb-databases.nse
+/usr/share/nmap/scripts/mongodb-info.nse
+
+Review installed version of a formula (when there is one installed):
+$ brew list mongodb --version
+Output:
+Error: No such keg: /home/esteban/.linuxbrew/Cellar/mongodb
+Not the case but for formula with more than one installation (Or just to make sure how many you have too, but used after the the command with "--version", as a singular word, otherwise you don't get any output life signal):
+$ brew list mongodb --versions
+
+Remove the nonworking formulae (when applies) and the dependencies:
+$ brew remove mongodb
+$ brew remove scons
+Output:
+Uninstalling /home/esteban/.linuxbrew/Cellar/scons/2.3.5... (405 files, 4.4M)
+
+To install packages from specific taps, run:
+$ brew install homebrew/versions/mongodb26
+
+Note:
+Thie installation attempts to install scons 2.3.5 from the new tap "versions" in an alternative path "opt" as shown in the error:
+Output:
+[...]
+### 100.0%
+==> /home/esteban/.linuxbrew/opt/scons/bin/scons install --prefix=/ho
+Checking if __malloc_hook is declared volatile... yes
+scons: done reading SConscript files.
+usage: scons [OPTION] [TARGET] ...
+
+SCons Error: no such option: --osx-version-min
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+If reporting this issue please do so at (not Homebrew/homebrew):
+  https://github.com/homebrew/homebrew-versions/issues
+[...]
+
+
+I am going to install scons from the tap homebrew and then retry mongodb tap "versions".
+
+$ brew remove scons
+$ brew install scons
+$ brew install homebrew/versions/mongodb26
+
+I am getting  the same Output error of the installation of MongoDB from the tap "homebrew":
+[...]
+### 100.0%
+==> /home/esteban/.linuxbrew/opt/scons/bin/scons install --prefix=/ho
+Checking if __malloc_hook is declared volatile... yes
+scons: done reading SConscript files.
+usage: scons [OPTION] [TARGET] ...
+
+SCons Error: no such option: --osx-version-min
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+If reporting this issue please do so at (not Homebrew/homebrew):
+  https://github.com/homebrew/homebrew-versions/issues
+[...]
+
+
+Get list of formulas in a tap:
+$ cd 
+$ cd .linuxbrew/Library
+$ ls
+$ cd to enter to Homebrew/ or Taps/ to list again with 'ls'.
+
+Remove a tapped repository: 
+$ brew untap homebrew/versions
+
+List taps:
+$ brew tap
+homebrew/science
+homebrew/games
+homebrew/dupes
+
+Remove scons:
+$ brew remove scons
+
+Pin the specified formulae, preventing them from being upgraded when issuing the  brew  upgrade --all command. See also unpin.
+$ brew pin formula
+$ brew unpin formula
+
+To upgrade formulae:
+$ brew upgrade <FORMULA>
+
+Installing MongoDB:
+
+I am going to install the last version of the apps from stable repos as we have learned at this point of the guides, but remember that if you need the newest features available you can back-port the apps or also install the applications from stable, testing, unstable and experimental sources from the Debian Official repos, or external sources (experimental) instead. Another option is build from source in the regular or the Debian way (experimental) from the Debian repos or the Official MongoDB repos or download links. I use sbuild to build apps from Ubuntu source code in the PPAs. Some applications don't need to install and to save space are usually simply allocated under /opt.
+References:
+Guides:
+System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+Manage traditional software repositories
+Debian source code
+Source code & Debian forks source code
+Build packages from source
+SimpleScreenRecorder
+Sublime Text Editor
+
+
+I didn't want to install MongoDB from the Official repos but from the Official MongoDB web site. However I decided to proceed differently due to: 
+Reference:
+Web: https://www.mongodb.org/downloads
+1.
+Message: "Select your distribution from the list or the legacy Linux 64 version if your distribution is unavailable. Keep in mind that this legacy Linux 64 build may lack the performance optimizations present in targeted builds."
+2.
+Currently there is not package available to Debian 8 codename Jessie.
+3.
+Also, there is only Debian 7 installation steps here: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-debian/?_ga=1.154876734.761770137.1435624233
+
+
+To install MongoDB from the Debian repos:
+In case the team can use a Vagrant or a another virtual machine to do not use a Mac of a team member as the MongoDB server.
+
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ apt-cache search mongodb
+$ apt-cache show mongo db
+Output:
+Filename: pool/main/m/mongodb/mongodb_2.4.10-5_amd64.deb
+
+But:
+The Current Stable Release (3.0.4)
+My course requires version 2.6 (and the compatible installation manual)
+
+I go to investigate on the Debian web to save time:
+Web: https://www.debian.org/distrib/packages
+
+The newest package version available is this in the unstable repo:
+Package mongodb:
+sid (unstable) (database): object/document-oriented database (metapackage)
+1:2.4.14-1: amd64 armhf i386 kfreebsd-amd64
+1:2.4.10-5: kfreebsd-i386
+1:2.4.10-2: hurd-i386
+
+I went to install a version 2.6 or later from the Ubuntu PPA sources:
+Google: "Ubuntu PPA"
+Go to: https://launchpad.net/ubuntu/+ppas
+Search: MongoDB.
+Search: MongoDB.
+But there are not good MongoDB sources to download to build from source.
+
+Attempt to download latest wheezy sources:
+It is not possible to download any source code version rather than 2.4x for Wheezy from the Debian Official repos or from the MongoDB pages.
+
+
+Luckily, I have found this web page which show how to download the version 3.0 to Wheezy, and set it up to run on Jessie:
+http://hut8.io/posts/mongodb-3-on-debian-jessie/
+Steps:
+$ echo 'deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main' | sudo tee '/etc/apt/sources.list.d/mongodb-org-3.0.list'
+$ sudo apt-get update
+$ man apt-get update
+Output:
+W: GPG error: http://repo.mongodb.org wheezy/mongodb-org/3.0 Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 9ECBEC467F0CEA12
+End of output.
+Use the NO_PUBKEY number to retrieve a new pub key.
+$ sudo apt-key adv --keyserver 'keyserver.ubuntu.com' --recv '9ECBEC467F0CEA12'
+$ sudo apt-get update
+$ apt-cache show mongodb-org
+Output snippets:
+[...]
+Package: mongodb-org
+Version: 3.0.1
+Architecture: amd64
+Maintainer: Ernie Hershey <ernie.hershey@mongodb.com>
+Installed-Size: 48
+Depends: mongodb-org-shell, mongodb-org-server, mongodb-org-mongos, mongodb-org-tools
+Conflicts: mongo-10gen, mongo-10gen-enterprise, mongo-10gen-enterprise-server, mongo-10gen-server, mongo-10gen-unstable, mongo-10gen-unstable-enterprise, mongo-10gen-unstable-enterprise-mongos, mongo-10gen-unstable-enterprise-server, mongo-10gen-unstable-enterprise-shell, mongo-10gen-unstable-enterprise-tools, mongo-10gen-unstable-mongos, mongo-10gen-unstable-server, mongo-10gen-unstable-shell, mongo-10gen-unstable-tools, mongo18-10gen, mongo18-10gen-server, mongo20-10gen, mongo20-10gen-server, mongodb, mongodb-10gen, mongodb-10gen-enterprise, mongodb-10gen-unstable, mongodb-10gen-unstable-enterprise, mongodb-10gen-unstable-enterprise-mongos, mongodb-10gen-unstable-enterprise-server, mongodb-10gen-unstable-enterprise-shell, mongodb-10gen-unstable-enterprise-tools, mongodb-10gen-unstable-mongos, mongodb-10gen-unstable-server, mongodb-10gen-unstable-shell, mongodb-10gen-unstable-tools, mongodb-clients, mongodb-dev, mongodb-enterprise, mongodb-enterprise-mongos, mongodb-enterprise-server, mongodb-enterprise-shell, mongodb-enterprise-tools, mongodb-enterprise-unstable, mongodb-enterprise-unstable-mongos, mongodb-enterprise-unstable-server, mongodb-enterprise-unstable-shell, mongodb-enterprise-unstable-tools, mongodb-nightly, mongodb-org-unstable, mongodb-org-unstable-mongos, mongodb-org-unstable-server, mongodb-org-unstable-shell, mongodb-org-unstable-tools, mongodb-server, mongodb-stable, mongodb18-10gen, mongodb20-10gen
+Filename: dists/wheezy/mongodb-org/3.0/main/binary-amd64/mongodb-org_3.0.1_amd64.deb
+[...]
+End of Output.
+Fetch and install MongoDB. Remember that apt is going to install the latest version found on the repos under /etc/apt/, and that in the MongoDB repo thre is only an option to install, so you don't have to remove the repo after the installation of the app, and maybe later you could use it to download updates as well:
+$ sudo apt-get install mongodb-org
+
+IMPORTANT!: Do not start MongoDB yet if you want to use WiredTiger!
+Replace the configuration:
+The new YAML configuration format is way better than the old format, but the Debian wheezy package ships with the old format. So edit /etc/mongod.conf and replace it with equivalent YAML options. This is what I came up with. The engine: "wiredTiger" part is what prompted me to switch to the new configuration format.
+$ sudo cp -dpR /etc/mongod.conf /etc/mongod.confBAK
+Clean up the file
+# echo "" > /etc/mongodb.conf
+$ sudo nano /etc/mongodb.conf
+Remove the content and add the lines:
+
+storage:
+  dbPath: "/var/lib/mongodb"
+  engine: "wiredTiger"
+  wiredTiger:
+    collectionConfig:
+      blockCompressor: snappy
+
+systemLog:
+  destination: file
+  path: "/var/log/mongodb/mongodb.log"
+  logAppend: true
+  timeStampFormat: iso8601-utc
+
+net:
+  bindIp: "127.0.0.1"
+  port: 27017
+
+End of new file lines.
+
+WiredTiger:
+
+Hopefully you’ve specified in the configuration file that you want to use the wiredTiger storage engine before MongoDB starts for the first time. I did not do this. This leaves the /var/lib/mongodb directory full of files compatible only with MMAPv1. The easiest way to fix this is just to delete all the files in the data directory after stopping MongoDB:
+
+Important!: Don't do this if you have data loaded already
+
+$ sudo systemctl stop mongod.service
+$ sudo rm -rf /var/lib/mongodb/*
+
+Then add the engine: "wiredTiger" option, as shown above. Restarting should work fine. If you choose to invoke MongoDB without the init script / systemctl (which is useful with debugging), make sure that you use:
+
+$ sudo -u mongodb mongod [... options]
+
+Otherwise, mongod will create necessary files owned by either root or yourself, depending on whether you used sudo or not, which will lead to tricky issues such as the log (where error messages go!) not being writable by the mongodb user.
+
+After the installation the service mongod is instantly running, and I realize I changed the config file before stop the program, so I am going to go back to the section "WiredTiger:" to clean up the installation before continue:
+Stop mongodb:
+$ sudo systemctl stop mongod
+$ sudo systemctl status mongod
+$ ls /var/lib/mongodb/*
+Output:
+journal  local.0  local.ns  mongod.lock  storage.bson  _tmp
+$ sudo rm -rf /var/lib/mongodb/*
+
+Run the service:
+$ sudo systemctl start mongod
+
+Verify that the connection is active on the browser:
+http://localhost:27017/
+You should see the message:
+It looks like you are trying to access MongoDB over HTTP on the native driver port.
+
+Enter the Mongo engine:
+$ mongo
+Or you can enter as root with 'sudo'.
+Output:
+MongoDB shell version: 3.0.4
+connecting to: test
+Server has startup warnings: 
+2015-06-30T05:28:10.920Z I CONTROL  [initandlisten] 
+2015-06-30T05:28:10.920Z I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2015-06-30T05:28:10.920Z I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2015-06-30T05:28:10.920Z I CONTROL  [initandlisten] 
+> 
+
+Tip:
+To decrease the usage of memory remove the service from the system startup if appears:
+Verify the service is up or down to stop it:
+$ sudo systemctl status mongod
+The service is not here:
+$ ls /usr/lib/systemd/system/
+Is here:
+$ ls -F /etc/init.d/mongod
+Remove the service from system start:
+$ cd /etc/init.d
+$ sudo update-rc.d -f mongod remove
+More options:
+$ man update-rc.d
+
+Mongo Clients for Linux:
+Jmongo Browser
+Robomongo
+
+Robomongo installation:
+
+Robomongo is a Shell-centric cross-platform MongoDB management tool.
+
+Installation:
+
+$ sudo apt-cache search robomongo
+NO results.
+Download the package from teh official web site:
+http://robomongo.org/download.html
+
+DPKG install:
+$ sudo dpkg -i robomongo-0.8.5-x86_64.deb
+
+$ robomongo
+Or find it in the Gnome apps search box.
+
+Note: The packages like Robomongo can be downloaded as .deb packages only, but these DEBs are not in the Official Debian sources. The problem is that you have to verify constantly the web site to know when to download a newer version, because the system never is going to tell you that there is a new release available. In this cases there is a better option which is to connect directly to the Git repo, if possible and update the program in the local repo sometimes or when you read it on the RSS feed or somewhere, before reinstall or patch, more or less like HomeBrew, CPAN (Perl) and other package managers work. I am not going to change the version at the moment.. it is some risky.
+
+References:
+Topics: Changelog, source code available, etc.
+web: http://robomongo.org/whats-new-in/robomongo-0.8.5.html
+File: What is new in v0.8.5.pdf

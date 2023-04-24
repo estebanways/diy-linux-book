@@ -1,0 +1,3 @@
+libsfark0 - Library for decompressing sfArk soundfonts
+sfarkxtc - Converts soundfonts from legacy sfArk v2 file format to sf2
+tinyeartrainer - A tool to learn recognizing musical intervals

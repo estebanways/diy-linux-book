@@ -1,0 +1,34 @@
+Software sources available:
+- Distribution DVDs
+- Netinstall CD
+- Localhost or Local Area Network Debian repository
+- Debian repository servers
+- Debian PPA repositories
+- Web site, P2P and Developers repositories
+- Ubuntu PPA (Known exception)
+
+Installation examples (DPKG):
+- Google Chrome
+- Skype
+- Teamviewer
+
+Installation examples (APT):
+- VLC 
+- Firefox 
+- Screensaver
+- Xchat
+- VirtualBox
+
+Ubuntu PPA (Known exception).DEB packages compatible with Debian:
+- KXStudio
+
+
+For Debian packaged binaries:
+They are recognized by the extension .deb, I.E: package.deb
+Use DPKG, the Debian Package Manager.
+
+For Debian packaged binaries to be downloaded from any deb repo:
+Use APT, Aptitude or Synaptic (GUI).
+In our case we are going to use this method to save time at installing the most of the system software, except for when the packages aren't in the Official Debian repos or the experimental.
+I recommend not to install experimental packages as possible on this kind of Desktop to do not comprise its integrity.
+We are not going to use this method to install the Web apps and libraries, to match the Apple's Mac engineering/development Team.

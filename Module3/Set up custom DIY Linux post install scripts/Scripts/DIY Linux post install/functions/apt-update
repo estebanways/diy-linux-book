@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function apt-update {
+ echo "Not implemented yet:"
+ echo "Fuction: apt-update"
+ exit 99
+}

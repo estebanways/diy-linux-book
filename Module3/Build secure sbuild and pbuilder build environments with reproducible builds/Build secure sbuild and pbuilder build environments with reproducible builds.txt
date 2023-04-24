@@ -1,0 +1,920 @@
+Next References are grouped in order from the most important to the least important, in accordance with the proposes of this guide:
+
+References:
+Topic: I take a lot of information from this article to write my own guide, and strongly recommend you to read it and click on some links. The article is about how to Create a Custom Debian Live Environment (CD or USB).
+Web: http://willhaley.com/blog/create-a-custom-debian-live-environment/
+File: Create a Custom Debian Live Environment (CD or USB).pdf
+
+References:
+Topic: This page describes a complete LiveCD build process and everybody commented to improve it, and I recommend to read the article to learn a lot and take super commands an options, but don't recommend to follow the steps due to is pretty much old.
+Web: https://l3net.wordpress.com/2013/09/21/how-to-build-a-debian-livecd/
+File: How to Build a Debian LiveCD.pdf
+
+References:
+Topic: Install Debian from a scratch in Debian with debootstrap
+Web: https://debian-administration.org/article/426/Installing_new_Debian_systems_with_debootstrap
+File: Installing new Debian systems with debootstrap.pdf
+Topic: Installing Debian GNU/Linux from a Unix/Linux System
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: D.3.pdf
+
+Alternatives to prepare the file system to allocate the chrooted environment:
+1- Create the chroot in a directory:
+If you choose to create the chroot in a directory you can keep the previous system installation complete.
+2- Create the chroot in a new disc partition:
+If you choose to create the chroot in a new disc partition, you will be able to remove the previous system partitions using tools like Gparted or fdisk, in case of you decide to add the chrooted system to the Grub2 menu. I am not going to choose this alternative because I want to create not just a system but also a installable ISO. I mention the option because am thinking on people who work on laptops that have not second HD/SSD device (3rd option).
+3- create the chroot in a new hard drive:
+If you choose to create the chroot in a new hard drive you can remove the system from the hard drive when the chrooted has been added to the Grub2 menu. This option seems perfect, but my main goal is to build the CD at the end, no matter how easy is to format or remove a whole hard drive with a previous system isntalled from NETINSTALL CD or DVD, etc. 
+
+From the previous options I choose option 1, in summary a chroot environment in a directory. 
+I am going to free more or less 10 GB to meet the space required to create a basic system, but I know I could require more free space to create a big Live DVD, perhaps including Official and Unofficial repositories packages.
+
+Early notes about the whole build environment security:
+The best way to stay safe from malware that potentially can come from and reside everywhere is to be paranoid in this order: Build a development system from source based on the Security First approach and using reproducible builds, next download all the source code of the required tools and utilities and build everything with reproducible builds. Finally, do the same to build your System. This lines are just an introduction because I am going to detail the security involved in every step, but it has to be attended in first place.
+References:
+Topic: Security first approach.
+Chapter: Security First
+Guide: Options to build Linux distributions
+References:
+Topic: Debian source code meaning
+Guide: Debian source code
+Topic: How to get Debian packages source code (and build them using pbuilder. The example package, SimpleScreenRecorder, couldn't be built reproducibly against the Official Debian package due to in the guide the package was downloaded from the Ubuntu PPA. Note: SimpleScreenRecorder and other screen recorders like Kazam can be fetched and installed from the Official Debian repositories using APT, Aptitude, etc. since the release of Debian 9 codename "Stretch").
+Guide: Build packages from source
+Guide: SimpleScreenRecorder
+Guide: Debian source code
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+
+Setup a reproducible builds environment:
+Reproducible builds is still a work in progress in the Debian organization. Reproducible builds means that the resultant package built from source code in local is byte for byte equals to the Debian Official package, to verify that the local system hasn't malware among the compilator (e.g. GCC), build tools, build environment and the whole system parts that can interfere and distort build processes.
+References:
+Topic: How to make your software build reproducibly
+File: 2015-08-13-CCCamp15-outline.pdf
+Topic: Debian working on reproducible builds.
+Web: https://tuxdiary.com/2015/02/24/debian-reproducible-builds/
+File: Debian working on reproducible builds.pdf
+Topic: Reproducible builds Debian Wiki
+Web: https://wiki.debian.org/ReproducibleBuilds
+File: ReproducibleBuilds - Debian WiKi.pdf
+Topic: (Spanish) Debian works on reproducible builds ability
+File: Debian está trabajando en compilaciones reproducibles.pdf
+Web: http://dplinux.net/debian­continua­con­las­compilaciones­reproducibles/
+File: Debian continúa con las compilaciones reproducibles - Detrás del pingüino.pdf
+
+Debian Teams have rebuilt 94.0% of the Official repository packages for the Debian 9 codename "Stretch" release using reproducible builds and they expect to complete the 100% soon.
+Topic: Overview of various statistics about reproducible builds, and live tool to test Official Debian packages reproducible build availability.
+Web: https://tests.reproducible-builds.org/debian/reproducible.html
+File: Overview of various statistics about reproducible builds.pdf
+Also, Debian organization distributes tools for Debian users who want to test and/or re-build packages using reproducible builds of the Debian packages source code.
+References: 
+Topic: ReproducibleBuilds Howto. Test reproducible builds and build reproducibly. (Interesting for developers to add feature to their packages)
+Web: https://wiki.debian.org/ReproducibleBuilds/Howto 
+File: ReproducibleBuilds How to - Debian WiKi.pdf
+
+Stay connected to the progress on reproducible builds to apply it on your projects as soon as possible.
+
+Test reproducible builds using Debian Official repositories packages:
+To reproduce builds of my own source code version using Debian reproducible build tools, I assume that I want to modify the source code of some Debian packages before build them to create my own Debian based distribution instead of make simple new builds for my own project. The final build is not going to be equal byte for byte compared to the Official package from the Debian repositories. In that case an accepted procedure to ensure the security of the process is to build a first time the Debian package no modifications and then build with changes a second time to make sure that there is no malware involved in the build process. Anyway the reproducible builds tools have more than one approaches to find this type of malicious pieces of software.
+
+Prepare a build environment:
+References:
+Topic: Use sbuild, because sbuild supports reprducible builds (debuild doesn't). You can read all the guide but start in the section "Setup steps".
+Guide: Build packages from source
+Review sources files:
+$ sudo nano /etc/apt/sources.list
+Update sources dbs:
+$ sudo apt-get update
+To install sbuild:
+$ sudo apt-get install sbuild
+Log all the packages to be installed. For example, according to my system:
+The following additional packages will be installed:
+autodep8 autopkgtest build-essential dctrl-tools debootstrap dpkg-dev
+fakeroot g++ g++-6 gcc gcc-6 libalgorithm-diff-perl
+libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan3
+libboost-program-options1.62.0 libc-dev-bin libc6-dev libcc1-0 libcilkrts5
+libclass-data-inheritable-perl libdevel-stacktrace-perl
+libemail-date-format-perl libexception-class-perl libfakeroot
+libfilesys-df-perl libgcc-6-dev libitm1 libmime-lite-perl libmime-types-perl
+libmpx2 libsbuild-perl libstdc++-6-dev libubsan0 linux-libc-dev make
+manpages-dev schroot schroot-common
+The following NEW packages will be installed:
+autodep8 autopkgtest build-essential dctrl-tools debootstrap dpkg-dev
+fakeroot g++ g++-6 gcc gcc-6 libalgorithm-diff-perl
+libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan3
+libboost-program-options1.62.0 libc-dev-bin libc6-dev libcc1-0 libcilkrts5
+libclass-data-inheritable-perl libdevel-stacktrace-perl
+libemail-date-format-perl libexception-class-perl libfakeroot
+libfilesys-df-perl libgcc-6-dev libitm1 libmime-lite-perl libmime-types-perl
+libmpx2 libsbuild-perl libstdc++-6-dev libubsan0 linux-libc-dev make
+manpages-dev sbuild schroot schroot-common
+Install rngd daemon:
+$ sudo apt-get update
+$ sudo apt-cache search 'rngd'
+Output:
+rng-tools - Daemon to use a Hardware TRNG
+Install rng-tools to create hardware entropy:
+$ sudo apt-get install rng-tools
+The following NEW packages will be installed:
+  rng-tools
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 42.8 kB of archives.
+Output errors related to systemd:
+Setting up rng-tools (2-unofficial-mt.14-1+b2) ...
+Job for rng-tools.service failed because the control process exited with error code.
+See "systemctl status rng-tools.service" and "journalctl -xe" for details.
+invoke-rc.d: initscript rng-tools, action "start" failed.
+● rng-tools.service
+   Loaded: loaded (/etc/init.d/rng-tools; generated; vendor preset: enabled)
+   Active: failed (Result: exit-code) since Thu 2017-07-27 20:59:52 CDT; 65ms ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 9311 ExecStart=/etc/init.d/rng-tools start (code=exited, status=1/FAILURE)
+Jul 27 20:59:52 hpbook systemd[1]: Starting rng-tools.service...
+Jul 27 20:59:52 hpbook rng-tools[9311]: Starting Hardware RNG entropy gather…d).
+Jul 27 20:59:52 hpbook systemd[1]: rng-tools.service: Control process exite…us=1
+Jul 27 20:59:52 hpbook systemd[1]: Failed to start rng-tools.service.
+Jul 27 20:59:52 hpbook systemd[1]: rng-tools.service: Unit entered failed state.
+Jul 27 20:59:52 hpbook systemd[1]: rng-tools.service: Failed with result 'e…de'.
+Hint: Some lines were ellipsized, use -l to show in full.
+Processing triggers for systemd (232-25+deb9u1) ...
+Processing triggers for man-db (2.7.6.1-2) ...
+End of output errors.
+References:
+Guide: systemd
+Fortunately, rngd runs perfectly no systemd service is required.
+Verify current entropy:
+# watch -n 1 cat /proc/sys/kernel/random/entropy_avail
+Increase entropy with rngd daemon:
+# rngd -r /dev/urandom -o /dev/random -f -t 1
+Verify new entropy increment: 
+# watch -n 1 cat /proc/sys/kernel/random/entropy_avail
+At this point I create the directory:
+# mkdir /root/.gnupg
+# cd /root
+# ls -hal .gnupg
+Run the command to generate the keys, and this time works:
+# sbuild-update --keygen
+OUtput:
+Generating archive key.
+gpg: WARNING: unsafe permissions on homedir '/root/.gnupg'
+gpg: keybox '/root/.gnupg/pubring.kbx' created
+gpg: /root/.gnupg/trustdb.gpg: trustdb created
+gpg: key 821072D3B192F1F0 marked as ultimately trusted
+gpg: directory '/root/.gnupg/openpgp-revocs.d' created
+gpg: revocation certificate stored as '/root/.gnupg/openpgp-revocs.d/3F9DD6B5EFABE7EB699B2108821072D3B192F1F0.rev'
+gpg: WARNING: unsafe permissions on homedir '/root/.gnupg'
+gpg: WARNING: unsafe permissions on homedir '/root/.gnupg'
+End of output.
+At this point I can stop the rngd daemon.
+Add user esteban to sbuild group:
+$ sudo sbuild-adduser $LOGNAME
+The same command no sudo:
+# sbuild-adduser esteban
+Output:
+Adding user `esteban' to group `sbuild' ...
+Adding user esteban to group sbuild
+Done.
+
+# Setup tasks for sudo users:
+
+# BUILD
+# HOME directory in chroot, user:sbuild, 0770 perms, from
+# passwd/group copying to chroot, filtered
+# Maybe source 50sbuild, or move into common location.
+
+Next, copy the example sbuildrc file to the home directory of each user and
+set the variables for your system:
+
+  cp /usr/share/doc/sbuild/examples/example.sbuildrc /home/esteban/.sbuildrc
+
+Now try a build:
+
+  cd /path/to/source
+  sbuild-update -ud <distribution>
+  (or "sbuild-apt <distribution> apt-get -f install"
+       first if the chroot is broken)
+  sbuild -d <distribution> <package>_<version>
+
+End of Output.
+
+Add developer user esteban to sudoers list:
+References:
+Topic: Follow the guide to add the new sudoer.
+Guide: Sudo
+If you don't have sudo installed to include it later in the reproducible builds list!, remember the package name and its dependencies: 
+# apt-get update
+# apt-get install sudo
+
+Create the default user sbuild configuration file:
+$ cp /usr/share/doc/sbuild/examples/example.sbuildrc /home/esteban/.sbuildrc
+Read the file:
+$ nano .sbuildrc
+I am not doing anything in these files at the moment.
+Next ... *logout* and *re-login*
+Next, in the guide ("Build packages from source") I have how to set up specific architectures (i686 or amd64), releases (Debian 8 (Jessie), 9 (stretch), stable, testing, sid, etc., but the most simple way to build is build for the current system release and architecture, in this case: i686, Stretch.
+I will build for my current system and architecture:
+$ arch
+Output:
+i686
+End of Output.
+cat /etc/os-release
+To know the codename:
+To know the codename with systemd:
+hostnamectl | grep "Operating System"
+Complete command, to create the dedicated clean environment in the "chroot" directory:
+$ sudo sbuild-createchroot --make-sbuild-tarball=/var/lib/sbuild/stretch-i686.tar.gz stretch `mktemp -d` http://ftp.debian.org/debian | tee -a logfile.log
+Note: ftp is almost gone, according to latest Debian news, so change the argument of the command options accordingly, if you need.
+The output of the command displays how sbuild retrieves the chrooted environment packages based on the command arguments. Output (logged in the file logfile.log):
+I: SUITE: stretch
+I: TARGET: /tmp/tmp.mSn3CwCcGy
+I: MIRROR: http://ftp.debian.org/debian
+I: Running debootstrap --arch=i686 --variant=buildd --verbose --include=fakeroot,build-essential --components=main --resolve-deps stretch /tmp/tmp.mSn3CwCcGy http://ftp.debian.org/debian
+I: Retrieving InRelease 
+I: Retrieving Release 
+I: Retrieving Release.gpg 
+I: Checking Release signature
+I: Valid Release signature (key id 067E3C456BAE240ACEE88F6FEF0F382A1A7B6500)
+I: Retrieving Packages 
+I: Validating Packages 
+I: Resolving dependencies of required packages...
+I: Resolving dependencies of base packages...
+I: Found additional required dependencies: libaudit-common libaudit1 libbz2-1.0 libcap-ng0 libdb5.3 libdebconfclient0 libgcrypt20 libgpg-error0 liblz4-1 libncursesw5 libsemanage-common libsemanage1 libsystemd0 libudev1 libustr-1.0-1 
+I: Found additional base dependencies: adduser binutils bzip2 cpp cpp-6 debian-archive-keyring dpkg-dev g++ g++-6 gcc gcc-6 gpgv libapt-pkg5.0 libasan3 libatomic1 libc-dev-bin libc6-dev libcc1-0 libcilkrts5 libdpkg-perl libfakeroot libgcc-6-dev libgdbm3 libgmp10 libgomp1 libisl15 libitm1 libmpc3 libmpfr4 libmpx2 libperl5.24 libquadmath0 libstdc++-6-dev libstdc++6 libubsan0 linux-libc-dev make patch perl perl-modules-5.24 xz-utils 
+I: Checking component main on http://ftp.debian.org/debian...
+I: Retrieving libacl1 2.2.52-3+b1
+I: Validating libacl1 2.2.52-3+b1
+I: Retrieving adduser 3.115
+I: Validating adduser 3.115
+I: Retrieving apt 1.4.7
+I: Validating apt 1.4.7
+I: Retrieving libapt-pkg5.0 1.4.7
+I: Validating libapt-pkg5.0 1.4.7
+I: Retrieving libattr1 1:2.4.47-2+b2
+I: Validating libattr1 1:2.4.47-2+b2
+I: Retrieving libaudit-common 1:2.6.7-2
+I: Validating libaudit-common 1:2.6.7-2
+I: Retrieving libaudit1 1:2.6.7-2
+I: Validating libaudit1 1:2.6.7-2
+I: Retrieving base-files 9.9+deb9u1
+I: Validating base-files 9.9+deb9u1
+I: Retrieving base-passwd 3.5.43
+I: Validating base-passwd 3.5.43
+I: Retrieving bash 4.4-5
+I: Validating bash 4.4-5
+I: Retrieving binutils 2.28-5
+I: Validating binutils 2.28-5
+I: Retrieving build-essential 12.3
+I: Validating build-essential 12.3
+I: Retrieving bzip2 1.0.6-8.1
+I: Validating bzip2 1.0.6-8.1
+I: Retrieving libbz2-1.0 1.0.6-8.1
+I: Validating libbz2-1.0 1.0.6-8.1
+I: Retrieving libdebconfclient0 0.227
+I: Validating libdebconfclient0 0.227
+I: Retrieving coreutils 8.26-3
+I: Validating coreutils 8.26-3
+I: Retrieving dash 0.5.8-2.4
+I: Validating dash 0.5.8-2.4
+I: Retrieving libdb5.3 5.3.28-12+b1
+I: Validating libdb5.3 5.3.28-12+b1
+I: Retrieving debconf 1.5.61
+I: Validating debconf 1.5.61
+I: Retrieving debian-archive-keyring 2017.5
+I: Validating debian-archive-keyring 2017.5
+I: Retrieving debianutils 4.8.1.1
+I: Validating debianutils 4.8.1.1
+I: Retrieving diffutils 1:3.5-3
+I: Validating diffutils 1:3.5-3
+I: Retrieving dpkg 1.18.24
+I: Validating dpkg 1.18.24
+I: Retrieving dpkg-dev 1.18.24
+I: Validating dpkg-dev 1.18.24
+I: Retrieving libdpkg-perl 1.18.24
+I: Validating libdpkg-perl 1.18.24
+I: Retrieving e2fslibs 1.43.4-2
+I: Validating e2fslibs 1.43.4-2
+I: Retrieving e2fsprogs 1.43.4-2
+I: Validating e2fsprogs 1.43.4-2
+I: Retrieving libcomerr2 1.43.4-2
+I: Validating libcomerr2 1.43.4-2
+I: Retrieving libss2 1.43.4-2
+I: Validating libss2 1.43.4-2
+I: Retrieving fakeroot 1.21-3.1
+I: Validating fakeroot 1.21-3.1
+I: Retrieving libfakeroot 1.21-3.1
+I: Validating libfakeroot 1.21-3.1
+I: Retrieving findutils 4.6.0+git+20161106-2
+I: Validating findutils 4.6.0+git+20161106-2
+I: Retrieving cpp-6 6.3.0-18
+I: Validating cpp-6 6.3.0-18
+I: Retrieving g++-6 6.3.0-18
+I: Validating g++-6 6.3.0-18
+I: Retrieving gcc-6 6.3.0-18
+I: Validating gcc-6 6.3.0-18
+I: Retrieving gcc-6-base 6.3.0-18
+I: Validating gcc-6-base 6.3.0-18
+I: Retrieving libasan3 6.3.0-18
+I: Validating libasan3 6.3.0-18
+I: Retrieving libatomic1 6.3.0-18
+I: Validating libatomic1 6.3.0-18
+I: Retrieving libcc1-0 6.3.0-18
+I: Validating libcc1-0 6.3.0-18
+I: Retrieving libcilkrts5 6.3.0-18
+I: Validating libcilkrts5 6.3.0-18
+I: Retrieving libgcc-6-dev 6.3.0-18
+I: Validating libgcc-6-dev 6.3.0-18
+I: Retrieving libgcc1 1:6.3.0-18
+I: Validating libgcc1 1:6.3.0-18
+I: Retrieving libgomp1 6.3.0-18
+I: Validating libgomp1 6.3.0-18
+I: Retrieving libitm1 6.3.0-18
+I: Validating libitm1 6.3.0-18
+I: Retrieving libmpx2 6.3.0-18
+I: Validating libmpx2 6.3.0-18
+I: Retrieving libquadmath0 6.3.0-18
+I: Validating libquadmath0 6.3.0-18
+I: Retrieving libstdc++-6-dev 6.3.0-18
+I: Validating libstdc++-6-dev 6.3.0-18
+I: Retrieving libstdc++6 6.3.0-18
+I: Validating libstdc++6 6.3.0-18
+I: Retrieving libubsan0 6.3.0-18
+I: Validating libubsan0 6.3.0-18
+I: Retrieving cpp 4:6.3.0-4
+I: Validating cpp 4:6.3.0-4
+I: Retrieving g++ 4:6.3.0-4
+I: Validating g++ 4:6.3.0-4
+I: Retrieving gcc 4:6.3.0-4
+I: Validating gcc 4:6.3.0-4
+I: Retrieving libgdbm3 1.8.3-14
+I: Validating libgdbm3 1.8.3-14
+I: Retrieving libc-bin 2.24-11+deb9u1
+I: Validating libc-bin 2.24-11+deb9u1
+I: Retrieving libc-dev-bin 2.24-11+deb9u1
+I: Validating libc-dev-bin 2.24-11+deb9u1
+I: Retrieving libc6 2.24-11+deb9u1
+I: Validating libc6 2.24-11+deb9u1
+I: Retrieving libc6-dev 2.24-11+deb9u1
+I: Validating libc6-dev 2.24-11+deb9u1
+I: Retrieving multiarch-support 2.24-11+deb9u1
+I: Validating multiarch-support 2.24-11+deb9u1
+I: Retrieving libgmp10 2:6.1.2+dfsg-1
+I: Validating libgmp10 2:6.1.2+dfsg-1
+I: Retrieving gpgv 2.1.18-6
+I: Validating gpgv 2.1.18-6
+I: Retrieving grep 2.27-2
+I: Validating grep 2.27-2
+I: Retrieving gzip 1.6-5+b1
+I: Validating gzip 1.6-5+b1
+I: Retrieving hostname 3.18+b1
+I: Validating hostname 3.18+b1
+I: Retrieving init-system-helpers 1.48
+I: Validating init-system-helpers 1.48
+I: Retrieving libisl15 0.18-1
+I: Validating libisl15 0.18-1
+I: Retrieving libcap-ng0 0.7.7-3+b1
+I: Validating libcap-ng0 0.7.7-3+b1
+I: Retrieving libgcrypt20 1.7.6-2+deb9u1
+I: Validating libgcrypt20 1.7.6-2+deb9u1
+I: Retrieving libgpg-error0 1.26-2
+I: Validating libgpg-error0 1.26-2
+I: Retrieving libselinux1 2.6-3+b1
+I: Validating libselinux1 2.6-3+b1
+I: Retrieving libsemanage-common 2.6-2
+I: Validating libsemanage-common 2.6-2
+I: Retrieving libsemanage1 2.6-2
+I: Validating libsemanage1 2.6-2
+I: Retrieving libsepol1 2.6-2
+I: Validating libsepol1 2.6-2
+I: Retrieving linux-libc-dev 4.9.30-2+deb9u2
+I: Validating linux-libc-dev 4.9.30-2+deb9u2
+I: Retrieving lsb-base 9.20161125
+I: Validating lsb-base 9.20161125
+I: Retrieving liblz4-1 0.0~r131-2+b1
+I: Validating liblz4-1 0.0~r131-2+b1
+I: Retrieving make 4.1-9.1
+I: Validating make 4.1-9.1
+I: Retrieving mawk 1.3.3-17+b3
+I: Validating mawk 1.3.3-17+b3
+I: Retrieving libmpc3 1.0.3-1+b2
+I: Validating libmpc3 1.0.3-1+b2
+I: Retrieving libmpfr4 3.1.5-1
+I: Validating libmpfr4 3.1.5-1
+I: Retrieving libncursesw5 6.0+20161126-1
+I: Validating libncursesw5 6.0+20161126-1
+I: Retrieving libtinfo5 6.0+20161126-1
+I: Validating libtinfo5 6.0+20161126-1
+I: Retrieving ncurses-base 6.0+20161126-1
+I: Validating ncurses-base 6.0+20161126-1
+I: Retrieving ncurses-bin 6.0+20161126-1
+I: Validating ncurses-bin 6.0+20161126-1
+I: Retrieving libpam-modules 1.1.8-3.6
+I: Validating libpam-modules 1.1.8-3.6
+I: Retrieving libpam-modules-bin 1.1.8-3.6
+I: Validating libpam-modules-bin 1.1.8-3.6
+I: Retrieving libpam-runtime 1.1.8-3.6
+I: Validating libpam-runtime 1.1.8-3.6
+I: Retrieving libpam0g 1.1.8-3.6
+I: Validating libpam0g 1.1.8-3.6
+I: Retrieving patch 2.7.5-1+b2
+I: Validating patch 2.7.5-1+b2
+I: Retrieving libpcre3 2:8.39-3
+I: Validating libpcre3 2:8.39-3
+I: Retrieving libperl5.24 5.24.1-3+deb9u1
+I: Validating libperl5.24 5.24.1-3+deb9u1
+I: Retrieving perl 5.24.1-3+deb9u1
+I: Validating perl 5.24.1-3+deb9u1
+I: Retrieving perl-base 5.24.1-3+deb9u1
+I: Validating perl-base 5.24.1-3+deb9u1
+I: Retrieving perl-modules-5.24 5.24.1-3+deb9u1
+I: Validating perl 5.24.1-3+deb9u1
+I: Retrieving perl-base 5.24.1-3+deb9u1
+I: Validating perl-base 5.24.1-3+deb9u1
+I: Retrieving perl-modules-5.24 5.24.1-3+deb9u1
+I: Validating perl-modules-5.24 5.24.1-3+deb9u1
+I: Retrieving sed 4.4-1
+I: Validating sed 4.4-1
+I: Retrieving sensible-utils 0.0.9
+I: Validating sensible-utils 0.0.9
+I: Retrieving login 1:4.4-4.1
+I: Validating login 1:4.4-4.1
+I: Retrieving passwd 1:4.4-4.1
+I: Validating passwd 1:4.4-4.1
+I: Retrieving libsystemd0 232-25+deb9u1
+I: Validating libsystemd0 232-25+deb9u1
+I: Retrieving libudev1 232-25+deb9u1
+I: Validating libudev1 232-25+deb9u1
+I: Retrieving sysvinit-utils 2.88dsf-59.9
+I: Validating sysvinit-utils 2.88dsf-59.9
+I: Retrieving tar 1.29b-1.1
+I: Validating tar 1.29b-1.1
+I: Retrieving tzdata 2017b-1
+I: Validating tzdata 2017b-1
+I: Retrieving libustr-1.0-1 1.0.4-6
+I: Validating libustr-1.0-1 1.0.4-6
+I: Retrieving bsdutils 1:2.29.2-1
+I: Validating bsdutils 1:2.29.2-1
+I: Retrieving libblkid1 2.29.2-1
+I: Validating libblkid1 2.29.2-1
+I: Retrieving libfdisk1 2.29.2-1
+I: Validating libfdisk1 2.29.2-1
+I: Retrieving libmount1 2.29.2-1
+I: Validating libmount1 2.29.2-1
+I: Retrieving libsmartcols1 2.29.2-1
+I: Validating libsmartcols1 2.29.2-1
+I: Retrieving libuuid1 2.29.2-1
+I: Validating libuuid1 2.29.2-1
+I: Retrieving mount 2.29.2-1
+I: Validating mount 2.29.2-1
+I: Retrieving util-linux 2.29.2-1
+I: Validating util-linux 2.29.2-1
+I: Retrieving liblzma5 5.2.2-1.2+b1
+I: Validating liblzma5 5.2.2-1.2+b1
+I: Retrieving xz-utils 5.2.2-1.2+b1
+I: Validating xz-utils 5.2.2-1.2+b1
+I: Retrieving zlib1g 1:1.2.8.dfsg-5
+I: Validating zlib1g 1:1.2.8.dfsg-5
+I: Chosen extractor for .deb packages: dpkg-deb
+I: Extracting libacl1...
+I: Extracting libattr1...
+I: Extracting libaudit-common...
+I: Extracting libaudit1...
+I: Extracting base-files...
+[...]
+End of output.
+
+To preserve the reproducible build in a perfect state, I have to download the sources of every package, and then build every package using reproducible builds and then create a local Debian repository, and then rerun the sbuild command to create the chroot environment but this time using the local Debian repository. The other option is to install the complete set of .deb packages in a directory, using the command $ sudo dpkg -i *.deb. Alternately, review the system cache in /var/cache/apt/archives in the minimal system. The packages installed with debootstrap most be there. You can substitute these packages with packages build from source and then installed them with apt-get, which first at all verifies that the packages are cached in the system.
+References:
+Topic: Create local debian repository 
+Guide: Create a local Debian repository
+Guide: Manage traditional software repositories
+At the end, repeat the command to create the chroot environment will look like this:
+sudo sbuild-createchroot --make-sbuild-tarball=/var/lib/sbuild/stretch-i686.tar.gz stretch `mktemp -d` LOCAL-DEBIAN-REPOSITORY-HERE | tee -a logfile.log 
+In this way we will have all the chrooted from source and build reproduced.
+
+To find the names of all sbuild chroots, run the following:
+$ schroot -l | grep sbuild
+Current Output containing single environment is:
+chroot:stretch-i686-sbuild
+source:stretch-i686-sbuild
+End of output.
+
+Update specific chrooted environment by name every time before use it to build packages:
+$ sudo sbuild-update -udcar stretch-i686
+Or for 64 bit computers, use:
+$ sudo sbuild-update -udcar stretch-amd64
+Or you can use $arch variable:
+$ sudo sbuild-update -udcar stretch-$arch
+
+To remove chrooot environments:
+List existent environments and then choose which to remove, eg:
+$ sudo sbuild-destroychroot jessie-amd64
+Follow instructions
+
+More commands:
+# sbuild (and then press TAB to choose from the list)
+# man sbuild (and then press TAB to choose from the list)
+
+
+Verify that all the applications involved in the build environment are build reproducible, according to Debian, on the web site:
+References:
+Topic: Live tool to test build reproducible packages
+Web:  Web: https://tests.reproducible-builds.org/debian/reproducible.html
+At this point we have to test:
+The resultant packages of the command: $ sudo apt-get install sbuild
+The resultant package of the command: $ sudo apt-get install rng-tools
+The resultant package of the command: # apt-get install sudo
+The packages in the file logfile.log
+
+After the individual verification of the resultant packages on the reproducible builds web site, download their source code, build them using the sbuild with reproducible builds in the chrooted environment, uninstall the equivalent packages retrieved with sbuild create command, and install them but this time using your own new built DEB packages. In this way you will have a build reproducibly build environment built from source. Once sbuild is ready again, remove the existent chrooted environment, and create a new one following the same steps described in this guide. Remember that this time sbuild has to retrieve your recently built packages from your local Debian repository set up in the sources directory /etc/apt/.
+
+I am not going to reproduce that repetitive process in this book, but at this point I am going to show important steps using the package debootstrap as an example. Debootstrap is one of the sbuild installation dependencies. 
+
+Test reproducible builds availability of the package debootstrap in the Debian web site:
+Web: https://tests.reproducible-builds.org/debian/reproducible.html
+The test resturns a web page. I go to the end and find the value:
+SOURCE_DATE_EPOCH="1501044790"
+I expect the variable having the same value after my debootstrap build.
+References:
+Topic: Debootstrap reproducible builds results web page.
+File: debootstrap reproducible builds results.pdf
+Topic: SOURCE_DATE_EPOCH specification (Interesting for developers to add feature to their packages)
+Web: https://reproducible-builds.org/specs/source-date-epoch/
+File: SOURCE_DATE_EPOCH specification.pdf (Interesting for developers to add feature to their packages)
+Topic: Examples available, ReproducibleBuilds TimestampsProposal. (Interesting for developers to add feature to their packages)
+Web: https://wiki.debian.org/ReproducibleBuilds/TimestampsProposal#Examples
+File: Examples available, ReproducibleBuilds TimestampsProposal.pdf
+
+Download the debootstrap source code using apt:
+Next References are already mentioned in this guide:
+References:
+Topic: Debian source code meaning
+Guide: Debian source code
+Topic: How to get Debian packages source code (and build them using pbuilder. The example package, SimpleScreenRecorder, couldn't be built reproducibly against the Official Debian package due to in the guide the package was downloaded from the Ubuntu PPA. Note: SimpleScreenRecorder and other screen recorders like Kazam can be fetched and installed from the Official Debian repositories using APT, Aptitude, etc. since the release of Debian 9 codename "Stretch").
+Guide: Build packages from source
+Guide: SimpleScreenRecorder
+Guide: Debian source code
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+I will follow this reference in the guide "Debian source code":
+References:
+Topic: Building Debian packages from Debian sources - tutorial. Get the sources of a package.
+Web: https://wiki.debian.org/BuildingTutorial
+File: Building Debian packages from Debian source tutorial.pdf
+Activate main in sources file:
+$ sudo nano /etc/apt/sources.list
+Update sources db:
+$ sudo apt-get update
+Search the program:
+$ apt-cache search debootstrap
+Download the source code to home:
+$ cd
+$ apt-get source debootstrap
+Output:
+Reading package lists... Done
+NOTICE: 'debootstrap' packaging is maintained in the 'Git' version control system at:
+https://anonscm.debian.org/git/d-i/debootstrap.git
+Please use:
+git clone https://anonscm.debian.org/git/d-i/debootstrap.git
+to retrieve the latest (possibly unreleased) updates to the package.
+Need to get 70.8 kB of source archives.
+Get:1 http://ftp.us.debian.org/debian stretch/main debootstrap 1.0.89 (dsc) [1,800 B]
+Get:2 http://ftp.us.debian.org/debian stretch/main debootstrap 1.0.89 (tar) [69.0 kB]
+Fetched 70.8 kB in 0s (101 kB/s)   
+End of output.
+To list the debootstrap directory and files:
+$ ls
+Output:
+debootstrap-1.0.89/
+debootstrap_1.0.89.dsc
+debootstrap_1.0.89.tar.gz
+End of output.
+
+Build debootstrap using reproducible builds environment:
+
+References:
+Topic: ReproducibleBuildsHowto (Interesting for developers to add feature to their packages)
+Web: https://wiki.debian.org/ReproducibleBuilds/Howto
+File:
+Section:
+Testing procedure
+The easiest way to get a test environment for now is to use pbuilder. Setup a build chroot with the experimental toolchain. Then clone the reproducible/misc.git repository. 
+
+References about "The easiest way to get a test environment for now is to use pbuilder":
+References:
+Topic:  Build chroot with the experimental toolchain
+Web: https://wiki.debian.org/ReproducibleBuilds/ExperimentalToolchain#Usage_example
+File:
+Section:
+Usage example
+Steps:
+Install pbuilder:
+$ nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get install pbuilder
+Output:
+The following additional packages will be installed:
+at autoconf automake autopoint autotools-dev debhelper debian-keyring
+devscripts dh-autoreconf dh-strip-nondeterminism dirmngr dput eatmydata
+equivs git git-man libb-hooks-endofscope-perl libclass-inspector-perl
+libclass-method-modifiers-perl libclass-xsaccessor-perl
+libconvert-binhex-perl libdata-optlist-perl libdevel-globaldestruction-perl
+libdistro-info-perl libeatmydata1 liberror-perl libfile-chdir-perl
+libfile-homedir-perl libfile-stripnondeterminism-perl libfile-which-perl
+libgetopt-long-descriptive-perl libgit-wrapper-perl libimport-into-perl
+libio-sessiondata-perl libio-stringy-perl liblist-compare-perl libltdl-dev
+libmail-sendmail-perl libmime-tools-perl libmodule-implementation-perl
+libmodule-runtime-perl libmoo-perl libnamespace-clean-perl
+libnumber-compare-perl libnumber-range-perl libossp-uuid-perl libossp-uuid16
+libpackage-stash-perl libpackage-stash-xs-perl libparams-classify-perl
+libparams-util-perl libparams-validate-perl libpath-iterator-rule-perl
+libpath-tiny-perl libpod-constants-perl librole-tiny-perl
+libscalar-list-utils-perl libsoap-lite-perl libsort-key-perl
+libsort-versions-perl libstrictures-perl libstring-copyright-perl
+libstring-escape-perl libsub-exporter-perl libsub-exporter-progressive-perl
+libsub-identify-perl libsub-install-perl libsys-hostname-long-perl
+libtask-weaken-perl libtext-glob-perl libtool libtry-tiny-perl
+libunicode-utf8-perl libvariable-magic-perl libxmlrpc-lite-perl licensecheck
+m4 po-debconf python-apt python-debian python-gpg python3-magic rsync strace
+wdiff
+The following NEW packages will be installed:
+at autoconf automake autopoint autotools-dev debhelper debian-keyring
+devscripts dh-autoreconf dh-strip-nondeterminism dirmngr dput eatmydata
+equivs git git-man libb-hooks-endofscope-perl libclass-inspector-perl
+libclass-method-modifiers-perl libclass-xsaccessor-perl
+libconvert-binhex-perl libdata-optlist-perl libdevel-globaldestruction-perl
+libdistro-info-perl libeatmydata1 liberror-perl libfile-chdir-perl
+libfile-homedir-perl libfile-stripnondeterminism-perl libfile-which-perl
+libgetopt-long-descriptive-perl libgit-wrapper-perl libimport-into-perl
+libio-sessiondata-perl libio-stringy-perl liblist-compare-perl libltdl-dev
+libmail-sendmail-perl libmime-tools-perl libmodule-implementation-perl
+libmodule-runtime-perl libmoo-perl libnamespace-clean-perl
+libnumber-compare-perl libnumber-range-perl libossp-uuid-perl libossp-uuid16
+libpackage-stash-perl libpackage-stash-xs-perl libparams-classify-perl
+libparams-util-perl libparams-validate-perl libpath-iterator-rule-perl
+libpath-tiny-perl libpod-constants-perl librole-tiny-perl
+libscalar-list-utils-perl libsoap-lite-perl libsort-key-perl
+libsort-versions-perl libstrictures-perl libstring-copyright-perl
+libstring-escape-perl libsub-exporter-perl libsub-exporter-progressive-perl
+libsub-identify-perl libsub-install-perl libsys-hostname-long-perl
+libtask-weaken-perl libtext-glob-perl libtool libtry-tiny-perl
+libunicode-utf8-perl libvariable-magic-perl libxmlrpc-lite-perl licensecheck
+m4 pbuilder po-debconf python-apt python-debian python-gpg python3-magic
+rsync strace wdiff
+End of output.
+Remember to log the packages installed to come back to this point of the guide to test their reproducibility, rebuild all the packages from source but using reproducible builds with pbuild and re-install the build environment with my own package versions. I pretended to use sbuild instead of pbuild or debuild as I explained before this section of the guide but the Official Debian documentation recommends to use pbuild, (See current References). Then, we need to add to the installation of pbuild the previous summary of packages described in the section of this guide: "Verify that all the applications involved in the build environment are build reproducible, according to Debian, on the web site:". We also have to add to the list of packages to re-build using reproducible builds the required APT repository or GIT repositories described in the reference of the current section of the present guide: "References about "The easiest way to get a test environment for now is to use pbuilder":".
+Create an unstable base:
+$ sudo pbuilder --create --distribution unstable | tee -a logfile2.log
+The output of the log file logfile2.log is big so that I am not going to paste it here. Remember to add the packages in the file to the big list of packages to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+Setup an environment with the custom toolchain: 
+$ sudo cp /var/cache/pbuilder/base.tgz /var/cache/pbuilder/base-reproducible.tgz
+$ sudo pbuilder --login --save-after-exec --basetgz /var/cache/pbuilder/base-reproducible.tgz
+# echo 'deb http://reproducible.alioth.debian.org/debian/ ./' > /etc/apt/sources.list.d/reproducible.list
+# apt-get install busybox gnupg
+Output:
+[...]
+The following additional packages will be installed:
+gnupg-agent libassuan0 libksba8 libnpth0 libreadline7 pinentry-curses
+readline-common
+Recommended packages:
+dirmngr gnupg-l10n
+The following NEW packages will be installed:
+busybox gnupg gnupg-agent libassuan0 libksba8 libnpth0 libreadline7
+pinentry-curses readline-common
+[...]
+End of output.
+Remember those are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+# busybox wget -O- http://reproducible.alioth.debian.org/reproducible.gpg | apt-key add -
+# apt-get purge busybox gnupg
+# apt autoremove
+# apt-get update
+# apt-get upgrade
+Output:
+The following packages will be upgraded:
+cpp-6 dpkg dpkg-dev g++-6 gcc-6 gcc-6-base libasan3 libdpkg-perl
+libgcc-6-dev libstdc++-6-dev
+End of output.
+Remember those are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+Needed by rebuild.sh script:
+# apt-get install locales-all
+Output:
+The following additional packages will be installed:
+libc-l10n
+The following NEW packages will be installed:
+libc-l10n locales-all
+End of Output.
+Remember those are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+Needed by rebuild.sh for detecting readdir related issues:
+# apt-get install disorderfs
+Output:
+The following additional packages will be installed:
+fuse libfuse2
+The following NEW packages will be installed:
+disorderfs fuse libfuse2
+End of output.
+Remember those are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+Exit the pbuilder login shell:
+# exit 0
+
+Use the prebuilder script from the misc.git repository:
+To clone the script:
+Install GIT out of the pbuild build environment:
+# nano /etc/apt/sources.list
+# apt-get update
+# apt-cache search git
+# apt-get install git
+Output:
+The following additional packages will be installed:
+git-man libcurl3-gnutls liberror-perl libexpat1 libgssapi-krb5-2
+libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.4-2
+libldap-common libnghttp2-14 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
+libssh2-1
+The following NEW packages will be installed:
+git git-man libcurl3-gnutls liberror-perl libexpat1 libgssapi-krb5-2
+libk5crypto3 libkeyutils1 libkrb5-3 libkrb5support0 libldap-2.4-2
+libldap-common libnghttp2-14 libpsl5 librtmp1 libsasl2-2 libsasl2-modules-db
+libssh2-1
+End of Output.
+Remember those are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+References:
+Topic: Install and setup GIT.
+Guide: Linuxbrew - Git
+Install Git tools:
+References:
+Topic: Install git tools.
+Guide: Linuxbrew - Git tools
+Clone Clone misc.git repository:
+References:
+Topic: How to use GIT
+Guide: A GIT manual
+Topic: Clone the reproducible/misc.git repository. The web contains the next options to clone:
+https://anonscm.debian.org/git/reproducible/misc.git, git://anonscm.debian.org/reproducible/misc.git, and ssh://git.debian.org/git/reproducible/misc.git
+Web: https://anonscm.debian.org/git/reproducible/misc.git
+File: Clone the reproducible-misc.git repository.pdf
+Alternatively, download the files through the web page and setup permissions with chmod, eg:
+$ chmod 777 file1.ext
+$ chmod -x file1.ext
+I am going to clone with GIT, because I know how to use it. 
+$ cd
+$ mkdir prebuilder
+$ cd prebuilder/
+$ git init
+$ ls -hal
+It is best option to set up SSH or SSL in the envi and then clone with one of their protocols, but just to explain what to do rapidly I type:
+$ git clone git://anonscm.debian.org/reproducible/misc.git
+Output:
+Cloning into 'misc'...
+remote: Counting objects: 1764, done.
+remote: Compressing objects: 100% (1312/1312), done.
+remote: Total 1764 (delta 1140), reused 744 (delta 432)
+Receiving objects: 100% (1764/1764), 260.80 KiB | 184.00 KiB/s, done.
+Resolving deltas: 100% (1140/1140), done.
+End of output.
+$ ls
+$ cd misc
+$ ls
+If you want to remove a repository simple delete the complete file. After that you can run:
+$ git status
+
+At this point I will clarify something before continue the guide: In the section: "Test reproducible builds availability of the package debootstrap in the Debian web site:" I assumed that I required debootstrap to create the reproducible builds environment with sbuild, but at this point that I changed from sbuild to pbuild and that I can do now is build one of the pbuild dependencies to finish the example. 
+$ sudo apt-get update
+$ apt-cache search rsync
+$ cd ; mkdir source-code ; cd source-code ; mkdir rsync ; cd rsync
+$ apt-get source rsync
+$ ls
+Output:
+Reading package lists... Done
+Need to get 921 kB of source archives.
+Get:1 http://ftp.us.debian.org/debian stretch/main rsync 3.1.2-1 (dsc) [1,676 B]
+Get:2 http://ftp.us.debian.org/debian stretch/main rsync 3.1.2-1 (tar) [893 kB]
+Get:3 http://ftp.us.debian.org/debian stretch/main rsync 3.1.2-1 (diff) [26.4 kB]                                     
+Fetched 921 kB in 13s (66.4 kB/s)                                                                                     
+dpkg-source: info: extracting rsync in rsync-3.1.2
+dpkg-source: info: unpacking rsync_3.1.2.orig.tar.gz
+dpkg-source: info: unpacking rsync_3.1.2-1.debian.tar.xz
+End of output.
+
+Alternative 1 to use pbuild: With script from git repository:
+
+To rebuild a source package, pass the name (or name stem) of its .dsc file:
+$ cd ; cd source-code ; cd rsync
+$ ls *.dsc
+$ /home/esteban/prebuilder/misc/prebuilder/rebuild.sh -b … rsync_3.1.2-2
+Or use:
+$ /home/esteban/prebuilder/misc/prebuilder/rebuild.sh -b … rsync_3.1.2-1.dsc
+
+Any of the two commands fail with errors:
+W: /home/esteban/.pbuilderrc does not exist
+E: File … does not exist
+/home/esteban/prebuilder/misc/prebuilder/rebuild.sh: line 71: logs/rsync.build1: No such file or directory
+/usr/bin/dcmd: 327: exec: rsync_*.changes: not found
+tar: Cowardly refusing to create an empty archive
+Try 'tar --help' or 'tar --usage' for more information.
+W: /home/esteban/.pbuilderrc does not exist
+E: File … does not exist
+/home/esteban/prebuilder/misc/prebuilder/rebuild.sh: line 94: logs/rsync.build2: No such file or directory
+End of errors.
+
+After I edited lines of rebuild.sh and re-run the command, nothing but fails ocurred. Then I decide to use Alternative 2.
+
+Alternative 2 using pbuild: In case of the Alternative 1 fails:
+Test:
+When you are ready, continue building with reproducible buildings through the next steps:
+$ cd; mkdir /home/esteban/source-code/acl/ ; cd /home/esteban/source-code/acl/
+$ apt-get source --download-only acl
+$ mkdir b1 b2
+$ sudo DEB_BUILD_OPTIONS=nocheck pbuilder --build --debbuildopts '-b' --basetgz /var/cache/pbuilder/base-reproducible.tgz acl_*.dsc | tee -a logfile3.log
+Remember that some log file lines are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+$ dcmd cp /var/cache/pbuilder/result/acl_*.changes b1
+$ sudo dcmd rm /var/cache/pbuilder/result/acl_*.changes
+$ sudo DEB_BUILD_OPTIONS=nocheck pbuilder --build --debbuildopts '-b' --basetgz /var/cache/pbuilder/base-reproducible.tgz acl_*.dsc | tee -a logfile4.log
+Remember that some log file lines are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+$ dcmd cp /var/cache/pbuilder/result/acl_*.changes b2
+$ sudo dcmd rm /var/cache/pbuilder/result/acl_*.changes
+Install diffoscope:
+$ apt-cache search diffoscope
+$ sudo apt-get install diffoscope
+Output:
+The following additional packages will be installed:
+aapt android-framework-res android-libaapt android-libandroidfw android-libbacktrace android-libbase
+android-libcutils android-liblog android-libunwind android-libutils android-libziparchive apktool attr
+augeas-lenses binfmt-support binutils-multiarch btrfs-progs btrfs-tools ca-certificates-mono caca-utils cli-common
+curl db-util db5.3-util default-jdk-headless enjarify extlinux fontforge-extras fp-compiler-3.0.0
+fp-units-rtl-3.0.0 fp-utils fp-utils-3.0.0 fpc-source-3.0.0 ghc hfsplus ipxe-qemu jsbeautifier junit ldmtool
+libafflib0v5 libantlr-java libantlr3-runtime-java libatinject-jsr330-api-java libaugeas0 libbfio1 libbsd-dev
+libcommons-cli-java libcommons-io-java libcommons-lang3-java libcurl3 libdate-manip-perl libewf2 libfdt1 libffi-dev
+libgmp-dev libgmpxx4ldbl libguava-java libguestfs-hfsplus libguestfs-reiserfs libguestfs-xfs libguestfs0 libhfsp0
+libhivex0 libjaxp1.3-java libjsr305-java libldm-1.0-0 libllvm3.8 libmono-corlib4.5-cil libmono-i18n-west4.0-cil
+libmono-i18n4.0-cil libmono-security4.0-cil libmono-system-configuration4.0-cil libmono-system-security4.0-cil
+libmono-system-xml4.0-cil libmono-system4.0-cil libmonoboehm-2.0-1 libncurses5-dev libprotobuf-lite10 librpm3
+librpmbuild3 librpmio3 librpmsign3 libsmali-java libspice-server1 libstringtemplate-java libtinfo-dev libtsk13
+libvdeplug2 libvirt0 libxen-4.8 libxenstore3.0 libxmlunit-java libyaml-snake-java llvm llvm-3.8 llvm-3.8-dev
+llvm-3.8-runtime llvm-runtime lsscsi lzop mdadm mono-4.0-gac mono-gac mono-runtime mono-runtime-common
+mono-runtime-sgen mono-utils mtools openjdk-8-jdk-headless pdftk python3-argcomplete python3-guestfs
+python3-jsbeautifier python3-libarchive-c python3-progressbar python3-rpm python3-tlsh qemu-system-common
+qemu-system-x86 qemu-utils reiserfsprogs rpm-common rpm2cpio scrub seabios sgabios sleuthkit sng sqlite3
+squashfs-tools supermin syslinux syslinux-common toilet toilet-fonts xfsprogs zerofree
+The following NEW packages will be installed:
+aapt android-framework-res android-libaapt android-libandroidfw android-libbacktrace android-libbase
+android-libcutils android-liblog android-libunwind android-libutils android-libziparchive apktool attr
+augeas-lenses binfmt-support binutils-multiarch btrfs-progs btrfs-tools ca-certificates-mono caca-utils cli-common
+curl db-util db5.3-util default-jdk-headless diffoscope enjarify extlinux fontforge-extras fp-compiler-3.0.0
+fp-units-rtl-3.0.0 fp-utils fp-utils-3.0.0 fpc-source-3.0.0 ghc hfsplus ipxe-qemu jsbeautifier junit ldmtool
+libafflib0v5 libantlr-java libantlr3-runtime-java libatinject-jsr330-api-java libaugeas0 libbfio1 libbsd-dev
+libcommons-cli-java libcommons-io-java libcommons-lang3-java libcurl3 libdate-manip-perl libewf2 libfdt1 libffi-dev
+libgmp-dev libgmpxx4ldbl libguava-java libguestfs-hfsplus libguestfs-reiserfs libguestfs-xfs libguestfs0 libhfsp0
+libhivex0 libjaxp1.3-java libjsr305-java libldm-1.0-0 libllvm3.8 libmono-corlib4.5-cil libmono-i18n-west4.0-cil
+libmono-i18n4.0-cil libmono-security4.0-cil libmono-system-configuration4.0-cil libmono-system-security4.0-cil
+libmono-system-xml4.0-cil libmono-system4.0-cil libmonoboehm-2.0-1 libncurses5-dev libprotobuf-lite10 librpm3
+librpmbuild3 librpmio3 librpmsign3 libsmali-java libspice-server1 libstringtemplate-java libtinfo-dev libtsk13
+libvdeplug2 libvirt0 libxen-4.8 libxenstore3.0 libxmlunit-java libyaml-snake-java llvm llvm-3.8 llvm-3.8-dev
+llvm-3.8-runtime llvm-runtime lsscsi lzop mdadm mono-4.0-gac mono-gac mono-runtime mono-runtime-common
+mono-runtime-sgen mono-utils mtools openjdk-8-jdk-headless pdftk python3-argcomplete python3-guestfs
+python3-jsbeautifier python3-libarchive-c python3-progressbar python3-rpm python3-tlsh qemu-system-common
+qemu-system-x86 qemu-utils reiserfsprogs rpm-common rpm2cpio scrub seabios sgabios sleuthkit sng sqlite3
+squashfs-tools supermin syslinux syslinux-common toilet toilet-fonts xfsprogs zerofree
+Remember that some log file lines are new packages to add to list to test, rebuild from source with reproducible builds and install from new packages to recreate a secure pbuild environment.
+
+To check the result:
+$ diffoscope --html output_file.html b1/*.changes b2/*.changes
+$ firefox output_file
+Basically the page said that there is no difference in the two package builds in the packages .deb. There is only a difference in the "Build date" in the b1 and b2.
+References:
+File: diffoscope to check the result.png
+At this point download the equivalent .deb packages in b1/ or b2/, replace them in b1 or b2 and rerun diffoscope to compare all the files existent in both directories. Where there is not big difference or in other words the packages match bit for bit, believe that the package was build no hacks or malicious code.
+
+Important: this will likely produce false-positive results, packages which are not reproducible might appear reproducible, as several variations (eg TZ or the locales) are not introduced when building like this. So you really want to use the Alternative 1.
+
+Other references:
+References:
+Topic: Custom APT packages for archive wide rebuilds.
+Web: http://reproducible.alioth.debian.org/ 
+File: Custom APT packages for archive wide rebuilds.pdf
+Topic: Custom GIT repository for archive wide rebuilds.
+Web: https://anonscm.debian.org/cgit/reproducible
+File: Custom GIT repository for archive wide rebuilds.pdf
+
+Install the package created with reproducible build:
+With the Alternative 2, you have to choose the .deb package built in directory b1 or b2.
+To install new built package:
+There are dependency packages in the same directory. You can install the package(s) in these ways,but don't use them right now because they don't show the package dependencies:
+A- Install all the content of the directory in one command:
+$ sudo dpkg -i *.deb
+B- Use apt-get -f install, after the installation failure due to unmet dependencies. At the end rerun dpkg -i to call dependency installation.
+$ dpkg -i acl_2.2.52-3_i386.deb
+$ apt-get -f install
+dpkg -i iacl_2.2.52-3_i386.deb
+C- Switch from dpkg to gdebi to install dependencies automatically.
+References: 
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+
+To know the dependencies in the terminal output to be able to build them to continue building the whole environment from source code:
+$ apt-cache show iacl_2.2.52-3_i386.deb
+Build all the dependencies, put them together in a directory and then reinstall with option A-. Review the system cache in /var/cache/apt/archives in the minimal system. The packages installed with package managers most be there. You can substitute these packages with packages build from source and then installed them with apt-get, which first at all verifies that the packages are cached in the system. 
+Next, go back to your system, and setup your Debian system sources.list file under /etc/apt/ to download the sources of these packages. An alternative mentioned already is to create all the packages in a new local Debian repository and set it up for APT (apt-get) in the sources directory an the sources file /etc/apt/sources.list.
+References:
+Topic: Create local debian repository 
+Guide: Create a local Debian repository
+Guide: Manage traditional software repositories
+
+But before reinstall just one package, do something better: Make a list of all the packages required at this point, build them from sources, uninstall the environment and reinstall it to make built from sources with reproducible builds. It is a Titanic work but possible to finish. You can create a batch script in bash to fetch all the .deb packages and their source codes and build them with reproducible builds. A second option in the script menu can be an option to uninstall previous (debuild pbuild or sbuild) build environments and installed them from the new built packages in one step. There could be a third option to set up the environment in the most perfect way. (PENDING) The script mentioned can be based on similar scripts on this book, and it is a Work in Progress.
+References:
+Topic: Installation and configuration scripts.
+Guide: Set up custom DIY Linux post install scripts
+

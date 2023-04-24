@@ -1,0 +1,12 @@
+While I finish the guide, here are two overviews including installation steps. Check them out:
+
+References:
+Topic: Create local Debian repository with Aptl.
+Web: http://www.unixmen.com/introducing-aptly-a-debian-repository-management-tool/
+File: Aptly, A Debian Repository Management Tool.pdf
+Topic: Create local APT repository using installation media (CD-DVD-BluRay) packages:
+Web: http://www.unixmen.com/setup-local-apt-repository-using-installation-media-in-debian-8/
+File: Setup Local APT Repository Using Installation Media In Debian 8.pdf
+Topic: Applications available to create a Debian repository:
+Web: https://wiki.debian.org/HowToSetupADebianRepository
+File: HowToSetupADebianRepository - Debian Wiki.pdf

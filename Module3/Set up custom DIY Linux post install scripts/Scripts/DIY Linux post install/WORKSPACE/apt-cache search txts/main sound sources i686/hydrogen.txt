@@ -1,0 +1,20 @@
+abx - audio ABX testing software
+gjacktransport - access to the JACK's transport mechanism as touchable slider
+golang-github-hydrogen18-stalecucumber-dev - Reader and writer for Python's pickle format in Golang
+golang-github-hydrogen18-stoppablelistener-dev - stoppable TCP listener in Go
+hydrogen - advanced drum machine/step sequencer
+hydrogen-data - advanced drum machine/step sequencer (data)
+hydrogen-doc - advanced drum machine/step sequencer (doc)
+hydrogen-drumkits - drumkits for Hydrogen
+hydrogen-drumkits-effects - effect drumkits for Hydrogen
+libchemistry-openbabel-perl - Chemical toolbox library (perl bindings)
+libopenbabel-dev - Chemical toolbox library (development files)
+libopenbabel-doc - Chemical toolbox library (documentation)
+libopenbabel4v5 - Chemical toolbox library
+openbabel - Chemical toolbox utilities (cli)
+openbabel-dbg - Chemical toolbox library (debugging symbols)
+openbabel-gui - Chemical toolbox utilities (graphical user interface)
+python-openbabel - Chemical toolbox library (python bindings)
+pdb2pqr - Preparation of protein structures for electrostatics calculations
+xmakemol - program for visualizing atomic and molecular systems
+xmakemol-gl - program for visualizing atomic and molecular systems (OpenGL)

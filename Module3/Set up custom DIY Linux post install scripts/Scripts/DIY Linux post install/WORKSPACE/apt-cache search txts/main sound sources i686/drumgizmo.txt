@@ -1,0 +1,2 @@
+dgedit - drum kit editor for DrumGizmo
+drumgizmo - Audio sampler plugin and stand-alone app that simulates a real drum kit

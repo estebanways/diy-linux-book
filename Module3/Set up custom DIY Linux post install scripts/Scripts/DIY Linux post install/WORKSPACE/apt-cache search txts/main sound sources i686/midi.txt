@@ -1,0 +1,180 @@
+a2jmidid - Daemon for exposing legacy ALSA MIDI in JACK MIDI systems
+abcmidi - converter from ABC to MIDI format and back
+aconnectgui - graphical ALSA sequencer connection manager
+aeolus - Synthesised pipe organ emulator
+aj-snapshot - make snapshots of JACK connections
+alsa-utils - Utilities for configuring and using ALSA
+ams - Realtime modular synthesizer for ALSA
+amsynth - two oscillator software synthesizer
+ardour - the digital audio workstation
+aseqjoy - Joystick to ALSA MIDI Sequencer Converter
+bristol - vintage synthesizer emulator
+bristol-data - vintage synthesizer emulator (data files)
+calf-plugins - Calf Studiogear - audio effects and sound generators
+multimedia-looping - Packages for looping music and audio
+multimedia-midi - MIDI related packages
+digitemp - read temperature sensors in a 1-Wire net
+din - digital audio synthesizer
+drumgizmo - Audio sampler plugin and stand-alone app that simulates a real drum kit
+drumkv1 - old-school drum-kit sampler - standalone
+drumkv1-common - old-school drum-kit sampler - common files
+drumkv1-lv2 - old-school drum-kit sampler - lv2-plugin
+dssi-host-jack - Example of DSSI host
+ecasound - multitrack-capable audio recorder and effect processor
+ecasound-doc - documentation files for Ecasound
+ecasound-el - multitrack-capable audio recorder and effect processor (emacs)
+ecatools - multitrack-capable audio recorder and effect processor (tools)
+libecasoundc-dev - multitrack-capable audio recorder and effect processor (C dev library)
+libecasoundc1v5 - multitrack-capable audio recorder and effect processor (C library)
+python-ecasound - multitrack-capable audio recorder and effect processor (Python bindings)
+ruby-ecasound - multitrack-capable audio recorder and effect processor (ruby bindings)
+fluid-soundfont-gm - Fluid (R3) General MIDI SoundFont (GM)
+fluid-soundfont-gs - Fluid (R3) General MIDI SoundFont (GS)
+fluidsynth - Real-time MIDI software synthesizer
+libfluidsynth-dev - Real-time MIDI software synthesizer (development files)
+libfluidsynth1 - Real-time MIDI software synthesizer (runtime library)
+foo-yc20 - YC-20 organ emulation
+freepats - Free patch set for MIDI audio synthesis
+freewheeling - live looping musical instrument
+frescobaldi - LilyPond sheet music text editor
+ghostess - A graphical DSSI plugin host
+giada - Hardcore Loop Machine
+gimp - GNU Image Manipulation Program
+gkrellweather - A weather monitor plugin for GKrellM
+gmidimonitor - GTK+ application that shows MIDI events
+gmorgan - MIDI rhythm station emulator software
+gramophone2 - GRAMophone II is an algorithmic music generator
+python-hachoir-metadata - Program to extract metadata using Hachoir library
+hexter - Yamaha DX7 modeling DSSI plugin
+hydrogen - advanced drum machine/step sequencer
+jack-keyboard - Virtual MIDI keyboard for JACK MIDI
+jack-midi-clock - JACK client that sends MIDI beat clock pulses
+jack-mixer - JACK Audio Mixer
+jfugue - Java API for music programming - transitional package
+libjfugue-java - Java API for music programming
+kmetronome - ALSA MIDI Metronome
+kmidimon - MIDI monitor using ALSA sequencer and KDE user interface
+laborejo - music notation workshop
+ladish - session management system for JACK applications
+laditools - Linux Audio Desktop Integration Tools
+drumstick-tools - Qt4/C++ wrapper for ALSA Sequencer - utilities
+libdrumstick-dev - Qt4/C++ wrapper for ALSA Sequencer - development files
+libdrumstick0 - Qt4/C++ wrapper for ALSA Sequencer
+libdssialsacompat-dev - DSSI ALSA compatibility library (development files)
+libdssialsacompat0 - DSSI ALSA compatibility library for non-Linux platforms
+libinstpatch-1.0-0 - MIDI instrument editing library
+libinstpatch-dev - MIDI instrument editing library development files
+libinstpatch-doc - MIDI instrument editing library documentation
+libmidi-perl - module to read, compose, modify, and write MIDI files in Perl
+libsdl2-mixer-2.0-0 - Mixer library for Simple DirectMedia Layer 2, libraries
+libsdl2-mixer-dbg - Mixer library for Simple DirectMedia Layer 2, debugging
+libsdl2-mixer-dev - Mixer library for Simple DirectMedia Layer 2, development files
+smf-utils - Utilities to support the smf library
+smitools - various tools operating on MIB module files
+lmms - Linux Multimedia Studio
+lmms-common - Linux Multimedia Studio - common files
+midge - A text to MIDI program
+midicsv - translate MIDI file to CSV
+mididings - MIDI router and processor based on Python
+mididings-doc - mididings Documentation
+python-mididings - MIDI routing library for Python
+midish - shell-like MIDI sequencer/filter
+midisnoop - MIDI monitor and prober
+mixxx - Digital Disc Jockey Interface
+mixxx-data - Digital Disc Jockey Interface -- data files
+mma - Musical MIDI Accompaniment Generator
+moosic - Daemon/client combo to easily queue music files for playing
+muse - Qt4-based audio/MIDI sequencer
+musescore - Free music composition and notation software
+musescore-common - Free music composition and notation software (common files)
+libnabrit3 - LV2 bridging helper library
+naspro-bridges - collection of bridges to LV2
+libnacore5 - NASPRO core library
+nted - Musical score editor
+openhpi-plugin-ipmidirect - OpenHPI plugin module for direct IPMI over LAN (RMCP) or SMI
+opl3-soundfont - OPL3 SoundFont that simulates the sound of an OPL3 chip
+patchage - modular patch bay for Jack audio and Alsa Midi
+pd-jmmmp - a collection of Pd GUI objects for musical performance
+pd-kollabs - data management and state saving for Pure Data
+pd-mediasettings - programmatically modify the audio and MIDI settings from within Pd
+pd-mrpeach - bag of tricks for Pure Data (Pd)
+petri-foo - MIDI controllable audio sampler - successor of specimen
+phasex - Phase Harmonic Advanced Synthesis EXperiment
+phasex-dbg - Debugging symbols for PHASEX
+pianobooster - learn the piano just by playing a game
+playmidi - MIDI player
+pmidi - command line midi player for ALSA
+pmw - Philip's Music Writer
+libportmidi-dev - library for real-time MIDI input/output
+libportmidi0 - library for real-time MIDI input/output
+libportsmf-dev - Portable Standard Midi File Library (development files)
+libportsmf0 - Portable Standard Midi File Library
+pykaraoke - free CDG/MIDI/MPEG karaoke player
+pykaraoke-bin - free CDG/MIDI/MPEG karaoke player
+python-pykaraoke - free CDG/MIDI/MPEG karaoke player
+python-jack-client - JACK Audio Connection Kit (JACK) Client for Python
+python3-jack-client - JACK Audio Connection Kit (JACK) Client for Python 3
+python-messaging - SMS/MMS encoder/decoder
+python-midiutil - Python 2 library to write multi-track MIDI files
+python3-midiutil - Python 3 library to write multi-track MIDI files
+python-mido - Python module for working with MIDI messages and ports
+python3-mido - Python 3 module for working with MIDI messages and ports
+python-pyknon - Simple Python music library
+python-pyo - Python module written in C to help digital signal processing script creation
+python3-pyo - Python3 module written in C to help digital signal processing script creation
+python-pypm - Python interface to libportmidi
+qmidiarp - MIDI arpeggiator for ALSA
+qmidinet - MIDI Network Gateway via UDP/IP Multicast
+qmidiroute - MIDI event router and filter
+qmmp - feature-rich audio player with support of many formats
+qsynth - fluidsynth MIDI sound synthesiser front-end
+qtractor - MIDI/Audio multi-track sequencer application
+qxgedit - MIDI System Exclusive files editor
+rakarrack - Simple and easy guitar effects processor for GNU/Linux
+libroar-dev - header files and documentation for the RoarAudio libraries
+libroar2 - foundation libraries for the RoarAudio sound server and clients
+roaraudio-dbg - RoarAudio sound server for audio mixing (debugging symbols)
+rosegarden - music editor and MIDI/audio sequencer
+librtmidi-dev - C++ library for realtime MIDI input/ouput (development files)
+librtmidi3 - C++ library for realtime MIDI input/ouput
+rumor - Realtime MIDI keyboard to Lilypond converter
+libsdl-mixer1.2 - Mixer library for Simple DirectMedia Layer 1.2, libraries
+libsdl-mixer1.2-dbg - Mixer library for Simple DirectMedia Layer 1.2, debugging
+libsdl-mixer1.2-dev - Mixer library for Simple DirectMedia Layer 1.2, development files
+setbfree - DSP tonewheel organ
+sfront - MPEG 4 Structured Audio decoder
+showq - MIDI controllable audio player
+libsndio-dev - Small audio and MIDI framework from OpenBSD, development files
+libsndio6.1 - Small audio and MIDI framework from OpenBSD, runtime libraries
+sndio-tools - Small audio and MIDI framework from OpenBSD, basic tools
+sndiod - Small audio and MIDI framework from OpenBSD, sound server
+sooperlooper - Looping Sampler
+libswami-dev - MIDI instrument editor - development files
+libswami0 - MIDI instrument editor - shared libraries
+swami - MIDI instrument editor application
+timidity - Software sound renderer (MIDI sequencer, MOD player)
+timidity-daemon - runs TiMidity++ as a system-wide MIDI sequencer
+timidity-el - Emacs front end to Timidity++
+timidity-interfaces-extra - TiMidity++ extra user interfaces
+tk707 - drum sequencer for a sound card or MIDI device
+libtse3-0.3.1c2a - portable MIDI sequencer engine in C++ - development files
+libtse3-dev - portable MIDI sequencer engine in C++ - development files
+tse3play - MIDI/TSE3MDL player/converter
+tuxguitar - Multitrack guitar tablature editor and player (gp3 to gp5)
+tuxguitar-alsa - tuxguitar plugin for sound playback using ALSA
+tuxguitar-fluidsynth - tuxguitar plugin for sound playback using fluidsynth
+tuxguitar-jack - tuxguitar plugin for sound playback using JACKD
+tuxguitar-oss - tuxguitar plugin for sound playback using OSS
+vkeybd - Virtual MIDI Keyboard
+vlc-plugin-fluidsynth - FluidSynth plugin for VLC
+vmpk - Virtual MIDI Piano Keyboard
+wah-plugins - auto-wah LADSPA plugin
+libwildmidi-config - software MIDI player configuration
+libwildmidi-dev - software MIDI player library headers
+libwildmidi2 - software MIDI player library
+wildmidi - software MIDI player
+wmfrog - dockapp for graphically indicating the weather
+x42-plugins - Collection of LV2 plugins
+xfce4-weather-plugin - weather information plugin for the Xfce4 panel
+xjadeo - Video player with JACK sync
+zita-at1 - JACK autotuner

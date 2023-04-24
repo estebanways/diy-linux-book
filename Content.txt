@@ -1,0 +1,467 @@
+Current Guide Status:
+[✔] = Text Complete**, subject to future upgrades.
+[X] = Text Incomplete/Pending, or the story is made out of screenshots. The documentation is available.
+[Q] = TODO queue.
+** Complete means technically complete, but without copy editing or proofreading.
+
+CONTENT:
+
+Module 1 - Meet the software installation sources and options available
+Where can I find software for GNU/Linux?:
+[✔] Software sources available
+Alternative software deployments:
+[✔] Automated installation processes
+[✔] Installation from image files
+[✔] Installation on Virtual Machines, emulators and chroot environments
+Binary installation:
+[✔] Convert other distro binaries into DEB packages
+[✔] Debian binaries
+[✔] Distribution independent packaging
+[✔] Full compatible/portable Linux/Debian binaries
+Source Code installation:
+[✔] Debian source code
+[✔] Source code & Debian forks source code
+Binaries or Source Code from other operating systems:
+[✔] MacOS binaries or source code
+[✔] Source code built for a Windows or DOS version
+[✔] Windows or DOS executable binaries
+Multiplatform installation:
+[✔] Desktop Extensions
+[✔] Multiplatform Desktop Applications
+
+Module 2 - Dominate activities regarding the software installation and management
+Kernel:
+[✔] Build the Linux Kernel
+[✔] DKMS (Dynamic Kernel Module Support)
+[✔] Find out unfound drivers
+[X] Load driver during Debian installation
+[X] View, modify and recreate initrd.img
+[✔] Working with Kernel modules
+[X] How to delete old unused Kernels
+Package Development:
+[X] Debian packaging
+Package Management:
+[✔] Build packages from source
+[✔] Multi Architecture
+[X] Static, shared dynamic and loadable libraries
+[✔] System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+[X] Download files with Wget and Curl
+[✔] Verify download integrity, PGP, GPG, GNUPG, Seahorse
+[X] Check if an upgraded package has already received its security patch
+[✔] Software installation table
+Repositories:
+[X] Create a local Debian repository
+[✔] Manage traditional software repositories
+
+Module 3 - Create your own GNU/Linux distribution or Pure Blend
+[✔] Options to build Linux distributions
+[✔] A GIT manual
+[✔] Build secure sbuild and pbuilder build environments with reproducible builds 
+[✔] Build a Debian Live Disc from source code
+[✔] Testing the minimal Live Disc build
+[✔] Enhancing the Debian Live Disc
+[✔] Set up custom DIY Linux post install scripts
+[X] A bash self-contained installer for the DIY Linux post install script
+[✔] Install the new Live Disc ISO in a Flash drive with persistence
+[✔] Similar interesting projects
+
+Module 4 - Set up and maintain a perfectly functional operating system
+Back-up, Emergency and Restore:
+[✔] Cloning and directory and system back-ups
+[✔] Data recovery
+[✔] Emergency keys combinations
+[✔] Manage processes
+[X] System Rescue
+Filesystems:
+[✔] Boot Loaders and Dual Boot
+[X] Clean up the system
+[✔] Partitioning
+[✔] Reset root password
+[✔] Sudo
+[✔] Users, groups and terminals
+[✔] Working with directories
+Gnome Desktop:
+[✔] Gnome Desktop Icons, Themes and Cursors
+[✔] Gnome Shell Extensions
+Networking:
+[✔] Basic networking
+[✔] Bluetooth
+[✔] Share system directories across the network
+Optimization and Power Management:
+[✔] ACPI battery monitor
+[✔] Optimization and performance, speed up computer, save battery power
+[X] Updating CPU microcode within Debian (Intel or AMD)
+[X] CPU Frequency Scaling
+[✔] Stress test and benchmark CPU performance
+[X] Wake from suspend with USB Peripherals
+Peripherals:
+[X] Game Controllers and Joystick
+[✔] Printer
+[✔] Scanner
+[✔] Smartphones
+[X] Streaming, Tethering and Recording Android Cameras and DSLR Cameras
+[X] TouchPad
+[X] Video Projector
+Security:
+[X] TPM (Trusted Platform Module)
+Settings:
+[✔] Change the default login screen
+[✔] Check hardware information
+[✔] Create a Bootsplash screen
+[X] Decode Man pages
+[✔] Fonts
+[✔] Make a program the default option
+[✔] Set Date, Time and Timezone
+[✔] Set Keyboard, Local options, Region and Language
+[✔] Systemd
+[✔] Wine
+Sound:
+[✔] Sound
+SSDs/HDS/CDs:
+[X] Install an extra SSD or HDD in the DVD unit of a Laptop
+[✔] Logical Volume Management (LVM)
+[✔] Mount and repair CD-DVD ROM ISO or HDs-SSDs
+[X] Multiboot USB Pendrive
+[X] Set up software RAID
+[✔] Solid State Drives (SSDs)
+[X] Tune Hard Disk with hdparm
+Updates and Upgrades:
+[✔] Update the system and applications
+[✔] Keep Debian patched with latest security updates automatically
+[✔] Check the system version and upgrade it
+Video:
+[✔] 3D Acceleration and VR
+[✔] Brightness
+[X] Color calibration
+[✔] Reconfigure Xserver hardware (Video Card, Keyboard, Mouse, Monitor)
+[✔] Video card
+[✔] Webcam
+[✔] A Linux Gaming Guide
+
+Module 5 - Complete a custom environment by testing the most of software installation options available
+3D Modeling, CAD and Animation:
+[X] Blender
+[✔] Openscad
+[X] Synfig Studio
+Alternative Software Stores:
+[X] Flatpak
+[X] Snap
+Assistants and other AIs:
+[X] Betty
+[X] Google Assistant
+[✔] KDEconnect
+[✔] LiSpeak
+[✔] Sirius
+Audio and Music:
+[✔] Audacity
+[X] Frescobaldi
+[X] Gtk Wave Cleaner
+[✔] KXStudio
+[X] Linthesia
+[✔] Music Players
+[X] Parlatype
+[X] PulseEffects
+[X] QMMP
+[✔] Sound Recorder
+[X] Soundconverter
+[X] Surge
+[X] Sweep
+[X] TerminatorX
+Browsers:
+[X] Amaya
+[X] Brave
+[X] Decentr
+[X] Edge
+[✔] Firefox
+[✔] Google Chrome
+[✔] Icedtea
+[X] Lynx
+[X] Midori
+[X] Opera
+Business Administration:
+[X] ProjectLibre
+[X] Tryton [client version]
+CD Burners:
+[X] K3b
+Collaborative:
+[X] Mailman
+[X] Slack
+[X] Teams
+Compressors:
+[✔] WinRAR
+Clipboard Management:
+[X] Clipit
+[X] Diodon
+Databases:
+[X] SQLite
+Desktop Enhancers:
+[✔] Cairo-dock
+[✔] Compiz-Fusion
+[✔] Conky
+[✔] Screenlets
+[X] Wbar
+[✔] Xscreensaver
+Desktop Environments and Window Managers:
+[X] Awesome
+[X] Cinnamon
+[✔] Fluxbox
+[X] IceWM
+[✔] KDE
+[X] LXDE
+[X] Openbox
+[✔] Xfce
+[X] Xmonad
+Development Editors and IDEs:
+[X] Anaconda
+[X] Android Studio
+[✔] Aptana Studio 3
+[X] Arduino IDE
+[X] Atom
+[✔] Bluefish
+[X] Brackets
+[X] Builder
+[✔] Code::Blocks
+[X] MonoDevelop
+[X] Neovim
+[✔] Netbeans IDE
+[X] PyDev
+[X] RStudio
+[X] Spyder
+[✔] Sublime Text Editor
+[✔] TeXstudio
+[X] Visual Studio Code
+Development Languages:
+[X] Bash
+[X] Electron
+[X] Go
+[✔] GTK
+[✔] Java
+[X] Mesa (OpenGL)
+[X] NET Framework
+[X] Node.js
+[X] Python
+[✔] R
+DevOps:
+[✔] Ansible
+[X] Jenkins
+Diagramming:
+[✔] Dia
+[✔] Umbrello
+Download Managers:
+[X]Youtube-dl
+Enhanced Terminals:
+[X] Alacritty
+[X] Fig
+[X] Fish
+[✔] Screen
+[X] Tabby
+[X] Tmate
+[✔] Tmux
+[X] WezTerm
+[X] Zsh
+Electronics:
+[X] KiCad
+[✔] Oregano
+[✔] Proteus
+Email:
+[✔] Icedove
+Emulators:
+[✔] Firefox OS
+[X] Mupen64Plus
+[✔] Qemu
+File Management:
+[X] Catfish File Search
+[X] Dolphin
+[✔] Files
+[X] MC
+[✔] Nemo
+[✔] Thunar
+Finance:
+[X] Binance
+[X] Exodus
+[X] Wasabi
+Games:
+[X] AssaultCube
+[✔] Steam
+[X] Ufoai
+Graphic Design and Photography:
+[✔] Darktable
+[X] Exiftool
+[✔] GIMP
+[X] Gpick
+[X] Jp2a
+[✔] Photoshop
+[✔] RawTherapee
+[✔] Scribus
+Illustrators:
+[X] Gnome Paint
+[✔] Inkscape
+[X] Krita
+[X] My Paint
+Library:
+[✔] Adobe Digital Editions
+[✔] Calibre
+Localization:
+[X] Google Earth
+Messaging, Meeting and Chat:
+[X] BigBlueButton
+[X] CISCO WebEx
+[X] Jitsi
+[X] Pidgin
+[X] Ring
+[✔] Skype
+[X] Telegram
+[✔] Xchat
+[X] Zoom
+News Feed:
+[X] RSSOwl
+Office:
+[X] Adobe Acrobat Reader DC
+[X] AsciiDoc
+[✔] Gimagereader
+[X] Ghostscript
+[X] Gnumeric
+[X] Kingsoft Office
+[X] Libre Office
+[X] Okular
+[X] Tesseract
+Remote Desktops:
+[X] RealVNC
+[X] Remmina
+[✔] Teamviewer
+Science:
+[✔] Galculator
+[X] Stellarium
+[✔] Scilab
+Screen Recorders:
+[✔] Screenshot
+[✔] SimpleScreenRecorder
+Synced Storage and Cloud Storage:
+[X] DrBd
+[X] Gogle Drive
+[✔] Hubic
+[✔] Mega
+[X] Nextcloud [web server]
+[X] OneDrive
+[X] Seafile [web server]
+Teaching:
+[X] Key-mon
+Text-To-Speech Synthesis:
+[✔] Festival
+Torrent:
+[X] RTorrent & ruTorrent
+[X] Transmission
+Version Control:
+[✔] Git
+[X] Gitg
+[X] GitLab
+Video + Audio Tools:
+[✔] FFmpeg
+[X] Handbrake
+[X] Imaginary Teleprompter
+[X] MusicBrainz Picard
+[X] Vidcutter
+Video Broadcasters:
+[X] OBS
+Video Editors:
+[X] Cinelerra
+[✔] Kdenlive
+[X] Lightworks
+[X] Natron
+[✔] OpenShot
+Video Players:
+[✔] Flash Player
+[X] FreetuxTV
+[X] KODI
+[X] Popcorn Time CE
+[✔] VLC Player
+Video Recorders:
+[✔] Guvcview
+Virtualization:
+[X] Anbox
+[X] Docker
+[X] Genymotion
+[X] GNOME Boxes
+[✔] KVM
+[X] Kubernetes
+[X] Linux Containers
+[X] Vagrant [container]
+[✔] VirtualBox
+Windows:
+[X] PlayOnLinux
+[✔] Wine
+
+Module 6 - Learn to install web development software for the MacOS
+[✔] Ruby
+[✔] Linuxbrew
+[✔] Linuxbrew - Nodejs
+[✔] NPM - Grunt
+[✔] NPM - Bower - JQuery
+[✔] Linuxbrew - Taps
+[✔] Linuxbrew - Git
+[✔] Linuxbrew - Git tools
+[✔] Linuxbrew - Nginx
+[✔] Linuxbrew - MongoDB
+[✔] Linuxbrew - Cassandra
+[✔] Linuxbrew - libsass and sassc
+[✔] Ruby - sass and Bootstrap-sass
+[✔] RVM
+[✔] RVM - gems
+
+Module 7 - Security first
+Improve the system security on local:
+[✔] AppArmor
+[X] Check for unsigned kernel modules
+[X] Chrootkit
+[X] ClamAV
+[X] Dm-crypt and Cryptsetup
+[X] Drovorub
+[X] LUKS
+[X] Maldet
+[X] OpenSSL
+[X] Rkhunter
+[X] SELinux
+[✔] Sysctl
+[X] Tripwire
+[✔] VeraCrypt
+Improve the security of the system over the networks and Internet:
+[✔] Ad blockers
+[X] AppArmor
+[X] Bastille
+[X] Buttercup
+[X] Darkstat
+[X] Etherape 
+[X] Fail2Ban
+[✔] Iproute2
+[X] Lynis
+[✔] Net-tools
+[✔] Netfilter
+[✔] Netstat
+[✔] Nmap
+[X] Ntopng
+[✔] OpenSSH server
+[X] OpenVPN
+[✔] Ping
+[✔] ProtonVPN
+[X] Proxies
+[X] Psiphon
+[✔] Site Advisors and page checkers
+[✔] Speedtest
+[X] Tcpdump
+[X] TOR
+[X] Traceroute
+[X] Wireshark
+Improve the security of the system since the network:
+[X] Kali [distribution]
+[X] Nagios
+[X] Network Firewall
+[X] OSSIM
+[X] REMnux [distribution]
+[X] Tails [distribution]
+[X] Zabbix
+
+
+DIY Linux
+Author: Esteban Herrera
+Website: https://liquidsmok.hopto.org + http://liquidsmok.hopto.org
+Copyright © 2015 - 2022 Esteban Herrera. All rights are reserved.

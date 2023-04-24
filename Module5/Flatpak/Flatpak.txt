@@ -1,0 +1,7 @@
+
+
+Complete repository add command:
+
+
+Then you'll probably want to add the common Flathub repository:
+# flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

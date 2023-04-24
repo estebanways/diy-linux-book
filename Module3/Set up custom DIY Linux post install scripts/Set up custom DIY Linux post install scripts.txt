@@ -1,0 +1,9 @@
+The DIY Linux post install project is developed & maintained by:
+Esteban Herrera <stv.herrera@gmail.com>. Web: http://liquidsmok.hopto.org
+See commit history for additional contributors.
+This script works to test packages dependecies conflicts and to create a installation program which installs all the complemetary custom distro or Pure Blend packages after the user Live Disc user reaches the Desktop.
+References:
+Topic: Download and checkout the code
+Web: https://github.com/stvherrera
+File: Unavailable
+

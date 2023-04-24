@@ -1,0 +1,106 @@
+QUEUE:
+
+- fix grub2 menu
+- sudo
+- openssh-client openssh-server
+- screen
+- nmap
+- bridged IP (with new addr names)
+- wifi (with new addr names / Notebook only)
+- 3D acceleration (AMD) with verification script
+- openarena alien arena
+- steam
+- Chromium
+- Google chrome
+- flash
+- Gnome shell extensions
+- gwencview (camera)
+- GIT
+- git cola ...and more
+- Compiz-Fusion and Beryl for XFCE
+- KVM
+- Virtualbox
+- Hubic
+- WinRAR
+- Atom from github (Create new book section)
+- tasksel (If during the Live Disc enhancement goes on not working)
+-
+
+- Create self extract archive:
+Include:
+Install under /opt
+Create an exe to /bin or 'whereis apt-get', EG: /bin/DIYLinuxpi
+Set exe permissions, similar to apt-get command
+Include an icon
+
+
+Side effects:
+- Commit to github.com/stvherrera
+- Add in http://liquidsmok.hopto.org
+- Create new book section "DIY Linux post install" with link to github.com/stvherrera
+- Add bubble informing to a new book cover (see note about the cover style modification)
+- Make lescifi video to explain bash script
+- Make lescifi video to add to playlist Audio in Linux
+- Make 2nd lescifi video to explain upgrade from Jessie to Stretch
+
+
+- System information (main menu):
+Include:
+Distribution release, name, number
+Domain name (hostname --fqdn)
+ips
+
+- About
+Include:
+cat or echo File AUTHORS
+Thanks:
+3D OpenGL verification script author
+Albert LPI commands
+MYTH multi command (?)
+lescifi extensions file to install unofficial, add app icon, etc
+
+
+-- new book sections:
+
+Encrypt volumes 
+Include:
+During system installation (Add existent photos)
+After system installation
+
+
+--- Script to add to the post install in independent sections,
+some were taken from the book Linux Enterprise Sci Fi and
+i need to add them to book sections in DIY Linux
+
+
+this sections to module 3 to help to create pure blend Live DVD from a scratch {
+Search applications from sources		search-apps
+Show application details			show-app
+data files .list TOOL to order packages lists (See post intall WORKSPACE)
+}
+
+Bastion Server Firewall systemd
+Bastion Server Firewall sisvinit
+Bastion Server Firewall upstart
+Network firewall (machine)
+Image stabilization and transcode batch
+System backup
+Restore system backup
+Create systemd service from script file
+Create sysVinit service from script file
+Create upstart service from script file
+rsync file
+rsync directory
+scp file
+scp directory
+Create MariaDB DB archive (dump file)
+Create MariaDB DB
+Minimal Linux Enterprise Cluster Heart & Cloud
+
+
+
+
+
+
+
+

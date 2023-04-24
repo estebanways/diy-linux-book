@@ -1,0 +1,8 @@
+You could run:
+$ sudo sysctl
+$ sudo sysctl -a
+And then change the options that system and network can affect your system and network security
+
+References:
+Topic: Look for the sections "Swappiness" and "Cache preassure", to know how to use the command.
+Guide: Optimization and performance, speed up computer, save battery power

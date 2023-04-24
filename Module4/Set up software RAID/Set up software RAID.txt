@@ -1,0 +1,3 @@
+References:
+Web: http://www.maketecheasier.com/set-up-raid-linux/
+File: Setup RAID (Software) on Linux.pdf

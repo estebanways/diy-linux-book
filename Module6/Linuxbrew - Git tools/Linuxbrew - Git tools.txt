@@ -1,0 +1,257 @@
+Update LinuxBrew:
+$ brew update
+
+$ brew search git
+
+Output:
+bagit		    git-fixup		git-octopus	    git-url-sub
+bash-git-prompt	    git-flow		git-open	    gitbucket
+easy-git	    git-flow-avh	git-plus	    giter8
+geogit		    git-ftp		git-review	    github-release
+git		    git-gerrit		git-sh		    gitslave
+git-annex	    git-hooks		git-ssh		    gitup
+git-archive-all	    git-imerge		git-stree	    legit
+git-cal		    git-integration	git-subrepo	    libgit2
+git-cola	    git-lfs		git-test	    libgit2-glib
+git-crypt	    git-multipush	git-tf		    magit
+git-encrypt	    git-now		git-tig		    stgit
+git-extras	    git-number		git-tracker	    topgit
+homebrew/binary/subgit			homebrew/head-only/git-utils
+homebrew/fuse/gitfs			homebrew/head-only/willgit
+homebrew/head-only/git-hg		homebrew/tex/git-latexdiff
+homebrew/head-only/git-svn-abandon	homebrew/apache/git-tf-2.0.2
+
+Or use:
+Go to http://braumeister.org/browse/s/8
+
+Install a formula:
+$ brew install git-cola
+Output:
+==> Installing dependencies for git-cola: qt, sip, pyqt
+==> Installing git-cola dependency: qt
+==> Downloading https://download.qt.io/official_releases/qt/4.8/4.8.7/qt-everywh
+==> Downloading from http://qt.mirror.constant.com/official_releases/qt/4.8/4.8.
+
+curl: (28) Connection timed out after 5004 milliseconds
+Trying a mirror...
+==> Downloading https://www.mirrorservice.org/sites/download.qt-project.org/offi
+######################################################################## 100.0%
+==> ./configure -prefix /home/esteban/.linuxbrew/Cellar/qt/4.8.7 -system-zlib -q
+==> make
+Makefile:683: recipe for target 'sipQtCoreQSysInfo.o' failed
+make[1]: *** [sipQtCoreQSysInfo.o] Error 1
+make[1]: Leaving directory '/tmp/pyqt20150628-6966-gjgov8/PyQt-mac-gpl-4.11.3/QtCore'
+Makefile:57: recipe for target 'sub-QtCore-make_default-ordered' failed
+make: *** [sub-QtCore-make_default-ordered] Error 2
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+
+These open issues may also help:
+Trouble brew installing retext - problems with pyqt: qtdirs failed to create qtdirs.out (https://github.com/Homebrew/homebrew/issues/40801)
+PySide/PyQt: how to get Phonon support?  (https://github.com/Homebrew/homebrew/issues/33102)
+End of Output.
+
+Notes:
+
+"Make" takes a lot of time to finish. 
+To verify that the compilation is still running:
+$ top
+
+At the end the program is not working/installing. Simply returns to the shell.
+
+At this point I think that is not possible to install a program with GUI (graphical user interface) from the Homebrew sources. Again, as I said with the installations of Xmoto and Git that that fail, to install Git-Cola for Linux is not a problem, because the action is not directly affecting the code I can write. This computer is not going to be a Git server and the server is a Git hosting usually, which ensures the compatibility.
+
+I am going to install looking for the Mac compatibility and availability.
+References:
+Official Git web site:
+Web: https://git-scm.com/
+List Git clients (Mac, Linux and Windows):
+https://git-scm.com/downloads/guis
+
+I am going to try to install the last version of the apps from stable repos as we have learned at this point of the guides, but remember that if you need the newest features available you can back-port the apps or also install the applications from stable, testing, unstable and experimental sources from the Debian Official repos, or external sources (experimental) instead. Another option is build from source in the regular or the Debian way (experimental) from the Debian repos or the Official Git repos or download links.  I use sbuild to build apps from Ubuntu source code in the PPAs. Some applications don't need to install and to save space are usually simply allocated under /opt.
+References:
+Guides:
+System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+Manage traditional software repositories
+Debian source code
+Source code & Debian forks source code
+Build packages from source
+SimpleScreenRecorder
+Sublime Text Editor
+
+
+Installations steps from Official Debian 8 Jessie repos looking for stability but that also would depend on the development and "able-ability" (Instead of from the Git download web site. The current git version on the web site is: "Latest source Release 2.4.5 Release Notes (2015-06-25)"):
+
+Verify the existent Git installation (from the Official distro sources):
+$ dpkg -l | grep 'git'
+$ dpkg -l git
+$ ls /var/cache/apt/archives/git (PRESS TAB KEY)
+Output:
+git_1%3a2.1.4-2.1+deb8u2_amd64.deb    git-man_1%3a2.1.4-2.1+deb8u2_all.deb
+End of.
+Remember that I installed git and git-man, but also see the dependencies:
+$ dpkg -I /var/cache/apt/archives/git_1%3a2.1.4-2.1+deb8u2_amd64.deb
+$ dpkg -I /var/cache/apt/archives/git-man_1%3a2.1.4-2.1+deb8u2_all.deb
+
+Install Git GUIs and tools for Linux:
+
+Install git-cola:
+
+Platforms (Mac, Linux and Windows).
+
+Update repos:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+
+Search the package availability:
+$ sudo apt-cache search git-cola
+
+Show package dependencies:
+$ sudo apt-cache show git-cola
+
+Run package installation:
+$ sudo apt-get install git-cola
+
+Output:
+[...]
+The following extra packages will be installed:
+  gitk xxdiff
+Suggested packages:
+  python-pyinotify git-doc xxdiff-scripts
+The following NEW packages will be installed:
+  git-cola gitk xxdiff
+[...]
+
+Install gitk:
+
+The installation of git-cola installs gitk, available for the platforms Mac, Linux and Windows.
+To run gitk:
+$ gitk
+
+Install SmartGit:
+
+Platforms (Mac, Linux and Windows).
+
+Visit this page to download the non-commercial use license: http://www.syntevo.com/smartgit/
+
+Extract the archive in /opt
+Inspect the new directories:
+$ cd /opt/smartgit/bin
+Run the installation script:
+$ ./smartgit.sh
+Follow the setup instructions.
+
+I's all right to install the program under /opt because after the installation I found a new directory .smartgit in my user home/.
+
+Instruction notes from the web site:
+Unpack the downloaded file into a directory of your choice,
+ensure, that the correct Java Runtime Environment is installed on your system, start the application by using the launcher script from the bin directory.
+If the application fails to start, e.g. because you have an incompatible Java Runtime Environment version in your path or SmartGit does not find it, please create ~/.smartgit/smartgit.vmoptions and add the line (and adding the correct path):
+jre=/path/to/jre
+To create an icon in your menus, invoke add-menuitem.sh in the bin directory. To remove the menu item, invoke remove-menuitem.sh in the bin directory.
+
+Note: My program version is: 6.5.9 and my Java version is: 1.8.0_45-b14 (/usr/lib/jvm/jdk-8-oracle-x64/jre).
+
+The final step is to add the program to the Gnome Main Menu and choose an icon from the program's directory, and crate s symbolic link to /usr/bin:
+$ sudo ln -s /opt/smartgit/bin/smartgit.sh /usr/bin/smartgit
+
+Install GitEye:
+
+Platforms (Mac, Linux and Windows).
+
+Download site: http://www.collab.net/products/giteye
+
+Extract the archive to a new folder GitEye in /opt
+Inspect the new directories:
+$ cd /opt/GitEye-1.10.0-linux.x86_64/
+Run the installation script:
+$ ./GitEye
+Follow the setup instructions.
+
+The final step is to add the program to the Gnome Main Menu and choose an icon from the program's directory, and crate s symbolic link to /usr/bin:
+$ sudo ln -s /opt/GitEye-1.10.0-linux.x86_64/GitEye /usr/bin/giteye
+
+Registration:
+GitEye is free to use, but must be registered to continue using it beyond the 30-day trial period.  Registration happens automatically if you connect GitEye to an existing TeamForge or CloudForge account. If you do not have an account, you can sign up for a free CloudForge account and that will then register GitEye once you connect it to your free account.
+We hope you find value in your free CloudForge account, should you choose that option, but once you create the account you are not required to use it.GitEye will work with any Git repository or server.
+Reference:
+web: https://www.collab.net/lightbox/download_info/2489/766
+
+Install giggle:
+
+Platforms (Linux).
+
+Update repos:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+
+Search the package availability:
+$ sudo apt-cache search giggle
+
+Show package dependencies:
+$ sudo apt-cache show giggle
+
+Run package installation:
+$ sudo apt-get install giggle
+
+Plugins:
+giggle-personal-details-plugin:
+GTK+ frontend for the git directory tracker - personal details plugin
+giggle-terminal-view-plugin
+GTK+ frontend for the git directory tracker - terminal plugin
+
+Run plugins installation:
+$ sudo apt-get install giggle-personal-details-plugin giggle-terminal-view-plugin 
+
+
+Install gitg:
+
+Platforms (Linux).
+
+Update repos:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+
+Search the package availability:
+$ sudo apt-cache search gitg
+
+Show package dependencies:
+$ sudo apt-cache show gitg
+
+Run package installation:
+$ sudo apt-get install gitg
+
+More options available:
+
+Git plugin to Eclipse (Pending to test in Aptana Studio 3).
+Git GUI clients for Linux.
+References:
+Web: http://stackoverflow.com/questions/1516720/git-gui-client-for-linux
+
+Clients usage:
+After checking out all of the GUIs mentioned here,
+git cola seems to work well for committing/pushing
+gitk seem to work the best for examining history and
+giggle is awesome for watching the diffs.
+I use command line for committing, web trac interface for viewing history, in a rare occasions, and accept giggle as giggle is what, I think, one needs as a desktop git gui, with occasional git cola and gitk.
+
+
+Git with HTTPS or SSH:
+
+It depends on the type of repo. A local Git repo does not need SSH connections, but to share the repo with SSH and/https/Git adds the security layer to the source traffic. The best option is to use a repo hosting like GitHub or BitBucket and https to avoid further ssh configuration and system enforcement. 
+
+(PENDING)
+Git and SSH:
+$apt-cache show git
+The output recommends to install: patch, less, rsync, ssh-client.
+Take a look at ssh-client. There is another package in the repos git-ssh, and I probably require ssh-server too which has not been installed because in that case I require: Fail2Ban, and a Firewall up and running.
+
+I have noticed more ssh commands, but haven't noticed  ssh-client ssh-server
+$ whereis ssh
+Output:
+ssh: /usr/bin/ssh /etc/ssh /usr/share/man/man1/ssh.1.gz
+Display all existent SSH Commands:
+$ ssh + TAB KEY
+Output:
+ssh          ssh-agent    ssh-copy-id  ssh-keyscan  
+ssh-add      ssh-argv0    ssh-keygen

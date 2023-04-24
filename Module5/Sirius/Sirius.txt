@@ -1,0 +1,396 @@
+References:
+Web: http://www.pcworld.com/article/2898148/meet-sirius-the-open-source-siri-clone-that-runs-on-ubuntu.html
+
+Sirius is an open-source end-to-end standalone intelligent personal assistant (IPA) service. Sirius receives queries in the form of speech or images and returns results in the form of natural language:
+
+Go to the project home page: http://sirius.clarity-lab.org/index.html%3Fp=9.html
+Go to the downloads section: http://sirius.clarity-lab.org/index.html%3Fp=13.html
+I have downloaded Sirius and Sirius-suite.
+Sirius uses a Wikipedia knowledge database, download the database (compressed 11GB): wiki_indri_index.tar.gz
+
+Install sirius:
+
+$ sudo cp -dpR sirius-1.0.1.tar.gz /usr/src
+$ ls -hal sirius-1.0.1.tar.gz 
+Output:
+-rw-r--r-- 1 esteban esteban 417M May 28 03:14 sirius-1.0.1.tar.gz
+$ sudo tar xvzf sirius-1.0.1.tar.gz
+
+Prerequisites
+Sirius (and Sirius-suite) has several dependencies which can be resolved with the included get-dependencies.sh. The full list of dependencies is summarized below:
+Sphinx (sphinxbase and pocketsphinx)
+Kaldi
+Protobuf
+OpenCV (v2.4.9)
+Java (v1.7.0_55)
+
+The file get-dependencies.sh attempts to connect to Ubuntu PPA. I will have to verify the dependencies in the file. Here is the list of dependencies and availability: 
+
+Update sources and install basics:
+git: Available
+zip: Available
+unzip: Available
+subversion: Available
+sox: Available
+default-jdk: Installed. The installation guidelines say that the program uses Java 1.7 (OpenJDK 7). I installed the version 1.8 and am able to switch to Oracle Java 8. Let's test the program and if find a problem there an option to remove OpenJDK 8 and install the version 7 and switch to Oracle Java to run the programs Openshot and Netbeans, etc., as I have show in my guide about Java.
+ant: Available
+automake: Available
+autoconf: Available
+libtool: Available
+bison: Available
+libboost-all-dev: Available
+ffmpeg: Search the program in the repos:
+$ apt-cache search 'automake' | less
+There are some results but nothing matches exactly to be installed.
+The program seems installed as a plugin or extension of the program VLC instead of as program:
+$ ffmpeg
+But I need to finish the installation review it.
+Reference:
+Web: http://superuser.com/questions/286675/how-to-install-ffmpeg-on-debian
+swig:  Available
+python-pip: python-pip - alternative Python package installer, Available. The package should support the installation of the Sirius Web application.
+curl: Available
+
+Get opencv dependencies:
+build-essential: Installed
+checkinstall: Available
+git: Available. However I don't wanted to install it from the Official Debian repos to fetch it from a Mac site. I am going to take the "risk" intalling it beucase I believe it's only required to fetch some sources from the hosting repo, for example the source described in the file get-opencv.sh.  I am going to remove the package later, before I attempt to access the Mac sources.
+cmake: Available.
+libfaac-dev: Run: $ sudo apt-cache search 'libfaac' | less. Package not found. 
+I go to check the availability on the Debian package Web site: https://www.debian.org/distrib/packages. The package type is 'non-free' and then I need to setup the sources.list file to add 'non-free' to the official repos, like this: deb http://ftp.de.debian.org/debian jessie main non-free
+Remember to restore the default repo configuration before continue.
+References:
+Web: https://packages.debian.org/jessie/libfaac-dev
+Web: https://packages.debian.org/jessie/amd64/libfaac-dev/download
+libjack-jackd2-dev: Available.
+libmp3lame-dev: Available.
+libopencore-amrnb-dev: Available.
+libopencore-amrwb-dev: Available.
+libsdl1.2-dev: Available.
+libtheora-dev: Available.
+libva-dev: Available.
+libvdpau-dev: Available.
+libvorbis-dev: Available.
+libx11-dev: Installed.
+libxfixes-dev: Available.
+libxvidcore-dev: Available.
+texi2html: Available.
+yasm: Available.
+zlib1g-dev: Available.
+
+Get tessaract text recognition:
+tesseract-ocr: Available.
+tesseract-ocr-eng: Available.
+libtesseract-dev: Available.
+libleptonica-dev: Available.
+
+Get ATLAS library for Kaldi:
+libatlas-dev: Available.
+libatlas-base-dev: Available.
+
+Get protobuf for image-matching:
+libprotobuf-dev: Available.
+protobuf-compiler: Available.
+
+Get deps for web application:
+pip install wtforms Flask requests pickledb
+
+At this point I notice that I don't have problems to download the dependencies, but as there aren't PPAs in Debian so I am unable to run the script get-dependencies.sh but install the dependencies manually, as follows:
+
+Add a new version of the Official Jessie repos include 'non-free' to the file /etc/apt/sources.list, and don't forget to disable the official repos during the next installation to avoid the error message about duplicate sources:
+The disabled section would look like this:
+#deb http://ftp.us.debian.org/debian/ jessie main
+#deb-src http://ftp.us.debian.org/debian/ jessie main
+
+The new repo section would look like this:
+# Official Jessie repos include 'non-free'
+# Packages: libfaac-dev,
+deb http://ftp.us.debian.org/debian jessie main non-free
+
+Run the first installation:
+$ sudo apt-get update
+$ sudo apt-get install libfaac-dev
+
+Restore the previous file status before proceed with the next installations.
+
+$ sudo nano /etc/apt/sources.list
+
+Install the most of the software required:
+$ sudo apt-get update
+$ sudo apt-get install git zip unzip subversion sox ant automake autoconf libtool bison libboost-all-dev swig python-pip curl checkinstall git cmake libjack-jackd2-dev libmp3lame-dev libopencore-amrnb-dev libopencore-amrwb-dev libsdl1.2-dev libtheora-dev libva-dev libvdpau-dev libvorbis-dev libx11-dev libxfixes-dev libxvidcore-dev texi2html yasm zlib1g-dev tesseract-ocr tesseract-ocr-eng libtesseract-dev libleptonica-dev libatlas-dev libatlas-base-dev libprotobuf-dev protobuf-compiler
+
+For your information:
+Debian is using update alternatives to switch from packages versions in some packages to provide some functionality. Here is the list of packages that switched during the last installation:
+update-alternatives: using /usr/bin/mpirun.openmpi to provide /usr/bin/mpirun (mpirun) in auto mode
+update-alternatives: using /usr/bin/automake-1.14 to provide /usr/bin/automake (automake) in auto mode
+update-alternatives: using /usr/bin/bison.yacc to provide /usr/bin/yacc (yacc) in auto mode
+update-alternatives: using /usr/lib/atlas-base/atlas/libblas.so.3 to provide /usr/lib/libblas.so.3 (libblas.so.3) in auto mode
+update-alternatives: using /usr/lib/atlas-base/atlas/liblapack.so.3 to provide /usr/lib/liblapack.so.3 (liblapack.so.3) in auto mode
+Setting up libblas-dev (1.2.20110419-10) ...
+update-alternatives: using /usr/lib/libblas/libblas.so to provide /usr/lib/libblas.so (libblas.so) in auto mode
+update-alternatives: using /usr/lib/atlas-base/atlas/libblas.so.3 to provide /usr/lib/libblas.so.3 (libblas.so.3) in auto mode
+update-alternatives: using /usr/lib/atlas-base/atlas/liblapack.so.3 to provide /usr/lib/liblapack.so.3 (liblapack.so.3) in auto mode
+Setting up libblas-dev (1.2.20110419-10) ...
+update-alternatives: using /usr/lib/libblas/libblas.so to provide /usr/lib/libblas.so (libblas.so) in auto mode
+update-alternatives: using /usr/lib/atlas-base/atlas/libblas.so to provide /usr/lib/libblas.so (libblas.so) in auto mode
+update-alternatives: using /usr/lib/atlas-base/atlas/liblapack.so to provide /usr/lib/liblapack.so (liblapack.so) in auto mode
+update-alternatives: using /usr/lib/openmpi/include to provide /usr/include/mpi (mpi) in auto mode
+
+$ sudo pip install wtforms Flask requests pickledb
+
+Resolve the existent problem with ffmpeg:
+I have searched the program in the Official and there a 'sid' (unstable) versions, so I to not search in the Ubuntu's PPAs.
+Reference:
+Web: https://packages.debian.org/sid/ffmpeg
+According to the page:
+FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created. It supports the most obscure ancient formats up to the cutting edge.
+This package contains:
+ffmpeg: a command line tool to convert multimedia files between formats
+ffserver: a multimedia streaming server for live broadcasts
+ffplay: a simple media player based on SDL and the FFmpeg libraries
+ffprobe: a simple multimedia stream analyzer
+
+Add the repo that corresponds to fetch the program to the local system. I have used this repo already, so simply activate to install, and add the package to the list:
+
+$ sudo nano /etc/apt/sources.list
+
+# Sid mirror in North America
+# Packages: virtualbox-guest-additions-iso 4.3.18-3,
+deb http://ftp.us.debian.org/debian sid main non-free
+
+Run the installation:
+$ sudo apt-get update
+$ sudo apt-get install ffmpeg
+
+Again, remember to restore the repository sources to the status before run the present installation.
+
+Next step is to run opencv.sh:
+Opencv is a software built in c++ to run code in real time.
+$ /usr/src/sirius-1.0.1/sirius-application
+$ sudo ./get-opencv.sh
+
+The script pulls all the sources from the hosting server:
+https://github.com/Itseez/opencv.git, and makes the directory build and build the code binaries.
+
+Next step is to run the script to get kaldhi:
+Kaldi open-source speech recognition project.
+$ sudo ./get-kaldi.sh
+kaldhi is going to call another script called prepared.sh under the directory kaldhi/scripts. This new script is going to pull the kaldhi sources in a similar way as the last script did with opencv.
+
+The last setting up step to compile Sirius:
+$ sudo ./compile-sirius-servers.sh
+
+Next section is about how to use the tree features of Sirius:
+For a detailed description of each, visit: http://sirius.clarity-lab.org/index.html%3Fp=11.html#asr
+
+Automatic Speech Recognition (ASR):
+
+According this setting up section of the page:
+http://sirius.clarity-lab.org/index.html%3Fp=9.html
+
+To open an ASR server:
+
+$ cd /usr/src/sirius-1.0.1/sirius-application/run-scripts
+$ sudo ./start-asr-server.sh
+or
+$ sudo ./start-asr-server.sh pocketsphinx
+or specify an ASR, hostname and port:
+$ ./start-asr-server.sh pocketsphinx localhost 8081
+In a separate terminal, to test ASR:
+$ sudo ./sirius-asr-test.sh ../inputs/questions/what.is.the.speed.of.light.wav
+
+The server output should be the transcription: 
+transcript []: what is the speed of light
+transcript []: what is the speed of light
+transcript []: what is the speed of light
+
+Image Matching (IMM):
+
+Image Matching uses SURF to match query images to a stored database.
+SURF is a Class for extracting Speeded Up Robust Features from an image.
+In image-matching/ first build and store a database of descriptors in protobuf format where the arguments are the name of the database and the directory containing the images:
+$ cd /usr/src/sirius-1.0.1/sirius-application/image-matching/
+$ sudo ./make-db.py landmarks matching/landmarks/db/
+To change the database used by the IMM service, change the name in image-matching/start-imm-server.py.
+In run-scripts/, open the IMM server:
+$ sudo ./start-imm-server.sh
+In a separate terminal, test IMM using:
+$ sudo ./sirius-imm-test.sh ../image-matching/matching/landmarks/query/query.jpg
+
+Question-Answering System (QA):
+
+The Question-Answering system uses OpenEphyra and a Wikipedia database stored in Lemur’s Indri format.
+Ephyra is a modular and extensible framework for open domain question answering (QA). The system retrieves accurate answers to natural language questions from the Web and other sources.
+Indri is a search engine that provides state-of-the-art text search and a rich structured query language for text collections of up to 50 million documents (single machine) or 500 million documents (distributed search). Available for Linux, Solaris, Windows and Mac OSX. 
+Extract the Wikipedia database (after untaring and building question-answer):
+$ wget http://web.eecs.umich.edu/~jahausw/download/wiki_indri_index.tar.gz
+This step has not been described but questions-answer/ has not been extracted:
+$ sudo tar xvzf question-answer.tar.gz
+$ tar xzvf wiki_indri_index.tar.gz -C question-answer/
+Build OpenEphyra:
+$ cd sirius-application/question-answer/
+$ ant -file build.xml
+In run-scripts/, open the QA server:
+$ sudo start ./start-qa-server.sh
+In a separate terminal, test QA using:
+$ ./sirius-qa-test.sh "what is the speed of light"
+
+At this point I got an error when I run start-qa-server.sh. I resolved the error modifying the quantity of cores in the script, as follows:
+export INDRI_INDEX=`pwd`/wiki_indri_index/
+#export THREADS=$(cat /proc/cpuinfo | grep processor | wc -l)
+export THREADS=4
+
+Unfortunately I got a new error when running th server again, the server seems OK, but Sirius is unable to analyze the question.
+Error output:
+  ...for IDENTITY
+  ...for PROFESSION
+  ...for LANGUAGE
+  ...for GRADUATE
+  ...for POPULATION
+  ...for DATEOFMARRIAGE
+  ...for DATEOFDISCOVERY
+  ...done
+2015-05-30 14:27:08.413:INFO:oejs.Server:jetty-8.1.14.v20131031
+2015-05-30 14:27:34.714:INFO:oejs.AbstractConnector:Started SelectChannelConnector@localhost:8080
+Query str: query=what%20is%20the%20speed%20of%20light
+
++++++ Analyzing question (2015-05-30 14:30:09) +++++
+Normalization: what be the speed of light
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f9f64973d00, pid=18483, tid=140322196354816
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_45-b14) (build 1.8.0_45-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.45-b02 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# V  [libjvm.so+0x642d00]
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /usr/src/sirius-1.0.1/sirius-application/question-answer/hs_err_pid18483.log
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+./start-qa-server.sh: line 41: 18483 Aborted                 java -Djava.library.path=lib/search/ -server -Xms1024m -Xmx2048m info.ephyra.OpenEphyraServer $ip $port
+End of error.
+
+I read the file question-answer/hs_err_pid18483.log but it does not provide much useful information.
+
+I switch Java version before re-run the servers:
+$ sudo update-alternatives --config java
+And then choose OpenJDK 1.7
+
+Restart servers:
+$ cd /usr/src/sirius-1.0.1/sirius-application/run-scripts/
+$ sudo ./start-qa-server.sh
+$ ./sirius-qa-test.sh "what is the speed of light"
+
+The command at least let me advance in the starting process:
+$ ulimit -c unlimited
+$ ulimit -c
+# ulimit -c unlimited
+# ulimit -c
+You have to rerun always these commands before start the service after a reboot. You can add the command to a systemd service.
+
+However, after a new attempt a new error message appears.
+Error output:
+Creating WordNet dictionary...
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f54c9b893c3, pid=3765, tid=140002161796864
+#
+# JRE version: OpenJDK Runtime Environment (7.0_79-b14) (build 1.7.0_79-b14)
+# Java VM: OpenJDK 64-Bit Server VM (24.79-b02 mixed mode linux-amd64 compressed oops)
+# Derivative: IcedTea 2.5.5
+# Distribution: Debian GNU/Linux 8.0 (jessie), package 7u79-2.5.5-1~deb8u1
+# Problematic frame:
+# V  [libjvm.so+0x5b93c3]  instanceKlass::find_method(objArrayOopDesc*, Symbol*, Symbol*)+0x63
+#
+# Core dump written. Default location: /usr/src/sirius-1.0.1/sirius-application/question-answer/core or core.3765
+#
+# An error report file with more information is saved as:
+# /usr/src/sirius-1.0.1/sirius-application/question-answer/hs_err_pid3765.log
+#
+# If you would like to submit a bug report, please include
+# instructions on how to reproduce the bug and visit:
+#   http://icedtea.classpath.org/bugzilla
+#
+./start-qa-server.sh: line 41:  3765 Aborted                 (core dumped) java -Djava.library.path=lib/search/ -server -Xms1024m -Xmx2048m info.ephyra.OpenEphyraServer $ip $port
+End of output.
+
+Notes:
+The message says the problemtic packages is: 
+ii  icedtea-7-jre-jamvm:amd64              7u79-2.5.5-1~deb8u1                 amd64        Alternative JVM for OpenJDK, using JamVM
+
+Check the packages already installed:
+$ sudo dpkg -l | grep 'iced'
+
+There are two icedtea plugins. I am going to remove the problematic package:
+$ sudo apt-get remove icedtea-7-jre-jamvm:amd64
+
+I run the services from the text mode:
+Press CTRL +ALT + F1, F2, etc.
+To know what term you are:
+$ tty
+To control x-server:
+$ sudo startx --stop
+$ sudo startx --restart
+$ sudo startx
+Attempt to start the Sirius QA service:
+$ sudo ./start-asr-server.sh pocketsphinx localhost 8081
+$ sudo ./start-imm-server.sh
+$ ulimit -c unlimited
+$ ulimit -c
+# ulimit -c unlimited
+# ulimit -c
+# ./start-qa-server.sh
+$ sudo ./siruis-qa-test.sh "What is the speed of light"
+All the services are running but take a look at the output of the test. The server is not responding correctly. Output:
+(1) Your query test is:
+What is the spped of light
+(2) Sending request to server
+curl: (52) Empty reply from server
+End of output.
+
+Combined services:
+These also is not responding the question "What is the capital lf Italy".. the qa server is lookinf for an answer but it's confusin g the work Italy and replaces it with the word "afiliates" and can't find a correct answer.
+Command executed:
+$ ./sirius-asr-qa-test.sh ../input/real/what.is.the.capital.of.italy.wav
+
+I am going to come back to know what is going on with the application sometimes. unfortunately I am looking for something that works almost Out fo teh Box. Web site: http://sirius.clarity-lab.org/index.html%3Fp=9.html
+
+
+From the email lists:
+
+Semantic databases:
+Could anyone point me in the right direction as to how to be able to get the QA server to answer questions from my own data? I'm especially interested in being able to answer questions about data contained in a semantic database (RDF). I imagine this may involve somehow turning the normalized question into a SPARQL query somehow.
+
+Hey, i am interested in that too. As soon, as sirius is more a shell, you should extend https://mu.lti.cs.cmu.edu/trac/Ephyra/wiki/OpenEphyra project.
+Quick search about OpenEphyra + RDF i found the answer from a contributor
+
+A knowledge annotator only makes sense if you have a source that already provides answers to specific kinds of questions in a way that makes it easy to extract them. The format doesn't really matter: it can be a relational database, a website that follows a certain template (such as the CIA World Factbook), a web service (e.g. providing weather information) etc. An ontology may work too. Knowledge annotators are intended as a mechanism for extracting answers to frequent types of questions with high confidence from specialized sources. It takes some manual effort to create a knowledge annotator (i.e. write a wrapper for a particular source), but it is a rather save way to improve the performance if you have some idea about the distribution of the questions.
+
+Technically, you could extract question-answer pairs from an encyclopedia and store them in a database (e.g. a table containing frequently seeked properties of a person, such as date of birth, profession etc.), and then integrate this DB with a knowledge annotator. This may make sense if you are concerned about the runtime of the system.
+So if you will build such base please inform me, that's an really interesting thing! 
+
+
+Web interface:
+The web interface is a prototype and probably should not be used as a final web front-end to run Sirius, more of a starting point. I would also recommend starting from the provided shell scripts and even implementing your own. We are currently working on front-end(s).
+
+
+Sirius client:
+https://github.com/d4ndo/sirius-client
+
+
+
+References:
+To watch some tour videos, go to: http://sirius.clarity-lab.org/category/watch/index.html
+File: hauswald15asplos.pdf
+File: sirius-lightning.pdf
+File: sirius-talk.pdf
+File: sirius-tutorial.pdf
+

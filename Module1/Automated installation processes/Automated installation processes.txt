@@ -1,0 +1,20 @@
+Software sources available:
+- Automatic installation frameworks
+
+Installation examples:
+
+- Installation from FAI (Fully Automatic Installation framework):
+References:
+Web: https://debian-administration.org/article/240/FAI_the_Fully_Automatic_Installation_framework_for_linux
+File: FAI the Fully Automatic Installation framework for linux.pdf
+
+- Installation from Ansible:
+References:
+Web: http://www.tecmint.com/install-and-configure-ansible-automation-tool-in-linux/
+File: How to Install and Configure 'Ansible' Automation Tool for IT Management - Part 1.pdf
+
+- PXE Boot server configuration:
+PXE Boot is very useful when we looking to re-image / install more clients yet a time
+References:
+Web: http://arkit.co.in/linux/pxe-boot-server-configuration/
+File: PXE Boot server configuration step by step Guide.pdf

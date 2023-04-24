@@ -1,0 +1,138 @@
+Grunt The JavaScript Task Runner.
+With Grunt you can build apps, optimize images, etc.
+
+Installation:
+
+Installing a specific version
+Installing a published development version
+Installing directly from github
+References:
+Web: http://gruntjs.com/installing-grunt
+
+Installing a specific version:
+If you need a specific version of Grunt or a Grunt plugin, run npm install -g grunt@VERSION --save-dev where VERSION is the version you need. This will install the specified version, adding it to your package.json devDependencies.
+Note that a tilde version range will be used in your package.json when you add the --save-dev flag to npm install. This is typically good, as new patch releases of the specified version will automatically be upgraded as development continues, per semver.
+
+Update npm:
+$ npm update -g npm
+The first time I see this output:
+/home/esteban/.linuxbrew/bin/npm -> /home/esteban/.linuxbrew/lib/node_modules/npm/bin/npm-cli.js
+
+Installing "latest" version:
+$ npm install -g grunt --save-dev
+
+grunt@0.4.5 node_modules/grunt
+├── dateformat@1.0.2-1.2.3
+├── which@1.0.9
+├── getobject@0.1.0
+├── eventemitter2@0.4.14
+├── rimraf@2.2.8
+├── colors@0.6.2
+├── async@0.1.22
+├── grunt-legacy-util@0.2.0
+├── hooker@0.2.3
+├── exit@0.1.2
+├── lodash@0.9.2
+├── coffee-script@1.3.3
+├── underscore.string@2.2.1
+├── iconv-lite@0.2.11
+├── nopt@1.0.10 (abbrev@1.0.7)
+├── minimatch@0.2.14 (sigmund@1.0.1, lru-cache@2.6.4)
+├── grunt-legacy-log@0.1.2 (grunt-legacy-log-utils@0.1.1, underscore.string@2.3.3, lodash@2.4.2)
+├── glob@3.1.21 (inherits@1.0.0, graceful-fs@1.2.3)
+├── findup-sync@0.1.3 (lodash@2.4.2, glob@3.2.11)
+└── js-yaml@2.0.5 (esprima@1.0.4, argparse@0.1.16)
+
+The grunt files are deposited here:
+/home/esteban/.linuxbrew/node_modules/
+
+Install the CLI:
+$ npm install -g grunt-cli
+Output:
+/home/esteban/.linuxbrew/bin/grunt -> /home/esteban/.linuxbrew/lib/node_modules/grunt-cli/bin/grunt
+grunt-cli@0.1.13 /home/esteban/.linuxbrew/lib/node_modules/grunt-cli
+├── resolve@0.3.1
+├── nopt@1.0.10 (abbrev@1.0.7)
+└── findup-sync@0.1.3 (lodash@2.4.2, glob@3.2.11)
+
+Install a specific plugin, for example JSHint:
+Before installing a plugin you need to create and setup a project directory.
+To create the project directory:
+$ cd
+$ mkdir grunt-project1
+$ cd grunt-project1/
+I am not going to prepare the directory to run any tasks, but I am going to show how to install a plugin in the directory for your reference:
+$ npm install -g grunt-contrib-jshint --save-dev
+Output:
+npm WARN peerDependencies The peer dependency grunt@>=0.4.0 included from grunt-contrib-jshint will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency 
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+grunt@0.4.5 node_modules/grunt
+├── dateformat@1.0.2-1.2.3
+├── which@1.0.9
+├── eventemitter2@0.4.14
+├── getobject@0.1.0
+├── rimraf@2.2.8
+├── colors@0.6.2
+├── async@0.1.22
+├── hooker@0.2.3
+├── grunt-legacy-util@0.2.0
+├── exit@0.1.2
+├── minimatch@0.2.14 (sigmund@1.0.1, lru-cache@2.6.4)
+├── nopt@1.0.10 (abbrev@1.0.7)
+├── lodash@0.9.2
+├── glob@3.1.21 (inherits@1.0.0, graceful-fs@1.2.3)
+├── coffee-script@1.3.3
+├── underscore.string@2.2.1
+├── iconv-lite@0.2.11
+├── findup-sync@0.1.3 (glob@3.2.11, lodash@2.4.2)
+├── grunt-legacy-log@0.1.2 (grunt-legacy-log-utils@0.1.1, underscore.string@2.3.3, lodash@2.4.2)
+└── js-yaml@2.0.5 (esprima@1.0.4, argparse@0.1.16)
+
+grunt-contrib-jshint@0.11.2 node_modules/grunt-contrib-jshint
+├── hooker@0.2.3
+└── jshint@2.8.0 (strip-json-comments@1.0.2, exit@0.1.2, shelljs@0.3.0, console-browserify@1.1.0, minimatch@2.0.8, htmlparser2@3.8.3, cli@0.6.6, lodash@3.7.0)
+
+End of Output.
+
+To prepare the project directory and files visit:
+Web: http://gruntjs.com/getting-started
+
+Plugins list:
+http://gruntjs.com/plugins
+
+Contributing:
+http://gruntjs.com/contributing
+
+grunt-contrib on GitHub:
+https://github.com/gruntjs/grunt-contrib
+This page has a command to install almost every contrib plugin but as the page says: "the command is only meant for quickly being able to try out grunt. For anything else install only what you actually need.":
+$ npm install -g --save-dev grunt-contrib-clean grunt-contrib-coffee grunt-contrib-compass grunt-contrib-compress grunt-contrib-concat grunt-contrib-connect grunt-contrib-copy grunt-contrib-cssmin grunt-contrib-csslint grunt-contrib-handlebars grunt-contrib-htmlmin grunt-contrib-imagemin grunt-contrib-jade grunt-contrib-jasmine grunt-contrib-jshint grunt-contrib-jst grunt-contrib-less grunt-contrib-nodeunit grunt-contrib-qunit grunt-contrib-requirejs grunt-contrib-sass grunt-contrib-stylus grunt-contrib-uglify grunt-contrib-watch grunt-contrib-yuidoc grunt-contrib-symlink
+
+grunt-contrib-compass:
+The best example to do not execute the command is Compass. Compass and SASS can be installed as Ruby gems, and you will have to choose how to install them in your home/.
+Web: https://github.com/gruntjs/grunt-contrib-compass
+Install with npm: 
+$ npm install -g grunt-contrib-compass --save-dev
+
+Getting started:
+Web: http://gruntjs.com/getting-started
+
+To update the npm package:
+$ npm help
+$ npm update -h
+$ npm help update
+$ npm upgrade -h
+$ npm help upgrade
+Update npm:
+$ npm update -g npm
+Update a package:
+$ npm update -g grunt
+$ npm update -g grunt-cli
+
+To  update grunt plugins:
+Enter to the grunt project where the specific plugin have been installed (Note: I am not sure if this command update the project or all the projects, double check the documentation please):
+$ cd
+$ cd grunt-project1/
+$ npm update -g grunt-contrib-jshint
+Do the same to all the plugins you want to update.

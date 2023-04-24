@@ -1,0 +1,10 @@
+aptitude
+curl
+findutils
+gawk
+iproute2
+nano
+net-tools
+software-properties-common
+whiptail
+xterm

@@ -1,0 +1,143 @@
+I red two articles. One in a black book of Debian which talks about the Apache2 errors. Another says that new SEO is going to need Nginx to improve Gooogle searches and we can keep using Apache2 for the backend. In the case of severs the most of the Linux and Unix Web UIs are still built in PHP and running on Apache 2. For example, you don't need it but PHPMyAadmin is still in use. Think that they are secure if you know how to enforce them and also they could have vulnerabilities. NGINX can be attacked, so it is not invulnerable, and like Apache require security updates.
+
+Update LinuxBrew:
+$ brew update
+
+$ brew search nginx
+
+Output:
+homebrew/nginx/accept-language-nginx-module
+homebrew/nginx/accesskey-nginx-module
+homebrew/nginx/ajp-nginx-module
+homebrew/nginx/anti-ddos-nginx-module
+homebrew/nginx/array-var-nginx-module
+homebrew/nginx/auth-digest-nginx-module
+homebrew/nginx/auth-ldap-nginx-module
+homebrew/nginx/auth-pam-nginx-module
+homebrew/nginx/auto-keepalive-nginx-module
+homebrew/nginx/autols-nginx-module
+homebrew/nginx/cache-purge-nginx-module
+homebrew/nginx/captcha-nginx-module
+homebrew/nginx/consistent-hash-nginx-module
+homebrew/nginx/counter-zone-nginx-module
+homebrew/nginx/ctpp2-nginx-module
+homebrew/nginx/dav-ext-nginx-module
+homebrew/nginx/dosdetector-nginx-module
+homebrew/nginx/echo-nginx-module
+homebrew/nginx/eval-nginx-module
+homebrew/nginx/extended-status-nginx-module
+homebrew/nginx/fancyindex-nginx-module
+homebrew/nginx/headers-more-nginx-module
+homebrew/nginx/healthcheck-nginx-module
+homebrew/nginx/http-flood-detector-nginx-module
+homebrew/nginx/http-remote-passwd-nginx-module
+homebrew/nginx/log-if-nginx-module
+homebrew/nginx/lua-nginx-module
+homebrew/nginx/mod-zip-nginx-module
+homebrew/nginx/mogilefs-nginx-module
+homebrew/nginx/mp4-h264-nginx-module
+homebrew/nginx/nginx-full
+homebrew/nginx/notice-nginx-module
+homebrew/nginx/php-session-nginx-module
+homebrew/nginx/push-stream-nginx-module
+homebrew/nginx/realtime-req-nginx-module
+homebrew/nginx/redis-nginx-module
+homebrew/nginx/redis2-nginx-module
+homebrew/nginx/rtmp-nginx-module
+homebrew/nginx/set-misc-nginx-module
+homebrew/nginx/small-light-nginx-module
+homebrew/nginx/subs-filter-nginx-module
+homebrew/nginx/tcp-proxy-nginx-module
+homebrew/nginx/txid-nginx-module
+homebrew/nginx/unzip-nginx-module
+homebrew/nginx/upload-nginx-module
+homebrew/nginx/upload-progress-nginx-module
+homebrew/nginx/upstream-hash-nginx-module
+homebrew/nginx/upstream-order-nginx-module
+homebrew/nginx/ustats-nginx-module
+homebrew/nginx/var-req-speed-nginx-module
+homebrew/nginx/websockify-nginx-module
+homebrew/nginx/xsltproc-nginx-module
+
+Or use:
+Go to http://braumeister.org/browse/s/8
+
+Dependencies list:
+libressl: Has not dependencies.
+openssl: makedepend.
+passsenger: openssl, pcre.
+pcre: Has not dependencies.
+
+makedepend: pkg-config
+pkc-config: Has not dependencies.
+
+Install a formula:
+$ brew install nginx
+
+Output:
+Error: No available formula for zlib (dependency of nginx)
+Searching formulae...
+lzlib
+Searching taps...
+homebrew/dupes/zlib
+
+I am curious about zlib and then I search for in the system:
+$ whereis zlib
+Output:
+zlib: /usr/include/zlib.h /usr/share/man/man3/zlib.3.gz
+$ whatis zlib
+Output:
+zlib (3) - compression/decompression library
+
+There is only a command zlib-flate on the system.
+
+Notice that in the output error of the attempt to intall nginx there is a tap to add:
+$ brew tap homebrew/dupes
+Output:
+==> Tapping homebrew/dupes
+Cloning into '/home/esteban/.linuxbrew/Library/Taps/homebrew/homebrew-dupes'...
+remote: Counting objects: 40, done.
+remote: Compressing objects: 100% (40/40), done.
+remote: Total 40 (delta 1), reused 12 (delta 0), pack-reused 0
+Unpacking objects: 100% (40/40), done.
+Checking connectivity... done.
+Tapped 37 formulae (99 files, 632K)
+
+List taps:
+$ brew tap
+Output:
+homebrew/science
+homebrew/games
+homebrew/dupes
+
+Install nginx:
+$ brew install nginx
+Output:
+[...]
+### 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/nginx/1.8.0 
+==> make
+==> make install
+==> Caveats
+Docroot is: /home/esteban/.linuxbrew/var/www
+
+The default port has been set in /home/esteban/.linuxbrew/etc/nginx/nginx.conf to 8080 so that
+nginx can run without sudo.
+
+nginx will load all files in /home/esteban/.linuxbrew/etc/nginx/servers/.
+[...]
+
+To start the server:
+$ nginx
+Verify in the Web  browser, go to:
+localhost:8080
+Verify that there is the Nginx Welcome message.
+
+To stop the server:
+$ nginx -s stop
+
+More options:
+$ man nginx
+
+To upgrade packages:
+$ brew upgrade nginx

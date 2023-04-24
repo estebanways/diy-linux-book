@@ -1,0 +1,16 @@
+amb-plugins - ambisonics LADSPA plugins
+ardour - the digital audio workstation
+ardour-altivec - transitional dummy package for (altivec-optimized) ardour
+ardour-data - digital audio workstation (data)
+ardour-i686 - transitional dummy package for (i686 optimized) ardour
+ardour-video-timeline - digital audio workstation - video timeline
+ardour3 - transitional dummy package for ardour
+calf-plugins - Calf Studiogear - audio effects and sound generators
+fil-plugins - parametric equalizer LADSPA plugin
+gjacktransport - access to the JACK's transport mechanism as touchable slider
+harvid - HTTP Ardour Video Server
+so-synth-lv2 - Set of synthesizers for the LV2 plugin format
+swh-lv2 - Steve Harris's SWH plugins ported to LV2
+tap-plugins - Tom's Audio Processing LADSPA plugins
+tap-plugins-doc - TAP-plugins documentation
+xjadeo - Video player with JACK sync

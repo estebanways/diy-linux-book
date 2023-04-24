@@ -1,0 +1,20 @@
+Go to www.sublimetext.com and download the 64 bit version.
+Sublime Text Editor is not source as WinRAR, so we can extract the binaries under /opt
+# ls /opt
+Output:
+firefox  google  teamviewer
+
+# tar xvfj  Sublime Text 2.0.2 x64.tar.bz2
+# cd /opt/Sublime\ Text\ 2/
+There is the excutable sublime_text
+
+Run in the term:
+$ sublime_text
+
+Add the program it to /usr/bin (There should update with the distro upgrade)
+# ln -sf /opt/Sublime\ Text\ 2/sublime_text /usr/bin/sublime_text
+
+Add the program to the Activities All Programs > Main Menu > section Programming, in Gnome:
+Name: Sublime Text Editor
+Command: sublime_text
+Icon: Find one in /opt/Sublime\ Text\ 2/

@@ -1,0 +1,177 @@
+- Updates
+- Adobe Flash Player for Google Chrome
+- PepperFlash for Google Chrome and Chromium
+- Gnash for Firefox and Iceweasel
+- Freshplayerplugin to use Pepper Flash with Iceweasel
+- Lightspark for Mozilla
+
+Which browser is faster?
+To watch Flash videos Chrome or Chromium, but to browse pages Firefox and Iceweasel
+TO watch YouTube videos your favorite browser does not require Flash anymore, but HTML5 support. Today most Web browsers support HTML5 and later.
+
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+Currently, Flashplayer can be installed only in Firefox on Debian Stretch. In previous Debian releases like Jessie I used the Adobe company version for Chrome an an alternative version for Firefox, but Chrome threw out Flash Player and bid for HTML for animation and videos.
+References:
+Topic: Google is replacing Flash in Chrome once and for all
+Web: https://www.theverge.com/2016/12/9/13903878/google-chrome-block-flash-html5
+File: Google is replacing Flash in Chrome once and for all
+
+Given the facts, the current Flash version installation process changed since the Stretch release. Instead of install based on the Jessie versions, please follow the next notes, described on the updated Official Debian Website.
+References:
+Topic: FlashPlayer for Firefox
+Web: https://wiki.debian.org/FlashPlayer
+File: FlashPlayer - Debian Wiki.pdf
+
+The newest versions of the Debian package flashplugin-nonfree have this warning in the package description:
+
+WARNING: Installing this Debian package causes the
+Adobe Flash Player to be downloaded from www.adobe.com.
+The End User License Agreement of the Adobe Flash Player
+is available at www.adobe.com.
+
+Next step has to be done with Firefox to download NPAPI package instead of PPAPI:
+1. Download the latest Adobe Flash Player for Linux from https://get.adobe.com/flashplayer/
+On 64bit systems, it should be: flash_player_npapi_linux.x86_64.tar.gz
+On 32bit systems, it should be: flash_player_npapi_linux.i386.tar.gz
+Alternatively, you can download it from: https://get.adobe.com/flashplayer/otherversions/
+
+2. Unpack the tar.gz file: tar -xzf flash_player_npapi_linux*.tar.gz
+
+3. Identify the location of the browser plugins directory, based on your Linux distribution and Firefox version:
+Example: Debian 9 Stretch + Firefox 52.4.0 (64-Bit): /usr/lib/mozilla/plugins/
+
+4. Copy libflashplayer.so to the appropriate browser plugins directory: sudo cp libflashplayer.so <browserpluginlocation>
+Example: sudo cp libflashplayer.so /usr/lib/mozilla/plugins/
+
+5. Copy the Flash Player Local Settings configurations files to the /usr directory: sudo cp -r usr/* /usr
+
+------->
+
+- Adobe Flash Player for Google Chrome:
+
+Flash Player plugin is not required to be able to watch YouTube videos because as many Web sites it change to a html5 player by default. By the way, I recommend you to switch to the new Glass player from the YouTube Labs, and install the cool program Magic Actions for You Tube on your browser.
+
+MR Stallman, Richard, of the FSF (Free Software Foundation) says the Flash has a built-in malware, which sends private hardware data to Adobe. Adobe discontinued the product recently, and HTML5 Video is replacing Flash progressively.
+
+The official documentation says:
+References:
+Topic: Flash plugin non free
+Web: https://packages.debian.org/jessie/flashplugin-nonfree
+Files: Flash plugin non free.pdf
+Adobe Flash Player - browser plugin
+This package will download the Flash Player from Adobe. It is a Netscape/Mozilla type plugin. Any browser based on Netscape or Mozilla can use the Flash Player. See https://wiki.debian.org/FlashPlayer for a list of browsers currently supported in Debian.
+WARNING: Installing this Debian package causes the Adobe Flash Player to be downloaded from www.adobe.com. The End User License Agreement of the Adobe Flash Player is available at www.adobe.com.
+
+Use these steps to  install the plugin (And to see the Flash browser compatibility list and for troubleshooting):
+Reference: 
+Web: https://wiki.debian.org/FlashPlayer
+File: FlashPlayer.pdf
+
+Add contrib to the file /etc/apt/sources.list:
+Reference:
+Web: https://wiki.debian.org/SourcesList
+File: SourcesList.pdf
+New lines:
+# Jessie default + contrib. Disable above while 
+# installing from this duplicate repo.
+# Packages: Flash plugin non-free,
+deb http://ftp.us.debian.org/debian/ jessie main contrib
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib
+
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install flashplugin-nonfree
+
+To upgrade the plugin:
+$ sudo update-flashplugin-nonfree --install
+
+Remember to comment out the new "contrib" repo to keep just the "main" as possible in the same sources file:
+# Jessie default + contrib. Disable above while 
+# installing from this duplicate repo.
+# Packages: Flash plugin non-free,
+#deb http://ftp.us.debian.org/debian/ jessie main contrib
+#deb-src http://ftp.us.debian.org/debian/ jessie main contrib
+
+Unsupported browser: Chromium
+
+- PepperFlash for Google Chrome and Chromium
+
+Pepper Flash Player is maintained by Google, and is newer than Adobe Flash Player. Adobe currently still provides security fixes for Adobe Flash Player. Google provides newer features in Pepper Flash Player. Pepper Flash Player can currently only be used with Chromium (and with Chrome).
+
+The package is a separate Debian package, not integrated in flashplugin-nonfree. Users can choose between Adobe Flash Player and Pepper Flash Player by installing the corresponding Debian package. Both packages will co-exist for some time, until Adobe finally ends security support for the Adobe Flash Player. Pepper Flash Player uses a different interface with the browser than Adobe Flash Player, so it doesn't fit in the mechanism of "alternatives" (flash-mozilla.so). When both are installed on one system, then Chromium currently only sees the Pepper Flash Player. 
+References:
+Web: https://wiki.debian.org/PepperFlashPlayer
+File: PepperFlashPlayer.pdf
+
+Steps to install:
+$ aptitude install pepperflashplugin-nonfree browser-plugin-freshplayer-pepperflash
+
+References:
+Web: https://wiki.debian.org/PepperFlashPlayer/Installing
+File: PepperFlash.pdf
+
+UPDATE: 
+This is not going to work: The packages are not in the Debian repositories main, contrib and non-free anymore:
+$ apt-cache search pepperflashplugin-nonfree browser-plugin-freshplayer-pepperflash
+
+- Gnash for Firefox and Iceweasel
+
+If you require flash open Firefox and go to YouTube.com or your favorite Adult's web site ;-) click on the pop-up dialog to download the plugin, or go directly to the Adobe downloads site: https://get.adobe.com/flashplayer/ to download the file.. but wait.. there is not a plugin for Debian, and I don't know if the Ubuntu's one is going to work, so I don't download the file and go the documentation.
+
+References:
+Topic: GNU Shockwave Flash (SWF) player
+Web: https://packages.debian.org/sid/video/gnash
+File: GNU Shockwave Flash (SWF) player.pdf
+Topic: Download Page for gnash_0.8.11~git20160608-1_i386.deb on Intel x86 machines
+Web: https://packages.debian.org/sid/i386/gnash/download
+File: Download Page for gnash.pdf
+
+Add sid to the file /etc/apt/sources.list:
+# Sid (no codename) = Unstable Debian:
+# Applications: Gnash,
+deb http://ftp.us.debian.org/debian sid main
+
+I am not going to install gnash because is changing the system a lot, installing too new libraries:
+$ apt-get update
+$ apt-cache search gnash
+$ apt-cache show gnash 
+
+Anyways if you want to install it, do:
+$ sudo apt-get install gnash
+Remember to disable the UNSTABLE repository
+
+- Freshplayerplugin to use Pepper Flash with Iceweasel
+
+Follow the installation steps from Official Debian Web site documentation.
+References:
+Web: https://wiki.debian.org/Freshplayerplugin
+File: Freshplayerplugin.pdf
+
+UPDATE: This is not going to work because one of the requirements to compile Freshplayerplugin is install PepperFlash for Chromium but PepperFlash was removed from the Debian repositories.
+
+- Lightspark for Mozilla
+
+This is the one I am using today and is working good.
+High-performance SWF player - Mozilla Plugin (experimental).
+Lightspark is a free Flash player for Linux which aims for high-performance by using modern technologies such as JIT compilation and OpenGL shaders.
+The project is currently in an alpha status and provides the standalone player and browser plugin for testing purposes only.
+
+Installation:
+Make sure you have main section in the file repositories file:
+$ sudo nano /etc/apt/sources.list
+$ apt-cache search lightspark
+Fetch and install the browser plugin and the player:
+$ sudo apt-get install browser-plugin-lightspark lightspark
+
+To use lightspark as SWF player:
+$ man lightspark
+
+References:
+Topic: browser-plugin-lightspark
+Web: https://packages.debian.org/jessie/browser-plugin-lightspark
+File: browser-plugin-lightspark.pdf

@@ -1,0 +1,87 @@
+Check hardware information is good to install and work with kernel modules/drivers, and to install, monitor, maintain and help troubleshooting hardware issues, together with commands like $ less /var/log/messages.
+References:
+Guides: 
+Find out unfound drivers
+Web: http://www.binarytides.com/linux-commands-hardware-info/
+File: 16 commands to check hardware information on Linux.pdf
+
+To display hardware information in graphical mode, use:
+$ lshw-gtk
+$ hardinfo
+
+Hardware in the command line:
+
+lscpu:
+The lscpu command reports information about the cpu and processing units. It does not have any further options or functionality.
+$ lscpu
+
+lshw:
+A general purpose utility, that reports detailed and brief information about multiple different hardware units such as cpu, memory, disk, usb controllers, network adapters etc. Lshw extracts the information from different /proc files.
+$ lshw
+
+hwinfo:
+Hwinfo is another general purpose hardware probing utility that can report detailed and brief information about multiple different hardware components, and more than what lshw can report.
+$ hwinfo
+
+lspci:
+The lspci command lists out all the pci buses and details about the devices connected to them.
+The vga adapter, graphics card, network adapter, usb ports, sata controllers, etc all fall under this category.
+$ lspci
+$ lspci -v | grep "VGA" -A 12
+
+lsscsi:
+Lists out the scsi/sata devices like hard drives and optical drives.
+$ lsscsi
+
+lsusb:
+This command shows the USB controllers and details about devices connected to them. By default brief information is printed. Use the verbose option "-v" to print detailed information about each usb port
+$ lsusb
+
+Inxi:
+Inxi is a 10K line mega bash script that fetches hardware details from multiple different sources and commands on the system, and generates a beautiful looking report that non technical users can read easily.
+$ inxi -Fx
+
+lsblk:
+List out information all block devices, which are the hard drive partitions and other storage devices like optical drives and flash drives
+$ lsblk
+
+df:
+Reports various partitions, their mount points and the used and available space on each.
+$ df -H
+
+pydf:
+An improved df version written in python, that displays colored output that looks better than df
+$ pydf
+
+fdisk:
+Fdisk is a utility to modify partitions on hard drives, and can be used to list out the partition information as well.
+$ fdisk -l
+
+mount:
+The mount is used to mount/unmount and view mounted file systems.
+$ mount | column -t
+$ mount | column -t | grep ext
+
+free:
+Check the amount of used, free and total amount of RAM on system with the free command.
+$ free
+
+dmidecode:
+The dmidecode command is different from all other commands. It extracts hardware information by reading data from the SMBOIS data structures (also called DMI tables).
+$ sudo dmidecode -t processor
+$ sudo dmidecode -t memory
+$ sudo dmidecode -t bios
+
+/proc files:
+Many of the virtual files in the /proc directory contain information about hardware and configurations. Here are some of them
+$ cat /proc/cpuinfo
+$ cat /proc/meminfo
+$ cat /proc/version
+$ cat /proc/scsi/scsi
+$ cat /proc/partitions 
+
+hdparm:
+The hdparm command gets information about sata devices like hard disks.
+$ sudo hdparm -i /dev/sda
+
+

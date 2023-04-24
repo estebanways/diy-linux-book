@@ -1,0 +1,8 @@
+Adobe Digital Editions 2001
+
+With wine already installed:
+$ winetricks --gui
+Look for the program to install
+
+References:
+Guide: Wine

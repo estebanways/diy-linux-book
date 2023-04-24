@@ -1,0 +1,7 @@
+Spyder (previously known as Pydee) is a free open-source Python development environment providing MATLAB-like features in a simple and light-weighted software. Is statistical oriented. Good for AI and machine learning. 
+
+Installation steps:
+$ sudo apt-cache search spyder
+$ sudo apt-cache show spyder
+(Pending)
+

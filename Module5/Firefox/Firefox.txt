@@ -1,0 +1,143 @@
+It's easy to install Firefox browser on Debian 8.
+Debian by default comes with Iceweasel web browser instead of firefox. Although it is recommended to use Iceweasel you may have a need to install firefox are here is a simple way how to install firefox on Debian Jessie by using Linux mint's debian import repository. 
+
+Firstly edit your /etc/apt/sources.list file and add the following line:
+deb http://packages.linuxmint.com debian import
+
+At this point on my sources.list file it looks like this:
+# Mint
+# Packages: Firefox,
+#deb http://packages.linuxmint.com debian import 
+
+Update your package list:
+
+# apt-get update
+
+If there is the unavailble gpg key 3EE67F3D0FF405B2 problem:
+# gpg --keyserver pgpkeys.mit.edu --recv-key  3EE67F3D0FF405B2
+# gpg -a --export 3EE67F3D0FF405B2 | apt-key add -
+# apt-get update
+
+The above command will fetch mint package repository list. As a last step install firefox browser:
+
+# apt-get install firefox
+
+You may want to DISABLE Linux Mint's package repository after Firefox installation  by commenting a newly added line in apt sources.list.
+Firefox Web Browser installation on Debian 8 Jessie Linux 
+
+Note:
+All be files fetched with APT will be downloaded to /var/cache/apt/archives/ before their installation. In this case I got the file firefox_37.0~linuxmint1+betsy_amd64.deb which seems a Mint file, but works perfectly on Debian 8.
+
+To run the browser:
+You will see the icon, but on the command line do:
+$ fire (And press TAB key on the keyboard)
+Output:
+You should see firefox and firefox.real
+Test the two options to make sure which is Firefox and which isn't.
+
+
+Bonus - How to improve Firefox:
+
+It's all about performance.
+In the address bar on the browser enter:
+0: about:config 
+
+For the values to create:
+Right click and choose New > ENTRY and select the value.
+
+Here is a list of the default values:
+1-network.prefetch-next = true
+2-Create an integer : content.notify.interval = 50000
+3-Create boolean : content.notify.ontimer = true
+4-Create an integer : nglayout.initialpaint.delay = 0
+5-browser.cache.disk.capacity = 358400
+6-network.http.pipelining = false
+7-network.http.proxy.pipelining = true
+8-network.http.pipelining.maxrequests = 32
+9-network.http.max-connections-per-serve­r = 256
+10-network.http.max-persistent-connectio­ns-per-server = 6
+11-network.http.pipelining.ssl = false
+12-dom.disable_window_open_feature.menub­ar = false
+13-dom.disable_window_move_resize = false
+14-dom.disable_window_open_feature.title­bar = false
+15-dom.disable_window_open_feature.toolb­ar = false
+and last but not least:
+network.dns.disableIPv6 = true
+
+Setup the new values as follows:
+1-network.prefetch-next = false
+2-Create an integer : content.notify.interval = 50000
+3-Create boolean : content.notify.ontimer = true
+4-Create an integer : nglayout.initialpaint.delay = 0
+5-browser.cache.disk.capacity = 131072 (= 128 RAM. ie. 1024KB = 1MB).
+6-network.http.pipelining = true
+7-network.http.proxy.pipelining = true
+8-network.http.pipelining.maxrequests = 30
+9-network.http.max-connections-per-serve­r = 30
+10-network.http.max-persistent-connectio­ns-per-server = 8
+11-network.http.pipelining.ssl = true
+12-dom.disable_window_open_feature.menub­ar = true
+13-dom.disable_window_move_resize = true
+14-dom.disable_window_open_feature.title­bar = true
+15-dom.disable_window_open_feature.toolb­ar = true
+and last but not least:
+network.dns.disableIPv6 = true
+
+More changes I made:
+browser.sessionhistory.max_entries = 5
+browser.sessionhistory.max_total_viewers = 5
+Right click and choose New > ENTRY and select the value (boolean):
+config.trim_on_minimize = True, and restart Firefox
+browser.cache.disk.capacity = 131072 (1024 KB (1 MB) x 128 MB. This value changed automatically to the default but the status row still says 'user set')
+browser.cache.offline.capacity = 131072
+browser.cache.disk.smart_size_cached_value = 131072
+
+Check memory:
+about:cache?device=memory
+
+Add Ons:
+Free Memory 0.95 (Add On)
+Memory restart 1.18
+Suspend Tab. Suspends background old tabs automatically to save memory usage.
+Firebug 2.0.9
+Developer
+Fasterfox. Makes some configuration change, like in teh section "Bonus - How to improve Firefox:".
+Testwise. Software Testing.
+TOR button in Firefox. Secure navigation.
+Metamask
+
+Sync:
+Create a sync account to save your addons and bookmarks, and synchronize your devices.
+
+Monitors:
+# top
+# ps -aux | grep 'firefox.real'
+Graphical system monitor extension looks very cool in the new notifications' bar. Toggle it to ON in the Gnome Tweak Tool.
+
+More:
+Default Google (encrypted) as Search Engine, from the PREFERENCES Menu.
+Activate Add On Bar
+
+References:
+Web: http://www.davidtan.org/tips-reduce-firefox-memory-cache-usage/
+
+To turn on the Video Acceleration go to the menu PREFERENCES., or type "about:preferences#advanced" in the address bar.
+
+To verify that WebGL is enabled:
+The web standard in 3D graphics acceleration. Considered as an alternative to Flash, Unity and Silverlight.
+To tell if you’re using hardware acceleration in Firefox: 
+Enter "about:support" into your address bar. At the bottom of that page is a section labeled “Graphics.” If you’re using hardware acceleration, this section will contain a message similar to “GPU Accelerated Windows: 1/1 Direct3D 10′′.
+References:
+Web: http://www.doesmybrowsersupportwebgl.com/
+File: does my browser support webgl.pdf
+Web: http://superuser.com/questions/401005/how-to-enable-the-new-3d-page-inspector-view-in-firefox-11
+File: Enable 3D page inspector in Firefox.pdf
+Web: http://www.technomantra.com/tilt-3d-website-view/
+File: Website in 3D using Firefox Tilt Inspector.pdf
+Web: https://blog.mozilla.org/joe/2010/11/10/how-to-tell-if-youre-using-hardware-acceleration/
+File: How to tell if you have hardware accel.pdf
+Web: http://learningwebgl.com/blog/?p=239
+File: webgl examples for testing.pdf
+Guides:
+Video card
+3D Acceleration and VR

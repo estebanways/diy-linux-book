@@ -1,0 +1,196 @@
+Install Ruby from RVM:
+"RVM lets you deploy each project with its own completely self-contained and dedicated environment--from the specific version of ruby, all the way down to the precise set of required gems to run your application. Having a precise set of gems also avoids the issue of version conflicts between projects, which can cause difficult-to-trace errors and hours of hair loss."
+
+Installation:
+
+Verify the running interpreter:
+$ ruby -v
+Output:
+ruby 2.1.5p273 (2014-11-13) [x86_64-linux-gnu]
+
+Fetch and install RVM:
+$ \curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
+
+Parameters' description:
+stable: Install stable RVM, good for servers.
+--ruby: Additionally install latest ruby version (MRI).
+--rails: Install gem rails into default gemset (also installs ruby=).
+--trace: Print trace of the installation, gist output when you have problems.
+--autolibs: Enable or disable autolibs see: https://rvm.io/rvm/autolibs
+
+If you don't want to install the latest available Ruby version with RVM, complete the command with the version chosen, like this: $ \curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled --ruby=1.9.3
+
+Output:
+[...]
+GPG signature verification failed for '/home/esteban/.rvm/archives/rvm-1.26.11.tgz' - 'https://github.com/rvm/rvm/releases/download/1.26.11/1.26.11.tar.gz.asc'!
+try downloading the signatures:
+    gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+
+or if it fails:
+    command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+[...]
+
+The output shows a typical keys issue, resolved with the command:
+$ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+Output:
+gpg: requesting key D39DC0E3 from hkp server keys.gnupg.net
+gpg: key D39DC0E3: public key "Michal Papis (RVM signing) <mpapis@gmail.com>" imported
+gpg: no ultimately trusted keys found
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+
+Rerun the installation command and enter the CURRENT user password at this prompt:
+[...]
+Installing requirements for debian.
+Updating system..esteban password required for 'apt-get --quiet --yes update': PASS_HERE
+Installing required packages: libreadline6-dev, libssl-dev, libyaml-dev, libsqlite3-dev, sqlite3, libgdbm-dev, libffi-dev..........
+Requirements installation successful.
+ruby-2.2.1 - #configure
+ruby-2.2.1 - #download
+[...]
+
+Note that the program is downloading a newer Ruby versions 2.2.1 and installing new packages required by the system.
+
+The installation failed because stopped while installing a documentation, then I hit CTRL + C and rerun the command, and here is the output:
+
+rvm 1.26.11 (latest) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]
+Already installed ruby-2.2.1.
+To reinstall use:
+
+    rvm reinstall ruby-2.2.1
+
+Creating alias default for ruby-2.2.1....
+Successfully installed rails-4.2.2
+Parsing documentation for rails-4.2.2
+Done installing documentation for rails after 2 seconds
+1 gem installed
+
+  * To start using RVM you need to run `source /home/esteban/.rvm/scripts/rvm`
+    in all your open shell windows, in rare cases you need to reopen all shell windows.
+
+  * To start using rails you need to run `rails new <project_dir>`.
+
+End of the Output.
+
+The messages say that the ruby version 4.2.2 has been installed and I have to run a command to install ruby version 2.2.1, but I can't run the command, and I guess is because I am in the middle of the RVM configuration (BTW version 4.2.2 does not exist, but well let's go ahead).
+
+Next step is to Load RVM into the Shell:
+$ cd ~/
+$ sudo nano .bash_profile
+If does not exist, add the line:
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+Restart the terminal.
+
+Type:
+$ rvm
+You should see a long list of commands that are available to you. Good job; that part is out of the way. 
+
+Download Ruby 1.9.2:
+
+List the versions available:
+esteban@ProLiant:~$ rvm list known
+Output:
+# MRI Rubies
+[ruby-]1.8.6[-p420]
+[ruby-]1.8.7[-head] # security released on head
+[ruby-]1.9.1[-p431]
+[ruby-]1.9.2[-p330]
+[ruby-]1.9.3[-p551]
+[ruby-]2.0.0[-p643]
+[ruby-]2.1.4
+[ruby-]2.1[.5]
+[ruby-]2.2[.1]
+[ruby-]2.2-head
+ruby-head
+
+# for forks use: rvm install ruby-head-<name> --url https://github.com/github/ruby.git --branch 2.1
+
+# JRuby
+jruby-1.6.8
+jruby[-1.7.19]
+jruby-head
+jruby-9.0.0.0.pre1
+
+# Rubinius
+rbx-1.4.3
+rbx-2.4.1
+rbx[-2.5.2]
+rbx-head
+
+# Opal
+opal
+
+# Minimalistic ruby implementation - ISO 30170:2012
+mruby[-head]
+
+# Ruby Enterprise Edition
+ree-1.8.6
+ree[-1.8.7][-2012.02]
+
+# GoRuby
+goruby
+
+# Topaz
+topaz
+
+# MagLev
+maglev[-head]
+maglev-1.0.0
+
+# Mac OS X Snow Leopard Or Newer
+macruby-0.10
+macruby-0.11
+macruby[-0.12]
+macruby-nightly
+macruby-head
+
+# IronRuby
+ironruby[-1.1.3]
+ironruby-head
+
+End of Output.
+
+Install a second Ruby version:
+$ rvm install 1.9.2
+
+Integrating RVM with Gnome-terminal:
+Reference: https://rvm.io/integration/gnome-terminal
+For RVM to work properly, you have to check the 'Run command as login shell' checkbox on the Title and Command tab of gnome-terminal's Edit => Profile Preferences menu dialog, in case the menu is missing right click the terminal app and navigate Profiles => Profile Preferences.
+
+Restart the terminal.
+This will help to run properly the rvm option 'use'.
+
+Switch Ruby to this versions:
+$ rvm use 1.9.2
+
+Check the version number:
+$ ruby -v
+
+List versions installed:
+$ rmv list
+
+With ruby select, sets a default ruby for new shells.
+$ rvm --default use 1.9.2
+
+Upgrades rvm to the latest version. (If you experience bugs try this first with --head):
+$ rvm update
+Reference:
+Topic: UPgrading RVM 
+https://rvm.io/rvm/upgrading
+I use:
+$ rvm get stable
+
+Manual:
+$ man rvm
+
+Begin installing gems:
+
+And that's it! You're all set to go! If you'd like to experiment with Ruby's syntax, type:
+$ irb
+2.2.1 :001 > 2+2
+ => 4 
+
+Interactive ruby shell manpage: 
+$ man irb
+

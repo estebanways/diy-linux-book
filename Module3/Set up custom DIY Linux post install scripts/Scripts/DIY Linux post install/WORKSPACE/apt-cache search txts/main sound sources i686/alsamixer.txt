@@ -1,0 +1,12 @@
+alsa-utils - Utilities for configuring and using ALSA
+libasound2-plugin-equal - equalizer plugin for ALSA
+alsamixergui - graphical soundcard mixer for ALSA soundcard driver
+cairo-dock-alsamixer-plug-in - Alsamixer plug-in for Cairo-dock
+gmerlin - multiformat media player
+gnome-alsamixer - ALSA sound mixer for GNOME
+mopidy-alsamixer - Mopidy extension for extension for ALSA volume control
+mudita24 - ALSA GUI control tool for Envy24 (ice1712) soundcards
+qasconfig - ALSA configuration browser
+qashctl - mixer for ALSA's High level Control Interface
+qasmixer - ALSA mixer for the desktop
+qastools-common - QasTools common files

@@ -1,0 +1,5 @@
+Pending
+
+References:
+Web: http://www.maketecheasier.com/stellarium-for-linux/
+File: Stellarium - Personal Planetarium on Linux.pdf

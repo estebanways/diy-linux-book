@@ -1,0 +1,58 @@
+atomicparsley - read, parse and set metadata of MPEG-4 and 3gp files
+audex - Audio grabber tool for KDE
+easytag - GTK+ editor for audio file tags
+faad - freeware Advanced Audio Decoder player
+gpac - GPAC Project on Advanced Content - utilities
+libatomicparsley-dev - main library for atomic parsley in gtkpod, development kit
+libatomicparsley0 - main library for atomic parsley in gtkpod, shared library
+libjs-jquery-jplayer - HTML5 Audio & Video for jQuery with a Flash fallback
+kid3 - KDE audio tag editor
+kid3-cli - Command line audio tag editor
+kid3-core - Audio tag editor core libraries and data
+kid3-qt - Audio tag editor
+libapache2-mod-musicindex - Browse, stream, download and search through MP3/Ogg/FLAC/MP4 files
+libaudio-scan-perl - module for reading metadata from common audio file formats
+libjaudiotagger-java - library for editing tags like ID3 in audio files such as MP3s
+libmp4-info-perl - Fetch info from MPEG-4 files
+libwww-nicovideo-download-perl - Download FLV/MP4/SWF files from nicovideo.jp
+libxmp4 - module file rendering library
+moc-ffmpeg-plugin - ncurses based console audio player - ffmpeg plugin
+motion - V4L capture program supporting motion detection
+mp4h - Macro processor for HTML documents
+libisoparser-java - Generic parser and writer for ISO 14496 based files
+libmp4v2-2 - library to read, create, and modify mp4 files (shared library)
+libmp4v2-dev - library to read, create, and modify mp4 files (development files)
+mp4v2-dbg - library to read, create, and modify mp4 files (debug)
+mp4v2-utils - library to read, create, and modify mp4 files (frontends)
+mencoder - MPlayer's Movie Encoder
+mplayer - movie player for Unix-like systems
+mplayer-gui - movie player for Unix-like systems (GUI variant)
+mps-youtube - Terminal based YouTube jukebox with playlist management
+nginx-extras - nginx web/proxy server (extended version)
+libogmrip-dev - Application for ripping and encoding DVD - development files
+libogmrip1 - Application for ripping and encoding DVD - libraries files
+ogmrip - Application for ripping and encoding DVD
+ogmrip-doc - Application for ripping and encoding DVD - Documentation files
+ogmrip-plugins - Application for ripping and encoding DVD - plugins
+pacpl - multi-purpose audio converter/ripper/tagger script
+psi4 - Quantum Chemical Program Suite
+puddletag - simple, powerful audio tag editor
+python-pysnmp4 - Python SNMP library for agents and managers (Python 2 module)
+python-pysnmp4-doc - Python SNMP library for agents and managers (unstable branch)
+python3-pysnmp4 - Python SNMP library for agents and managers (Python 3 module)
+python-pysnmp4-apps - Applications for the Python SNMP library
+python-pysnmp4-mibs - MIBs for the Python SNMP library
+sfront - MPEG 4 Structured Audio decoder
+libtag1-dev - audio meta-data library - development files
+libtag1-doc - audio meta-data library - API documentation
+libtag1v5 - audio meta-data library
+libtag1v5-vanilla - audio meta-data library - vanilla flavour
+libtagc0 - audio meta-data library - C bindings
+libtagc0-dev - audio meta-data library - development files for C bindings
+libtag-extras-dev - TagLib extras library - development files
+libtag-extras1 - TagLib extras library - support for more file formats
+vokoscreen - easy to use screencast creator
+xmms2-plugin-avcodec - XMMS2 - avcodec decoder
+xmms2-plugin-faad - XMMS2 - faad decoder
+xmms2-plugin-mp4 - XMMS2 - MPEG-4 plug-in
+yorick-av - write movies from Yorick in various formats

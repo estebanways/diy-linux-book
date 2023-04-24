@@ -1,0 +1,144 @@
+To review conflicts run the program in debug mode: # bash -x DIY Linux.sh
+
+
+----- Conflicts in 32 bit (and probable 64 bit) computer (Debian release 9.0):
+
+E: Unable to locate package qml-module
+E: Unable to locate package qtgstreamer
+E: Unable to locate package jack-midi-cloc
+E: Unable to locate package pysnmp4
+E: Unable to locate package module-jack
+
+The following packages have unmet dependencies:
+ jackd1 : Conflicts: jack-daemon
+ jackd1-firewire : Conflicts: jackd-firewire
+ jackd2 : Conflicts: jack-daemon
+ jackd2-firewire : Conflicts: jackd-firewire
+ libavcodec-extra57 : Conflicts: libavcodec57 but 7:3.2.5-1 is to be installed
+ libavfilter-extra6 : Conflicts: libavfilter6 but 7:3.2.5-1 is to be installed
+ libjack-jackd2-0 : Conflicts: libjack-0.116
+                    Conflicts: libjack-0.125
+                    Conflicts: libjack0 but 1:0.125.0-2 is to be installed
+ libjack-jackd2-dev : Conflicts: libjack-dev
+ libjack0 : Conflicts: libjack-0.116
+            Conflicts: libjack-0.125
+ libsnack-alsa : Conflicts: libsnack-oss but 2.2.10.20090623-dfsg-6 is to be installed
+ libsnack-oss : Conflicts: libsnack-alsa but 2.2.10.20090623-dfsg-6 is to be installed
+ osspd : Conflicts: oss-compat
+ squeezelite : Conflicts: squeezelite-pa but 1.8-4 is to be installed
+ squeezelite-pa : Conflicts: squeezelite
+ xmakemol : Conflicts: xmakemol-gl but 5.16-9+b1 is to be installed
+ xmakemol-gl : Conflicts: xmakemol but 5.16-9+b1 is to be installed
+E: Unable to correct problems, you have held broken packages.
+
+
+The following packages have unmet dependencies:
+ libavcodec-extra : Depends: libavcodec-extra57 but it is not going to be installed
+ libavfilter-extra : Depends: libavfilter-extra6 but it is not going to be installed
+ libjack-dev : Depends: libjack0 (= 1:0.125.0-2) but it is not going to be installed
+
+
+----- Conflicts in 64 bit computer (Debian release 9.0):
+
+E: Unable to locate package nyquist
+E: Unable to locate package lmms-vst-server
+E: Unable to locate package lmms-vst-server
+E: Package 'wine32' has no installation candidate
+E: Unable to locate package wine32-preloader
+E: Package 'wine32-tools' has no installation candidate
+
+
+I re-added:
+
+libsnack-alsa   (the conflict was with oss version)
+squeezelite	(the conflict was with oss version)
+
+
+
+After removing these packages the sound card failed, so I will remove from the list, found:
+
+*oss*: 
+Old sound before ALSA for old sound cards, remove all related to 'oss'. (You can install newest OSS versions, but is stupid
+decision because almost everything in Linux currently uses ALSA, I use Jack and pulseaudio)
+
+*-dev: 
+I will keep them, because can need them, see: https://stackoverflow.com/questions/1157192/what-do-the-dev-packages-in-the-linux-package-repositories-actually-contain
+
+*-dbg: 
+I can keep them  due to:  https://wiki.debian.org/DebugPackage
+
+ffmpeg:
+There is avconv as fork, see:  https://wiki.debian.org/ffmpeg
+ffmpeg and avconv co-exist for now.
+ffmpeg was a backport in jessie but is a package in Stretch, see: https://packages.debian.org/search?keywords=ffmpeg&searchon=names&suite=stable&section=all
+$ apt-cache search avconv
+output:
+libav-tools - Compatibility links for libav-tools (transitional package)
+mkchromecast - Cast your Linux audio to your Google Cast devices
+winff - graphical video and audio batch converter using ffmpeg or avconv
+winff-data - winff data files
+winff-doc - winff documentation
+end of.
+$ apt-cache search libav-tools
+output:
+libav-tools - Compatibility links for libav-tools (transitional package)
+end of.
+$ apt-cache search ffmpeg
+output
+(... the existent list in v.0.0.1)
+end of.
+As a result I excluded all or next libav libs and removed ffmpeg section (but keeping apps), to install
+only automatic and recommends using:
+$ apt-get install ffmpeg
+$ apt-get install libav-tools
+
+pulseaudio:
+$apt-cache search pavucontrol:
+output:
+pavucontrol-qt-l10n - Language package for pavucontrol-qt
+pasystray - PulseAudio controller for the system tray
+pavucontrol - PulseAudio Volume Control
+pavucontrol-dbg - Debugging symbols for pavucontrol
+pavucontrol-qt - Qt port of volume control pavucontrol
+end of.
+First two are not in the packages lists, but I think they're not required.
+
+compat: 
+Compatibility, the only I removed from the list was compatibility alsa-oss
+and probably pulseaudio-oss
+
+
+gstreamer:
+This section has many packages, I am installing averything available
+but if something fails I have to double check this list.
+
+mp4:
+Overview complete, but same case of gstreamer
+
+mp3:
+Overview complete, but same case of gstreamer
+
+wav:
+Overview complete, but same case of gstreamer
+
+vlc:
+Overview complete, but same case of gstreamer
+
+l10n:
+translations packages. Do not remove.
+
+edu:
+I preserved debian "edu" these packages in the list to create my pure blend based on it
+EG: debian-edu-artwork-softwaves
+(and docs packages)
+Package in debian web: https://packages.debian.org/stretch/debian-edu-artwork-softwaves
+List of files: https://packages.debian.org/stretch/all/debian-edu-artwork-softwaves/filelist
+Need to install: plymouth - boot animation, logger and I/O multiplexer
+To complete the pure blend you need to create themes to the desktops environments (CINAMMOM, GNOME, XFCE, LXDE, KDE),
+so the apps will look pieces of the theme.. but also you can create themes for apps or recompile them with changes,
+the most difficult part.
+
+(CINAMMOM, GNOME, XFCE, LXDE, KDE):
+I require to include these packages in the list to create my pure blend
+
+

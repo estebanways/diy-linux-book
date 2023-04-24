@@ -1,0 +1,109 @@
+- Webcam features
+- Webcam installation
+- Webcam configuration: Guvcview
+- Webcam configuration: mplayer
+- Webcam programs for Debian
+- Disable the webcam kernel module
+- Cover the lens with tape
+
+- Webcam features
+
+When you buy a webcam camera consider next topics:
+Is Widescreen?
+Megapixels (MPX)
+Is HD (High Definition)? IE: 720p HD
+Price
+Is USB 2.0?
+The MIC quality
+Are its drivers compatible with Linux or Apple
+Zoom, measured in X, IE: 2x, 4x, etc.
+
+- Webcam installation
+
+The webcam and sound must be Linux compatible and ready to support programs like Skype. I hope to hear that every Logitech's camera works.
+
+Select and configure the Webcam with the program Cheese.
+
+I have no problems with this topic but I red some web pages that can help.
+
+References:
+Topic: Compile drivers in the Linux Kernel. Section drivers.
+Web: http://www.aboutdebian.com/compile.htm
+File: Compiling Software With Debian Linux.pdf
+
+References:
+Topic: How to make Webcam compatible with Skype.
+Web: http://community.linuxmint.com/tutorial/view/219
+Topic:  webcam not recognized: debian wheezy + skype
+Web: http://www.linuxquestions.org/questions/linux-newbie-8/webcam-not-recognized-debian-wheezy-skype-4175495102/
+
+- Webcam configuration: Guvcview
+
+The best program that I've found is Guvcview. It is good because there is not Logitech software for Linux. It allows to record, change light options to avoid the image noise and use the zoom. 
+TO install:
+Add Debian repositories main, contriband nonfree:
+$ sudo nano /etc/apt/sources.list
+Update the software DBs:
+$ sudo apt-get update
+Show the repository of the package (and other package information):
+$ apt-cache show guvcview
+Fetch, install and configure the package and dependencies:
+$ sudo apt-get install guvcview
+
+To increase web cam speed when it is slow:
+If you experience really low framerate, in order to get the framerate up:
+Under the TAB 'Image Control', set the dropdown box value 'Exposure, Auto' to 'Manual Mode', and Decrease Exposure (Absolute) using the correspondent slider. E.G. set up the exposure to 150 should be 15 fps. See FPS changes in the webcam window title. This action is going to decrease the light, and you will need light bulbs or lamps to improve the light of the room or the scene-nary. Always Monitor and control the framerate when apply changes in the other tabs of the software. E.G., Move the Brightness from 0 to -8 or 8 and verify and log what's best value to improve the image. This brighteness does not affect the framerate.
+References:
+Web: https://ubuntuforums.org/showthread.php?t=1021294&highlight=logitech+9000
+File: Logitech Quickcam Pro 9000 really low framerate. . .pdf
+Guide: Optimization and performance, speed up computer, save battery power
+
+- Webcam configuration: mplayer
+
+mplayer ­ Can be used to view webcam video by invoking mplayer tv://
+It is going to install additional requirements for camera color, etc.
+it is also the best and easiest way to test the webcam after any installation. 
+
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install mplayer
+$ mplayer tv://
+
+- Webcam programs for Debian
+
+DebianPkg: xawtv ­ A suite of video4linux related software, which can be used to view webcam video.
+DebianPkg: cheese ­ "Cheese uses your webcam to take photos and videos, applies fancy special effects and lets you share the fun with others."
+DebianPkg: camorama ­ Hasn't been updated since 2007, but it works as a basic, simple webcam viewer.
+DebianPkg: motion ­ Motion detection using a webcam.
+DebianPkg: amsn ­ "aMSN is a free open source MSN Messenger clone" with "webcam support".
+DebianPkg: ekiga ­ "Ekiga (formely known as GnomeMeeting) is an open source VoIP and video conferencing application for GNOME."
+DebianPkg: kopete ­ The KDE instant messaging client ­ supports video for various protocols.
+References:
+Web: https://wiki.debian.org/Webcam
+
+- Disable the webcam kernel module
+
+This is to avoid spyware turning on the webcam, recording you and sending the videos to hackers or NSA, just to mention two options.
+Look for the webcam/video module:
+$ lsmod
+Always the main webcam module is: uvcvideo. List dependencies (correlations):
+$ lsmod | grep uvcvideo
+Remove the module from the kernel:
+$ sudo rmmod uvcvideo
+Verify that the module is out of the kernel: 
+$ lsmod | grep uvcvideo
+Notice the dependencies are not going to work because the module is down.
+Remember the module name to load it to the kernel when you want to turn on the camera for a video conference:
+$ insmod uvcvideo
+The module has to be loaded:
+$ lsmod | grep uvcvideo
+The camera has to work right now:
+$ lsusb
+$ lspci
+$ less /var/log/messages
+$ lshw
+$ guvcview
+
+- Cover the lens with tape
+
+This is a extreme security measure, but I think that setting off the video module is sufficient.

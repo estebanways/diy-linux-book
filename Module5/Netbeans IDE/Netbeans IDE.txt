@@ -1,0 +1,50 @@
+Reference:
+Web: http://linuxg.net/how-to-install-netbeans-ide-8-0-on-all-the-supported-ubuntu-linux-mint-elementary-os-and-debian-systems/
+File: NetBeans IDE 8.0 On All The Supported DEB systems.pdf
+
+How to install NetBeans IDE 8.0 on 64 bit Ubuntu, Linux Mint, Elementary OS, Debian and their derivative systems:
+
+Download Netbeans from:
+https://netbeans.org/downloads/index.html
+I am going to install the 'ALL' version. You can add or remove packs later using the IDE's Plugin Manager (Tools | Plugins). In fact I downloaded:
+NetBeans 8.0.2 Installer for Linux/English (en)
+netbeans-8.0.2-linux.sh (197.5 MB)
+MD5: 53db51921a647937102711304da8791b
+
+Installation:
+$ sudo cp -dpR netbeans-8.0.2-linux.sh /usr/src
+$ sudo cd /usr/src
+$ sudo chmod 700 netbeans-8.0.2-linux.sh
+$ sudo chmod +x netbeans-8.0.2-linux.sh
+$ sudo chown root netbeans-8.0.2-linux.sh
+$ sudo chgrp root netbeans-8.0.2-linux.sh
+$ ls -F
+$ ls -hal netbeans-8.0.2-linux.sh
+Remember to setup Java. I set it up to use Oracle Java. The installer program is going to look for JVM.
+Run the installer:
+$ sudo sh netbeans-8.0.2-linux.sh
+To find where Java paths are (See the installation process of Java):
+$ sudo update-java-alternatives -l
+Output:
+java-1.7.0-openjdk-amd64 1071 /usr/lib/jvm/java-1.7.0-openjdk-amd64
+jdk-8-oracle-x64 318 /usr/lib/jvm/jdk-8-oracle-x64
+jre-8-oracle-x64 317 /usr/lib/jvm/jre-8-oracle-x64
+
+Run the program:
+$ /usr/local/netbeans-8.0.2/bin/netbeans
+
+Create the symlink to /usr/bin:
+$ sudo ln -s /usr/local/netbeans-8.0.2/bin/netbeans /usr/bin/netbeans
+$ netbeans
+
+Add the program the "Main Menu" in Gnome.
+
+Notes: 
+You can add Apache Tomcat or GlassFish during installation of Netbeans or install it separately and then add it to your project.
+
+To install additional features or uninstall Netbeans IDE you can re-run as root:
+$ sudo sh /usr/src/netbeans-8.0.2-linux.sh
+
+Review the user Environment variables:
+$ env
+# env

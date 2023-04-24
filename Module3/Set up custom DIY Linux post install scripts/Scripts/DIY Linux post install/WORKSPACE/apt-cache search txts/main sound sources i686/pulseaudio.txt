@@ -1,0 +1,76 @@
+cairo-dock-impulse-plug-in - Implus plug-in Cairo-dock
+python3-checkbox-support - collection of Python modules used by PlainBox providers
+gir1.2-cvc-1.0 - Introspection data for Cinnamon pulseaudio abstraction
+libcvc0 - Cinnamon pulseaudio abstraction library
+conky-all - highly configurable system monitor (all features enabled)
+conky-all-dbg - highly configurable system monitor (all features enabled - debug)
+gstreamer1.0-pulseaudio - GStreamer plugin for PulseAudio
+kwave - sound editor for KDE
+libao-common - Cross Platform Audio Output Library (Common files)
+libao-dbg - Cross Platform Audio Output Library Debug Symbols
+libao-dev - Cross Platform Audio Output Library Development
+libao4 - Cross Platform Audio Output Library
+libcanberra-pulse - PulseAudio backend for libcanberra
+libmatemixer-common - Mixer library for MATE Desktop (common files)
+libmatemixer-dev - Mixer library for MATE Desktop (development files)
+libmatemixer-doc - Mixer library for MATE Desktop (documentation files)
+libmatemixer0 - Mixer library for MATE Desktop
+libmikmod-config - Portable sound library - development binaries
+libmikmod-dev - Portable sound library - development files
+libmikmod3 - Portable sound library
+libpulse-java - PulseAudio sound driver for Java
+libpulse-jni - PulseAudio sound driver for Java (JNI libraries)
+libsdl1.2debian - Simple DirectMedia Layer
+libsdl2-2.0-0 - Simple DirectMedia Layer
+liquidsoap-plugin-pulseaudio - audio streaming language -- Pulseaudio plugin
+ltsp-server-standalone - complete LTSP server environment
+mate-media - MATE media utilities
+mhwaveedit - Simple and fast GTK2 sound editor
+mkchromecast - Cast your Linux audio to your Google Cast devices
+mkchromecast-pulseaudio - Pulseaudio dependencies to cast with mkchromecast
+mpg123 - MPEG layer 1/2/3 audio player
+libpulse-ocaml - OCaml interface to the PulseAudio sound server
+libpulse-ocaml-dev - OCaml interface to the pulseaudio library
+oss-compat - Open Sound System (OSS) compatibility package
+osspd - OSS Proxy Daemon: Userland OSS emulation
+osspd-alsa - OSS Proxy Daemon: ALSA backend (experimental)
+osspd-pulseaudio - OSS Proxy Daemon: PulseAudio backend
+paman - PulseAudio Manager
+paprefs - PulseAudio Preferences
+pasystray - PulseAudio controller for the system tray
+pavucontrol - PulseAudio Volume Control
+pavucontrol-dbg - Debugging symbols for pavucontrol
+pavucontrol-qt - Qt port of volume control pavucontrol
+pavumeter - PulseAudio Volume Meter
+libpcaudio-dev - C API to different audio devices - development files
+libpcaudio0 - C API to different audio devices - shared library
+pnmixer - Simple mixer application for system tray
+projectm-pulseaudio - projectM PulseAudio module
+libpulse-dev - PulseAudio client development headers and libraries
+libpulse-mainloop-glib0 - PulseAudio client libraries (glib support)
+libpulse0 - PulseAudio client libraries
+libpulsedsp - PulseAudio OSS pre-load library
+pulseaudio - PulseAudio sound server
+pulseaudio-equalizer - Equalizer sink module for PulseAudio sound server
+pulseaudio-esound-compat - PulseAudio ESD compatibility layer
+pulseaudio-module-bluetooth - Bluetooth module for PulseAudio sound server
+pulseaudio-module-gconf - GConf module for PulseAudio sound server
+pulseaudio-module-jack - jackd modules for PulseAudio sound server
+pulseaudio-module-lirc - lirc module for PulseAudio sound server
+pulseaudio-module-raop - RAOP module for PulseAudio sound server
+pulseaudio-module-zeroconf - Zeroconf module for PulseAudio sound server
+pulseaudio-utils - Command line tools for the PulseAudio sound server
+pulseaudio-dlna - Stream audio to DLNA devices and Chromecasts
+qmmp - feature-rich audio player with support of many formats
+libqt5multimedia5-plugins - Qt 5 Multimedia module plugins
+libroar-compat-tools - drop-in replacements for other sound libraries (tools package)
+libroar-compat2 - drop-in replacements for other sound libraries
+simplescreenrecorder - Feature-rich screen recorder for X11 and OpenGL
+snd-gtk-pulse - Sound file editor (GTK+ user interface - PulseAudio)
+libsox-fmt-pulse - SoX PulseAudio format I/O library
+twclock - World clock for ham radio operators
+libcw6 - Morse code tutor - shared library
+vokoscreen - easy to use screencast creator
+volti - control audio volume from system tray/notification area
+xfce4-pulseaudio-plugin - Xfce4 panel plugin to control pulseaudio
+xmms2-plugin-pulse - XMMS2 - PulseAudio output plug-in

@@ -1,0 +1,53 @@
+Install the program following the reference, to get the latest version, OpenCL able, with more DLSR camera models support, instead of the old Debian stable version from the official sources:
+References:
+Web: http://www.allaboutlinux.eu/install-darktable-in-debian-8/
+File: install latest Darktable in Debian 8 _ allaboutlinux.pdf
+Topic: OpenCL
+Guides: 
+3D Acceleration and VR
+Video Card
+
+Steps:
+There is an easy way to install darktable in Debian by issuing the command "sudo apt-get install Darktable" but this one will install an old version of Darktable.
+If you need the latest stable one then you need to follow those steps:
+open a terminal and type:
+$ sudo apt-get update
+$ sudo apt-get build-dep darktable
+$ sudo apt-get install libglew-dev libcanberra-gtk-module mesa-opencl-icd mesa-utils-extra
+Now go to the official website http://www.darktable.org/ and download Darktable. you should get a file with a name like darktable-x.x.x.tar.xz where x is the version of Darktable.
+go to Downloads directory and extract that file.
+$ cd ~/Downloads/
+$ tar xvf darktable-1.6.8.tar.xz
+now go into darktable directory and start the build process by typing:
+$ cd darktable
+$ ./build.sh
+Then issue the following command to install it.
+$ cd "./build";  sudo make install
+Now Darktable is installed in /opt/darktable
+Lets create the launcher. Press the "Super Key" (this one is located on your keyboard between "ctrl" and "alt". In windows world is also called "Windows Key")
+then type "main menu"
+
+During installation, the program could throw dependency errors you have to resolve before build the program. For example, an error will say that the program requires gtk3 but you should have gtk2 because Gnome 3.14 runs over gtk2. The solution for this trouble is to istall gtk3-dev
+To find out the GTK version in your system, to be able to have GTK2 and GTK3 running at the same time:
+$ COLUMNS=132 dpkg -l | grep gtk
+$ COLUMNS=132 dpkg -l | grep gtk*
+$ COLUMNS=132 dpkg -l | grep gtk-
+$ COLUMNS=132 dpkg -l | grep gtk-2
+$ COLUMNS=132 dpkg -l | grep gtk-3
+$ COLUMNS=132 dpkg -l | grep libgtk
+$ COLUMNS=132 dpkg -l | grep 'libgtk'
+$ COLUMNS=132 dpkg -l | grep libgtk2*
+$ COLUMNS=132 dpkg -l | grep libgtk3*
+To install gtk3-dev:
+$ sudo nano /etc/apt/sources.list
+$ apt-cache search libgtk
+Look for: libgtk-3-dev - development files for the GTK+ library
+$ apt-cache show libgtk-3-dev
+$ sudo apt-get install libgtk-3-dev
+References:
+Topic: How do you find out which version of GTK+ is installed.
+Web: http://stackoverflow.com/questions/126141/how-do-you-find-out-which-version-of-gtk-is-installed-on-ubuntu
+File: linux - How do you find out which version of GTK+ is installed on Ubuntu_ - Stack Overflow
+
+
+

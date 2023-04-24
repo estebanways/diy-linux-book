@@ -1,0 +1,96 @@
+Solid State Drives (SSDs) performance:
+
+As their name suggests, unlike mechanical drives, SDDs have no moving parts. They rely instead on integrated circuits for storage, which makes them many times faster, and almost silent as they operate. In fact, without indicator lights on the case, first time users sometimes worry that they are not running at all.
+
+Relying on flash memory, SSDs can only be written to a limited number of times. When commercial SSDs first became available, the number of writes was relatively low. Moreover, Linux did not install in ways that optimized SSD performance.
+
+As a result, numerous tweaks have been developed over the years to improve the performance of SSDs and to help them last longer. Today, knowing which tweaks still apply or are still necessary can be hard to figure out without intensive research. To save readers the effort, below is a summary of what, so far as I can tell, helps optimize SSDs on Linux.
+
+
+Deciding on the type of drive:
+SSD or Hybrid
+Actually most of newest computers have SSD to system and SSD to storage or hybrid SSD and HD to storage. The problem is the SSD support less writes than HDs.
+
+
+Partitioning:
+In the interests of reducing the number of writes to an SSD, format the partitions on it in ext4. Other journalled filesystems, such as XFS, JFS, and Btrfs write far more often to disk. In fact, only a few years ago, some articles suggested either disabling the journals on SSDs, or not using journalled filesystems at all.
+
+Another way to reduce writes is to place directories that can change frequently, such as /var, /tmp, and /swap, on a mechanical drive.
+
+For the case of swap reduce the option swappiness in the file /etc/sysctl.conf or a file in /etc/sysctl.d/
+# Sharply reduce swap inclination
+vm.swappiness=1
+
+In addition, if you have enough RAM, you can put /tmp and /var into RAM disks, although that positioning may cause you to lose valuable log information if your system crashes or reboots, and might be a security risk. Probably,this arrangement works best on machines that are always running.
+
+To create the RAM disks as you boot, edit /etc/fstab, disabling any pre-existing entries /tmp and /var and adding the following lines:
+
+tmpfs   /tmp       tmpfs   defaults,noatime,mode=1777   0  0
+tmpfs   /var/log   tmpfs   defaults,noatime,mode=0755   0  0
+tmpfs   /var/spool tmpfs   defaults,noatime,mode=1777   0  0
+tmpfs   /var/tmp   tmpfs   defaults,noatime,mode=1777   0  0
+As for the swap partition, you can replace it with a swap file on a mechanical drive, or even do without it if you have enough RAM.
+
+However, some applications have their own caches, and start accessing swap as soon as they start. To minimize writes, you might also place the swap in RAM, even though that otherwise seems pointless.
+
+Of course, to place swap in RAM, you cannot use /etc/fstab  for the task, since swap is not  mounted. Instead, you can set the following commands to run as a script when you boot:
+$ mkswap /dev/ram0
+$ swapoff -a
+$ swapon /dev/ram0
+
+
+fstrim:
+fstrim — or trim, as it is frequently called — is a command included in the util-Linux package. It is used to discard blocks that are not in use on an SSD, and can be safely wiped. Unless fstrim is run regularly, the drive spends more and more time looking for blocks to which it can write, so, in a sense, fstrim has an effect roughly analogous to defragmenting the drive.
+
+Running fstrim is necessary because, until recently, most distributions installed without being optimized for SSDs. Releases of Ubuntu and Linux Mint made in the last two years install and set up fstrim to run once a week, but other distributions, including Debian and Fedora, do not.
+
+For that reason, you may have to set up fstrim yourself. Possibly, too, you will want to run fstrim more often than once a week after you have finished setting up a new system, or have made major changes to partitions on the SSD. In either case, you can run fstrim manually with the command
+$ fstrim -va
+
+Another alternative is to place the command in a script and set it to run weekly by creating an entry in /etc/anacron with a line such as:
+7       10      trim.weekly     /bin/sh /root/trim.sh
+
+The first column sets the script to run once every seven days, the second to run ten minutes after the machine boots.
+
+If you want to create a log to check that the command is running on each partition on an SSD, add a file to /var/log and then write a script referring to it. The script should look something like this:
+
+#!/bin/sh
+#
+#
+#Run fstrim
+LOG=/var/log/trim.log
+fstrim -v / >> $/var/log/trim.log
+fstrim -v /usr >> $/var/log/trim.log
+echo "Time: $(date)">>$LOG
+exit 0
+The -v option gives you full information about the results of running the command, while the echo command adds the date and time that fstrim was run to the log.
+
+Many articles suggest running fstrim once daily, and at least one suggests running it several times a day. Remember, though, that part of maintaining an SSD is to reduce the number of writes, and running fstrim more often than necessary increases the number of writes. The man page states that you only need to run fstrim once a week, so regularly running it more often might substantially decrease the lifespan of an SSD.
+
+
+Partition Boot Options:
+
+For a while, SSD partions were trimmed by adding the discard option to a partition’s entry in /etc/fstab. However, including discard is far more active than running fstrim, since it trims on the fly. This behavior means that discard writes to the disk far more often than fstrim, which makes it counter-productive. Although discard still has its advocates, I am unaware of any distribution that advocates using discard rather than fstrim, although you can easily set it up if you choose to you it.
+
+A boot option that actually does reduce the number of writes is noatime. Atime is the last time that a file or directory was opened, one of the basic pieces of information recorded in Linux. However, usually, atime is far less useful than when the file or directory was last changed, another basic attribute. Most of the time, you can disable atime without any adverse effects, thereby reducing a significant number of writes.
+
+To enable noatime, open /etc/fstab, and add it to the fourth column for each partition listed. The fourth column is a comma-separated list of how to mount the partition at boot, usually starting with defaults (see example of placing /var and /tmp into a RAM disk, above). If relatime is included in the fourth column, delete it before saving the file.
+
+
+How to reduce writes?
+
+Start researching on the Internet, and you can find other suggestions of how to reduce writes, including changing the scheduler, avoiding using hibernation, making sure that Windows cannot accidentally defrag your Linux partitions on an SSD, and adjusting the caching of Firefox. However, most of these suggestions are not widely mentioned, so I hesitate to endorse them.
+
+Keep in mind, too, that SSDs are a new technology that have not been in use long enough for anyone to have a precise idea of how to optimize or preserve them.
+
+Moreover, modern SSDs support significantly more writes than those of only five years ago, and more expensive SSDs may support more writes than cheaper ones.
+
+For example, the Samsung Evo 850 line, generally rated among the better models of SSDs, comes with five or ten year warranties. Since warranties are apt to be conservative, these SSDs could have the potential to last even longer than ten years — two or three times longer than many mechanical hard drives.
+
+In fact, the Evo 850 product line is estimated to be good for 600-1000 terabytes of writes. Since one user estimated having only 12.5 terabytes of writes in three years, the concern about writes may be obsolete, at least with such high-end products.
+
+Still, no one knows how accurate the estimates of a ten year life span may be, for the simple reason that few — if any — SSDs have been in use for ten years. Regular trimming and reduced writes will certainly improve the performance of SSDs, and, in another five or ten years, we might find that these precautions extend their life-spans as well.
+
+References:
+Web: http://www.ocsmag.com/2016/04/30/using-solid-state-drives-on-linux/
+File: Using Solid State Drives on Linux _ OCS-Mag.pdf

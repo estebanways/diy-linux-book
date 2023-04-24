@@ -1,0 +1,5 @@
+References:
+Web:  http://www.linuxnix.com/understand-man-pages-in-linux 
+File: 12 examples to decode man pages in Linux_Unix - The Linux Juggernaut.pdf
+Web: http://www.linuxnix.com/search-man-pages/
+File: How to List all Linux man pages containing _xyz_ - The Linux Juggernaut.pdf

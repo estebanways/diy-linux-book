@@ -1,0 +1,57 @@
+Topics:
+- What TOR is about
+- Debian and Tor Services available as Onion Services
+- TOR basics
+- TOR Client and Browser
+- TOR Server
+- Location-hidden services
+- Tails
+
+- What TOR is about:
+
+TOR (The Onion Router), is the largest implementation of onion routing, which is a method for transmitting data anonymously over the Internet. Run by volunteers, there are approximately a thousand Tor proxy servers on the Internet that provide the routing paths.
+
+- Debian and Tor Services available as Onion Services:
+
+The Debian project is working with the Tor privacy network to set up anonymous access to Debian's infrastructure. "We, the Debian project and the Tor project, are enabling Tor onion services for several of our sites. These sites can now be reached without leaving the Tor network, providing a new option for securely connecting to resources provided by Debian and Tor. The freedom to use open source software may be compromised when access to that software is monitored, logged, limited, prevented, or prohibited. As a community, we acknowledge that users should not feel that their every action is trackable or observable by others. Consequently, we are pleased to announce that we have started making several of the various web services provided by both Debian and Tor available via onion services." A list of Debian services available through the Tor network and how to access them can be found in the announcement.
+References:
+Web: https://bits.debian.org/2016/08/debian-and-tor-services-available-as-onion-services.html
+File: Bits from Debian - Debian and Tor Services available as Onion Services.pdf
+
+Example:
+Access the Debian repository on Tor by adding this line to the souces.list file:
+deb tor+http://sdscoq7snqtznauu.onion/torproject.org jessie main
+You can view all the list of Debian services in the Tor network by visiting onion.debian.org. Various Tor backends will be used to facilitate load-balancing for the services.
+References:
+File: Debian And TOR Services Now Available Using _Dark_ .pdf
+Web: https://fossbytes.com/debian-tor-project-debian-services-a-onion-address/
+
+- TOR basics:
+
+(Pending)
+
+- TOR Client and Browser:
+
+(Pending)
+
+References:
+Topic: To setup a Proxy client in Debian
+Guide: Basic Networking
+Topic: More software that improve their security with proxies
+Guide: OpenVPN
+Guide: Basic Networking
+
+
+- TOR Server:
+
+(Pending)
+
+- Location-hidden services:
+
+(Pending)
+
+- Tails:
+
+I am gonna use TOR for secure navigation as Edward Snowden recommends, but he says you should use the distribution Tails.
+References:
+Guide: Tails

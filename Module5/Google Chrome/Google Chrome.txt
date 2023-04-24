@@ -1,0 +1,81 @@
+Regardless of whether you are using 32- and 64-bit support for Google Chrome has been completely finished, so the only option left is simply uninstall the browser and using nothing more and nothing less than the version of Chromium is in such repositories, use another browser or simply update the respective distribution also to remove the repository of Google Chrome.
+
+In case of you experience problems with Google Hangouts, you can add the Hangouts plugin to Pidgin Messenger. More information in the Pidgin guide. (LINK) 
+
+
+Chromium installation:
+
+Chromium is an open source web browser that strives for a secure, fast and stable web browsing experience for its users. It is the open source project behind Google Chrome.
+
+$ apt-cache search chromium
+$ sudo apt-get install chromium chromium-l10n chromium-inspector
+
+The package chromium-l10n is only used for localization and is optional
+
+References:
+Web: https://wiki.debian.org/Chromium
+File: Chromium - Debian Wiki.pdf
+
+
+Chrome installation:
+
+Find a copy of the most recent version on the Internet. I google: "Coogle Chrome for Debian" and it takes me to the official Chrome download site.
+For a 32bit version copy, you can still go to a web site like this to download the program before the 32bit support ends as Google states:
+Web: http://bbgentoo.ilb.ru/distfiles/
+References:
+Web: http://unix.stackexchange.com/questions/267587/where-to-download-chrome-32bit-since-it-has-been-discontinued-by-google
+
+Install like this to resolve dependencies:
+# dpkg -i google-chrome-stable_current_amd64.deb
+If you need dependencies:
+# apt-get -f install
+Install dependencies. and next re-run the installer:
+# dpkg -i google-chrome-stable_current_amd64.deb
+You can also install using the program gdebi:
+$ sudo apt-cache search gdebi
+$ sudo gdebi google-chrome-stable_current_amd64.deb
+
+Find the app in the search bar or type:
+$ google-chrome
+The command is going to start the browser.
+
+
+Here are some performance tips:
+
+Let’s start by pointing out the main differences between plugins and extensions.
+What is a Plugin?
+A plugin is a third party library that attaches itself to the browser. It can be embedded inside a web page, in which case it will work only in that specific web page.
+Examples of common plugins: Flash, Java, Microsoft Silverlight, Apple Quicktime, Adobe Reader.
+What is an Extension?
+Extensions, or “add-ons,” can add onto the browser user interface and process pages that the browser loads. Although you might think they are similar, in fact extensions are not the same as plugins; they affect the web browser itself, as well as the page. Some examples of important or necessary add-ons include: Adblock Plus, Firebug, Microsoft .NET Framework Assistant.
+
+Below you will find instructions on how to remove or disable unnecessary plugins and extensions for Google Chrome:
+Open Google Chrome and click the Chrome menu on the browser toolbar.
+Click Tools.
+Select Extensions.
+Click the trash can icon by the extension you'd like to completely remove.
+When the confirmation dialog appears, click Remove.
+You can also temporarily turn off an extension by disabling it on the Extensions page.
+
+Clear browsing cache and cookies:
+To empty the cache of your internet browser, follow the next steps:
+Open Google Chrome
+Click on the Chrome menu on the browser toolbar.
+Select Tools.
+Select Clear browsing data.
+In the dialog check the boxes for the types of information that you want to remove (Clear browsing history, Clear download history, Delete cookies and other site and plug-in data, Empty the cache – these are checked by default, and it is recommended to keep them checked)
+Use the dropdown menu at the top of the window to select the amount of data that you want to delete. Select the beginning of time to delete everything.
+Click Clear browsing data.
+
+Reset your browser settings:
+Click the Chrome menu on the browser toolbar.
+Select Settings.
+Click Show advanced settings and find the "Reset browser settings” section.
+Click Reset browser settings.
+In the dialog window, click Reset.
+Note: when you check "Help make Google Chrome better by reporting the current settings" you are anonymously sending Google your Chrome settings.
+
+Great suspender:
+It's an extension to Automatically suspend unused tabs to free up system resources.
+Unloads, parks, and also suspends tabs to reduce memory footprint of chrome. 
+Tabs can auto-suspend after a configurable period of time or be suspended manually. Tabs can be whitelisted to avoid automatic suspension. Suspended tabs are retained after closing and reopening browser, preventing many tabs from all reloading after a restart. Very simple, intuitive interface.

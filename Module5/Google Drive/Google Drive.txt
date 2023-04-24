@@ -1,0 +1,5 @@
+
+
+Google Drive OCamlFUSE method actually works
+
+Grive is just supported by arm (not AMD64). However the notifications script can be used to receive file changes from Google Drive installed with OCamlFUSE

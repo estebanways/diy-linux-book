@@ -1,0 +1,29 @@
+Flatpak, X-Apps or Snap like packages for Debian
+
+Installation examples:
+- Flatpak (Is not distro specific, previously called xdg-app, avaible for Debian)
+- X-apps (Linux Mint)
+- Snap (An Ubuntu software store, available for Debian)
+
+They work like Android apps. They don't depend on any or many of the options like the desktop environment, libraries or libraries version like GTK 3.x, the distro or certain packages.
+
+They are bigger than programs because they contain all the packages required to work out of the box, hopefully in any distribution/version.
+
+There are similar applications working similarly, like the listed in the section "Full compatible/portable Linux/Debian binaries".
+
+Snap example:
+Without arguments, displays a list of interesting snaps, showing ordered names and publishers:
+$ snap find
+
+This is a example command used to install a Snap Appication in the term:
+$ sudo snap install <package-name>
+
+References:
+Topic: The guides contain installation examples.
+Guide: Flatpak
+Guide: Snap
+
+References:
+Topic: Pros and cons of Flatpak and Snap apps.
+Web: https://verummeum.com/portable-package-formats/
+File: 

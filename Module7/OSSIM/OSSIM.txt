@@ -1,0 +1,10 @@
+IDS
+IPS
+SIEM
+You can run it on your network to help protecting you from almost everything.
+Main source for Alien Vault
+
+References:
+File: OSSIM - Wikipedia, the free encyclopedia.pdf
+
+Directory: ../IT Securty/AlienVault_OSSIM

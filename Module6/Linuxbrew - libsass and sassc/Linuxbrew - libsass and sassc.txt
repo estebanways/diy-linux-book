@@ -1,0 +1,42 @@
+Sass in itself is more like a kind of program that compiles SassScript into actual CSS. So although the language itself is SassScript let’s oversimplify this and postulate that Sass is an interpreted scripting language.
+Reference:
+Web: http://www.sitepoint.com/compass-sass-jquery-javascript/
+
+libsass is the lib and sassc to execute it. 
+
+Verify tapped taps:
+$ brew tap
+
+Untap the unnecessary taps:
+$ brew untap homebrew/versions
+
+Update LinuxBrew:
+$ brew update
+
+$ brew search sass
+Output:
+libsass  sassc
+Or use:
+Go to http://braumeister.org/browse/s/8
+
+Run doctor the perform a clean installation:
+$ brew doctor
+
+Run the formulae installation:
+$ brew install libsass sassc
+Output:
+[...]
+==> Installing dependencies for libsass: autoconf, automake, libtool
+[...]
+==> Summary
+/home/esteban/.linuxbrew/Cellar/libsass/3.2.5: 13 files, 7.1M, built in 4.6 minutes
+[...]
+==> Summary
+/home/esteban/.linuxbrew/Cellar/libsass/3.2.5: 13 files, 7.1M, built in 4.6 minutes
+
+Verify the new formulae installation:
+List installed formulae:
+$ brew list
+
+To upgrade packages:
+$ brew upgrade <FORMULA>

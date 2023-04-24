@@ -1,0 +1,30 @@
+Software sources available:
+- Disc image
+
+
+Installation examples:
+This type of installation is not "installing" anything at all but deploying the complete system or a part of it from a system image or a partition image, thanks to shells scripts or a specialized software as Clonezilla, Partimage or Bacula
+
+Shell scripts:
+Always my best choice. I use my own scripts to backup complete system partitions. However I am not going to publish my scripts by the moment.
+
+Clonezilla:
+Clonezilla, based on drbl, partclone and udpcast, allows you to do bare metal backup and recovery. This package provides Clonezilla SE (server edition) which is for massive deployment: it can clone many (40 plus!) computers simultaneously. 
+References:
+Topic: Clonezilla.
+Web: https://packages.debian.org/sid/clonezilla
+File: Clonezilla - Details in Sid.pdf
+Web: http://drpaudel.com.np/?p=221
+File: Clonezilla tutorial for Debian 6.pdf
+
+Partimage:
+Partimage is a client-server application, but you can use only the client and an external HD to replace the server. The process without the server takes much less time to complete the restoration from teh backups. In short, works as follows: You install the server where you will have the partition backups, include complete copies of systems like this Desktop. When the sever is ready, boot the client from a Live Distro CD, which comes with a copy of Partimage pre-installed (I recommend the distro Knoppix which DEbian compatible). In the client create the backup. the client will create a compressed image in the server. When you want to re-install the partition or the whole system from teh backups in the server, turn on the server and re-insert the Live Distro CD to run Partimage and ask him to restore everything. 
+References:
+Topic: Backup and restore Linux partitions with Partimage.
+Web: http://www.debianadmin.com/backup-and-restore-linux-partitions-using-partimage.html
+File: Backup and restore Linux partitions with Partimage.pdf
+Topic: Linux Knoppix
+Web: http://www.knopper.net/knoppix/index-en.htmlhttp://www.knopper.net/knoppix/index-en.html
+
+
+In both cases, Clonezilla and Partimage, the concept of restoration makes a second sense: We are talking about a system and software installation instead of a simple restoration. Even thought there is not data in a new internal hard drive you can deploy on it a complete copy of a system in 20 minutes or less, meanwhile the targeted hardware and the hardware where the installation of the system to copy occurred are identical.

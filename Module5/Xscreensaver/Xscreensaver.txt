@@ -1,0 +1,169 @@
+Topics
+- Installation and configuration
+- Setup for Desktop computer
+- Setup for Laptop/Notebook computer
+- Lock screen
+- Watch movies or YouTube videos and build software
+- Issues
+
+
+- Installation and configuration
+
+To install the program:
+# apt-get update
+# apt-get install xscreensaver
+
+Xscreensaver and Gnome:
+If you are Gnome user you will note that this program has a higher priority over the "Gnome Settings" to blank and block the screen, suspend, switch user logins and go back to your logged sessions, etc. This is due to we have installed Gnome first, and then overwriting the configuration with the installation of xscreensaver from the repositories, or for example installing another Desktop Environment which has this application such as XFCE.
+
+To avoid starting the command every time you get away from your desk, set it up as a systemd service using this guide: 
+References:
+Guide: Xscreensaver
+or, If you want to set it up only for your Gnome session, use Gnome Tweak Tool:
+Go to Applications => Tweek tool => Startup Applications, click on the plus sign, and add Xscreensaver.
+
+Xscreensaver and Fluxbox:
+To start Fluxbox with xscreensaver:
+$ cd
+$ cd .fluxbox
+$ nano apps
+Add the entry:
+[startup]   {xscreensaver}
+
+To add screensaver to my Fluxbox menu:
+$ whereis xscreensaver
+$ nano menu
+Add the entry:
+[exec] (lock) {/usr/bin/xscreensaver-command -lock}
+
+To lock the screen with a key on Fluxbox:
+$ cd
+$ cd .fluxbox
+$ nano keys
+Add the lines to the file:
+# Screensaver
+Control Shift L :ExecCommand xscreensaver-command -lock
+
+Exit Fluxbox from Fluxbox menu (RIGHT CLICK), and re-enter to your Fluxbox Desktop.
+
+References:
+Web: http://www.linuxquestions.org/questions/linux-general-1/xscreensaver-in-fluxbox-56111/
+Web: https://wiki.debian.org/Xinitrc
+
+- Setup for Desktop computer
+
+Stop the program daemon:
+$ xscreensaver-command -exit
+Or you can kill the program:
+CTRL + C from the terminal, or:
+$ pkill xscreensaver
+Find the program in the apps menu, or in the terminal, as user:
+$ xscreensaver
+Click on the button Settings.
+Set:
+Mode: Blank screen only
+Blank After: 30
+Cycle After: 10
+Lock Screen After: 10
+Power management: Enabled
+Standby After: 0 (0 = disabled)
+Suspend After: 0 (0 = disabled)
+Off After: 0 (0 = disabled)
+Quick Power Off in Blank Only Mode: Disabled
+Go to menu File > Restart Daemon
+Close the program GUI.
+In this way nothing is going to suspend, for example the hard drive.
+No 3D or GL screensavers that could damage the video card.
+The screen is going to lock after 10 minutes.
+The screen is going to blank after 60 minutes, but the monitor is alive, because is not turned off.
+
+To poweroff the screen in the type of configuration "Desktop":
+This is very useful to save monitor lights life when you are not going be near by the Desktop computer for a long time or many hours.
+Enable the option "Quick Power Off in Blank Only Mode" in the Tab Advanced in the program GUI, next, restart the program daemon and then choose the option Blank Screen Now, from the menu File. 
+There is an alternative to just blank no turn off the screen, when the option "Quick Power Off in Blank Only Mode" is enabled: After Blank is chosen you move the mouse a few seconds. The screen will turn off in accordance with the option "Blank After", set to 30 minutes.
+
+- Setup for Laptop/Notebook computer
+
+Stop the program daemon:
+$ xscreensaver-command -exit
+Or you can kill the program:
+CTRL + C from the terminal, or:
+$ pkill xscreensaver
+Find the program in the apps menu, or in the terminal, as user:
+$ xscreensaver
+Click on the button Settings.
+Set:
+Mode: Blank screen only
+Blank After: 10 (Faster than Desktop computers)
+Cycle After: 10
+Lock Screen After: 0 (Apparently Disabled)
+Power management: Enabled
+Standby After: 0 (0 = disabled)
+Suspend After: 0 (0 = disabled)
+Off After: 0 (0 = disabled)
+Quick Power Off in Blank Only Mode: Enabled
+Go to menu File > Restart Daemon
+Close the program GUI.
+In this way nothing is going to suspend, for example the hard drive.
+No 3D or GL screensavers that could damage the video card.
+The screen is going to blank, lock, and turned off  after 10 minutes, in order to preserve the laptop battery power and the monitor's life.
+
+To poweroff the screen in the type of configuration "Laptop/Notebook":
+Simply wait 10 minutes, or change the Blank after time and then restart the program daemon.
+
+- Lock screen
+
+Try to do not touch the GUI, use from the terminal.
+
+To lock screen:
+$ xscreensaver-command -lock
+This is going to lock in accordance with the program GUI settings, so then for Desktop configuration the screen is going to lock and blank, but for Laptop/notebook configuration the screen is going to lock and turn off.
+
+- Watch movies or YouTube videos and build software
+
+Keep the Desktop or the Laptop/notebook configuration and simply disable the screensaver as follows:
+Stop the program daemon:
+$ xscreensaver-command -exit
+Or you can kill the program:
+CTRL + C from the terminal, or:
+$ pkill xscreensaver
+Find the program in the apps menu, or in the terminal, as user:
+$ xscreensaver
+Click on the button Settings.
+Set:
+Mode: Disable SCreen saver
+Restart the program daemon.
+
+- Issues
+
+If the menu to lock does not appear:
+Enter as root
+# xscreensaver
+Restart the daemon from the GUI, or use:
+Or use:
+$ xscreensaver-command -restart
+The menu lock now.. should appear in the menu File.
+
+Set up color to true color to be able to display some 3D screensavers.
+
+Set up video card to be able to display 3D screensavers.
+References:
+Guide: Video Card
+Guide: 3D Acceleration and VR
+
+Gnome Desktop Environment incompatibility:
+Remember that you can uninstall xscreensaver, but it is good because you have the most of the power management and screen configuration in one place in the GUI, and it is an optional screen saver for Linux Desktops like XFCE. Read the documentation to learn more of Xscreensaver, and how overwrites Caffeine Extension work in Gnome Desktop Environment:
+$ man xscreensaver
+References:
+Topic: Look for the section "Install the Caffeine extension:". Caffeine de-activates options of screensaver and autosuspend.
+Guide: Gnome Shell Extensions.
+More Guides:
+Build packages from source
+Source code & Debian forks source code
+
+Power Management in Gnome:
+Search for the app Power, or look for it under Settings.
+
+Power Management in XFCE:
+Click on the system Icon.
+Go to Settings > Settings Manager > Power Manager.

@@ -1,0 +1,51 @@
+In order to install Iceweasel and other browsers Java support, run the package manager:
+$ sudo synaptic
+Search for: java
+Search for: icedtea
+
+Or use:
+$ sudo apt-get update
+$ apt-cache search 'icetea'
+Search results:
+icedtea-7-plugin - web browser plugin based on OpenJDK and IcedTea to execute Java applets
+icedtea-netx - NetX - implementation of the Java Network Launching Protocol (JNLP)
+icedtea-netx-common - NetX - implementation of the Java Network Launching Protocol (JNLP)
+icedtea-plugin - web browser plugin to execute Java applets (dependency package)
+icedtea-7-jre-jamvm - Alternative JVM for OpenJDK, using JamVM
+
+Install the packages:
+$ sudo apt-get install icedtea-7-plugin icedtea-netx icedtea-netx-common icedtea-plugin icedtea-7-jre-jamvm
+
+Restart your Web browsers.
+
+Firefox:
+FF has the plugin and is working fine. To test, I visited: 
+http://www.java3d.org/samples.html
+http://java.com/en/download/testjava.jsp
+Notes:
+The plugin so version 1.7 (Java 7, but eh program installed is version 8. I am installing stable packages, but maybe there is a 8 version in testing or sid repos).
+Only necessary if Firefox browser plugin is not working after installing Oracle Java:
+ln -s /usr/lib/jvm/java-7-oracle/jre/lib/<architecture>/libnpjp2.so ~/.mozilla/plugins
+
+Iceweasel:
+http://www.java3d.org/samples.html
+http://java.com/en/download/testjava.jsp
+Icedtea works well.
+
+Google Chrome:
+Chrome does not support Java plugins:
+Message from http://java.com/en/download/testjava.jsp:
+We have detected you are using Google Chrome and might be unable to use the Java plugin from this browser. Starting with Version 42 (released April 2015), Chrome has disabled the standard way in which browsers support plugins.
+
+Some info taken from:
+Web: http://forums.debian.net/viewtopic.php?f=17&t=83703
+Read: Iceweasel Java support.pdf.
+
+Notes: 
+It is possible to download a newest version of Oracle Java from the Ubuntu PPA repositories but Debian has not PPA to be able to 'apt-get install' from those repos. In some cases you have to know how to simply download with wget from PPAs, if possible. Anyways the compilation worked well and it is not necessary.
+
+I am not storing the packages in /usr/src because they are DEB packages, but it is a good idea to build the sources under usr/src /usr/local/src
+
+It is possible to switch between plugin, for example from iced-tea-plugin to icedtea-6-plugin. It depends on the browser, system, plugin and Java versions. Basically you have to change a symlink to the plugin. Research on google.
+
+Java would stop working on browsers due to JavaScript Today is the Internet language and if the browsers like Internet Explorer (Deprecated), Spartan (Under testing) and Firefox deprecate the NPAPI which allows to connect Java client-server. The NPAPI has many errors, and that is the reason why Google removed it from its browser. On the other hand, I recently read an article which says HTML6 is the future of the Web, but I don't think that HTML 6 will do all the things you can you with JavaScript. Anyway I don't know what is going to happen with Java, at least for the Web.

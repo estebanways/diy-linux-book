@@ -1,0 +1,2 @@
+yoshimi - software synthesizer originally based on ZynAddSubFX2
+yoshimi-data - Presets for Yoshimi

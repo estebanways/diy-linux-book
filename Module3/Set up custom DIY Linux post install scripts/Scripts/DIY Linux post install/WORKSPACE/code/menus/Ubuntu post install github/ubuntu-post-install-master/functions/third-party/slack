@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Slack
+function slack {
+	# Variables
+	PACKAGE=slack-desktop
+	NAME="Slack Desktop"	
+	show_header 'Begin '$NAME' installation'
+	# Check if already installed
+	echo 'Checking if '$NAME' is already installed...'
+	PKGCHECK=$(dpkg-query -W --showformat='${Status}\n' $PACKAGE|grep "install ok installed")
+	if [ "" == "$PKGCHECK" ]; then
+		echo $NAME 'is not installed. Proceeding'
+		show_info 'Downloading '$NAME'...'
+		# Download Debian file that matches system architecture
+		case `uname -i` in
+			i386|i486|i586|i686)
+				curl -O https://downloads.slack-edge.com/linux_releases/slack-desktop-2.5.2-i386.deb
+				;;
+			x86_64)
+				curl -O https://downloads.slack-edge.com/linux_releases/slack-desktop-2.5.2-amd64.deb
+				;;
+			*)
+				whiptail --title "No remote packages available to download." --msgbox "Error." 8 78
+				;;
+		esac
+		# Install package(s)
+		show_info 'Installing '$NAME'...'
+		show_warning 'Requires root privileges'
+		sudo dpkg -i slack-desktop-*.deb
+		sudo apt install -fy
+		# Cleanup and finish
+		rm slack-desktop-*.deb
+		# Done
+		show_success 'Done.'
+		whiptail --title "Finished" --msgbox "Installation of $NAME complete." 8 78
+		thirdparty
+	else
+		# Already installed
+		show_success $NAME 'already installed.'
+		whiptail --title "Finished" --msgbox "$NAME is already installed." 8 78
+		thirdparty
+	fi
+}

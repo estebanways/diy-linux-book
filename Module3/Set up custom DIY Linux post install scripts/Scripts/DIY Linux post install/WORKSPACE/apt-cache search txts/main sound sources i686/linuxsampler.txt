@@ -1,0 +1,5 @@
+gigedit - instrument editor for Gigasampler files
+liblscp-dev - Development files for LinuxSampler Control Protocol library
+liblscp-doc - Documentation for LinuxSampler Control Protocol library
+liblscp6 - LinuxSampler Control Protocol wrapper library
+qsampler - LinuxSampler GUI frontend based on the Qt toolkit

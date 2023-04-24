@@ -1,0 +1,2 @@
+clementine - modern music player and library organizer
+gnome-shell-extension-mediaplayer - GNOME Shell extension to control media players

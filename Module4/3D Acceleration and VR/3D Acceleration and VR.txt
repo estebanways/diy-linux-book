@@ -1,0 +1,320 @@
+Full 3D Acceleration and VR summary
+
+
+Content:
+Versioning Compatibility Checklist
+Video card specific commands
+Installation of OpenCL packages and libraries
+OpenCL Virtualization ready Checklist
+
+
+
+Versioning Compatibility Checklist:
+------------------------------------=
+
+- App or Game requirements. I.E: Blender engine Cycles and OpenCL support appers in recent versions, these features are unavailable in version 2.62b. glibc 2.11 is required to run version 2.77a. This version works in relatively new distro versions.
+- BIOS. IE: For virtualization, requires IOMMU support to turn on the passthrough so you can use a second video card in the guess Virtual Machine (VM).
+References: 
+Guide: KVM
+- Cores quantity. High availability improves performance.
+- CPU Architecture. IE: 32 or 64 bit. 64 bit is required for OpenCL and VR (Virtual reality). 32bit harware is being deprecated in high-end computers.
+- CPU support. IE: ss3 is the minimum recommended. Has to match the Mainboard and the video card bus. Some ss2 CPUs support OpenCL but they require legacy drivers or the support is considered slow or Beta.
+- CUDA. Most important video card vendors support this technology in a range of cards, especially Nvidia.
+- DDR. IE: The bus must be DDR3 as a minimum to install Nvidia cards. GDDR5 is the last BUS generation.
+- Desktop Environment. IE: Gnome 3.14 EGL VS AMD proprietary driver issue.
+- DirectX. Supported through Wine or switch the configuration to OpenGL (MESA, Linux native).
+- Dsitribution arquitecture. IE: 32 or 64 bit. 64 bit required.
+- Distribution name. IE: Debian GNU/Linux.
+- Distribution release. IE: Linux Kernel 3.19 does require reboots after installations but does not require 3.20.
+- Distribuion version. IE: 8.4, codename Jessie.
+- Driver number. IE: Non-free / Open Source AMD versions. Nonfree installs AMD ATI Control center and Open Source installs Gallium 0.4 Direct Rendering Preferences.
+- OpenCL. IE: Compatibility between Blender and running versions.
+- OpenGL. IE: Compatibility between game and running versions.
+- System library or dynamic library requirements I.E: glibc, depends on the Blender version.
+- System repository configuration. IE: Just main and contrib repos are ready in the file sources.list, so you are unable to fetchand  install packages from non-free repos.
+- Video card Brand. IE: AMD, Ntel, Nvidia.
+- Video Card features (support). IE: Some cards are better to games, and some other to render graphics.
+- Video cards number, types, compatibility features and issues.
+- WebGL. IE: No browser and environment support you can't play HTML animations. See guide "Firefox".
+- Xorg X Server. IE: Certain range versions are not incompatible.
+- Coolers. Great to improve and preserve the system in a good state.
+
+
+
+Video card specific commands:
+--------------------------------=
+
+Show the version of the installed non-free Linux firmware:
+$ sudo apt-cache policy firmware-linux-nonfree
+
+Find the DEB package the specified file comes from:
+$ apt-file search libtxc.dxtn.so
+
+Verify OpenCL compatibility in the CPU:
+$ cat /proc/cpuinfo | grep ss3
+
+Display AGP information in the Xorg log file:
+$ cat /var/log/Xorg.0.log | grep AGP
+
+Display DRI information in the Xorg log file:
+$ cat /var/log/Xorg.0.log | grep DRI
+
+Display complete OpenCL information:
+$ clinfo
+
+Show DRM and Radeon information from dmesg kernel log:
+$ dmesg | egrep 'drm|radeon'
+
+Look for radeon information in the kernel log dmesg:
+$ dmesg | grep -E 'drm|radeon' | grep -iE 'firmware|microcode'
+
+Define who can start and stop the xserver service (root, users, or anybody):
+$ sudo dpkg-reconfigure x11-common
+Systemd users use systemctl.
+References:
+Guide: Systemd
+
+Reconfigure xserver xorg:
+Take care with the video card. Reconfigure xserver xorg is going to overwrite your xorg.conf file. If you want to proceed, back-up the video card configuration first.
+To setup video card:
+References:
+Guides:
+Reconfigure Xserver hardware (Video Card, Keyboard, Mouse, Monitor)
+Video Card
+
+Configure Xorg server:
+$ man Xorg
+# Xorg --configure
+
+Resolution. You can use the desktop Environment resolution application. 
+Pending: Examples, and write an article to explain usage cases such as VideoVim and TV out.
+$ xrandr
+
+Check whether processor supports KVM  (Intel VT or AMD-V). If vmx or svm are present, architecture is 64bit:
+# egrep '(vmx|svm)' --color=always /proc/cpuinfo
+
+Display OpenGL information:
+$ fglrxinfo
+Output:
+display: :0  screen: 0
+OpenGL vendor string: X.Org
+OpenGL renderer string: Gallium 0.4 on AMD RS880
+OpenGL version string: 3.0 Mesa 10.3.2
+End of output.
+
+Test Acceleration and OpenGL, similar to dxdiag 3D cube animation test in MS Windows. Requires non-free video drivers installed:
+$ fgl_glxgears
+
+Test Acceleration and OpenGL, by showing a 3D gears animation. Requires at least mesa open source drivers installed:
+$ glxgears
+
+See green Opengl triangle animation and in OpenGL info:
+$ glxheads
+Output example:
+glxheads: exercise multiple GLX connections (any key = exit)
+Usage:
+  glxheads xdisplayname ...
+Example:
+  glxheads :0 mars:0 venus:1
+Name: :0
+  Display:     0x1140010
+  Window:      0x4600002
+  Context:     0x11530a0
+  GL_VERSION:  3.0 Mesa 10.3.2
+  GL_VENDOR:   X.Org
+  GL_RENDERER: Gallium 0.4 on AMD RS880
+End of.
+
+Extract Opengl information:
+$ glxinfo | grep OpenGL
+
+Extract render version and information:
+$ glxinfo | grep -i 'render'
+
+Verify the status of the rendering:
+$ glxinfo | grep -i rendering
+Output should say: Direct Rendering: YES
+
+Show extra verbose Mesa debug options in the glxinfo command output:
+export LIBGL_DEBUG=verbose
+export MESA_DEBUG=1
+$ glxinfo
+
+Show Warnings in the xorg file configuration:
+$ grep WW /var/log/Xorg.0.log
+
+Show Errors in the xorg file configuration:
+$ grep EE /var/log/Xorg.0.log
+
+List files or trim file strings when used with jockers:
+$ ls
+$ ls package-name*
+$ ls *file-name*
+$ ls packages*.deb
+$ ls -hal libOpenCL.so*
+$ ls .*
+$ ls -F
+
+List certain hardware information. IE: 'ATI':
+$ lspci | grep 'ATI'
+
+Display VGA controller information:
+$ lspci -nn | grep VGA
+Output:
+01:05.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] RS880M [Mobility Radeon HD 4225/4250] [1002:9712]
+End of.
+
+manpages:
+$ man program-name
+
+Runs script to verify OpenGL configuration:
+$ sh CheckVideoAcceleration.sh
+
+Remove video driver kernel module:
+$ sudo modprobe -r radeon
+
+Blacklist certain AMD driver version:
+$ sudo nano /etc/ati/fglrx-blacklists-radeon.conf
+
+Set-up xorg Xserver file:
+$ sudo nano /etc/org.conf.d/20-fglrx.conf
+or for Ubuntu:
+$ sudo nano /etc/xorg.conf
+Note: Use 'cat file' only for read mode.
+
+AMD ATI Video card Graphics VRAM and Graphics Pipe usage monitor:
+$ sudo radeontop
+
+Reboot after a new video driver installation:
+$ sudo reboot
+Or with systemd:
+# systemctl reboot
+
+AMD ATI video card over-clocking monitor and tool:
+$ sudo rovclock -i
+
+Monitor CPUs and cores temperature:
+$ sensors
+
+Display running Linux kernel version:
+$ uname -r
+
+Video card drivers switch. IE: Toggle from proprietary (non-free: AMD, Nvidia, Intel(Beignet)) to open source (free, Gallium for ATI, Noveau for Nvidia, and Intel Open source drivers (codename?)):
+$ sudo update-alternatives --help
+In Debian:
+$ sudo update-alternatives --config glx
+In Ubuntu:
+$ sudo update-alternatives x86... (PRESS TAB to see right option to choose from the list)
+Note: Use CTRL + C to do not change the current option.
+References:
+Guide: Make a program the default option
+
+Change the power profile of the graphics card:
+$ sudo nano /sys/class/drm/card0/device/power_profile
+Options are: low, mid, high, auto, but is better to change using Gnome Desktop controls.
+
+Topic: Search for more video cards Extensions and apps.
+References:
+Guides: 
+Gnome Shell Extensions.
+Conky
+
+HDMI audio:
+HDMI audio is supported in the xf86-video-ati video driver. By default HDMI audio is disabled in the driver kernel versions >=3.0 because it can be problematic. To enable HDMI audio add radeon.audio=1 to your kernel parameters. If there is no video after boot up, the driver option has to be disabled.
+
+More:
+All the commands to manage packages. are here:
+Referenses:
+Guide:
+System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+Proprietary and Free driver installation commands.
+Symlinks, for example to link dynamic libs.
+Commands to work with Environment Variables (export, variable=value, .bash.. user file under home).
+Resolution commands, tools and hot keys. IE: xrandr, CTRL +ALT + F1, F2.. F7.
+xserver commands, IE: startx --restart.
+Desktop environment commands. IE: gdm, kdm, mdm.
+Read new. IE: Vulkan project news. This projects pretends to be the standard to work on the latest GPU generation, the Open GPU.
+
+
+
+Installation of OpenCL packages and libraries:
+-------------------------------------------------=
+
+Look for OpenCL packages in the official repos main contrib and non-free (Notice that Nvidia and Beignet (Intel) and also AMD ATI drivers are available here):
+$ sudo apt-cache search opencl icd
+
+Install OpenCL libraries for AMD
+$ sudo apt-get install amd-clinfo amd-opencl-icd amd-libopencl1
+
+More OpenCL libraries through application Darktable:
+$ sudo apt-get install libcanberra-gtk-module mesa-opencl-icd mesa-utils-extra
+Note: Remember to resolve dependencies during installation, include GTK3-dev (Gnome uses 2.x).
+
+More OpenCL libraries through BOINC:
+$ sudo apt-get install boinc-client boinc-amd-opencl boinc manager
+Note: Remember to look for the projects directory while projects are up and running (Review Debian official documentation).
+
+More Open CL libraries through AMD APP SDK:
+Notes:
+- To install the Development Kit and samples review: "Installation notes" available in PDF.
+- To get ready with AMD APP SDK follow the AMD site official PDF document: "Getting Started Guide".
+- To run installed OpenCV samples, download the opencv sources and build them is required.
+- Remeber to setup the required environment variables.
+
+NOTE: For all the apps to support OpenCL, up and running Non-free drivers is a must.
+
+
+Current AMD driver installation steps in Debian Jessie:
+
+$ cd Downloads
+$ mkdir ati
+$ cd ati
+$ sudo apt-get build-dep fglrx-driver
+$ sudo apt-get -b source fglrx-driver
+$ sudo dpkg -i *.deb
+
+List of files built in ATI (Pay attention at the OpenCL packages):
+amd-clinfo_15.9-4~deb8u2_amd64.deb
+amd-libopencl1_15.9-4~deb8u2_amd64.deb
+amd-opencl-dev_15.9-4~deb8u2_amd64.deb
+amd-opencl-icd_15.9-4~deb8u2_amd64.deb
+fglrx-atieventsd_15.9-4~deb8u2_amd64.deb
+fglrx-control_15.9-4~deb8u2_amd64.deb
+fglrx-driver-15.9
+fglrx-driver_15.9-4~deb8u2_amd64.changes
+fglrx-driver_15.9-4~deb8u2_amd64.deb
+fglrx-driver_15.9-4~deb8u2.debian.tar.xz
+fglrx-driver_15.9-4~deb8u2.dsc
+fglrx-driver_15.9.orig.tar.xz
+fglrx-modules-dkms_15.9-4~deb8u2_amd64.deb
+fglrx-source_15.9-4~deb8u2_amd64.deb
+libfglrx_15.9-4~deb8u2_amd64.deb
+libfglrx-amdxvba1_15.9-4~deb8u2_amd64.deb
+libgl1-fglrx-glx_15.9-4~deb8u2_amd64.deb
+libxvbaw-dev_15.9-4~deb8u2_amd64.deb
+
+Note: This method is best possible, but also does not work due to incompatibility issues.
+Reference: http://wiki.cchtml.com/index.php/Debian
+File: Debian - cchtml.pdf
+
+Note: RaspberryPie OpenCL installation is different. You can see installatio process and examples here:
+Ultimate Raspberry PIE ebook bundle.pdf
+
+OpenGPU will use Vulkan as standard. read more here: Intel open source graphics drivers now support vulkan - Intel Software and Services.pdf
+ 
+
+
+OpenCL Virtualization ready Checklist:
+---------------------------------------=
+
+Topics:
+- Dirtly, you need to define the virtualization solution to be used, IE: KVM + Qemu + Libvirt + Virt Manager or Spice, VirtualBox, LXC (Linux Containers), VMware flavors.
+- The 1 display for 1 GPU problem. Currently, virtualization technologies install Virtual Machines ready for running OpenGL in every virtual guest, no matter how many video cards you have installed. To allow the virtual machine to see the proprietary drivers to be able to active and use OpenCL in VMs, the only solution is a passthrough. In other words, there is just 1 display for 1 GPU (But if you think twice, maybe Open GPU (today under development) has a solution for this problem (in case of these monopoly companies allow sharing their GPUs within 2 or more Virtual hosts, and if so, in summary, they created you a pipe to program the GPU no access to their secret (proprietary, non-free) acceleration code). 
+- There was an exception in the past. The only option that I found no passthrough and second card required is VMGL, but supports OpenGL only).
+- So we need the passthrough option to suceed creating VMs with OpenCL availability.
+- Select a passthrough type. OVMF (Open Virtual Machine Firmware, it is supposed teh best option to "skip" the virtualization server (hardware) to give the 2nd card to the VMs), KVM + Qemu + Libvirt + Virt Manager (IE: VGA Passthrough), VirtualBox, LXC (Linux Containers), VMware flavors. I don't specify the codename of the passthrough support for every solution mentioned. The most important of this point is the specification availability of the Passthrough proposed, for example: OpenGL is almost a standard, and we require OpenCL, however only proprietary drivers have the ability to run it, so verify the passthrough availability of installation and recognition of these drivers instead of the "PIPE" drivers like "llvmpipe" (VMware pipe) for MESA Open source drivers for OpenGL. Otherwise Virtualization seems just unreal emulation of the unrecognized real drives.
+- Passthrough requirements. To make it work we require a second video card with OpenCL support to dedicate it to VMs, and more, IE: Settings, packages installation, dependencies like libs, etc.
+References:
+Guide: KVM
+
+

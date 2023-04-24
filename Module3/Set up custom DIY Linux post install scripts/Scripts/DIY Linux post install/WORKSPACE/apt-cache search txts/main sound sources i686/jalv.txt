@@ -1,0 +1,4 @@
+golang-github-dgrijalva-jwt-go-dev - Golang implementation of JSON Web Tokens (JWT)
+golang-github-dgrijalva-jwt-go-v3-dev - Golang implementation of JSON Web Tokens (JWT)
+jalv - tool to run LV2 plugins as stand-alone applications
+libjaba-client-java - minimal client for the JABAWS server

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function everything {
+ echo "Not implemented yet:"
+ echo "Fuction: everything"
+ exit 99
+}

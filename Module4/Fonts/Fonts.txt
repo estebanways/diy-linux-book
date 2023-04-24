@@ -1,0 +1,73 @@
+Font formats supported:
+Formats supported according to Debian Wiki are: ttf, otf, bdf, pfb, fnt, woff
+
+References:
+Web: https://wiki.debian.org/Fonts
+File: Fonts - Debian Wiki.pdf
+
+
+List fonts available:
+Use the program "Font Viewer" to see your list of fonts available.
+Another good place to see the shape of the font is:
+Open the Tweak tool program, and then go to the sections Fonts
+
+To list fonts in a directory:
+$ ls <fonts-path>
+
+
+Find or place new fonts files:
+You can find or place new fonts in your personal .fonts/ directory in home/ or in all the shared (system wide) fonts directories under /usr, for example:
+/usr/share/fonts
+/usr/share/wine/wine/fonts
+/usr/share/vlc/skins2/fonts
+/usr/local/share/fonts
+
+To paste font files to your local .fonts/ directory use:
+User: esteban
+Group: esteban
+
+To paste font files to /usr/share fonts directories use:
+User: root
+Group: root
+
+To paste font files to /usr/local/share/fonts directory use:
+User: root
+Group: staff
+Note: staff group has no users: $ nano /etc/group
+
+
+Install MS Windows fonts:
+If you ahve a licence of MS Windows, you don't need free copies of programs like PPS viewer. Simply, copy the folder C:\Windows\Fonts of your Windows to /usr/local/share/fonts as root.
+For example, with the fonts copy in /home/esteban/.wine/drive_c/windows/Fonts:
+$ sudo cp -dpR /home/esteban/.wine/drive_c/windows/Fonts/* /usr/share/fonts/win, or:
+$ sudo cp -dpR /home/esteban/.wine/drive_c/windows/Fonts/* /home/esteban/.fonts
+For example, with the fonts copy in /usr/share/wine/wine/fonts:
+$ sudo cp -dpR /usr/share/wine/wine/fonts/* /usr/share/fonts/win, or:
+$ sudo cp -dpR /usr/share/wine/wine/fonts/* /home/esteban/.fonts
+
+Install MS Office / MS Windows non-free fonts from package ttf-mscorefonts-installer:
+$ sudo apt install ttf-mscorefonts-installer
+
+I have made a file (Spanish version) showing the steps to install almost any possible MS Windows font on Linux:
+References:
+File: Resumen de pasos para instalar fuentes de MS Office en Linux - By Esteban Herrera.odt
+
+Install fonts from Debian repos, set up in sources.list files such as /etc/apt/sources.list:
+Show isntalled fonts:
+$ aptitude show "?installed ?section(fonts)" | egrep '(Package|State|Version)'
+
+Show fonts pending to install:
+$ aptitude show "?not(?installed) ?section(fonts)" | egrep '(Package|State|Version)'
+
+List all fonts:
+$ aptitude show "?section(fonts)" | egrep '(Package|State|Version)'
+
+Install fonts:
+$ sudo apt install font-package1 font-package2 ...
+
+Common Installation example:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt install fonts-arabeyes fonts-freefarsi fonts-lyx fonts-sil-gentium fonts-stix fonts-droid fonts-cantarell fonts-liberation ttf-dejavu fonts-oflb-asana-math fonts-mathjax xfonts-intl-arabic xfonts-intl-asian xfonts-intl-chinese xfonts-intl-chinese-big xfonts-intl-european xfonts-intl-japanese xfonts-intl-japanese-big ttf-dejavu ttf-liberation ttf-marvosym ttf-opensymbol ttf-summersby myspell-es ooo-thumbnailer
+
+

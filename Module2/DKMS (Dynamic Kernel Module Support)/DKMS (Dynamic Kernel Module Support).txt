@@ -1,0 +1,29 @@
+If we have a webcam, 3D graphics card, etc ... whose drivers, for whatever reason, are not maintained in the main branch of the core but has beern made by a private company, we have to make a number of preliminary steps before you can use it.
+
+Distributions, responsible for making life easier for the user to whom they are addressed, usually include precompiled drivers for the core versions they are using at the time, but what happens when we update the kernel? Let all who hold those modules have to re-compile.
+
+It usually happens that when we update the core but not a particular module such as the webcam or 3D graphics card, you have to be a few days without you operate the webcam or 3D acceleration graphics card, for example.
+
+Normally Debian GNU/Linux versions include source code of these drivers passing control over these modules to the same user.
+It is indeed an essential option if we ourselves who we compile our core.
+
+A few years ago it emerged a tool that facilitated the process of compiling the modules, called module-assistant. The problem is that by module-assistant the user must prepare the system to compile, choose which modules wants to install, and install them, etc ... and ends up being only a slightly more visual mask for the same system to compile manually.
+
+DKMS (Dynamic Kernel Module Support) is a system that also works with these latest versions of source code. Unlike module-assistant, does not require user interaction. The user simply selects which modules with DKMS wants installed with each new kernel from synaptic and DKMS takes care of the rest.
+
+DKMS at every startup checks which modules are installed and compiled for the running kernel if needed.
+
+This system makes the installation of modules as the driver of the webcam or 3D acceleration graphics card an automated process.
+
+Examples of driver included in Debian to be installed and managed by DKMS:
+
+Nvidia
+ATI
+OSS
+
+References:
+Topic: Example of usage of DKMS. We install a wireless card driver using DKMS. Guide: "Basic Networking"
+Web: LINK
+Web: blog.usuariodebian.com
+Web: usuariodebian.blogspot.com.es
+File: Blog usuario Debian.pdf

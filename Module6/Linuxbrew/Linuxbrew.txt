@@ -1,0 +1,174 @@
+Linuxbrew allows us to fetch, install from source and keep up to date the all tools and technologies available on Homebrew.
+
+There are optional projects to Homebrew for Mac, for example the MacPorts project.
+Reference: https://www.macports.org/
+
+The Homebrew perspective excludes Windows Machines from the most of the Web developments based on Mac libraries, because they are unable to install their Unix sources from Homebrew. Poor Windows users must uninstall and re-install manually the AVAILABLE, new as possible .exe program version.
+
+You know Linuxbrew is not the only repo source you need to complete your Development project; I am going to add Ruby, NPM, Grunt, some Git sources and, last but not least, APT. Sometimes you should decide between two sources to install from. In those cases match the advantages and the disadvantages of every one, like interactions, dependencies and versions before you take the final decision on what to install and use.
+In summary search:
+For Formulas, on LinuxBrew
+For packages, on NPM
+For packages, on Bower
+For gems, on Ruby
+For contribs, on Grunt
+For sources, on Git
+For system apps, on APT
+
+Installation of dependencies:
+
+Ruby:
+I believe the best way to start from is to take the advantage of the existing Ruby on the system to install LinuxBrew and deal with the Ruby versioning later.
+
+Curl:
+I also decided to use it with Ruby, because Curl has the option "l" which is Wget unavailable. Curl is on my system since the installation of Conky, and seems LinuxBrew installable, but I can't install it from LinuxBrew no LinuxBrew on the system yet. You can choose to install Curl from APT, just because the program is not required to Develop, and I am not developing yet. I can try to install Curl from LinuxBrew after the installation of LinuxBrew.
+Reference:
+Web: http://braumeister.org/formula/curl
+To install Curl from the Official Debian sources:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get install curl
+
+Git:
+This has not been used yet. At first I wanted to install it later from LinuxBrew to preserve the Mac compatibility, but later on realized that I need it as dependency to get done the LinuxBrew installation no matter if I install from Ruby or Git repos.
+
+Steps:
+$ sudo apt-get update
+$ sudo apt-get install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
+
+Output:
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Note, selecting 'libexpat1-dev' instead of 'libexpat-dev'
+Note, selecting 'libncurses5-dev' instead of 'libncurses-dev'
+build-essential is already the newest version.
+curl is already the newest version.
+libexpat1-dev is already the newest version.
+libexpat1-dev set to manually installed.
+m4 is already the newest version.
+ruby is already the newest version.
+ruby set to manually installed.
+texinfo is already the newest version.
+zlib1g-dev is already the newest version.
+The following extra packages will be installed:
+  bzip2-doc git-man libtinfo-dev
+Suggested packages:
+  git-daemon-run git-daemon-sysvinit git-doc git-el git-email git-gui gitk
+  gitweb git-arch git-cvs git-mediawiki git-svn libcurl4-doc libcurl3-dbg
+  libidn11-dev libkrb5-dev libldap2-dev librtmp-dev libssh2-1-dev libssl-dev
+  ncurses-doc
+The following NEW packages will be installed:
+  bzip2-doc git git-man libbz2-dev libcurl4-openssl-dev libncurses5-dev
+  libtinfo-dev
+
+End of Output.
+
+Linuxbrew installation:
+I am not gonna use Git right now but I will show you the command to fetch and install LinuxBrew using Git: $ git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
+
+I install Linuxbrew from Ruby:
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
+
+Output:
+==> This script will install:
+/home/esteban/.linuxbrew/bin/brew
+/home/esteban/.linuxbrew/Library/...
+/home/esteban/.linuxbrew/share/man/man1/brew.1
+
+Press RETURN to continue or any other key to abort
+==> Downloading and installing Homebrew...
+remote: Counting objects: 264064, done.
+remote: Total 264064 (delta 0), reused 0 (delta 0), pack-reused 264064
+Receiving objects: 100% (264064/264064), 50.50 MiB | 87.00 KiB/s, done.
+Resolving deltas: 100% (197785/197785), done.
+From https://github.com/Homebrew/linuxbrew
+ * [new branch]      master     -> origin/master
+HEAD is now at 5651181 Bug fix for with_system_path for Linuxbrew
+Warning: /home/esteban/.linuxbrew/bin is not in your PATH.
+==> Installation successful!
+==> Next steps
+Install the Linuxbrew dependencies:
+
+Debian, Ubuntu, etc.:
+  `sudo apt-get install build-essential`
+
+Fedora, Red Hat, CentOS, etc.:
+  `sudo yum groupinstall 'Development Tools'`
+
+See http://brew.sh/linuxbrew/#dependencies for more information.
+
+Run `brew doctor` before you install anything
+Run `brew help` to get started
+
+End of Output.
+
+Add these environment variables to your .bashrc file:
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+
+Reload your file bashrc no logout required:
+References:
+Web: http://superuser.com/questions/174943/running-bashrc-versus-new-login
+There are three methods to re-read the file:
+Method 1:
+"exec bash" should do it. Basically just restarts the bash shell, reading .bashrc in the process.
+Method 2:
+You can source the file using ".":
+$ . ~/.bashrc
+Method 3:
+You can source the file using source:
+$ source ~/.bashrc
+That will re-read and execute the lines in the file in the current session.
+
+Review the variables exported:
+$ env
+$ env $PATH
+$ echo $MANPATH
+
+$ which brew
+/home/ubuntu/.linuxbrew/bin/brew
+
+Update LinuxBrew:
+$ brew update
+Always update before search. This feature of Brew works like APT.
+
+Search Formulae:
+Go to http://braumeister.org/browse/s/8
+Or use
+$ brew search xml
+Output:
+blahtexml	libxml++	tinyxml2	xml2		xmlsh
+html-xml-utils	libxml2		xml-coreutils	xmlcatmgr	xmlstarlet
+libmxml		libxmlsec1	xml-security-c	xmlformat	xmlto
+libnxml		tinyxml		xml-tooling-c	xmlrpc-c	xmltoman
+libwbxml
+homebrew/head-only/gccxml		homebrew/php/php55-xmldiff
+homebrew/php/php53-wbxml		homebrew/php/php56-wbxml
+homebrew/php/php53-xmldiff		homebrew/php/php56-xmldiff
+homebrew/php/php54-wbxml		homebrew/science/raxml
+homebrew/php/php54-xmldiff		homebrew/versions/libxml278
+homebrew/php/php55-wbxml
+
+End of Output.
+
+Create a GitHub token:
+Create GitHub account and go to: https://github.com/settings/tokens
+
+Install a formula:
+$ brew install <FORMULA>
+
+To upgrade packages:
+$ brew upgrade <FORMULA>
+
+Adding Existing HomeBrew Repositories
+Updating TAPs and Packages
+Creating Custom/Private TAPs (Repositories)
+Reference:
+Web: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-linuxbrew-on-a-linux-vps
+File: How to install and use Linuxbrew.pdf
+
+LinuxBrew GitHub:
+Web: https://github.com/Homebrew/linuxbrew/issues/47
+Web: https://github.com/Homebrew/linuxbrew

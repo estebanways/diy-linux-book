@@ -1,0 +1,180 @@
+a2jmidid - Daemon for exposing legacy ALSA MIDI in JACK MIDI systems
+aconnectgui - graphical ALSA sequencer connection manager
+aj-snapshot - make snapshots of JACK connections
+libasound2 - shared library for ALSA applications
+libasound2-data - Configuration files and profiles for ALSA drivers
+libasound2-dev - shared library for ALSA applications -- development files
+libasound2-doc - documentation for user-space ALSA application programming
+libasound2-plugin-smixer - smixer plugin for ALSA library
+alsa-oss - ALSA wrapper for OSS applications
+libasound2-plugins - ALSA library additional plugins
+alsa-tools - Console based ALSA utilities for specific hardware
+alsa-tools-gui - GUI based ALSA utilities for specific hardware
+ld10k1 - ALSA emu10k1/2 patch loader
+liblo10k1-0 - ALSA emu10k1/2 patch-loader library
+liblo10k1-dev - ALSA emu10k1/2 patch-loader library development files
+alsa-utils - Utilities for configuring and using ALSA
+libasound2-plugin-equal - equalizer plugin for ALSA
+alsamixergui - graphical soundcard mixer for ALSA soundcard driver
+alsaplayer-alsa - alsaplayer output module for ALSA
+alsaplayer-common - audio player (common files)
+alsaplayer-daemon - alsaplayer daemon
+alsaplayer-gtk - alsaplayer gtk interface
+alsaplayer-jack - alsaplayer output module for JACK
+alsaplayer-nas - alsaplayer output module for NAS
+alsaplayer-oss - alsaplayer output module for OSS
+alsaplayer-text - alsaplayer text interface
+alsaplayer-xosd - alsaplayer XOSD display module
+libalsaplayer-dev - alsaplayer plugin library (development files)
+libalsaplayer0 - alsaplayer plugin library
+ams - Realtime modular synthesizer for ALSA
+amsynth - two oscillator software synthesizer
+ardour - the digital audio workstation
+aseqjoy - Joystick to ALSA MIDI Sequencer Converter
+asterisk - Open Source Private Branch Exchange (PBX)
+audacious-plugins - Base plugins for audacious
+awesfx - utility programs for AWE32/64 and Emu10k1 driver
+balsa - e-mail client for GNOME
+balsa-dbg - e-mail client for GNOME - debugging symbols
+baresip - portable and modular SIP user-agent - metapackage
+baresip-core - portable and modular SIP user-agent - core parts
+baresip-ffmpeg - portable and modular SIP user-agent - FFmpeg codecs and formats
+baresip-gstreamer - portable and modular SIP user-agent - GStreamer pipelines
+baresip-gtk - portable and modular SIP user-agent - GTK+ front-end
+baresip-x11 - portable and modular SIP user-agent - X11 features
+blepvco - LADSPA, minBLEP-based, hard-sync-capable oscillator plugins
+cairo-dock-alsamixer-plug-in - Alsamixer plug-in for Cairo-dock
+libclalsadrv-dev - ALSA driver C++ access library (development files)
+libclalsadrv2 - ALSA driver C++ access library
+codecgraph - Generates graphviz graphs from HDA-Intel codec information
+multimedia-jack - JACK (Jack Audio Connection Kit) and ALSA related packages
+drumkv1 - old-school drum-kit sampler - standalone
+drumkv1-common - old-school drum-kit sampler - common files
+drumkv1-lv2 - old-school drum-kit sampler - lv2-plugin
+dssi-host-jack - Example of DSSI host
+libecereaudio0 - Ecere Audio
+libavdevice-dev - FFmpeg library for handling input and output devices - development files
+libavdevice57 - FFmpeg library for handling input and output devices - runtime files
+fische - stand-alone sound visualisation for Linux
+fomp - collection of LV2 audio plugins
+gmerlin - multiformat media player
+gnome-alsamixer - ALSA sound mixer for GNOME
+gom - Command line and interactive ncurses-based OSS audio mixer
+gstreamer1.0-alsa - GStreamer plugin for ALSA
+libghc-cryptonite-dev - cryptographic primitives
+libghc-cryptonite-doc - cryptographic primitives; documentation
+libghc-cryptonite-prof - cryptographic primitives; profiling libraries
+hydrogen - advanced drum machine/step sequencer
+jaaa - audio signal generator and spectrum analyser
+jack-keyboard - Virtual MIDI keyboard for JACK MIDI
+japa - JACK and ALSA Perceptual Analyser
+kmetronome - ALSA MIDI Metronome
+kmidimon - MIDI monitor using ALSA sequencer and KDE user interface
+kwave - sound editor for KDE
+libao-common - Cross Platform Audio Output Library (Common files)
+libao-dbg - Cross Platform Audio Output Library Debug Symbols
+libao-dev - Cross Platform Audio Output Library Development
+libao4 - Cross Platform Audio Output Library
+libcrypto++-dev - General purpose cryptographic library - C++ development
+libcrypto++-doc - General purpose cryptographic library - documentation
+libcrypto++-utils - General purpose cryptographic library - utilities and data files
+drumstick-tools - Qt4/C++ wrapper for ALSA Sequencer - utilities
+libdrumstick-dev - Qt4/C++ wrapper for ALSA Sequencer - development files
+libdrumstick0 - Qt4/C++ wrapper for ALSA Sequencer
+libdssialsacompat-dev - DSSI ALSA compatibility library (development files)
+libdssialsacompat0 - DSSI ALSA compatibility library for non-Linux platforms
+libgcrypt-mingw-w64-dev - LGPL Crypto library - Windows development
+libgcrypt20 - LGPL Crypto library - runtime library
+libgcrypt20-dev - LGPL Crypto library - development files
+libgcrypt20-doc - LGPL Crypto library - documentation
+libhinawa-dev - I/O library for IEEE 1394 asynchronous transactions (development file)
+libhinawa0 - I/O library for IEEE 1394 asynchronous transactions
+libmatemixer-common - Mixer library for MATE Desktop (common files)
+libmatemixer-dev - Mixer library for MATE Desktop (development files)
+libmatemixer-doc - Mixer library for MATE Desktop (documentation files)
+libmatemixer0 - Mixer library for MATE Desktop
+libmikmod-config - Portable sound library - development binaries
+libmikmod-dev - Portable sound library - development files
+libmikmod3 - Portable sound library
+libomxil-bellagio0-components-alsa - ALSA source/sink components for Bellagio OpenMAX IL
+libsdl1.2debian - Simple DirectMedia Layer
+libsdl2-2.0-0 - Simple DirectMedia Layer
+liquidsoap-plugin-alsa - audio streaming language -- ALSA plugin
+mate-media - MATE media utilities
+mcp-plugins - LADSPA plugins designed for Alsa Modular Synth
+mhwaveedit - Simple and fast GTK2 sound editor
+mididings - MIDI router and processor based on Python
+mididings-doc - mididings Documentation
+python-mididings - MIDI routing library for Python
+midisnoop - MIDI monitor and prober
+mkchromecast - Cast your Linux audio to your Google Cast devices
+mkchromecast-alsa - ALSA dependencies to cast with mkchromecast
+moc - ncurses based console audio player
+mopidy-alsamixer - Mopidy extension for extension for ALSA volume control
+mpg123 - MPEG layer 1/2/3 audio player
+mudita24 - ALSA GUI control tool for Envy24 (ice1712) soundcards
+nautilus-sendto - easily send files via email from within Nautilus
+nted - Musical score editor
+libalsa-ocaml - OCaml bindings for the ALSA library
+libalsa-ocaml-dev - OCaml bindings for the ALSA library
+libbjack-ocaml - OCaml blocking interface to jack audio connection kit
+libbjack-ocaml-dev - OCaml blocking interface to jack audio connection kit
+libopenal1 - Software implementation of the OpenAL audio API (shared library)
+oss-compat - Open Sound System (OSS) compatibility package
+osspd - OSS Proxy Daemon: Userland OSS emulation
+osspd-alsa - OSS Proxy Daemon: ALSA backend (experimental)
+osspd-pulseaudio - OSS Proxy Daemon: PulseAudio backend
+patchage - modular patch bay for Jack audio and Alsa Midi
+libpcaudio-dev - C API to different audio devices - development files
+libpcaudio0 - C API to different audio devices - shared library
+pd-mediasettings - programmatically modify the audio and MIDI settings from within Pd
+petri-foo - MIDI controllable audio sampler - successor of specimen
+phasex - Phase Harmonic Advanced Synthesis EXperiment
+phasex-dbg - Debugging symbols for PHASEX
+playitslowly - Plays back audio files at a different speed or pitch
+pmidi - command line midi player for ALSA
+pnmixer - Simple mixer application for system tray
+libpt2.10.11 - Portable Tools Library
+pulseaudio - PulseAudio sound server
+python-alsaaudio - Alsa bindings for Python
+python-pyalsa - Official ALSA Python binding library
+qasconfig - ALSA configuration browser
+qashctl - mixer for ALSA's High level Control Interface
+qasmixer - ALSA mixer for the desktop
+qastools-common - QasTools common files
+qmidiarp - MIDI arpeggiator for ALSA
+qmidinet - MIDI Network Gateway via UDP/IP Multicast
+qmmp - feature-rich audio player with support of many formats
+qtractor - MIDI/Audio multi-track sequencer application
+quisk - Software Defined Radio (SDR)
+randomsound - ALSA sound card related entropy gathering daemon
+librtaudio-dev - C++ library for realtime audio input/ouput (development files)
+librtaudio5a - C++ library for realtime audio input/ouput
+librtmidi-dev - C++ library for realtime MIDI input/ouput (development files)
+librtmidi3 - C++ library for realtime MIDI input/ouput
+showq - MIDI controllable audio player
+simplescreenrecorder - Feature-rich screen recorder for X11 and OpenGL
+libsnack-alsa - Sound extension to Tcl/Tk and Python/Tkinter - ALSA files
+tcl-snack - Sound extension to Tcl/Tk and Python/Tkinter - Tcl/Tk library
+snd-gtk-jack - Sound file editor (GTK+ user interface - JACK)
+snd-nox - Sound file editor (cmdline)
+sound-theme-freedesktop - freedesktop.org sound theme
+libsox-fmt-alsa - SoX alsa format I/O library
+libsox2 - SoX library of audio effects and processing
+sox - Swiss army knife of sound processing
+squeezelite - lightweight headless Squeezebox emulator - ALSA version
+stymulator - Curses based player and converter for the YM chiptune format
+timidity - Software sound renderer (MIDI sequencer, MOD player)
+tuxguitar-alsa - tuxguitar plugin for sound playback using ALSA
+libcw6 - Morse code tutor - shared library
+vkeybd - Virtual MIDI Keyboard
+vokoscreen - easy to use screencast creator
+volti - control audio volume from system tray/notification area
+volumecontrol.app - Audio mixer for GNUstep
+volumeicon-alsa - systray volume icon for alsa
+wildmidi - software MIDI player
+xmms2-plugin-alsa - XMMS2 - ALSA output
+zita-ajbridge - alsa to jack bridge
+libzita-alsa-pcmi-dev - Development files (headers) for libzita-alsa-pcmi library
+libzita-alsa-pcmi0 - C++ wrapper around the ALSA API
+zita-alsa-pcmi-utils - Two simple demo programs zita-alsa-pcmi library

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function adobe-digital-editions.install {
+ echo "Not implemented yet:"
+ echo "Fuction: adobe-digital-editions.install"
+}

@@ -1,0 +1,3 @@
+gmidimonitor - GTK+ application that shows MIDI events
+qjackctl - User interface for controlling the JACK sound server
+qjackrcd - Qt4 application to record JACK server outputs

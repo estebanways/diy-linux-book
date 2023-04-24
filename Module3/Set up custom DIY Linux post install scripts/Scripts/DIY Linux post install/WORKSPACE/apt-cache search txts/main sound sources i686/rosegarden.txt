@@ -1,0 +1,8 @@
+calf-plugins - Calf Studiogear - audio effects and sound generators
+debian-edu-doc-en - English documentation from the Debian Edu project
+debian-edu-doc-es - Spanish documentation from the Debian Edu project
+debian-edu-doc-fr - French documentation from the Debian Edu project
+debian-edu-doc-nb - Bokmål documentation from the Debian Edu project
+debian-edu-doc-nl - Dutch documentation from the Debian Edu project
+rosegarden - music editor and MIDI/audio sequencer
+xjadeo - Video player with JACK sync

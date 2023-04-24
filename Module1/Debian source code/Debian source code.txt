@@ -1,0 +1,71 @@
+Software sources available:
+- Localhost or Local Area Network Debian repository
+- Debian repository servers
+- Debian PPA repositories
+
+Installation examples: 
+- Apache2. Patching and recompilation or simple compilation from sources will improve security if made adding new security module to enable xinit to manage the service to add anti DDOS ability.
+- wine-development. Install development version of Wine from patched source will allow the version to use the winetricks package.
+- Video drivers. Compilation and maybe patched of proprietary drivers are sometimes requirements to make them work.
+- Linux kernel. Debianized kernel is required to add new functionality to the system.
+
+For Debian source code:
+You should use APT to download, manage the compilation (building process) and install packages. Puritan users install all the software they can this way. Unfortunately, not every package source we want is available. My only excuse to install binaries directly from the Debian repos is I am saving time by skipping the source compilation to complete the system environment as fast as possible.
+References:
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+
+I don't have any examples yet, but almost all packages in the Official Debian repositories installed by APT have sources available to download, build and install in one step. 
+
+This method is very useful in servers to compile custom package versions with extra or modified features. It's the case of Apache2 which can be compiled from a scratch or be patched before the recompilation to add new Apache2 modules, like modules required to run a number of the Apache2 service instances in parallel to add them to xinetd.
+
+Don't confuse builds from Debian source code and builds from source code. For example, going back to Apache, whether your choice is building from source you have to choose between Debian or another source code. In case of source code analyze the pros and cons of the code chosen.
+
+
+Mini Howto - Building a Debian package from Debian sources:
+
+Before installing Debian source you need to compile the code, and next I recommend to create a DEB package to install with DPKG.
+To succeed, use one of these tutorials. I ordered every reference from the most appropriate to the less appropriate to me:
+
+References:
+Topic: Building Debian packages from Debian sources - tutorial. Get the sources of a package.
+Web: https://wiki.debian.org/BuildingTutorial
+File: Building Debian packages from Debian source tutorial.pdf
+
+References:
+Topic: Working with Debian source packages.
+Web: https://wiki.debian.org/SourcePackage
+File: Working with Debian source packages.pdf
+
+References:
+Topic: Building Debian packages with sbuild, the tools I use to build from Debian forks source code.
+Guide:
+Build packages from source
+SimpleScreenRecorder
+
+References: 
+Topic: Look for the topic Deb builder in this guide.
+Guide: Source code & Debian forks source code
+
+References: 
+Topic: Rebuild a package using one of the methods described in the Debian package maintainers Guide:
+- Complete (re)build
+- Autobuilder
+- Debuild command
+- Pbuilder package
+- Git-buildpackage command and similars
+- Quick rebuild
+- Command hierarchy  
+In my case, I have used pbuilder to make an isolated (chroot) environment to build experimental software in the past, for example, I had to build an early version of OpenSSL in Debian Gnu/Linux Lenny (5.x).
+Web: https://www.debian.org/doc/manuals/maint-guide/build.en.html
+File: Chapter 6. Building the package.pdf
+Web: https://www.debian.org/doc/manuals/maint-guide/index.en.html
+File: Debian New Maintainers Guide.pdf
+Web: https://wiki.ubuntu.com/PbuilderHowto
+File: PbuilderHowto.pdf
+
+
+Next information information may be useful to people interested in the package maintenance:
+Reference:
+Topic: Debian Build tool chain.
+Web: https://en.wikipedia.org/wiki/Debian_build_toolchain
+File: Debian build toolchain.pdf

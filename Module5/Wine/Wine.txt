@@ -1,0 +1,267 @@
+Ẃine is an implementation of the Windows API to make run Windows programs in Linux and open web sites using an embedded Internet Explorer web browser, for example.
+
+------->
+
+Update version: 2
+Update for Debian 11 codename "Bullseye":
+
+If you want to install the latest available winehq wine version for Debian instead of that which is outside the Official Debian repositories:
+References:
+Topic: Install wine from the winehq.
+Web: https://www.devdungeon.com/content/install-lutris-gaming-debian
+File: Install Lutris Gaming on Debian _ DevDungeon.pdf
+
+Steps:
+
+Enable multilib:
+sudo dpkg --add-architecture i386
+sudo apt edit-sources
+
+Edit/revise /etc/apt/sources.list line:
+# My custom lines:
+# Wine 32bit:
+deb [arch=amd64,i386] http://deb.debian.org/debian/ bullseye main non-free contrib
+
+Trust Wine's gpg key:
+$ sudo wget -nc https://dl.winehq.org/wine-builds/winehq.key
+$ sudo apt-key add winehq.key
+
+Edit sources:
+$ sudo apt edit-sources
+Add the following line. Replace bullseye with current version:
+deb https://dl.winehq.org/wine-builds/debian/ bullseye main
+
+Install updated wine packages
+$ sudo apt update
+The 'apt' output would show lines begining with warnings, like these:
+OUTPUT:
+W: Target DEP-11-icons-small (contrib/dep11/icons-48x48.tar) is configured multiple times in /etc/apt/sources.list:5 and /etc/apt/sources.list:24
+W: Target DEP-11-icons (contrib/dep11/icons-64x64.tar) is configured multiple times in /etc/apt/sources.list:5 and /etc/apt/sources.list:24
+END OF OUTPUT.
+Skip them for now, and continue with the next step. The warning explains the repo is duplicated, but we need to install wine for 64 bits. The solutions would be remove the line not considering the 32bit architecture, the one without the string '[arch=amd64,i386].'
+The installation should output the 32 bit architecture as you can see in the packages suffixes to be installed, before enter 'yes' to start with the download and installation:
+$ sudo apt install --install-recommends winehq-staging
+CORRECT OUTPUT EXAMPLE:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  glib-networking:i386 gstreamer1.0-plugins-base:i386 i965-va-driver:i386
+  intel-media-va-driver:i386 libaom0:i386 libasound2:i386 libasound2-plugins:i386
+  libasyncns0:i386 libatk-bridge2.0-0:i386 libatk1.0-0:i386 libatspi2.0-0:i386
+[ ... ]
+END OF OUTPUT.
+
+When the installation finishes, install Video drivers, Vulkan drivers, and Lutris if want to install video games, for example, Starcraft 2.
+
+Vulkan drivers:
+$ sudo apt install libvulkan1 libvulkan1:i386
+
+Install Lutris:
+Follow instructions on Lutris website: https://lutris.net/downloads
+Example:
+echo "deb http://download.opensuse.org/repositories/home:/strycore/Debian_11/ ./" | sudo tee /etc/apt/sources.list.d/lutris.list
+
+This option seems deprecated but is working:
+wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_11/Release.key -O- | sudo apt-key add -
+This options seems working but leaves a stupid file '-' in /etc/apt/sources.d/. You'd better remove it, after the step:
+wget -q https://download.opensuse.org/repositories/home:/strycore/Debian_11/Release.key -O- | sudo tee /etc/apt/trusted.gpg.d/lutris.asc -
+
+$ sudo apt update
+$ sudo apt install lutris
+
+Install games with Lutris:
+To install games with Lutris, open the program and find in the left menu: "Sources | Lutris" and then select the "Community Installers" tab and search.
+Each game by default will create its own Wine prefix directory in $HOME/Games.
+
+Installing StarCraft 2:
+For StarCraft 2, I also needed winbind and gnutls.
+$ sudo apt install winbind libgnutls{xx28,28-dev}:i386
+
+NOTE: After the the wine installation or after installing a game, go to the document to continue with the installation of useful packages such as winetricks. This current section is just an update.
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+Some steps in the installation have changed. Visit Debian WIKI to install wine 32bit version.
+I don't recommend the 64bit version yet. It needs more development.
+
+------->
+
+If you have previous wine version and want to install a different one or reinstall, let's start from a clean installation.
+$ apt-get remove wine
+Also remove any wine Windows instance previous to the installation:
+$ cd
+$ rm -rf .wine
+
+Install wine 32 bits version:
+That is because the 64bit version is still under development and has many bugs and will fail, freeze and soon.
+Set up repositories main contrib and non-free:
+$ sudo nano /etc/apt/sources.list
+Search the program and related packages
+$ sudo apt-cache search wine | less
+You will see many results. In a 64bit system we will install 32 and 64 versions (See commands available).
+
+After reproducing the installation, based on the Debian WIKI (Checkout the updates on This document updates) you can come back here and continue reading a bit of the next important subtopics:
+
+Install winetricks:
+$ sudo apt-get install winetricks
+
+Update winetricks to the latest version by running
+$ sudo winetricks --self-update
+
+References:
+Web: https://wiki.debian.org/Wine
+File: Wine - Debian Wiki.pdf
+
+Check the list of commands available:
+Type in $ win (and then press TAB key)
+Examples of command options you should know:
+$ wine cmd
+$ wine uninstaller
+$ wine control
+$ winecfg
+$ winefile
+
+Winetricks:
+Winetricks is a helper script to download and install various redistributable runtime libraries needed to run some programs in Wine. These may include replacements for components of Wine using closed source
+libraries.
+We were installing wine prepacked version of instead of the (current) development version (wine-development), because it is stable and the development version is incompatible with winetricks. However, it is possible to re-build a patched wine-development to use it with winetricks.
+References:
+Web: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=713058
+File: number 713058 - winetricks_ _wineserver not found_ with wine-unstable on amd64 - Debian Bug report logs.pdf
+Usage (GUI version):
+$ winetriks --gui, and then try to install MS dotnet (any version).
+If the wine dialog does not start:
+Two common reasons are you are not in a Desktop Environment so you need a package between Zenit or Kdialog for winetrics to be able to generate its minimum GUI. You will also require cabextract, so:
+$ sudo apt-get install zenit
+$ sudo apt-get install cabextract
+You will get accustomed to those warning messages from now on. The typical solution is accept the apparent errors by clicking on OK or ACCEPT to move on.
+If you experience problems at installing libraries from winetricks, run:
+$ winecfg
+After opening and exploring the options close it and reopen winetricks and it should be able to install Windows pieces of software.
+Remember to choose the 32 bit prefix when running winetrics, in spite of the software .EXE design (32bit or 64bit). Otherwise you will get errors like this:
+"You are using a 64-bit WINEPREFIX. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug."
+NOTE:
+Remember to remove the prefix remove any previous .wine installation of incomplete installation and then use or choose to create the 32bit prefix, by running 'winetrics' or 'winetrics --gui.'
+NOTE:
+During the installation of a Wine component or software you would deal with confusing error messages. Fortunately, they are almost always warning you can read, press ok or something like continue and go on installation until the end. So do not get scared of the red alerts!
+
+Install Windows Fonts in Wine:
+The easiest way to install the basic fonts is by running winetricks, but it is not the only way.
+If you have a license of MS Windows, simply, copy the folder C:\Windows\Fonts of your Windows to your Wine directories /home/esteban/.wine/drive_c/windows/Fonts, and if you like to /usr/share/wine/wine/fonts/:
+$ sudo cp -dpR  /usr/share/fonts/win/* /home/esteban/.wine/drive_c/windows/Fonts
+$ sudo cp -dpR  /home/esteban/.fonts/* /home/esteban/.wine/drive_c/windows/Fonts
+$ sudo cp -dpR  /usr/share/fonts/win/* /usr/share/wine/wine/fonts
+$ sudo cp -dpR  /home/esteban/.fonts/* /usr/share/wine/wine/fonts
+For more information on system Fonts, see the guide Fonts.
+References:
+Guide:
+Fonts
+
+Install and run applications with wine:
+$ wine installer.exe
+Eg:
+$ wine setup.exe
+When finish go to the installation path and execute the application:
+$ /home/esteban/.wine/drive_c/Program\ Files/AAP-EXE-PATH/App.exe
+The app icon will show up in the system applications (Press SUPER key, and then type to search the application)
+
+When using multiple prefixes, run the executable like this, specifying your prefix path before the path to the drive_c:
+$ WINEPREFIX=~/.wine-wow wine $HOME'/.wine-wow/drive_c/Program Files (x86)/World of Warcraft/Wow-64.exe'
+
+In case of your app does not install properly or does not run after the installation:
+You can add more specific Windows poo poo to your Wine to make your Windows apps work, for example, a specific NET Framework version which is not added to your Wine, now installed in $HOME/.wine. When you notice that the app does not work and figure out that the reason for that is the lack of a NET Framework version, you need to reinstall the app after installing the framework and all the other windows pieces requirements for the installation, such as DLLs, EXEs and so on, because wine was unable to install them automatically despite any other error that can be cause of the installation or the program execution's failure. Many installations steps for specific installations are available in the official Wine HQ website: https://appdb.winehq.org/
+
+Examples of Windows pieces you should require to run games for Windows, watch videos of specific formats made for Windows, etc:
+Net Framework 3.5 (is accumulative, and include 2.0, 3.0, 3.0 SP1).
+Net Framework 4.5 (for the latest, also, is accumulative of the 4.0).
+CMD (System symbol).
+DirectX:
+DirectX9
+Xact Engine (the normal) with its DirectX Play, DirectX Sound and etc’s.
+DirectX 10 specific libraries.
+Microsoft Visual C++:
+2003.
+2005.
+2007.
+2010.
+2012.
+2013.
+Xbox controller support.
+MSXML 3,4 SP3 y 6.0 SP1.
+Codecs:
+FFD show y Xvid.
+Indeo Codecs.
+MPEG Layer-3.
+QDvd y Quartz de DirectX 9.
+XNA Framework 4.0.
+Microsoft:
+GDI+ (versions 2004 y 2011).
+amstream.dll.
+DirectShow Filtrer.
+Windows HTTP Services.
+Setup API.
+Update API.
+
+64bit platforms:
+The current status of Wine is 64 bit wine is still under development.
+References:
+Web: https://wiki.winehq.org/Debian
+File: Installing WineHQ packages.pdf
+There you will see the next note:
+"Installing WineHQ packages
+Raspbian users: the WineHQ packages are for x86 architecture only; they cannot be installed on an ARM system.
+First, enable 32 bit packages:
+sudo dpkg --add-architecture i386"
+End of note.
+If you have installation troubles on 64bit machines, try to find messages like this in the logs. That means that the package to be installed is 32bit and doesn't work in 64 version of wine (obviously running on a 64bit machine), or simply is a 64bit version of a package but still doesn't with 64bit wine app under development:
+Output:
+------------------------------------------------------
+You are using a 64-bit WINEPREFIX. If you encounter problems, please retest in a clean 32-bit WINEPREFIX before reporting a bug.
+------------------------------------------------------
+End of output.
+You can also see the suggestion:
+Output:
+It looks like wine32 is missing, you should install it.
+multiarch needs to be enabled first.  as root, please
+execute "dpkg --add-architecture i386 && apt-get update &&
+apt-get install wine32"
+End of output.
+
+However, you can use the guide to add the 32 bit architecture to your Debian.
+Reference:
+Topic: Add 32bit architecture
+Guide: Multi Architecture
+
+PlayOnLinux:
+The same problems occurs with PlayOnLinux, but you don't receive clues from the application, so it is not easy to figure out those problems on GUIs.
+References:
+Topic: PlayOnLinux:
+Web: https://www.playonlinux.com/en/
+Guides:
+PlayOnLinux
+Proteus
+
+A humble list of varied Wine Uses on Linux:
+- Run Windows applications no Linux version
+- Update Mainboard firmware ,for example, BIOSes, with wine DOS
+- Activate DirectX and Play MS Windows games
+- Unlock encrypted storage drivers that use Windows software. Note: Mind is not working. Also, I can't unlock with hdparm commands. More information here. 
+References:
+Web: https://community.wd.com/t/linux-users-stay-away-from-wd/26840
+File: Linux Users Stay Away from WD - WD Software & Mobile Apps _ WD Software - WD Community.pdf
+Web: https://forum.winehq.org/viewtopic.php?t=12694
+File: WineHQ Forums - View topic - Unlocking Windows-LOCKED HDD.pdf
+I can use alternative programs to encrypt external storage drives, for example: VeraCrypt (LINK)
+References:
+Web: http://www.techrepublic.com/blog/five-apps/protect-your-data-with-these-five-linux-encryption-tools/
+File: Protect your data with these five Linux encryption tools - TechRepublic.pdf
+Web: https://veracrypt.codeplex.com/
+File: VeraCrypt - Home.pdf
+- Use embedded Internet Explorer web browser
+Right click on any GIF image and in the contextual choose the option "Open with" > and then choose "Wine Internet Eplorer" or use:
+$ wine iexplore.exe
+Note: This is an older Browser no longer supported by many web sites like YouTube. Microsoft is changing IE by Edge and there not Edge emulation available at the moment (hopefully).

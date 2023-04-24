@@ -1,0 +1,4 @@
+DIY Linux
+Author: Esteban Herrera
+Website: https://liquidsmok.hopto.org + http://liquidsmok.hopto.org
+Copyright © 2015 - 2022 Esteban Herrera. All rights are reserved.

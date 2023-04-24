@@ -1,0 +1,8 @@
+
+Files =
+$ nautilus
+# nautilus
+
+References:
+Topic: Share "Files" directories 
+Guide: Share system directories across the network

@@ -1,0 +1,66 @@
+- Notes specific for software:
+
+Cairo-dock:
+The next packages have not been installed during the installation of cairo-dock, and are referencing Ruby:
+Packages suggested during the installation of cairo-dock:
+  f-spot gcalctool cairo-dock-dbus-plug-in-interface-python
+  cairo-dock-dbus-plug-in-interface-ruby
+  cairo-dock-dbus-plug-in-interface-mono
+  cairo-dock-dbus-plug-in-interface-vala
+The first package has ruby as a dependency.
+
+Scribus:
+If you install the scribus package suggestion 'texlive-latex-recommended' (the render frame) APT is going to install ruby as a dependency, the same case of the installation of KDE Desktop Environment. See the guide Scribus for more information.
+References:
+Guide: Scribus
+
+K Desktop Envinronment:
+KDE, installed through APT, installed a latest available version of Ruby. I didn't notice the packages until now. It's not a problem to have a version running because it is possible to install different versions and switch them as we did with Java, to work on different projects at the same time. Remember that the Mac computers come with a working version of Ruby out of the box. In Debian, I recommend you to install the default version which comes with the system, but if you require you are able to install a variant. The current status of the official repos on the Debian Official Web site shows how there is not any program to switch from one variant to another (update-alternatives) because the current variants are unfinished and are considered as experimental packages you can download ans install at your own risk.
+
+- Variants to Ruby:
+
+References:
+Available interpreters in Debian 8 (jessie):
+MRI 2.1.5 ruby2.1
+JRuby 1.5.6 jruby 
+As there are no (MRI) alternatives to choose from, update-alternatives support has been removed. (Longer explanation about the alternatives removal can be found here: https://lists.debian.org/debian-ruby/2014/03/msg00077.html and here: https://lists.debian.org/debian-project/2014/02/msg00028.html ) 
+Reference:
+Web: https://wiki.debian.org/Ruby
+File: Ruby Debian Wiki.pdf
+
+- Installation of the current version of Ruby from the Debian repositories in a single computer
+
+References:
+Topic: To be able to switch among different versions and variants in a single computer look for RVM.
+Guide: RVM
+
+Steps:
+Displays the list of ruby files after the K Desktop Environment installation:
+$ dpkg -l | grep 'ruby'
+
+Output:
+ii  libqtruby4shared2                      4:4.11.3-4.1                               amd64        internal library for Qt 4 Ruby bindings
+ii  libruby2.1:amd64                       2.1.5-2+deb8u1                             amd64        Libraries necessary to run Ruby 2.1
+ii  plasma-scriptengine-ruby               4:4.11.13-2                                all          Ruby script engine for Plasma
+ii  ruby                                   1:2.1.5+deb8u1                             all          Interpreter of object-oriented scripting language Ruby (default version)
+ii  ruby-kde4                              4:4.14.2-1                                 amd64        KDE bindings for the Ruby language
+ii  ruby-plasma                            4:4.14.2-1                                 amd64        Plasma Ruby bindings
+ii  ruby-qt4                               4:4.11.3-4.1                               amd64        Qt 4 bindings for the Ruby language
+ii  ruby-qt4-webkit                        4:4.11.3-4.1                               amd64        QtWebKit bindings for the Ruby language
+ii  ruby2.1                                2.1.5-2+deb8u1                             amd64        Interpreter of object-oriented scripting language Ruby
+ii  rubygems-integration                   1.8                                        all          integration of Debian Ruby packages with Rubygems
+
+Verify the running interpreter:
+$ ruby -v
+Output:
+ruby 2.1.5p273 (2014-11-13) [x86_64-linux-gnu]
+
+We have the latest version of the interpreter for our Debian release in the system, but if we need to work with ruby, let's install it completely:
+$ sudo apt-get install ruby-full build-essential
+Next we can install any gem to test the installation is complete
+References:
+Topic: Jekyll rb
+Web: https://jekyllrb.com/
+File: Simple, blog-aware, static sites.pdf
+
+

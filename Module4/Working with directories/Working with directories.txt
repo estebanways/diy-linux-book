@@ -1,0 +1,39 @@
+List directories:
+$ ls -hal
+$ ls *.tar
+$ ls -F
+$ ls --color *steba* 
+Copy files or directories (origin to destiny)
+$ cp -dpR A B
+Cut and move files or directories:
+$ mv A B
+Delete files or directories:
+$ rm -rf A B C D E
+
+SetGID:
+Take a look at the directory /usr/local:
+# ls -hal /usr
+Output:
+drwxrwsr-x  10 root staff 4.0K May  5 21:01 local
+
+'S' = The directory's setgid bit is set, but the execute bit isn't set.
+'s' = The directory's setgid bit is set, and the execute bit is set.
+
+SetGID = When another user creates a file or directory under such a setgid directory, the new file or directory will have its group set as the group of the directory's owner, instead of the group of the user who creates it.
+
+To remove the setGID bit:
+chmod g-s eclipse/
+But don't do it on /usr/local.
+
+Taken from man chmod:
+You can set or clear the bits with symbolic modes like u+s and g-s, and you can set (but not clear) the bits with a numeric mode.
+
+To find mounted CDs or DVDs:
+$ ls /media/
+$ ls /media/esteban/
+
+To auto-complete command lines (commands and directories):
+Use TAB key while you type the command, directory or file on your mind.
+
+References:
+Guide: MC

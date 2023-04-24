@@ -1,0 +1,101 @@
+Content:
+- Security first
+- Debian VS Gentoo and Arc
+- LFS
+- Install Debian from Netinstall/CD/DVD/BluRay or use a Live Disc
+- Installed System VS Live Disc
+
+- Security first
+
+National Security Agency case: 
+According to the ex-employee of US NSA Edward Snowden NSA constantly spies the whole world.
+According to the US law NSA is allowed to spy all the world include OSs like Windows and OSX, but also Linux.
+In Windows NSA spyware comes in the system code. In MacOS the code has not been revealed but everybody thinks exist. In Linux it is supposed that no evil code exists but most probable is that yes due to NSA know how to use systems and encryption software vulnerabilities to access virtually every computer in the world.
+NSA spyware comes in network equipment chips, for example in the CISCO routers. NSA creates most of encryption algorithms to protect systems security, but you have not to trust them 100% since they force OS companies to create backdoors for them in the OS.
+It is supposed that NSA has the computational power to violate every security method on the planet earth.
+NSA social control is not a conspiracy theory but a fact. Some years ago, the Wikileaks founder, Julian Assange, prosecuted for speaking about NSA obscure activities stated: "Transparency for The State, Privacy for the rest of US". His case can be related to the one of Aaron Swartz, known hacktivist who "committed suicide" years after was caught stealing government servers information. I personally wants to mention the case of Gary McKinnon, a Scottish systems administrator and hacker who was accused in 2002 of perpetrating the "biggest military computer hack of all time," although McKinnon himself states that he was merely looking for evidence of free energy suppression and a cover-up of UFO activity and other technologies potentially useful to the public.
+The real problem is that NSA can use information to manipulate the entire globe and invest. Remember the case of Boeing VS Airbus in the 50s and how English won the WII using microphones on captured NAZI military officers.
+Another problem is that US owns Internet, and their rules apply to all countries.
+There is an only way to stay safe from known NSA and similar spyware: Build everything from known source code. The best approach is build your system from source in a secure malware free environment. You can read the code you build in this way at least. However in the real world this is difficult to do because just the kernel has millions of lines of code.
+Given the facts, there's an only solution to "resolve" the security problem of sources: to create a "trusted network" to review the source code, but this is just one more topic in the world of the security, and unfortunately is one of the cases when if you don't do it perfectly in the correct order from the beginning you can't go back later to resolve disasters, at least not easily. Consequently, if you want to include strict security in any computer project minimizing all the possible vulnerabilities involved you can stop reading here this chapter and come back after you finished the last chapter of this book "Security First". The only reason for me to order that chapter at the end of the book is that meanwhile you don't know how to secure your system you will be unable to understand whether next issue means an error or a security mechanism. For example, you have a web sever listening in the port 80, at a later point, you turn on the firewall and hours later notice that the web pages can't be reached from outside networks. If you don't understand of firewalls and don't know how to recognize their presence you would think that you have web server configuration problems or the whole server is a piece of shit, like many users say of Linux but simply because they don't understand it.
+
+- Debian VS Gentoo and Arc
+
+Distributions like Gentoo and its fork Arc, install software packages from source by default, but at least the common system installation methods install a system base from binary packages that come from the network, DVD, etc.
+The case of Debian is similar. Common Debian installation methods install a base system from binary packages, and when the system is ready you can continue installing more binary software.
+So, you see, neither Debian or Gentoo have instant methods to build their systems from source and also their software. Some reasons are: build from source takes much time, the most of the sources are available to download, distributions like these modify the code to improve security and adapt the developer source to their systems.
+In summary, the only way to create a secure system is build it from source and after that build from source every package we want to add, and its direct and indirect dependencies, the recursive dependencies. This is possible because, obviously, someone had to build the installation DVDs, Live CDs, etc, the final product we bought or download, right?
+References:
+Topic: DebianDevelopment
+Web: https://wiki.debian.org/DebianDevelopment
+File: Debian Development Wiki.pdf
+
+- LFS
+
+Linux From Scratch, is a complete option to know how to create your own distribution. However my intention is improve security rather than develop a new Linux distribution, without the ability to test every step including every system package and package maintenance.
+The main advantage of LFS is: 
+Create your own distro, learning step by step. In that way you can give it a name and be remembered by the history as distro creator, nothing new, and there are thousands of distros using the Linux kernel.
+More LFS advantages:
+You have access to the source of the tools to build Linux like C, and C++, to partially make sure that there are not modifications in this tools that will create vulnerabilities or back doors on the system and the packages built. The real problem is that if you follow the source chain levels you never know where a tool can be retouched by someone to spy you, include the NSA itself. You know that you are going to compile the LFS compilation tools in a system which has similar tools installed as binaries: C., C++, etc. Next question is what programming language do you need to build C, C++, etc? Every answer shows up a new question. Originally, C was implemented in assembly language on a PDP-7 by Ritchie and Thompson. So, at the end, to make sure what you are compiling with, you need to write a C in assembly. Sounds kind of crazy, but it is the only way to know everything in all the system layers. 
+References:
+Web: https://en.wikipedia.org/wiki/C_(programming_language)
+With LFS, at least we start almost from the real scratch, but that also make think what to do next with my LFS, keep developing My Own Distribution or install DPKG to make the most similar to Debian fork. On the other hand, the Debian team recommend you to trust their system and packages because they test and re-build them before they add them to the Official Debian repositories: Debian creators and users compose a trusted network.
+Some disadvantages of LFS are:
+The long time of set-up and build, it's difficult to add more packages to the personal distro, and they're not many packages available, or you need to adapt the source of the software to build it in the new Linux system and make it work, which takes much more time, also, you don't have the advantages of a distribution like Debian, fore example you are not going to have DPKG and APT to download binaries and sources reviewed by the distribution developers, but can build and install DPKG and APT later on over your LFS, which is going to start to make us think again in how easily should be start from scratch utilizing the advantages of a distro like Debian.
+Remember that build is not the only security issue. You can test your own system looking for vulnerabilities and backdoors, and sniff the network traffic, to monitor network packages, the package content and package size. I don't know network packages rather than ICMP that can work behind the scenes to send information to NSA, but don't discard the idea. There are also the exploits, a type of malware which can send, receive and shape secret messages created with unicode, over the networks. I only can recommend you to protect the building environment as possible and test the resultant system when finish to discard further problems.
+References:
+Topic: Linux forks
+Web: https://en.wikipedia.org/wiki/List_of_Linux_distributions
+File: Linux Forks.pdf
+Topic: Comparison of Linux distributions
+Web: https://en.wikipedia.org/wiki/Comparison_of_Linux_distributions
+File: Comparison of Linux distributions.pdf
+Topic: Unix descendants
+Web: https://en.wikipedia.org/wiki/Unix-like
+File: Unix descendants.pdf
+
+- Install Debian from Netinstall/CD/DVD/BluRay or use a Live Disc
+
+I am not going to substitute Debian with LFS. This time I am going to trust Debian network and assume that they haven't hacked their own project in a way impossible to discover by anybody.
+Any of the Debian installation methods and variants, include Pure Blends, is going to give you the information you need about your hardware and system, to learn the skills to know how to build your own Debian from scratch. It is important to test all the methods to understand who they work and what you need to finish a complete system installation.
+References:
+Topic: DebianPureBlends (replaces the old concept of "Custom Debian Distributions")
+Web: https://wiki.debian.org/DebianPureBlends?action=show&redirect=CustomDebian
+File: Debian Pure Blends.pdf
+
+- Installed System VS Live Disc
+
+We decide the Live Disc as the best option to build our Linux project. We considered 4 options to choose from:
+- Create a Live Disc from and Installed system, but the disadvantage is the lack of the Live content if is not installed.
+References:
+Topic: Making Live Distribution from a running Linux OS (Debian)
+Web: https://superuser.com/questions/1003292/making-live-distribution-from-a-running-linux-os-debian
+File: Making Live Distribution from a running Linux OS (Debian).pdf
+- Create a Live Disc from persistent installation with Live Disc, but the disadvantage is I don't know whether programs like bootcd are going to be able to add the content of the persistent partition in the final remastered Live Disc version.
+References:
+Topic: Debian Live USB Flash Drive with Persistence
+Web: https://www.linux.com/blog/creating-debian-live-usb-flash-drive-persistence-non-techies
+File: Debian Live USB Flash Drive with Persistence.pdf
+Topic: Package: bootcd (5.05). Run your system from cd without need for disks.
+Web: https://packages.debian.org/stretch/bootcd
+File: Bootcd (5.05). Run your system from cd without need for disks.pdf
+- Modify an existing CD image. 
+References: 
+Topic: Modify existent CD image not considered Pure Blend
+Web: https://blends.debian.org/blends/
+File:  Pure Blends Manual.pdf
+Web: https://blends.debian.org/blends/ch02.html#remastered
+FIle: Difference between a Blend and a remastered system.pdf
+Topic: DebianInstallerModifyCD
+Web: https://wiki.debian.org/DebianInstaller/Modify/CD
+File: How to modify an existing CD image.pdf
+- Create a Live Disc from a Live Disc build in a chrooted environment. There is only a disadvantage of this method: No WIFI is set up by default. This method has a many advantages such as: 
+Chrooted instead of persistent USB or partition usage.
+Bulding control since the beginning.
+Build from source is possible.
+Minimal installation allowance.
+Live disc no installation required option available.
+I can activate official sources contrib and non-free during the creation of the Live Disc.
+I can add software packages during the creation of the Live Disc.
+As with the other methods I can add Official and Unoffcial software packages after complete the creation of the Live Disc.
+If you create Netinstall will need to download even the wireless drivers, etc, but if you create a Live DVD Disc, it should contain the most of the proprietary (non free) and free drivers, etc.

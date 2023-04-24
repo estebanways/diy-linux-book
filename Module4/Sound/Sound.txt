@@ -1,0 +1,68 @@
+Audio card installation:
+I remember I had to change an old card on Debian Etch, and required to find a driver to install the generic driver AC'97 Sound or something like  that, and it worked! Most of cards are supported and installed during the system installation.
+References:
+Topic: Install a Professional sound system in Debian. I also recommend you to take a look at the distro AVLinux.
+Guide: KXStudio
+Topic: Deal with drivers installation
+Guides: Basic Networking, Webcam
+Topic: Tasks related to software installation
+Guides:
+Build the Linux Kernel
+DKMS (Dynamic Kernel Module Support)
+Build packages from source
+Topic: Software installation sources and options available
+Guides:
+Software sources available
+Debian binaries
+Debian source code
+Source code & Debian forks source code
+
+Test the soundcard:
+I setup a USB sound card when installed system and tested it with an analog headset and recorded my voice with grecord and play the file.ogg with Rhythmbox.
+
+Audio mixers:
+GUI:
+$ gnome-control-center
+And look for the icon Sound
+
+Next two programs are not Gnome specific but sometimes resolve a variety of sound configuration issues.
+
+$ pavucontrol
+And look for the icon for sound
+
+Text based mode:
+$ alsamixer
+
+ALSA is an acronym of Advanced Linux Sound Architecture Driver Version k3.16.0-4-amd64.
+References:
+Topic: How it works: Linux audio explained
+Web: http://tuxradar.com/content/how-it-works-linux-audio-explained
+File: How it works_ Linux audio explained _ TuxRadar Linux.pdf
+Web: https://en.wikipedia.org/wiki/Advanced_Linux_Sound_Architecture
+File: Advanced Linux Sound Architecture - Wikipedia, the free encyclopedia.pdf
+
+Audio Application types:
+DAWs, Audio Editors/Players/Tools
+Synths/Samplers, Drumboxes, Loopers
+Effects
+Notation/Score, Tabulature, Lyrics
+MIDI/OSC Software
+DJ tools, CD/MP3 tools
+Accompaniment/Karaoke
+Mixers
+Algorithmic Composition
+Sound Synthesis
+Video Software (edit/capture)
+Lesson/Training/Metronomes/Tuners
+Development Tools
+Miscellaneous
+
+Get sound applications:
+Many of these apps reside in the Official Debian repos
+References:
+Topic: Linuxaudio.org
+Web: http://wiki.linuxaudio.org/apps/start
+Guides: KXStudio, Record Sound Recorder, Manage traditional software repositories, Audacity.
+Topic: Installing USB soundcard in Virtual Machines
+Guide: KVM
+

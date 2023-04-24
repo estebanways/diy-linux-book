@@ -1,0 +1,3 @@
+References:
+Web: https://www.linux.com/learn/why-and-how-use-ring-instead-skype-linux
+File: Why and How to Use Ring Instead of Skype on Linux _ Linux.pdf

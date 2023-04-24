@@ -1,0 +1,9 @@
+Software sources available:
+- Alternative Package Managers sources
+
+Installation examples: 
+- nginx
+- JQuery 
+
+For Mac compatibility:
+Use an application's Package Manager to download binaries or source to build, from the optional Package Manager repos using certain protocols, mostly GIT and FTP.

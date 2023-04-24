@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function kxstudio.install {
+ echo "Not implemented yet:"
+ echo "Fuction: kxstudio.install"
+}

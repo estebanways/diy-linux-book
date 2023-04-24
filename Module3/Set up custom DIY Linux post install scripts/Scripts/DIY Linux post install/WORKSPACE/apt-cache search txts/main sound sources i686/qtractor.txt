@@ -1,0 +1,3 @@
+qtractor - MIDI/Audio multi-track sequencer application
+so-synth-lv2 - Set of synthesizers for the LV2 plugin format
+swh-lv2 - Steve Harris's SWH plugins ported to LV2

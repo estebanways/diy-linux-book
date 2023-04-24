@@ -1,0 +1,25 @@
+Reference:
+Web: https://wiki.debian.org/skype
+This web site the current status of Skype for Debian, and redirects me to the Official Skype web site to download the package: http://www.skype.com/en/download-skype/skype-for-computer/
+
+I choose Debian as Distro to download the proper file.
+
+When the file has been downlaoded, install it.
+$ sudo dpkg -i skype-debian_4.3.0.37-1_i386.deb
+
+You'll notice the dependencies problem. You have to enable 32 bit architecture due to there is not 64 bit package available at this moment. I have already show how to add the 32 bit architecture in the installation of teamviewer, here:
+References:
+Guides:
+Teamviewer
+Multi Architecture
+
+Run again the installation:
+$ sudo dpkg -i skype-debian_4.3.0.37-1_i386.deb
+
+The installation is going to fail due to the program cannot find some dependencies required.
+Install these dependencies (If you are not 100% sure of where you are going to fetch files from, take a look at your file /etc/apt/sources.list and run # apt-get update before continue).
+$ sudo apt-get -f install
+
+Rerun the installation command. Don't worry, we are up to finish.
+Open skype, set it up and enjoy it with your friends.
+$ skype

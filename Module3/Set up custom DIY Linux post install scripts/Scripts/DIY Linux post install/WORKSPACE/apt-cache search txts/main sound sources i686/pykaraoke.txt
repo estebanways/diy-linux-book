@@ -1,0 +1,3 @@
+pykaraoke - free CDG/MIDI/MPEG karaoke player
+pykaraoke-bin - free CDG/MIDI/MPEG karaoke player
+python-pykaraoke - free CDG/MIDI/MPEG karaoke player
