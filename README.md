@@ -15,7 +15,7 @@ To contribute to the DIY Linux book, follow these steps:
 * Finish any incomplete guide using the content in its directories Resources/ and Extra Resources/ available in the complete project documentation.
 * Reprogram or Program a bash script or any other script for a guide, and put it in its guide directory scripts/, currently available only in the complete project documentation.
 
-The complete project documentation is only available here:
+The **complete project documentation** is only available here:
 <https://drive.google.com/drive/folders/1FyXI0XZmpVmEEPXrT1beBs8HI6i6ioOB?usp=share_link>
 
 You can also contribute directly to the documentation with your comments.
