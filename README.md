@@ -1,6 +1,8 @@
 # diy-linux-book
 The source of the book "DIY Linux: MASTER YOURSELF PURE BLEND DEBIAN DESKTOPS FROM A SCRATCH"
 
+<img alt="Neovim" src="./screenshots/cover.png?raw=true" width="550" height="291" />
+
 ## Contributing
 
 To contribute to the DIY Linux book, follow these steps:
@@ -14,7 +16,7 @@ To contribute to the DIY Linux book, follow these steps:
 * Reprogram or Program a bash script or any other script for a guide, and put it in its guide directory scripts/, currently available only in the complete project documentation.
 
 The complete project documentation is only available here:
-https://drive.google.com/drive/folders/1FyXI0XZmpVmEEPXrT1beBs8HI6i6ioOB?usp=share_link
+<https://drive.google.com/drive/folders/1FyXI0XZmpVmEEPXrT1beBs8HI6i6ioOB?usp=share_link>
 You can also contribute directly to the documentation with your comments.
 
 2. Fork this repository.
@@ -26,3 +28,18 @@ You can also contribute directly to the documentation with your comments.
 4. Push to the original branch: `git push origin <project_name>/<location>`
 
 5. Create the pull request, including the type or types of contribution chosen in the description.
+
+## Contributors
+
+Thanks to the following people who have contributed to this project:
+
+* [@estebanways](https://github.com/estebanways)
+
+## Contact
+
+If you want to contact us you can reach us at <stv.herrera@gmail.com>.
+
+## License
+
+This project uses the following license: [`License`](./LICENSE).
+
