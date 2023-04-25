@@ -1,0 +1,2 @@
+libasound2-plugin-equal - equalizer plugin for ALSA
+caps - C* Audio Plugin Suite

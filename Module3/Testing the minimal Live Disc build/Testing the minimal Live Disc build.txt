@@ -1,0 +1,196 @@
+Once I login the system I tested as root:
+
+Setup topics:
+- Networking
+- Systemd
+- Debconf and Tasksel
+- WIFI and WICD
+- Xboard GTK game
+- Text mode games
+- Partitioning
+- List of important commands used to test the text-mode (minimal) system
+
+
+- Networking:
+Allright, I know that the WIFI needs proprietary software, so I require to add contrib and non-free repositories in the file /etc/apt/sources.list, but Ethernet interface networking doesn't work in this minimal Live Disc. A simple solution is to install Desktop Environments  like Cinnamon or Gnome, that include Networking Managers to help up interfaces This can be made in a further version of the Live CD after we log in the current Live CD, using tasksel (See section tasksel, or using the APT package manager). Anyway here is how to setup the networking through commands:
+# ifconfig
+The result is that the command is deprecated, but can be installed
+# ip addr show
+The result is that the interface is down
+# ping 192.168.1.1
+The result is that the gateway is unknown or unreadable
+# netstat -nr
+The result is that there isn't any gateway (gw) nor ip address
+To assign the ip (Let's use the interface displayed by the system, in my case teh name is enp2s0):
+# ip addr add 192.1.8/24 dev enp2s0
+Up the interface:
+# ip link set enp2s0 up
+# ip addr show
+The result is the interface is up
+Route the gateway:
+# route add default gw 192.168.1.1
+# netstat -nr
+The result is that the gateway is ready
+# ping www.yahoo.com
+The result is the yahoo response
+
+PENDING:
+- Up the interface with the command ip dhcp.
+- The networking commands can be added to a DIY Linux Post Install.
+References:
+Guide: Set up custom DIY Linux post install scripts
+- Add a script to set up networking, include the file /etc/networking/interfaces, auto-created during the installation of the Live Disc, which is what the Anaconda installer does, during Debian installation.
+
+- Systemd:
+The package is installed, but no netrworking service is present. Error says: no unit, so you don't see the service, only the NetworkManager:
+$ ssytemctl | grep "Networking.service"
+
+The systemd service dir:
+/usr/lib/systemd/scripts
+
+In the systemd/scripts directory, I can create the services, I think even a alternative networking one which would include the usage of sections such as units [Unit], Description=, etc. 
+References:
+Topic: Create a systemd service
+Guide:
+Systemd
+
+The old sysVinit scripts are in /etc/init.d/, including networking, but the file is not present in the Live Disc
+
+- Debconf and Tasksel:
+Next work live, which mean I can install the apps in the RAM while the Live Disc is running:
+# dpkg-reconfigure debconf
+... and then choose an option in the dialog
+#tasksel
+... there you can choose the option to install Laptop specific packages
+
+I have verified that tasksel in graphical mode worked after the installation of teh Windows Manager "Blackbox":
+# apt-get install blackbox
+# startx
+
+At this point you can also test installing Gnome, XFCE, etc.
+
+- WIFI and WICD:
+WICD installs, but needs more packages to run, perhaps GTK (PENDING TO VERIFY)
+Need to install firmware. Pending to attempt to up WIFI. But remember that there isn't systemd Networking service.
+
+- Xboard GTK game:
+GTK doesn't work. I need to install more packages in the RAM before run any GTK program or game.
+
+- Text mode games:
+I installed and plyed crawl:
+# apt-get update
+# apt-get install crawl
+
+- Partitioning:
+Formatting is required, using the program fdisk, but I skipped the installation in the hard drive, because this is only a test of the Live disc.
+
+- List of important commands used to test the text-mode (minimal) system:
+# cat /etc/hostname
+# cd
+# cp -dpR
+# arp
+# adduser esteban
+# apt-get update
+# apt-get install crawl
+# apt-cache search traceroute | more
+# df -h
+# dmesg | grep "usb"
+# dpkg -i package_name
+# dpkg-reconfigure debconf
+# dpkg-reconfigure keyboard-configuration
+# dpkg-reconfigure locales
+# date
+# echo -e "line1\n line2" > test.txt
+# echo "" > test2.txt
+# exit
+# fdisk
+# ifconfig
+$ hostname
+$ hostname --fqdn
+# mkfs.ext4
+# mkfs.ntfs
+# mkdir
+# mv
+# mount
+# netstat -nr
+# nano /etc/fstab
+# nano /etc/hostname
+# nano /etc/resolv.conf
+# nano /etc/hosts
+# ls --color
+# ls -hal
+# ls /
+# ls /dev
+# lspci
+# lsusb
+# ls /etc/dev
+# passwd
+# pwd
+# who
+# whoami
+# less /var/log/messages
+# passwd esteban
+# ls /home
+# route
+# su root
+# su esteban
+# startx
+# rm -rf *
+# pico /etc/apt/sources.list
+# pico /etc/network/interfaces
+# deluser esteban
+# uname -r
+# uname --all
+# cat/ etc/issue
+# tasksel
+# ip addr show
+# ss
+# env
+# free
+# top
+PRESS KEY: #1
+# kill -9 PROCESS#
+# pkill APPNAME
+# pkill -u USERNAME
+
+To change to alternative terminals:
+CTRL and/or ALT+F1 to F10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

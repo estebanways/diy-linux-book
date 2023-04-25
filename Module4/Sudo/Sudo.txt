@@ -1,0 +1,39 @@
+Sudo is to execute root commands as user.
+
+On my Wheezy Desktop version sudo was more configured than on Debian Squeeze, maybe because is Gnome or there is a package update. Curiously Jessie comes without the program and you should install it by yourself.
+
+# apt-get update
+# apt-get install sudo
+
+On Jessie, simply add an user to sudoers but before just backup file.
+# cp -dpR /etc/sudoers /etc/sudoersBAK
+
+# nano /etc/sudoers
+Add an user below the root user record:
+esteban    ALL=(ALL:ALL) ALL
+
+Show my user groups:
+$ id
+
+Save changes and restart sudo service:
+# /etc/init.d/sudo restart
+Or use the new systemd method instead of sysVinit:
+# systemctl restart sudo.service
+Or use new systemd command supported by systemd:
+# systemctl restart sudo
+
+Check personal user configuration:
+From root:
+# sudo -l
+From user:
+$ sudo
+
+Output from user esteban:
+User esteban may run the following commands on ProLiant:
+    (ALL : ALL) ALL
+
+First time you use sudo the root user (you or whoever he/she is) has to type the root password to let the use execute root commands as user.
+
+Test the command (See.. as user):
+$ sudo apt-get update
+And should work.

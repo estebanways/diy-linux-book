@@ -1,0 +1,9 @@
+Dictating from Android steps:
+
+01. Install kdeconnect android
+02. Toggle on kdeconnect android remote keyboard with Google dictation in Settings
+03. kdeconnect options
+04. Go to remote input
+05. find and activate mic dictation
+06. Dictating from Android to active window
+07. Dictating on Google Translate

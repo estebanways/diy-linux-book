@@ -1,0 +1,23 @@
+
+--------------->
+
+IMPORTANT UPDATE:
+Ruby Sass is deprecated and will be unmaintained as of 26 March 2019.
+
+* If you use Sass as a command-line tool, we recommend using Dart Sass, the new
+  primary implementation: https://sass-lang.com/install
+
+* If you use Sass as a plug-in for a Ruby web framework, we recommend using the
+  sassc gem: https://github.com/sass/sassc-ruby#readme
+
+* For more details, please refer to the Sass blog:
+  http://sass.logdown.com/posts/7081811
+
+----------->
+
+In the guide "Linuxbrew - libsass and sassc" we installed libsass, the sass library, and sassc, the libsass command line driver.
+You need to uninstall those apps from Linuxbrew to be able to install the gems sass and Bootstrap-sass from Ruby, due to the libraries are replacements no compatibility.
+References: 
+Guide: Linuxbrew - libsass and sassc
+
+

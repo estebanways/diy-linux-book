@@ -1,0 +1,5 @@
+Bitdefender TrafficLight:
+From the Google Chrome web store:
+"Bitdefender TrafficLight is a Chrome and Firefox browser EXtension which adds a strong and non-intrusive layer of security to your browsing experience.
+TrafficLight is taking the security-while-browsing concept where it belongs: in the browser. 
+This extension will add a strong layer of security over your browsing experience without inducing speed penalties or system resource consumption. Part of the processing is done in the cloud with some intelligent small engines that make various checks on pages you're visiting enabling you to have top notch protection in case you run into fraud, phishing or simply dangerous websites."

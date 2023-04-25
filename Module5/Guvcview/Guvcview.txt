@@ -1,0 +1,5 @@
+It is the webcam configuration program. Set up light, noise, saturation, flip, resize.
+Its installation is explained in teh guide Webcam
+References:
+Guide: Webcam
+

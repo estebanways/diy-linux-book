@@ -1,0 +1,4 @@
+a2jmidid - Daemon for exposing legacy ALSA MIDI in JACK MIDI systems
+laditools - Linux Audio Desktop Integration Tools
+python-laditools - Python module to control and monitor the LADI system
+zita-ajbridge - alsa to jack bridge

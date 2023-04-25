@@ -1,0 +1,205 @@
+For Source code:
+
+Software sources available:
+- Web site, P2P and Developers repositories
+
+Installation examples: 
+- Oracle Java
+- WinRAR
+- The Linux Kernel
+- Hello World apps in c, C++, Java or Python
+
+
+For Forks source code:
+
+Software sources available:
+- Debian forks PPAs
+
+Installation examples: 
+- SimpleScreenRecorder
+- LiSpeak
+
+Does building from source apply only to compiled languages?
+Yes, it does apply only to compiled languages in this guide, but today the word build is used as the action of putting away the code to know its current status and tagging it for future references with a build number, no matter whether it is required to compile or not. After a number of builds you obtain a build called release or version. For example, web sites made with pure HTML5.
+
+A compiled language is a programming language whose implementations are typically compilers (translators that generate machine code from source code), and not interpreters (step-by-step executors of source code, where no pre-runtime translation takes place).
+
+Before installing or use your source you need to compile the code, and if possible create a DEB package to install with DPKG to make the source fully compatible with an/your Debian system.
+
+Always check the extracted package permissions before proceed with a good installation. The most of the program should have proper file permissions configured, but sometimes you have to change them to make the installation work. If you get lost with sources use this survival guide, especially the example of the installation of WinRAR or Oracle Java.
+
+For you to succeed compiling, building and installing, use one of these options:
+- Build from source using make file.
+- Build from source using "Autotools".
+- Build from source code using language specific compilation and building tools.
+- Build from source code using Pbuilder.
+- Build from source code using Deb Builder.
+- Build from Debian forks source code using sbuild.
+- Build the Linux Kernel and drivers.
+
+These methods help, among other things to create important files in the new Debian source Package. We didn't create anything while use sbuild, the program we use to Build source code using Debian forks sources, because the forks sources always contain a version of the files. IE: The installation of SimpleScreeenRecorder, here:
+Guides:
+SimpleScreenRecorder
+
+To know the structure of a Debian installation package, or if you are interested in the package maintenance:
+Reference:
+Topic: Debian Build tool chain.
+Web: https://en.wikipedia.org/wiki/Debian_build_toolchain
+File: Debian build toolchain.pdf
+
+
+Build Mini Howto:
+
+- Build from source using makefile:
+
+Tarballs are usually compressed and named with a double extension like *.tar.*gz.
+Some programs very limited or in early versions doesn't allow to build from custom directories but from /usr/src or /usr/local/src no matter whether you need to keep them safe from new system upgrades (Confused?, continue reading and you will see the light!). Take special care on these programs when you upgrade the system.
+You download and extract the zipped archive or tarball to /usr/src/ or /usr/local/src.
+Once there the user has to look for the README and/or the INSTALLATION files to follow the installation instructions and/or scripts provided within the files.
+The most common way to install application from sources is based on the makefile (which contains details with which an executable application is built), by running next commands from the relative path, in order:
+$ cd /usr/src
+$ ./configure
+$ make
+$ sudo make install
+Seldom times these commands need other parameters that change the compilation options, for example:
+To change the data dir, run:
+$ ./configure --prefix=/usr  
+Or before rerun a compilation or at the end of the process, do:
+$ make clean
+It is possible to summarize the steps using the tool checkinstall.
+
+usr/src/ VS /usr/local/src:
+/usr/src is meant for source code for the binaries that come with your system's installation. For example, it could contain the source code for your kernel, tools such as ls, passwd, cp, mv etc, which are all installed BY YOUR DISTRIBUTION. If you upgrade your OS from source, all the source code would go here, when you rebuild your system. You DON'T want to put any software that you install BY YOURSELF in here, because they may get overwritten when you upgrade your system. In general, files that are in /, /usr/bin, /usr/sbin, /bin, /sbin etc. have their source code in /usr/src.
+The /usr/local directory tree is meant to be used for software that you install by yourself, without using the distribution CD(s). For example, /usr/local/bin, /usr/local/sbin are for the binaries that are installed by you separately, /usr/local/etc is for config files etc. Thus /usr/local/src is for source files that you yourself downloaded.
+If you upgrade your system, files under the /usr tree get overwritten, such as /usr/bin, /usr/sbin, /usr/src etc. However, anything under /usr/local will not be touched. This is why all the software you installed separately should go to /usr/local tree.
+Who's gonna use the programs? It depends on the installation but on files/directories permissions too.
+
+Next ending of the section is for my personal use, but perhaps a little boring so you can skip it and go on the next one:
+In my case, I wan to show you an instance of the output of the command '$ ls -F' in the folder /usr/src at a later point. Output:
+linux@                          LiSpeak-master/           sirius-1.0.1/
+linux-headers-3.16.0-4-amd64/   netbeans-8.0.2-linux.sh*  vboxguest-4.1.18@
+linux-headers-3.16.0-4-common/  Palaver-master/           virtualbox-4.3.18/
+linux-kbuild-3.16@              rar/
+End of Output.
+
+According to the information shown about the directory I will have to take care on these programs next time before and after the next system update, as follows:
+
+The group of symbolic links and dirs: linux@, linux-headers-3.16.0-4-amd64/, linux-headers-3.16.0-4-common/, linux-kbuild-3.16@ correponds to the Linux Kernel and there is not a path to install it from but from here.
+
+The script file: netbeans-8.0.2-linux.sh* is an executable to install netbeans. The installation of netbeans install the program under /user/local/. you can use commands like '$ whereis netbeans', '# whereis netbeans' and '$ locate netbeans' or '# locate netbeans' to find the new netbeans files after the installation. I only have to double check whether the file disappears after a system upgrade. 
+
+The program directory LiSpeak-master/ contains a copy of the extracted package of LiSpeak-master but instead of running an installation in /usr/src, I pasted a copy of the package directory in my user home/, otherwise the installation was going to fail. The only problem with an installation like this is that in systems with more users they need copies of the whole program and set them up individually.
+
+Palaver-master/: Works almost as LiSpeak and also the installation works only made from a copy of the package extracted in the user home/. I am not using this software anymore since I replaced it with LiSpeak. I am not going to take care on this package after a system upgrade, and I can simply run an un-installation (see the documentation, or remove the directory and the symbolic links the the directories for binaries like /bin /sbin /usr/bin /usr/sbin /usr/local/bin or /usr/local/sbin. Run a command like '$ where is palaver' to know what to remove exactly).
+
+The directory rar/ is copy of the WinRAR tarball extracted right here under /usr/src. I just followed the instructions that come within the package to Linux in order to complete the installation. I only have to
+
+sirius-1.0.1/: I am not going to speak about this program not to mention that the program compilation deposits everything or almost everything in its directory and suddenly would be affected after the system upgrade. Let's keep it in mind.
+
+vboxguest-4.1.18@ and virtualbox-4.3.18/. This are the symbolic link to VirtualBox guest additions and the VirtualBox directory. The installation puts the executable files, libraries and other files where they go, for example under /opt. LAter on youcan run a commands like '$ whereis VirtualBox' or '# whereis VirtualBox' to know where some program files are located, for example, under /usr/bin/VirtualBox and /usr/share/man/man1/VirtualBox.1.gz.
+
+Note: The files displayed with '$ ls -l' ending with "@" are symbolic links.
+
+References:
+Web: http://www.aboutdebian.com/compile.htm
+File: Compiling Software With Debian Linux.pdf
+
+
+- Build from source using "Autotools":
+References:
+Topic: Introduction to the autotools (autoconf, automake, and libtool).
+Web: http://www.dwheeler.com/autotools/
+File: introduction-autotools.pdf 
+Topic: A tutorial for porting to autoconf & automake
+File: A tutorial for porting to autoconf & automake.pdf
+Topic: Autoconf and Automake Tutorial.
+File: Autoconf and Automake Tutorial.pdf
+Topic: autoconf(1) - Linux man page
+FILe: autoconf(1) - Linux man page.pdf
+
+
+- Build from source code using language specific compilation and building tools:
+
+Installation examples:
+- Oracle Java is an example of a program you can compile or build everywhere in the system, having the correct directory and files permissions, and of course, the source version of Java and the compilation tools. Yuu required javac compilator.
+- For C programs source you require gcc.
+- For Phyton programs source you require pycomple.
+
+
+- Build from source code using Pbuilder:
+
+Pbuilder is very useful to make a Debian package from source code. Also works to build from Debian source code as well as with Debian forks source code.
+Some advantages:
+1- You get the support to create package information required to build, such as the developer name and email, the application and system version and architecture.
+2- You can build packages without pbuilder but you must already have all the build dependencies of the package that you are building installed on your running system.
+3- You build in your own isolated environment. In my case, I have used pbuilder to make an isolated (chroot) environment to build experimental software in the past, for example, I had to build an early version of OpenSSL in Debian Gnu/Linux Lenny (5.x).
+References:
+Web: https://www.debian.org/doc/manuals/maint-guide/build.en.html
+File: Chapter 6. Building the package.pdf
+Web: https://www.debian.org/doc/manuals/maint-guide/index.en.html
+File: Debian New Maintainers Guide.pdf
+Web: https://wiki.ubuntu.com/PbuilderHowto
+File: PbuilderHowto.pdf
+
+
+- Build from source code using Deb Builder:
+
+The advantage of Deb Builder is that you:
+Get the support to create package information required to build, such as the developer name and email, the application and system version and architecture in a Graphical environment, improving the way Pbuild functions.
+To know the structure of a Debian installation package:
+Reference:
+Topic: Debian Build tool chain.
+Web: https://en.wikipedia.org/wiki/Debian_build_toolchain
+File: Debian build toolchain.pdf
+
+This is a Deb Builder quick start guide:
+References:
+Web: http://askubuntu.com/questions/8055/graphical-tool-for-creating-deb-packages
+File: Graphical tool for creating Deb packages.pdf
+Web: http://alternativeto.net/software/gui-debian-package-maker/
+File: GUI Debian package maker alternatives.pdf
+
+This is a text transferred from one of these type of tools, so can have an idea of what I mean, before you look for something like this:
+"This is a tool to create a simple DEbian package. Please make sure all binaries and support files for your package are properly installed on the system before attempting to create a package as this tools will place them in the package exactly where they are found on the system. Eg: Your binaries should be in either /usr/bin creating a binary app package. Menu entries will be created by this tool and you can edit them before final package creation. Please choose whether to: Create a new package from scratch (include a License), repack an existing package, or unpack an existing deb file"
+
+
+- Build from Debian forks source code using sbuild:
+
+You can use sbuild to build source code and to Rebuild Debian source code too, however the commands are not such as the ones I use to build from Debian forks source code, for example:
+References:
+Topic: Building Debian packages with sbuild, the tools I use to build from Debian forks source code.
+Guides:
+Build packages from source
+SimpleScreenRecorder
+
+Before installing a program you have to know that the source has been built to work in your Distribution (Debian)and for your Distribution's version and architecture (32 or 64 bit). 
+If you use incompatible software like DPKG packages the installation process can damage the whole system.
+You can use sbuild to build source codes downloaded from the Ubuntu's PPA repository, for reasons like:
+- There is not Official Debian source for this program.
+- The source available is pretty much an old version of the program and we need a newer version to improve the security, install a patch (a hot-fix), or use a new feature or functionality that the old version hasn't, etc.
+The tool sbuild creates a Debian .deb installation archive ready to install by DPKG.
+It is important that the Debian team think on the creation of their own PPA repository, but it does not exist. With a Debian PPA the programs installation would be as easier as add the new PPA to the system and then install the source in a simple step with a tool.
+Once the build process has been completed with advanced tools like sbuild you don't need to test the new .deb binary, because the program prepares a complete clean chroot environment based on the current system or a system defined during the sbuild setup.
+It is possible that the build process fails due to system incompatibility. For example due to the lack of a library, libraries renamed or coded in other ways in the developer or maintainer Linux Box. In some cases it's easy to interpret the compilation errors to modify something in the source code to match the requirements like the distro, distro version, environment, library versions or paths, but perhaps if you are not an experienced applications and systems developer you'ĺl never find the error. Try to skip these problems by compiling just Debian source code from the Official repos, or if unavailable, retrieving sources from the Debian forks like Linux Mint or Ubuntu from their PPA repositories
+
+Installation examples:
+- SimpleSCreenRecorder
+- LiSpeak
+
+
+- Build the Linux Kernel and drivers:
+
+Sometimes you could need to rebuild or patch and rebuild the Linux Kernel, for certain reasons like to improve the security to add a new device driver. The whole process is some different in comparison with any other builds in Debian.
+Best way I know is to create a .DEB file to install with DPKG, the same treatment that I recommend to any build process.
+
+References:
+Topic: Rebuild the Linux Kernel.
+Web: https://wiki.debian.org/HowToRebuildAnOfficialDebianKernelPackage
+File: How To Rebuild An Official Debian Kernel Package.pdf
+Guide: Build the Linux Kernel
+File: saveonlywithswriter.doc
+
+References:
+Topic: Compile drivers in the Linux Kernel. Section drivers.
+Web: http://www.aboutdebian.com/compile.htm
+File: Compiling Software With Debian Linux.pdf

@@ -1,0 +1,136 @@
+SSH - Use it to create a VPN tube between hosts or client - server hosts.
+
+If you like to access the machine remotely. Install ssh server and ssh client. At this point you would require a firewall script. Otherwise, you can play starting stopping the service at any time.
+References:
+Guide: Netfilter
+
+To copy remote files use the command 'scp'.
+
+Secure Shell installation:
+$ sudo apt-cache search ssh
+# sudo apt-get install openssh-server
+
+Access a remote machine:
+From Windows you can use teh program PuTTY.
+From unix like systems do create an user with the same password in the two machines and do:
+$ ssh <REMOTE-IP>
+For example:
+$ ssh 192.168.1.20
+$ ssh neighborhost
+
+Remember to create your ssh user in any host you wanna access to/from
+
+Improve ssh security:
+
+References:
+Web: https://www.nixtutor.com/linux/installing-and-configuring-an-ssh-server/
+Guides: 
+Fail2ban
+Netfilter
+
+Tip: Setup ssh in the network router
+
+How to forward X over SSH in Debian:
+
+Having installed OpenSSH in two machines:
+$ sudo apt-get update
+$ sudo apt-get install xauth 
+Next, edit the config file and set the option X11Forwarding = yes. This is to setup the clients:
+$ cp -dpR /etc/ssh/sshd_config /etc/ssh/sshd_configBAK
+$ sudo nano /etc/ssh/sshd_config
+	X11Forwarding yes
+ 	ForwardX11Trusted yes
+Or:
+ForwardX11 yes
+Save file changes.
+The Output of the section should display:
+[...]
+Host *
+#   ForwardAgent no
+   ForwardX11 yes
+   ForwardX11Trusted yes
+#   RhostsRSAAuthentication no
+#   RSAAuthentication yes
+#   PasswordAuthentication yes
+#   HostbasedAuthentication no
+#   GSSAPIAuthentication no
+#   GSSAPIDelegateCredentials no
+#   GSSAPIKeyExchange no
+[...]
+End of output.
+Set ON (uncomment) the required options in the daemon in the file /etc/ssh/sshd_config:
+Options are these 2:
+X11Forwarding yes
+X11DisplayOffset 10
+$ sudo nano /etc/ssh/sshd_config
+[...]
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#UseLogin no
+#UsePrivilegeSeparation sandbox
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+[...]
+Restart ssh server service:
+$ sudo systemctl restart ssh.service
+$ sudo systemctl status ssh.service
+Go back to the client machine where you want see the server from:
+Enter the "server" IP:
+$ ssh -X remote-IP
+Check the display: 
+$ echo $DISPLAY
+localhost:11.0
+If doesn't have the word localhost something wnet wrong in the configuration.
+To open remote on local (Server in client):
+$ xeyes
+$ firefox
+You will see in your desktop the EYES of the application in the remote host. this is not going to work with all the apps available, just with the ability to appear or work in this way with the X service.
+Note: xeyes is a part of the package x11-apps, you can install it like this:
+$ apt-get install x11-apps
+
+Advanced commands to access remote X servers through ssh:
+To connect to teh X server remote server creating a faster compressed and seure connection:
+$ ssh -X -C -c blowfish-cbc,arcfour REMOTE-IP_ADDRESS
+$ ssh -X -C REMOTE-IP
+
+Troubleshooting:
+Setup the display:
+If $DISPLAY is not present by default, or has the value of ':0'. This usually means that the current terminal is the client machine, and there is no X server configured. In case of you configured the two machines as X servers, the X servers are not going to work properly, until your intervention. The solution is to verify the value of the environment variable $DISPLAY in the two machines and if they are duplicates, change one of them to allow the connection, like this:
+$ export DISPLAY=:10.0
+Or:
+$ export DISPLAY=:0.0
+$ echo $DISPLAY
+Note: DISPLAY variable is going to work in the current terminal or terminal tab meanwhile they're open. To change permanently variable values add them to the user environment:
+$ cd
+$ sudo nano .bashrc
+Add this line at the end of the file:
+DISPLAY=:0.0
+Finally double check that the user session recorded the value (If not, logout and then login your user session):
+$ env
+
+Don't make the mistake of attempt using the root user to show locally his apps in the client or you will see an error message like the next:
+root@notebook:/home/esteban# xeyes
+No protocol specified
+Error: Can't open display: :0.0
+
+References:
+Topic: X11 Forwarding using SSH
+Web: http://tldp.org/HOWTO/XDMCP-HOWTO/ssh.html
+File: X11 Forwarding using SSH.pdf
+

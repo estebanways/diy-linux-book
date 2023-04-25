@@ -1,0 +1,6 @@
+#!/bin/bash
+
+function aptana-studio-3.install {
+ echo "Not implemented yet:"
+ echo "Fuction: aptana-studio-3.install"
+}

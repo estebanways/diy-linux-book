@@ -1,0 +1,8 @@
+RawTherapee is an advanced program for developing raw photos and for processing non-raw photos. It is non-destructive, makes use of OpenMP, supports all the cameras supported by dcraw and carries out its calculations in a high precision 32bit floating point engine. RawTherapee supports JPEG, PNG, and TIFF as output format for processed photos.
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search rawtherapee
+$ sudo apt-cache show rawtherapee
+$ sudo apt-get install rawtherapee

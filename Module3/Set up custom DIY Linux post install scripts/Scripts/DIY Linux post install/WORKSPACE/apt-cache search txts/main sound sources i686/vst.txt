@@ -1,0 +1,28 @@
+cvsutils - CVS utilities for use in working directories
+python-django-kvstore - Extensible key-value store backend for Django
+dssi-dev - Header file for compiling DSSI plugins and hosts
+dssi-example-plugins - Examples of DSSI plugin
+dssi-host-jack - Example of DSSI host
+dssi-utils - Command-line utilities for sending commands to DSSI plugins
+envstore - store for environment variables across shell processes
+flvstreamer - command-line RTMP client
+lmms-vst-server - Linux Multimedia Studio - VST server
+lvtk-dev - LV2 C++ wrappers and utilities
+lvtk-doc - LV2 Toolkit documentation
+lvtk-examples - LV2 C++ wrappers and utilities - examples plugins
+lvtk-tools - LV2 C++ wrappers and utilities - tools
+mda-lv2 - Paul Kellett's MDA plugins ported to LV2
+pd-plugin - LADSPA and VST plug-in hosting for Pd
+python-bashate - bash script style guide checker - Python 2.x
+python-bashate-doc - bash script style guide checker - doc
+python3-bashate - bash script style guide checker - Python 3.x
+silverjuke - jukebox, karaoke, and kiosk mode mp3 player
+vamp-plugin-sdk - audio analysis and feature extraction plugins (SDK)
+varnish-modules - Varnish module collection
+vstream-client - library and utility to fetch media streams from a TIVO
+vstream-client-dev - Development headers for vstream-client
+libwvstreams-dev - Development libraries and header files for libwvstreams4.6
+libwvstreams4.6-base - C++ network libraries for rapid application development
+libwvstreams4.6-doc - Documentation for WvStreams
+libwvstreams4.6-extras - C++ network libraries for rapid application development
+zam-plugins - Collection of LV2, LADSPA, LINUX-VST and JACK plugins

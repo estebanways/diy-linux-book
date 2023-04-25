@@ -1,0 +1,3 @@
+To have a ACPI battery monitor, connect the ACPI battery USB to the computer and then add a new ACPI screenlet from Screenlet.
+References: 
+Guide: Screenlets

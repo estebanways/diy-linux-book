@@ -1,0 +1,48 @@
+Screenlets are small owner-drawn applications (written in Python) that can be described as "the virtual representation of things lying/standing around on your desk". Sticky notes, clocks, rulers, ... the possibilities are endless.
+References:
+Web: https://packages.debian.org/jessie/screenlets
+File: Debian -- Details of package screenlets in jessie.pdf
+
+Features:
+Real applications, no HTML-"widgets"
+Easy to use, easy to develop
+Full compositing support
+Works with any composited X desktop (compiz, xfce4, ...)
+Works also on non-composited desktop
+Included ability to apply themes (SVG, PNG or mixed)
+Fully scalable when using SVGs
+Embedded drag&drop-support
+Automated storing of options (using ini or GConf)
+Controllable through customizable D-Bus service
+Can be used together with compiz' widget-plugin to create a
+Dashboard-like feature as seen on OS X
+Uses Cairo and GTK2 for drawing and windowing
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search screenlets
+$ sudo apt-cache show screenlets
+$ sudo apt-get install screenlets
+Note: Desktop XFCE also adds Screenlets when you install all its complementary software. XFCE also installs Wbar, which is similar to Cairo-dock and docky.
+References:
+Guides: XFCE, Cairo-dock
+Topic: Docky
+Web: https://packages.debian.org/jessie/x11/docky
+Topic: Wbar
+Web: https://packages.debian.org/jessie/x11/wbar
+
+References:
+Topic: These guides contain installation of Desktop programs similar or equivalent to Screenlets.
+Guides:
+Conky
+Fluxbox
+Off topic: These guides are interestingly related to the current topic and Desktop customization:
+Guides:
+Cairo-dock
+Compiz-Fusion
+Gnome Shell Extensions
+Gnome Desktop Icons, Themes and Cursors
+Desktop Extensions
+Multiplatform Desktop Applications
+Google Chrome

@@ -1,0 +1,22 @@
+
+(Pending)
+
+# sudo apt-get update
+# sudo apt-get install qemu
+Output:
+The following additional packages will be installed:
+  openbios-ppc openbios-sparc openhackware qemu-efi qemu-slof qemu-system qemu-system-arm qemu-system-mips
+  qemu-system-misc qemu-system-ppc qemu-system-sparc qemu-user qemu-user-binfmt
+Suggested packages:
+  qemu-user-static samba vde2 qemu-block-extra
+The following NEW packages will be installed:
+  openbios-ppc openbios-sparc openhackware qemu qemu-efi qemu-slof qemu-system qemu-system-arm qemu-system-mips
+  qemu-system-misc qemu-system-ppc qemu-system-sparc qemu-user qemu-user-binfmt
+End of output.
+Remember to add those packages to our reproducible builds list queue.
+Emulate the sytem:
+# qemu-system-i386  -boot d -cdrom /home/esteban/live_boot/debian-live.iso
+OR for 64 bit architecture:
+# qemu-system-x86_64  -boot d -cdrom /home/esteban/live_boot/debian-live-amd64.iso
+
+

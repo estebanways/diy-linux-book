@@ -1,0 +1,9 @@
+audacity - fast, cross-platform audio editor
+audacity-data - fast, cross-platform audio editor (data)
+debian-edu-doc-en - English documentation from the Debian Edu project
+debian-edu-doc-fr - French documentation from the Debian Edu project
+debian-edu-doc-nb - Bokmål documentation from the Debian Edu project
+debian-edu-doc-nl - Dutch documentation from the Debian Edu project
+forensics-extra-gui - Forensics Environment - extra GUI components (metapackage)
+silan - commandline tool to detect silence in audio-files
+vamp-plugin-sdk - audio analysis and feature extraction plugins (SDK)

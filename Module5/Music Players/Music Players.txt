@@ -1,0 +1,15 @@
+- Amarok (Is iPOD and iPhone compatible, and has an Android app for remote controlling. Number 1 in files management)
+- Clementine (Fast, Android remote control APP since version 1.3.. Debian Stretch)
+- Atunes (Has an intercace similar to iTunes)
+- Mixxx ( Is DJ tracktor system. Also comes in KXStudio)
+- Media centers (I.E. KODI)
+- XMMS (Seems like Winamp)
+- XMMS2 (Is not XMMS)
+- VLC (Plays virtually every audio and video format I know)
+- Banshee (Is iPOD and iPhone compatible)
+- Rhythmbox (Best for audio streaming)
+- Gnome Player (Works normally with Jackd and Jack Server in KXStudio)
+- Miro Player
+- Spotify (There is a Windows version available to download in the menu "Multimedia" in PlayonLInux)
+- Many more...
+

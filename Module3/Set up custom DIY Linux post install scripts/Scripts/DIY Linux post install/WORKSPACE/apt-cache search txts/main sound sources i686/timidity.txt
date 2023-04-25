@@ -1,0 +1,15 @@
+libsdl2-mixer-2.0-0 - Mixer library for Simple DirectMedia Layer 2, libraries
+libsdl2-mixer-dbg - Mixer library for Simple DirectMedia Layer 2, debugging
+libsdl2-mixer-dev - Mixer library for Simple DirectMedia Layer 2, development files
+opl3-soundfont - OPL3 SoundFont that simulates the sound of an OPL3 chip
+pykaraoke - free CDG/MIDI/MPEG karaoke player
+pykaraoke-bin - free CDG/MIDI/MPEG karaoke player
+python-pykaraoke - free CDG/MIDI/MPEG karaoke player
+libsdl-mixer1.2 - Mixer library for Simple DirectMedia Layer 1.2, libraries
+libsdl-mixer1.2-dbg - Mixer library for Simple DirectMedia Layer 1.2, debugging
+libsdl-mixer1.2-dev - Mixer library for Simple DirectMedia Layer 1.2, development files
+timidity - Software sound renderer (MIDI sequencer, MOD player)
+timidity-daemon - runs TiMidity++ as a system-wide MIDI sequencer
+timidity-el - Emacs front end to Timidity++
+timidity-interfaces-extra - TiMidity++ extra user interfaces
+tk707 - drum sequencer for a sound card or MIDI device

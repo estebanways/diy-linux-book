@@ -1,0 +1,14 @@
+I require this program, but doesn't come in the system since Debian 9 codename "Stretch".
+$ apt-cache search net-tools
+$ apt-cache show net-tools
+$ dpkg -l | grep net-tools
+$ sudo apt-get install net-tools
+
+Usage:
+# ifconfig
+# sudo ifconfig <ETHERNET OR WIFI>
+$ man ifconfig
+
+References:
+Guide: Basic networking
+Guide: Iproute2

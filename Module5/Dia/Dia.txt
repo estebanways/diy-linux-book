@@ -1,0 +1,18 @@
+I'd love to recommend you a free web application to create diagrams, but the good ones I know aren't for free, and you have to pay a cheap monthly membership.
+
+DIA is an editor for diagrams, models, etc. Supports UML static structure diagrams (class diagrams), Entity-Relationship diagrams, network diagrams and much more. Diagrams can be exported to postscript and many other formats.
+
+Let's start by opening synaptic package manager and searching for UML to install dia. Optionally, open the terminal and run:
+$ sudo apt-get update
+$ sudo apt-get install dia-common dia-gnome dia-libs dia-shapes dia2code
+
+Output:
+The following extra packages will be installed:
+  dia gsfonts-x11
+The following NEW packages will be installed:
+  dia dia-common dia-gnome dia-libs dia-shapes dia2code gsfonts-x11
+
+Resources:
+Web: http://modeling-languages.com/web-based-modeling-tools/
+
+For UML you can also use Umbrello. Here is the installation Guide ().

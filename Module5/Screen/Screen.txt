@@ -1,0 +1,73 @@
+Screen tutorial:
+
+Screen is good to keep programs running but no keep alive terminal connections, so we can come back later on to verify the program results or the work in progress no need to touch SSH security/configuration.
+Example 1:
+# find / -name .bashrc*
+# find / -name *.log
+Example 2:
+Resume the view of a software build process.
+
+New screen:
+# screen
+Press space bar to see new screen
+# ls --color /home
+
+Exit from screen to main console:
+CTRL + A + D
+Output:
+Dettached from pts (+ the screen ID)
+
+2nd new screen:
+# screen
+Press space bar to see new screen
+# ls --color /lib
+
+Close Putty to loose connection to server
+Re open Putty and login as same user
+
+List existent screens (Detached and attached):
+# screen -r
+Output:
+pts (+ the screen ID)
+pts (+ the screen ID)
+...
+
+
+Enter to specific screen (resume, if status = detached):
+Use the screen name and ID as flag to paramemter -r
+# screen -r 1860.pts-0.foobar
+
+Exit (again) from screen (to avoid nesting screens behind screen):
+CTRL + A + D
+Output:
+Dettached from pts (+ the screen ID)
+
+Detach from a screen from screens list:
+# screen -d 1860.pts-0.foobar
+
+List existent screens:
+# screen -r
+Look for condition (Detached)
+Output:
+pts (+ the screen ID) (Detached)
+pts (+ the screen ID) (Detached)
+
+Remove a screen:
+Enter to a screen and then:
+# exit
+
+Kill screen based on process id:
+screen -r
+# kill <PID>
+Example:
+# kill 4169
+
+
+New screens with custom name:
+# screen -S <name>
+# screen -S ntp
+
+
+After you use custom names to create screens the option # screen -r will
+don't work and show an error message.. by then to list use:
+# screen -list

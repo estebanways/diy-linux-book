@@ -1,0 +1,3 @@
+lmms - Linux Multimedia Studio
+lmms-common - Linux Multimedia Studio - common files
+lmms-vst-server - Linux Multimedia Studio - VST server

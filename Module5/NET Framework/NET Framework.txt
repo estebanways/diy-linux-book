@@ -1,0 +1,9 @@
+References:
+Web: https://pkg-mono.alioth.debian.org/
+File: Mono for Debian.pdf
+Web: https://packages.debian.org/jessie/mono-complete
+File: Debian -- Details of package mono-complete in jessie.pdf
+
+References:
+Topic: This program install some mono packages:
+Guide: Sync devices in the Cloud

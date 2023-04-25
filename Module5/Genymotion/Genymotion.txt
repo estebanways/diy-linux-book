@@ -1,0 +1,15 @@
+Pending
+
+Is a good Android emulator to install and test GApps (Google Apps) and mobile Smartphone and Tablet apps like WhatsApp.
+
+See references
+Works but is and requires VirtualBox. The networking of the "current" version sucks so much.
+
+
+References:
+Topic: How to run Genymotion via terminal
+Web: http://askubuntu.com/questions/474836/how-to-run-genymotion-via-terminal
+File: command line - How to run Genymotion via terminal - Ask Ubuntu.pdf
+Topic: How can I install a .bin file
+Guide: Full compatible-portable Linux-Debian binaries
+

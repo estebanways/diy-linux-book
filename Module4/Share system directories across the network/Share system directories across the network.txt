@@ -1,0 +1,63 @@
+
+I don't use them due to sharing can compromise your system security in many ways, For example, one of the files uploaded can contain viruses, and users can attack your computers using brute force to slow down your operating systems. It is possible to install an anti-virus to work on shared folders, and set up shares with passwords to restrict access for trusted share clients.
+
+In the guide of Virtualbox I install a Microsoft Windows Virtual Machine with a share folder with password. This is a good option to set up where the folder share is what you need, but also consider the FTP server, bare metal Git, cloud storage services, and NAS devices to achieve similar goals.
+References:
+(PENDING)
+
+Install nautilus-share and Samba:
+You require Gnome Desktop installed
+Setup distro release repos:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt install nautilus-share
+
+References:
+https://packages.debian.org/stretch/nautilus-share
+
+Verify that samba is up and running:
+Samba is a service, but in Debian 8, Jessie, has conflicts with systemd, so this command is not going to work:
+$ sudo systemctl restart samba
+Error output:
+Failed to restart samba.service: Unit samba.service is masked
+End of output.
+Instead use the old style to run the service:
+$ sudo /etc/init.d/samba start
+Output:
+[ ok ] Starting nmbd (via systemctl): nmbd.service.
+[ ok ] Starting smbd (via systemctl): smbd.service.
+[ ok ] Starting samba-ad-dc (via systemctl): samba-ad-dc.service.
+End of.
+References:
+Web: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=769714
+Web: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=740942
+
+Re-open the program "Files" (Nautilus) as root:
+$ sudo share
+Create a folder for sharing in a home folder like /home/esteban
+Make right click on the folder
+Define sharing options
+Share folder
+Folder created from nautilus will have root ownership but the access setup according to the share setup.
+
+Open the share from your Linux box or another Linux in the same network:
+Option 1:
+In the Nautilus menu choose the option Connect to Server. 
+In the empty field type smb://localhost
+You will see the window Windows shares on localhost, and the network folders "print$" and "share" created by us.
+Option 2:
+From the localhost or a client computer, open Files (Nautilus) and choose the option Browse the Network to find the share.
+
+Open share from Windows computer in the same "share" network:
+Open Windows, or a Windows VM. Set up the computer Domain, name and workgroup as WORKGROUP, and then open the "Network places" and then "Workgroup" in the file explorer to find the Samba share.
+
+References:
+Topic: Synchronize local directories with hosts and/or Cloud storage.
+Guides:
+DrBd
+Gogle Drive
+Hubic
+Mega
+OneDrive 
+
+

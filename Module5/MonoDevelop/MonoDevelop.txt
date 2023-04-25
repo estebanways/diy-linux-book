@@ -1,0 +1,6 @@
+References:
+Web: http://www.monodevelop.com/
+File: MonoDevelop _ MonoDevelop.pdf
+Guide: NET Framework
+Web: https://pkg-mono.alioth.debian.org/
+File: Mono for Debian.pdf

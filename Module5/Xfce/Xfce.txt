@@ -1,0 +1,32 @@
+Install the Xfce Desktop Environment
+
+Now we are going to install basic Xfce & goodies by running the following command:
+sudo apt-get install xfce4-* xfce4-goodies
+
+The “Goodies for Xfce” project includes additional software and artwork that are related to the Xfce desktop, but not part of the official release.
+To view the list of packages installed by xfce4-goodies, check this link, https://packages.debian.org/jessie/xfce4-goodies.
+
+Install Xfce packages:
+Add main section to the official repos:
+$ apt-cache show xfce4
+$ sudo nano /etc/apt/sources.lit
+Update repos:
+$ sudo apt-get update
+$ apt-cache search xfce4
+Everything available:
+$ sudo apt-get install `apt-cache search xfce | cut -d ' ' -f1`
+This command is going to install lightdm, a Display Manager. To change the Display Manager, see the guide "Change the default login screen"
+
+To change the Window Manager you can run the Compix-Fusion Icon or update-alternatives:
+$ sudo update alternatives --config -x-window-manager
+References:
+Guide: Compiz-Fusion
+
+During the configuration of the Desktop the Compiz-Fusion Icon could get fail. To defrost it kill it until everything is all right to add the icon to the startup sequence:
+$ pkill fusion-icon
+
+To add the Compiz-Fusion Icon to the startup applications go to the Applications Menu > Settings > Settings Manager > Sessions and Startup > Application Autostart
+
+References:
+Web: https://wiki.debian.org/Xfce
+File: Xfce - Debian Wiki.pdf

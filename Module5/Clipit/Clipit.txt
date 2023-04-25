@@ -1,0 +1,2 @@
+
+Clipit has been deprecated. Replace with Diodon.

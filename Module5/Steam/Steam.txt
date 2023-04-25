@@ -1,0 +1,98 @@
+You need the VGA drivers installed and graphics acceleration to run 3D games.
+To test the card see the section 'Video card drivers'.
+
+I based the installation on the Debian wiki.
+Resource:
+Web: https://wiki.debian.org/Steam
+File: Official Steam.pdf
+
+You must be sure that the regular user that will run steam games is at least at groups "video" and "audio":
+usermod -a -G video,audio esteban
+You can test the sound in Gnome using the menu Settings > Sound.
+
+Debian has a security approach that all is forbidden unless sysadmin explicitly allows. This schema is managed by "task" groups. The very first regular user created during installation is included in groups "video", "audio", "cdrom", "scanner", and so on. The next users created are not included at any special group. This way, next created users will not be able to execute steam. It fails with weird messages regarding "X bad number out of range." You must have to include them explicitly with commands or users management GUIs like kuser. 
+
+To include user to groups see 'Basic Networking and User management'.
+
+Installation
+There are packages available for Debian 8 "Jessie" and Sid. 
+64-bit systems (amd64)
+
+/!\ Instructions are for Jessie and Sid systems only. Do not do this on Wheezy (stable) or you will break your system.
+
+Add a "non-free" component to /etc/apt/sources.list:
+
+# Debian 8 "Jessie" (testing for now I have installed newest
+# Jessie, version 8.0)
+# Packages: ATI drivers, Steam,
+deb http://http.debian.net/debian/ jessie main contrib non-free
+
+Enable Multi-Arch and update the list of available packages:
+# dpkg --add-architecture i386
+# aptitude update
+
+Install the steam package:
+# aptitude install steam
+Output:
+Note: selecting "steam:i386" instead of the virtual package "steam"
+The following NEW packages will be installed:
+  libbsd0:i386{a} libdrm-intel1:i386{a} libdrm-nouveau2:i386{a} 
+  libdrm-radeon1:i386{a} libdrm2:i386{a} libedit2:i386{a} libelf1:i386{a} 
+  libffi6:i386{a} libgl1-mesa-dri:i386{a} libgl1-mesa-glx:i386{a} 
+  libglapi-mesa:i386{a} libllvm3.5:i386{a} libpciaccess0:i386{a} 
+  libstdc++6:i386{a} libtxc-dxtn-s2tc0:i386{a} libudev1:i386{a} 
+  libx11-xcb1:i386{a} libxcb-dri2-0:i386{a} libxcb-dri3-0:i386{a} 
+  libxcb-glx0:i386{a} libxcb-present0:i386{a} libxcb-sync1:i386{a} 
+  libxshmfence1:i386{a} libxxf86vm1:i386{a} steam:i386
+
+Accept the Steam terms.
+
+Switch to user and run:
+$ steam
+
+Update the software.
+Login the account.
+Register the new computer.
+You may see Steam Store at this point.
+
+If you have problems running Steam.
+Hide Gnome:
+CTRL + F1, enter as root and:
+# ps -aux | grep 'steam'
+# pkill steam
+# ps -aux | grep 'steam'
+The process was killed.
+Now press CTRL + F5 or F6 to come back to Gnome and close what causes problems on the screen.
+
+Steam is working fine and I don't need to install the next libraries but I leave the installation just in case:
+
+Install 32-bit OpenGL libraries:
+Nvidia graphics hardware:
+# aptitude install libgl1-nvidia-glx:i386
+
+ATI/AMD graphics hardware (Done already!):
+# aptitude install libgl1-fglrx-glx:i386
+
+Note:
+How to remove multiarch in debian to get rid of multiarch on an amd64 installation:
+# dpkg --remove-architecture i386
+In case you will have message, like:
+dpkg: error: cannot remove architecture 'i386' currently in use by the database
+you should remove all i386 packages before (But don't do it, you have i386 version of Steam and Teamviewer installed already!!!):
+$ dpkg -l | grep i386
+$ dpkg -l | grep 'i386'
+To remove the packages:
+Multiarch support is enabled by the file /etc/dpkg/dpkg.cfg.d/multiarch
+If you rename this file and run an update in a terminal you will notice that the i386 repo's are no longer visible.
+sudo mv /etc/dpkg/dpkg.cfg.d/multiarch /etc/dpkg/dpkg.cfg.d/multiarch.backup
+First of all, remove all i386-packages like so:
+sudo apt-get remove --purge `dpkg --get-selections | grep i386 | awk '{print $1}'`
+Please note: Skype, Steam, teamviewer etc. might be purged as well.
+Then proceed with fossfreedoms advices.
+
+IMPORTANT:
+Comment out the installation repo from /etc/apt/sources.list.
+# Debian 8 "Jessie" (testing for now I have installed newest
+# Jessie, version 8.0)
+# Packages: ATI drivers, Steam,
+#deb http://http.debian.net/debian/ jessie main contrib non-free

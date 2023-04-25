@@ -14,7 +14,7 @@ Publications
 # subdirectories.
 # Copyrighted materials
 **/References/
-**/"Extra References"/
+**/Extra?References/
 
 # Ignore both directories and files with this name
 #**/my directory/
@@ -36,7 +36,7 @@ Publications
 *.WEBM
 *.webm
 
-# Ignore video files individually
+# Ignore video files in directories "Pictures/" individually
 # mp4
 "/Module4/Boot Loaders and Dual Boot/References/Boot Loaders/Grub2/Edit menu/Cambiar orden y tiempo de arranque de Linux FÃ¡cil.mp4"
 "/Module4/3D Acceleration and VR/References/Graphics devices/Nvidia/Enable GPU rendering for Blender in Linux Mint.mp4"
@@ -65,5 +65,6 @@ Publications
 
 # Ignore files individually
 ContentsPending.txt
-"Propose a change in a comment.png"
-"READ THIS FIRST.txt"
+Propose\ a\ change\ in\ a\ comment.png
+READ\ THIS\ FIRST.txt
+

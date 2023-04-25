@@ -1,0 +1,2 @@
+Use the Chrome extension to emulate the OS.
+You cannot use apps like WhatsApp due to it is for Android, but there are options to install a client in the Firefox OS using the Market Place, which works similarly to Google Apps Gapps for Android devices.

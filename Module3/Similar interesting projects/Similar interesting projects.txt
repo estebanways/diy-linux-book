@@ -1,0 +1,19 @@
+
+Topic: Debian Pure Blends
+Web: https://www.debian.org/blends/
+File: Debian Pure Blends.pdf
+
+Topic: Debian Custom ISO Scripts and Tutorial
+Web: https://github.com/weaknetlabs/debian-custom-iso-scripts
+File: Debian Custom ISO Scripts and Tutorial.pdf
+
+
+Topic: 
+Web: 
+File: 
+
+
+Topic: 
+Web: 
+File: 
+

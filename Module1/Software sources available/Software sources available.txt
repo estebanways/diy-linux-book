@@ -1,0 +1,42 @@
+In Debian GNU/Linux it's possible to classify the software installation in several ways. Here is one which consist of the list of Software sources available.
+
+Software sources available:
+- Disc image
+- Automatic installation frameworks
+- Distribution DVDs
+- Netinstall CD
+- Localhost or Local Area Network Debian repository
+- Debian repository servers
+- Debian PPA repositories
+- Web site, P2P and Developers repositories
+- Ubuntu PPA (Known exceptions)
+- Any RPM or alternative Linux binary package repo or source
+- Alternative Package Managers sources
+- Microsoft's Windows world executables sources
+- Microsoft's Windows world source code sources
+- Chrooted Operating System or VM app sources
+- Desktop Extensions sources
+- Multiplatform Desktop Applications sources
+
+The concept of Official Debian repositories:
+To be clear, when I speak of Debian Official repositories (or repos) I mean exactly the repos configured in the directory /etc/apt/sources, especially in the file sources.list. The "fountain" of this sources can be the Debian DVDs, the Netinstall CD, any of the repositories in the Debian repository servers, or a LAN or a repository allocated in the localhost, which is also possible to prepare. 
+
+LAN Debian repos:
+The Local Area Network or locahost options are going to improve the package installation security because no one can intercept and replace real packages with actually time bombs as occurs over public Networks.
+Create a local Debian repository to improve the security, and standardize and cache of the installation packages.
+References:
+Topic: Create a local Debian repository.
+Guides:
+Create a local Debian repository
+
+Debian PPA repositories:
+Debian PPA is a project under development. In the meantime, to download PPA source use the PPAs of Debian forks distros like Mint or Ubuntu.
+With a Debian PPA the programs installation would be as easy as add the new PPA to the system and then install from the package/source in a simple step with a tool as APT.
+I would like to search for and navigate for the community packages on a website.
+
+Package Verification:
+You can also verify the packages installed already in the system and the new ones right after they downloaded, before begin their installation process.
+References:
+Topic: Verify the integrity of packages.
+Guide:
+Verify download integrity, PGP, GPG, GNUPG, Seahorse

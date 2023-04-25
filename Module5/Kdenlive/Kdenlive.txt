@@ -1,0 +1,13 @@
+Kdenlive is a non-linear video editing suite, which supports DV, HDV and many more formats. Its main features are:
+
+ * Guides and marker for organizing timelines
+ * Copy and paste support for clips, effects and transitions
+ * Real time changes
+ * FireWire and Video4Linux capture
+ * Screen grabbing
+ * Exporting to any by FFMPEG supported format
+
+After the installation of K Desktop environment:
+$ sudo apt-get install kdenlive
+
+You can install KXStudio version of Kdenlive. To install KXStudio see the correpondent guide.

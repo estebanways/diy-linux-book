@@ -1,0 +1,43 @@
+In my case, I am using use a USB Bluetooth device to test this computer, so I proceed attach the device into the USB port. The extension Airplane mode is going to appear on the top of the screen, set to OFF.
+
+Verify the device information  in the kernel:
+$ lsusb 
+Output:
+Bus 004 Device 006: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)
+End of output.
+
+Verify the Bluetooth packages in the system:
+$ dpkg -l | grep 'bluetooth'
+Output:
+ii  blueman                                1.99~alpha1-1+deb8u1                       amd64        Graphical bluetooth manager
+ii  gir1.2-gnomebluetooth-1.0              3.14.0-2                                   amd64        Introspection data for GnomeBluetooth
+ii  gnome-bluetooth                        3.14.0-2                                   amd64        GNOME Bluetooth tools
+ii  libbluetooth3:amd64                    5.23-2+b1                                  amd64        Library to use the BlueZ Linux Bluetooth stack
+ii  libgnome-bluetooth13                   3.14.0-2                                   amd64        GNOME Bluetooth tools - support library
+End of output.
+
+Go to Applications > Search for Settings and click the "Power" icon.
+Look for and toogle ON the Bluetooth option.
+The Airplane mode is going to disappear on the top of the screen.
+The options Bluetooth is going to appear in teh Turn ON/OFF menu. Click on Bluetooth, and then on Bluetooth Settings. 
+The Bluetooth is going to start searching devices.
+You will see the message "Visible as.. and your hostname" for example: Visible as ProLiant.
+Turn on the Bluetooth on your Smartphone (iPhones are not going to connect, they are incompatible with PC/Android/MS Bluetooths).
+Set the Smartphone visibility ON.
+The smartphone name should appear in the Bluetooth window. For example: "WT13i	Not Set Up"
+Click on the smartphone row.
+A new pop up is going to show up. title says "Confirm Bluetooth PIN". Remember the number, for example '234564'. Click OK.
+This action is going to activate the smartphone. It's going to ask for the number to add the device. Write the number and accept to add the device. The computer, identified by hostname, is going to appear as Not connected.
+Go back to the Bluetooth window in the computer. The smartphone device will appear as Disconnected.
+Click on the device row. In the new pop-up, set connection from OFF to ON (if available, in my case I will continue by clicking on the option "Send files..." the most commonly supported.
+Proceed to send an image from the computer to the phone, to verify the connection is working. At the end you should see the message "1 Transfer Complete".
+
+To transfer from the Smartphone to the computer:
+Send a picture to the computer.
+From Nautilus ( program "Files"), go to the directory Downloads. wit a moment, you are going to see a message that says "Sharing. May be used to receive files over Bluetooth", and a button that says "Preferences".
+Click on this button Preferences. You are going to see the window "Sharing". You ahve to turn ON Sharing and then Bluetooth Sharing options.
+ONly reeive From Trusted Devices, or do not use Bluetooth as possible because you can compromise the security of the system. You can also keep turned OFF Bluetooth and turn it ON when necessary.
+
+Bluetooth applet:
+You can also Go to the Notifications area at the bottom of the screen. Click on the Bluetooth applet icon.
+To start the device assistant, select the menu option "Setup new device..."

@@ -1,0 +1,3 @@
+The file /etc/default/grub
+
+Look for the fsck options added to a CMD... line

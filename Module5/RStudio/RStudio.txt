@@ -1,0 +1,16 @@
+
+
+References:
+Topic: Get RStudio Academic license
+Web: https://www.rstudio.com/products/rstudio/download2/
+File: Download RStudio – RStudio.pdf
+Topic: RStudio Alternatives
+Web: http://xmodulo.com/good-ide-for-r-on-linux.html
+File: What is a good IDE for R on Linux - Xmodulo.pdf 
+Web: http://stackoverflow.com/questions/1097367/what-ides-are-available-for-r-in-linux
+File: What IDEs are available for R in Linux_ - Stack Overflow.pdf
+
+References:
+Topic: R installation
+Guide:
+R

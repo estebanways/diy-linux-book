@@ -1,0 +1,777 @@
+Content:
+1- The Debian Live Project
+2- Build a Debian Live Disc from source code
+3- Create a bootable CD
+4- Create a bootable USB
+
+1- The Debian Live Project
+
+References:
+Topic: The Debian Live Project
+Web: https://www.debian.org/devel/debian-live/
+File: The Debian Live Project.pdf
+Topic: LiveCD 
+Web: https://wiki.debian.org/LiveCD
+File: LiveCD.pdf
+Topic: Live install images
+Web: https://www.debian.org/CD/live/
+File: Live install images.pdf
+Topic: Live images for the Debian GNU/Linux operating system
+Web: https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/
+File: Live images for the Debian GNU-Linux operating system.pdf
+Topic: Using GPG to Verify the Authenticity of Live CD Images
+Web: https://wiki.debian.org/DebianLive
+File: DebianLive.pdf
+Topic: Debian Live Developer Information
+Web: https://debian-live.alioth.debian.org/
+File: Debian Live Developer Information.pdf
+
+2- Build a Debian Live Disc from source code
+
+As in the previous chapters of this module, next References are grouped in order from the most important to the least important, in accordance with the proposes of the current guide:
+
+References:
+Topic: I take a lot of information from this article to write my own guide, and strongly recommend you to read it and click on some links. The article is about how to Create a Custom Debian Live Environment (CD or USB).
+Web: http://willhaley.com/blog/create-a-custom-debian-live-environment/
+File: Create a Custom Debian Live Environment (CD or USB).pdf
+
+References:
+Topic: This page describes a complete LiveCD build process and everybody commented to improve it, and I recommend to read the article to learn a lot and take super commands an options, but don't recommend to follow the steps due to is pretty much old.
+Web: https://l3net.wordpress.com/2013/09/21/how-to-build-a-debian-livecd/
+File: How to Build a Debian LiveCD.pdf
+
+References:
+Topic: Install Debian from a scratch in Debian with debootstrap
+Web: https://debian-administration.org/article/426/Installing_new_Debian_systems_with_debootstrap
+File: Installing new Debian systems with debootstrap.pdf
+Topic: Installing Debian GNU/Linux from a Unix/Linux System
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: D.3.pdf
+
+References:
+Topic: Installing Debian GNU/Linux from a Unix/Linux System. Install a minimal system using debootstrap. Remember that to create a Live DVD we need more source packages built and installed, basically, no include the xserver, etc, up to Desktop Environments you can add later.
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: D.3.pdf
+Topic: How to install the project packages? Review the system cache in /var/cache/apt/archives in the minimal system. The packages installed with debootstrap most be there. You can substitute these packages with packages build from source and then installed them with apt-get, which first at all verifies that the packages are cached in the system. You can also install from a directory with only .deb files, using command $ sudo dpkg -i *.deb
+A better alternative, is go back to your system, and setup your Debian system sources.list file under /etc/apt/ to download the sources of these packages. Create a local repository with Aptly to add the sources required by debootstrap to create the minimal system. Setup the file /etc/apt/sources.list accordingly. 
+Guide: Create a local Debian repository
+Web: http://www.unixmen.com/introducing-aptly-a-debian-repository-management-tool/
+File: Aptly, A Debian Repository Management Tool.pdf
+Topic: Install the new minimal system from "our" source repo all in the same deboopstrap installation command. Installing Debian GNU/Linux from a Unix/Linux System.
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: D.3.pdf
+Topic: Install the Linux kernel. The kernel requires special treatment in Debian.
+Guide: See the guide "Build the Linux kernel" in this book.
+
+Steps:
+2.1- Install applications we need to build the environment.
+
+Create a directory to download the packages:
+$ mkdir /home/esteban/source-code/LIVECD.DEBS /home/esteban/source-code/REPROBUILD.DEBS
+REPROBUILD.DEBS is the directory where I store all the deb packages installed to build the build environment using apt-get update. I copy the packages from /var/cache/apt/archives/.
+LIVECD.DEBS is the directory where I store all the deb packages downloaded to reproduce builds of packages for the Debian Live CD.
+b1 and b2: This directories contain the resultant built packages that are going to be compared to the Build environment and the Debian Live CD packages in REPROBUILD.DEBS and LIVECD.DEBS
+To just download the packages to the current directory:
+$ cd /home/esteban/source-code/LIVECD.DEBS
+$ nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get download debootstrap syslinux isolinux squashfs-tools genisoimage memtest86+ rsync
+$ ls
+Download the source of the same applications:
+$ sudo apt-get source debootstrap syslinux isolinux squashfs-tools genisoimage memtest86+ rsync
+Build all the packages from source using the pbuilder environment of the previous guide.
+References:
+Guide: Build secure sbuild and pbuilder build environments with reproducible builds
+To check the result:
+$ diffoscope --html output_file.html b1/*.changes b2/*.changes
+$ firefox output_file
+For every build, whether is reproducible and build passes the test, remove the content of one of the directories, b1 or b2, insert the correspondent downloaded .deb and rerun the diffoscope test to compare the build and the .deb from the official Debian repos.
+
+2.2- Set up the base Debian environment. I am using Stretch for my distribution and i686 for the architecture. For i686 architecture use arch=i386 or the command will fail when reads the main section of the Debian official repository. Please change your mirror if you are not in the U.S. or know of a mirror close to you. 
+
+Create a directory for the live environment:
+$ arch
+$ mkdir $HOME/live_boot
+$ sudo debootstrap --arch=i386 --variant=minbase stretch $HOME/live_boot/chroot http://ftp.us.debian.org/debian/ | tee -a logfile20.log
+I am logging the activity of the debootstrap command because retrieves more packages and I require to continue verifying their state to continue reproducing builds. When the environment creation is complete. Review the log file logfile20.log, and repeat the previous steps: Download the packages logged, download the source code and reproduce the build to confirm the perfectly secure status of the project. Last step is recreate everything based on reproduced build process.
+Output:
+I: Retrieving libacl1 2.2.52-3+b1
+I: Validating libacl1 2.2.52-3+b1
+I: Retrieving adduser 3.115
+I: Validating adduser 3.115
+I: Retrieving apt 1.4.7
+I: Validating apt 1.4.7
+I: Retrieving libapt-pkg5.0 1.4.7
+I: Validating libapt-pkg5.0 1.4.7
+I: Retrieving libattr1 1:2.4.47-2+b2
+I: Validating libattr1 1:2.4.47-2+b2
+I: Retrieving libaudit-common 1:2.6.7-2
+I: Validating libaudit-common 1:2.6.7-2
+I: Retrieving libaudit1 1:2.6.7-2
+I: Validating libaudit1 1:2.6.7-2
+I: Retrieving base-files 9.9+deb9u1
+I: Validating base-files 9.9+deb9u1
+I: Retrieving base-passwd 3.5.43
+I: Validating base-passwd 3.5.43
+I: Retrieving bash 4.4-5
+I: Validating bash 4.4-5
+I: Retrieving libbz2-1.0 1.0.6-8.1
+I: Validating libbz2-1.0 1.0.6-8.1
+I: Retrieving libdebconfclient0 0.227
+I: Validating libdebconfclient0 0.227
+I: Retrieving coreutils 8.26-3
+I: Validating coreutils 8.26-3
+I: Retrieving dash 0.5.8-2.4
+I: Validating dash 0.5.8-2.4
+I: Retrieving libdb5.3 5.3.28-12+b1
+I: Validating libdb5.3 5.3.28-12+b1
+I: Retrieving debconf 1.5.61
+I: Validating debconf 1.5.61
+I: Retrieving debian-archive-keyring 2017.5
+I: Validating debian-archive-keyring 2017.5
+I: Retrieving debianutils 4.8.1.1
+I: Validating debianutils 4.8.1.1
+I: Retrieving diffutils 1:3.5-3
+I: Validating diffutils 1:3.5-3
+I: Retrieving dpkg 1.18.24
+I: Validating dpkg 1.18.24
+I: Retrieving e2fslibs 1.43.4-2
+I: Validating e2fslibs 1.43.4-2
+I: Retrieving e2fsprogs 1.43.4-2
+I: Validating e2fsprogs 1.43.4-2
+I: Retrieving libcomerr2 1.43.4-2
+I: Validating libcomerr2 1.43.4-2
+I: Retrieving libss2 1.43.4-2
+I: Validating libss2 1.43.4-2
+I: Retrieving findutils 4.6.0+git+20161106-2
+I: Validating findutils 4.6.0+git+20161106-2
+I: Retrieving gcc-6-base 6.3.0-18
+I: Validating gcc-6-base 6.3.0-18
+I: Retrieving libgcc1 1:6.3.0-18
+I: Validating libgcc1 1:6.3.0-18
+I: Retrieving libstdc++6 6.3.0-18
+I: Validating libstdc++6 6.3.0-18
+I: Retrieving libc-bin 2.24-11+deb9u1
+I: Validating libc-bin 2.24-11+deb9u1
+I: Retrieving libc6 2.24-11+deb9u1
+I: Validating libc6 2.24-11+deb9u1
+I: Retrieving multiarch-support 2.24-11+deb9u1
+I: Validating multiarch-support 2.24-11+deb9u1
+I: Retrieving gpgv 2.1.18-6
+I: Validating gpgv 2.1.18-6
+I: Retrieving grep 2.27-2
+I: Validating grep 2.27-2
+I: Retrieving gzip 1.6-5+b1
+I: Validating gzip 1.6-5+b1
+I: Retrieving hostname 3.18+b1
+I: Validating hostname 3.18+b1
+I: Retrieving init-system-helpers 1.48
+I: Validating init-system-helpers 1.48
+I: Retrieving libcap-ng0 0.7.7-3+b1
+I: Validating libcap-ng0 0.7.7-3+b1
+I: Retrieving libgcrypt20 1.7.6-2+deb9u1
+I: Validating libgcrypt20 1.7.6-2+deb9u1
+I: Retrieving libgpg-error0 1.26-2
+I: Validating libgpg-error0 1.26-2
+I: Retrieving libselinux1 2.6-3+b1
+I: Validating libselinux1 2.6-3+b1
+I: Retrieving libsemanage-common 2.6-2
+I: Validating libsemanage-common 2.6-2
+I: Retrieving libsemanage1 2.6-2
+I: Validating libsemanage1 2.6-2
+I: Retrieving libsepol1 2.6-2
+I: Validating libsepol1 2.6-2
+I: Retrieving lsb-base 9.20161125
+I: Validating lsb-base 9.20161125
+I: Retrieving liblz4-1 0.0~r131-2+b1
+I: Validating liblz4-1 0.0~r131-2+b1
+I: Retrieving mawk 1.3.3-17+b3
+I: Validating mawk 1.3.3-17+b3
+I: Retrieving libncursesw5 6.0+20161126-1
+I: Validating libncursesw5 6.0+20161126-1
+I: Retrieving libtinfo5 6.0+20161126-1
+I: Validating libtinfo5 6.0+20161126-1
+I: Retrieving ncurses-base 6.0+20161126-1
+I: Validating ncurses-base 6.0+20161126-1
+I: Retrieving ncurses-bin 6.0+20161126-1
+I: Validating ncurses-bin 6.0+20161126-1
+I: Retrieving libpam-modules 1.1.8-3.6
+I: Validating libpam-modules 1.1.8-3.6
+I: Retrieving libpam-modules-bin 1.1.8-3.6
+I: Validating libpam-modules-bin 1.1.8-3.6
+I: Retrieving libpam-runtime 1.1.8-3.6
+I: Validating libpam-runtime 1.1.8-3.6
+I: Retrieving libpam0g 1.1.8-3.6
+I: Validating libpam0g 1.1.8-3.6
+I: Retrieving libpcre3 2:8.39-3
+I: Validating libpcre3 2:8.39-3
+I: Retrieving perl-base 5.24.1-3+deb9u1
+I: Validating perl-base 5.24.1-3+deb9u1
+I: Retrieving sed 4.4-1
+I: Validating sed 4.4-1
+I: Retrieving sensible-utils 0.0.9
+I: Validating sensible-utils 0.0.9
+I: Retrieving login 1:4.4-4.1
+I: Validating login 1:4.4-4.1
+I: Retrieving passwd 1:4.4-4.1
+I: Validating passwd 1:4.4-4.1
+I: Retrieving libsystemd0 232-25+deb9u1
+I: Validating libsystemd0 232-25+deb9u1
+I: Retrieving libudev1 232-25+deb9u1
+I: Validating libudev1 232-25+deb9u1
+I: Retrieving sysvinit-utils 2.88dsf-59.9
+I: Validating sysvinit-utils 2.88dsf-59.9
+I: Retrieving tar 1.29b-1.1
+I: Validating tar 1.29b-1.1
+I: Retrieving tzdata 2017b-1
+I: Validating tzdata 2017b-1
+I: Retrieving libustr-1.0-1 1.0.4-6
+I: Validating libustr-1.0-1 1.0.4-6
+I: Retrieving bsdutils 1:2.29.2-1
+I: Validating bsdutils 1:2.29.2-1
+I: Retrieving libblkid1 2.29.2-1
+I: Validating libblkid1 2.29.2-1
+I: Retrieving libfdisk1 2.29.2-1
+I: Validating libfdisk1 2.29.2-1
+I: Retrieving libmount1 2.29.2-1
+I: Validating libmount1 2.29.2-1
+I: Retrieving libsmartcols1 2.29.2-1
+I: Validating libsmartcols1 2.29.2-1
+I: Retrieving libuuid1 2.29.2-1
+I: Validating libuuid1 2.29.2-1
+I: Retrieving mount 2.29.2-1
+I: Validating mount 2.29.2-1
+I: Retrieving util-linux 2.29.2-1
+I: Validating util-linux 2.29.2-1
+I: Retrieving liblzma5 5.2.2-1.2+b1
+I: Validating liblzma5 5.2.2-1.2+b1
+I: Retrieving zlib1g 1:1.2.8.dfsg-5
+I: Validating zlib1g 1:1.2.8.dfsg-5
+I: Chosen extractor for .deb packages: dpkg-deb
+I: Extracting libacl1...
+I: Extracting libattr1...
+I: Extracting libaudit-common...
+I: Extracting libaudit1...
+I: Extracting base-files...
+I: Extracting base-passwd...
+I: Extracting bash...
+I: Extracting libbz2-1.0...
+I: Extracting libdebconfclient0...
+I: Extracting coreutils...
+I: Extracting dash...
+I: Extracting libdb5.3...
+I: Extracting debconf...
+I: Extracting debianutils...
+I: Extracting diffutils...
+I: Extracting dpkg...
+I: Extracting e2fslibs...
+I: Extracting e2fsprogs...
+I: Extracting libcomerr2...
+I: Extracting libss2...
+I: Extracting findutils...
+I: Extracting gcc-6-base...
+I: Extracting libgcc1...
+I: Extracting libc-bin...
+I: Extracting libc6...
+I: Extracting multiarch-support...
+I: Extracting grep...
+I: Extracting gzip...
+I: Extracting hostname...
+I: Extracting init-system-helpers...
+I: Extracting libcap-ng0...
+I: Extracting libgcrypt20...
+I: Extracting libgpg-error0...
+I: Extracting libselinux1...
+I: Extracting libsemanage-common...
+I: Extracting libsemanage1...
+I: Extracting libsepol1...
+I: Extracting lsb-base...
+I: Extracting liblz4-1...
+I: Extracting mawk...
+I: Extracting libncursesw5...
+I: Extracting libtinfo5...
+I: Extracting ncurses-base...
+I: Extracting ncurses-bin...
+I: Extracting libpam-modules...
+I: Extracting libpam-modules-bin...
+I: Extracting libpam-runtime...
+I: Extracting libpam0g...
+I: Extracting libpcre3...
+I: Extracting perl-base...
+I: Extracting sed...
+I: Extracting sensible-utils...
+I: Extracting login...
+I: Extracting passwd...
+I: Extracting libsystemd0...
+I: Extracting libudev1...
+I: Extracting sysvinit-utils...
+I: Extracting tar...
+I: Extracting tzdata...
+I: Extracting libustr-1.0-1...
+I: Extracting bsdutils...
+I: Extracting libblkid1...
+I: Extracting libfdisk1...
+I: Extracting libmount1...
+I: Extracting libsmartcols1...
+I: Extracting libuuid1...
+I: Extracting mount...
+I: Extracting util-linux...
+I: Extracting liblzma5...
+I: Extracting zlib1g...
+I: Installing core packages...
+I: Unpacking required packages...
+I: Unpacking libacl1:i386...
+I: Unpacking libattr1:i386...
+I: Unpacking libaudit-common...
+I: Unpacking libaudit1:i386...
+I: Unpacking base-files...
+I: Unpacking base-passwd...
+I: Unpacking bash...
+I: Unpacking libbz2-1.0:i386...
+I: Unpacking libdebconfclient0:i386...
+I: Unpacking coreutils...
+I: Unpacking dash...
+I: Unpacking libdb5.3:i386...
+I: Unpacking debconf...
+I: Unpacking debianutils...
+I: Unpacking diffutils...
+I: Unpacking dpkg...
+I: Unpacking e2fslibs:i386...
+I: Unpacking e2fsprogs...
+I: Unpacking libcomerr2:i386...
+I: Unpacking libss2:i386...
+I: Unpacking findutils...
+I: Unpacking gcc-6-base:i386...
+I: Unpacking libgcc1:i386...
+I: Unpacking libc-bin...
+I: Unpacking libc6:i386...
+I: Unpacking multiarch-support...
+I: Unpacking grep...
+I: Unpacking gzip...
+I: Unpacking hostname...
+I: Unpacking init-system-helpers...
+I: Unpacking libcap-ng0:i386...
+I: Unpacking libgcrypt20:i386...
+I: Unpacking libgpg-error0:i386...
+I: Unpacking libselinux1:i386...
+I: Unpacking libsemanage-common...
+I: Unpacking libsemanage1:i386...
+I: Unpacking libsepol1:i386...
+I: Unpacking lsb-base...
+I: Unpacking liblz4-1:i386...
+I: Unpacking mawk...
+I: Unpacking libncursesw5:i386...
+I: Unpacking libtinfo5:i386...
+I: Unpacking ncurses-base...
+I: Unpacking ncurses-bin...
+I: Unpacking libpam-modules:i386...
+I: Unpacking libpam-modules-bin...
+I: Unpacking libpam-runtime...
+I: Unpacking libpam0g:i386...
+I: Unpacking libpcre3:i386...
+I: Unpacking perl-base...
+I: Unpacking sed...
+I: Unpacking sensible-utils...
+I: Unpacking login...
+I: Unpacking passwd...
+I: Unpacking libsystemd0:i386...
+I: Unpacking libudev1:i386...
+I: Unpacking sysvinit-utils...
+I: Unpacking tar...
+I: Unpacking tzdata...
+I: Unpacking libustr-1.0-1:i386...
+I: Unpacking bsdutils...
+I: Unpacking libblkid1:i386...
+I: Unpacking libfdisk1:i386...
+I: Unpacking libmount1:i386...
+I: Unpacking libsmartcols1:i386...
+I: Unpacking libuuid1:i386...
+I: Unpacking mount...
+I: Unpacking util-linux...
+I: Unpacking liblzma5:i386...
+I: Unpacking zlib1g:i386...
+I: Configuring required packages...
+I: Configuring gcc-6-base:i386...
+I: Configuring lsb-base...
+I: Configuring sensible-utils...
+I: Configuring ncurses-base...
+I: Configuring libsemanage-common...
+I: Configuring libaudit-common...
+I: Configuring libc6:i386...
+I: Configuring libbz2-1.0:i386...
+I: Configuring libgpg-error0:i386...
+I: Configuring libc-bin...
+I: Configuring libdebconfclient0:i386...
+I: Configuring diffutils...
+I: Configuring libcomerr2:i386...
+I: Configuring libcap-ng0:i386...
+I: Configuring libsepol1:i386...
+I: Configuring libgcc1:i386...
+I: Configuring libustr-1.0-1:i386...
+I: Configuring libsmartcols1:i386...
+I: Configuring libaudit1:i386...
+I: Configuring libtinfo5:i386...
+I: Configuring libudev1:i386...
+I: Configuring libattr1:i386...
+I: Configuring libss2:i386...
+I: Configuring liblzma5:i386...
+I: Configuring base-passwd...
+I: Configuring e2fslibs:i386...
+I: Configuring liblz4-1:i386...
+I: Configuring debianutils...
+I: Configuring libgcrypt20:i386...
+I: Configuring libncursesw5:i386...
+I: Configuring libdb5.3:i386...
+I: Configuring zlib1g:i386...
+I: Configuring hostname...
+I: Configuring multiarch-support...
+I: Configuring mawk...
+I: Configuring libpcre3:i386...
+I: Configuring base-files...
+I: Configuring libselinux1:i386...
+I: Configuring findutils...
+I: Configuring libacl1:i386...
+I: Configuring ncurses-bin...
+I: Configuring sed...
+I: Configuring libsystemd0:i386...
+I: Configuring coreutils...
+I: Configuring tar...
+I: Configuring libsemanage1:i386...
+I: Configuring dpkg...
+I: Configuring perl-base...
+I: Configuring grep...
+I: Configuring debconf...
+I: Configuring tzdata...
+I: Configuring gzip...
+I: Configuring bsdutils...
+I: Configuring dash...
+I: Configuring init-system-helpers...
+I: Configuring libpam0g:i386...
+I: Configuring libpam-modules-bin...
+I: Configuring bash...
+I: Configuring libpam-modules:i386...
+I: Configuring libpam-runtime...
+I: Configuring passwd...
+I: Configuring login...
+I: Configuring libuuid1:i386...
+I: Configuring libblkid1:i386...
+I: Configuring libmount1:i386...
+I: Configuring mount...
+I: Configuring libfdisk1:i386...
+I: Configuring util-linux...
+I: Configuring e2fsprogs...
+I: Configuring sysvinit-utils...
+I: Configuring libc-bin...
+I: Unpacking the base system...
+I: Unpacking adduser...
+I: Unpacking apt...
+I: Unpacking libapt-pkg5.0:i386...
+I: Unpacking debian-archive-keyring...
+I: Unpacking libstdc++6:i386...
+I: Unpacking gpgv...
+I: Configuring the base system...
+I: Configuring gpgv...
+I: Configuring debian-archive-keyring...
+I: Configuring libstdc++6:i386...
+I: Configuring adduser...
+I: Configuring libapt-pkg5.0:i386...
+I: Configuring apt...
+I: Configuring libc-bin...
+I: Base system installed successfully.
+End of output.
+
+2.3- Chroot to our Debian environment.
+
+$ sudo chroot $HOME/live_boot/chroot
+
+2.4- Set a custom hostname for your Debian environment.
+
+# hostname
+# echo "debian-live" > /etc/hostname
+# apt-cache search linux-image
+To verify that I am in this environment instead of in my system or my pbuilder or sbuild chrooted environments type:
+# cat /etc/hostname
+
+2.5- Figure out which Linux Kernel you want in your live environment.
+
+# apt-cache search linux-image
+
+2.6- I chose the linux-image-4.9.0-3-686 image. I also believe live-boot is required (We are creating a Live Disc system). Everything else was a program of my choosing.
+
+# apt-get update && apt-get install --no-install-recommends --yes --force-yes linux-image-4.9.0-3-686 live-boot network-manager net-tools wireless-tools wpagui tcpdump wget openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm pciutils usbutils gparted ntfs-3g hfsprogs rsync dosfstools syslinux partclone nano pv rtorrent iceweasel chntpw | tee -a logfile21.log
+
+The only thing you can do to avoid creating a pbuilder environment in the Live Disc environment is create a basic system, due to you CANNOT add built reproduced packages to the bootstrapped environment, and then install them in the Live Disc project in progress. You CAN copy files directly to the chrooted directories from the system running debootstrap but the files will never exist from the chrooted system perspective. 
+To see the directories from the outside:
+$ cd /home/esteban/live_boot/chroot
+$ ls
+Output:
+bin  boot  dev  etc  home  lib  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+End of output.
+
+When the minimal Live Disc system is able to connect through networks you would:
+Use a method to receive built and build reproduced packages from the outside system running the debootstrap environment and the pbuilder environment, e.g.:
+Install an FTP server to transfer files among hosts.
+Install OpenSSH to transfer files among hosts using the command scp.
+Install Network File System (NFS) to transfer files among hosts.
+References:
+Topic: The most secure method of the three in the list to transfer files.
+Guide: OpenSSH server
+Topic: If there is a firewall, the SSH server ports must be open.
+Guide: Netfilter
+Topic: A Simple SCP command example.
+Guide: KVM
+
+After the installation of the minimal chrooted Live Disc system, go out of the environment and download the same list of packages to preserve the reproducible builds project status. Remember just download the packages and sources and use the build environment again to build everything reproducing the builds. 
+To download the DEB .deb packages:
+$ nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo cd /home/esteban/source-code/LIVECD.DEBS
+$ sudo apt-get download linux-image-4.9.0-3-686 live-boot network-manager net-tools wireless-tools wpagui tcpdump wget openssh-client blackbox xserver-xorg-core xserver-xorg xinit xterm pciutils usbutils gparted ntfs-3g hfsprogs rsync dosfstools syslinux partclone nano pv rtorrent iceweasel chntpw
+To download the DEB .deb packages:
+This must be independent in separate directories under ../source-code/ directory, eg:
+$ nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo cd /home/esteban/source-code/ ; mkdir net-tools ; cd net-tools
+$ sudo apt-get source net-tools
+And so forth...
+
+When the build process has been finished, we can upload from the outside world to the chrooted environment through the networks. We do it because the two Debian installations are equal.
+
+Next step is to uninstall the packages installed in the chrooted environment to substitute them with the new downloads from the outside world.
+To remove packages:
+# apt-get remove package-name
+To purge packages:
+# apt-get purge package-name
+
+At this point we can go outside the environment and build more packages, upload them and enter the chrooted environment to install them, to create more complex Live Disc Debian versions. On the other hand, you can decide to start using apt-get install or other package managers to forget the idea of a full system built from source. The packages mentioned are just basic. Actually you can add more to the list, for example, I will add systemd-sysv, because it is the default system and service manager for Debian nowadays. Review the References at the beginning of this guide to improve your packages tree, anyway if you make mistakes you can rebuild the complete chooted Live system the times you want to. If you don't know what do but want complete Desktop Environments you can download the original live cds/dvds from Debian Official web sites. In these sites you will find the .packages file, for example: debian-live-9.1.0-i386-xfce.packages. This file has the list of all the packages you need to run and install the Live XFCE Debian 9.1 release. Open the file, copy the files and add the list to list of packages you want to build or apt install in your Live Disc. At the end you will have a live XFCE Debian 9.1 build from source or an hybrid, since the development point of view. You can also add your own modifications to source codes and add your own application packages to the list before build the Disc ISO, during the current step. You can define strategy of the modules you want in the system.
+References:
+Guide: Enhancing the Debian Live Disc
+Topic: Sometimes basic packages change. Package systemd-sysv would be replaced in the future by upstart.
+Web: https://wiki.debian.org/systemd
+File: systemd - system and service manager.pdf
+Topic: Download Official Debian Live CD/DVD and contents file.
+Web: https://www.debian.org/CD/live/
+File: Live install images.pdf
+
+Remember to install the built packages using one of the alternatives:
+- Saving the files in /var/cache/apt/archives, go to the directory and run: dpkg -i *.deb and/or *.udeb. DPKG will resolve the order of installation automagically, to resolve all the dependencies.
+- Saving the files in a new (live Disc project) local directory configured as a local unofficial repository, and then set up the repository on the file /etc/apt/sources.list and then proceed to install the files using APT (apt-get install).
+- Saving the files in /var/cache/apt/archives, and the run "apt-get update" and "apt-get install PACKAGE 1, PACK2, etc". The program will install directly from the cache because is assuming that the packages were downloaded instead of built.
+
+After a complete installation clean up the chrooted system:
+# apt-get clean
+References: 
+Topic: Clean clears out the local repository of retrieved package files. It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial/:
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+
+2.7- Set the root password (my only user will be root in the live environment).
+# passwd root
+
+2.8- Exit the chrooted environment, removing your fingerprits before build the project.
+# cat /dev/null > ~/.bash_history && history -c && exit
+
+2.9- Make directories that will be copied to our bootable medium.
+$ mkdir -p $HOME/live_boot/image/{live,isolinux}
+
+2.10- Compress the chroot environment into a Squash filesystem.
+
+(cd $HOME/live_boot && sudo mksquashfs chroot image/live/filesystem.squashfs -e boot)
+
+2.11- Prepare our USB/CD bootloader. You should be able to copy and paste these lines into a terminal to save you some time.
+
+To verify the kernel version:
+$ sudo chroot $HOME/live_boot/chroot
+# uname -r
+# cat /dev/null > ~/.bash_history && history -c && exit
+
+$ cd $HOME/live_boot && cp chroot/boot/vmlinuz-4.9.0-3-686 image/live/vmlinuz1
+$ cp chroot/boot/initrd.img-4.9.0-3-686 image/live/initrd1
+
+2.12- Create a menu for the isolinux bootloader. Create a text file at $HOME/live_boot/image/isolinux/isolinux.cfg with content.
+To create:
+$ cd 
+$ cd live_boot/image/isolinux/
+$ touch isolinux.cfg
+$ ls -hal isolinux.cfg
+$ nano isolinux.cfg
+File content:
+
+UI menu.c32
+
+prompt 0
+menu title Debian Live
+
+timeout 300
+
+label Debian Live 4.9.0-3-686
+menu label ^Debian Live 4.9.0-3-686
+menu default
+kernel /live/vmlinuz1
+append initrd=/live/initrd1 ip=frommedia boot=live persistence
+
+label Debian Live 4.9.0-3-686-failsafe
+menu label ^Debian Live 4.9.0-3-686 (failsafe)
+kernel /live/vmlinuz1
+append initrd=/live/initrd ip=frommedia boot=live persistence config memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal
+
+label hdt
+menu label ^Hardware Detection Tool (HDT)
+kernel hdt.c32
+text help
+HDT displays low-level information about the systems hardware.
+endtext
+
+label memtest86+
+menu label ^Memory Failure Detection (memtest86+)
+kernel /live/memtest
+
+End of file.
+Note:
+I added the parameters "ip=frommedia" two menu entries 1 and 2, "persistence" to menu entry 1, and the failsafe menu entry to a basic menu. I want to use the parameters like "quiet" but are not in use at the moment.
+Topic: Understand menu: Live Distro Boot Parameters 
+Web: https://craftedflash.com/info/live-distro-boot-parameters
+File: Live Distro Boot Parameters.pdf
+Topic: Syslinux boot parameters order issue
+Web: https://serverfault.com/questions/111771/syslinux-boot-parameters
+File: Syslinux boot parameters order issue.pdf
+
+3- Create a bootable CD.
+
+After a complete installation clean up the chrooted system:
+To clean up the chrooted system cache:
+Login:
+$ sudo chroot $HOME/live_boot/chroot
+# apt-get clean
+# cat /dev/null > ~/.bash_history && history -c && exit
+
+$ sudo apt-get update
+$ apt-cache search isolinux
+$ sudo apt-get install isolinux
+Output:
+The following NEW packages will be installed:
+isolinux
+End of output.
+$ sudo apt-get install memtest86+
+Remember to add the programs to the reproducible builds package list.
+
+Copy files necessary for the ISO to boot and then create the ISO:
+
+To add icon:
+$ cd
+$ cp -dpR AUTORUN.INF $HOME/live_boot/image/
+$ cp -dpR lin.ux $HOME/live_boot/image/
+# ls -hal image/
+
+(cd $HOME/live_boot/image/ && cp /usr/lib/ISOLINUX/isolinux.bin isolinux/ && cp /usr/lib/syslinux/modules/bios/menu.c32 isolinux/ && cp /usr/lib/syslinux/modules/bios/hdt.c32 isolinux/ && cp /usr/lib/syslinux/modules/bios/ldlinux.c32 isolinux/ && cp /usr/lib/syslinux/modules/bios/libutil.c32 isolinux/ && cp /usr/lib/syslinux/modules/bios/libmenu.c32 isolinux/ && cp /usr/lib/syslinux/modules/bios/libcom32.c32 isolinux/ && cp /usr/lib/syslinux/modules/bios/libgpl.c32 isolinux/ && cp /usr/share/misc/pci.ids isolinux/ && cp /boot/memtest86+.bin live/memtest)
+
+$ genisoimage -rational-rock -volid "Debian Live" -cache-inodes -joliet -hfs -full-iso9660-filenames -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -output $HOME/live_boot/debian-live.iso $HOME/live_boot/image
+
+Notes: 
+The option -volid "Debian Live" correspond to the iso file title, for example "Debian live".
+The option -output $HOME/live_boot/debian-live.iso is the resultant iso file name, for example "debian-live.iso".
+
+You can use virtualization to review ISO, include networking, using different technologies:
+References:
+Topic: Quickly test the ISO image using virtualization
+Guide: Basic networking
+Guide: KVM
+Guide: Virtualbox
+Guide: Genymotion
+
+Now burn the ISO to a CD and you should be ready to boot from it and go!
+Open Brasero, Xfburn or K3b.
+
+Next lines show how to transfer the Disk iso image to USB stick (But net guide topic show how to do the same specifically for USB):
+The isohybrid images can be transferred to USB using dd command. To find out what device handles your USB stick you can use hwinfo (apt-get install hwinfo):
+# hwinfo --disk --short
+Output:
+disk:                                                           
+/dev/sda             HDT722525DLAT80
+/dev/sdb             WDC WD800JB-00FM
+/dev/sdc             Generic USB SD Reader
+/dev/sdd             Generic USB CF Reader
+/dev/sde             Generic USB SM Reader
+/dev/sdf             Generic USB MS Reader
+/dev/sdg             Lexar USB Flash Drive
+End of output.
+
+# dd if=/home/esteban/live_boot/debian-live.iso of=/dev/sdg
+
+Reboot your computer from the USB stick and you’ll be up and running in no time.
+
+References:
+Guide: Check hardware information
+
+Note:
+You can help yourself to find usb info with:
+$ lsusb
+# less /var/log/messages (and press END key)
+# cat /var/log/messages | grep "usb"
+# dmesg
+# cat /etc/fstab
+# mount
+# fdisk -l
+
+4- Create a bootable USB.
+
+After a complete installation clean up the chrooted system:
+To clean up the chrooted system cache:
+Login:
+$ sudo chroot $HOME/live_boot/chroot
+# apt-get clean
+# cat /dev/null > ~/.bash_history && history -c && exit
+
+Copy files necessary for the USB to boot and copy the environment to the USB drive (I am assuming you have an umounted FAT32 formatted USB drive /dev/sdf and the BOOT flag is set on /dev/sdf1 and you have a ready mount point at /mnt/usb):
+
+$ sudo syslinux -i /dev/sdf1
+$ sudo dd if=/usr/lib/syslinux/mbr/mbr.bin of=/dev/sdf conv=notrunc bs=440 count=1
+$ sudo mount /dev/sdf1 /mnt/usb
+
+You should be able to copy and paste this block into a terminal to save you some time:
+
+$ sudo cp /usr/lib/syslinux/modules/bios/menu.c32 /mnt/usb/ && sudo cp /usr/lib/syslinux/modules/bios/hdt.c32 /mnt/usb/ && sudo cp /usr/lib/syslinux/modules/bios/ldlinux.c32 /mnt/usb/ && sudo cp /usr/lib/syslinux/modules/bios/libutil.c32 /mnt/usb/ && sudo cp /usr/lib/syslinux/modules/bios/libmenu.c32 /mnt/usb/ && sudo cp /usr/lib/syslinux/modules/bios/libcom32.c32 /mnt/usb/ && sudo cp /usr/lib/syslinux/modules/bios/libgpl.c32 /mnt/usb/ && sudo cp /boot/memtest86+.bin /mnt/usb/memtest && sudo cp $HOME/live_boot/image/isolinux/isolinux.cfg /mnt/usb/syslinux.cfg && sudo cp /usr/share/misc/pci.ids /mnt/usb/ && sudo rsync -rv $HOME/live_boot/image/live /mnt/usb/
+
+Now unmount the drive and you should be ready to boot from it and go. Set up BIOS and test.
+
+
+Next are complementary references but containing subtopics unused on the production of this guide:
+
+References:
+Topic: Add the chroot environment to Grub2 to boot from Grub2 menu
+Web: http://linuxblogcostarica.blogspot.com/2015/11/como-bootear-una-distro-instalada-en-un.html
+File: Cómo bootear una distro instalada en un folder (chroot).pdf
+Web: http://linuxblogcostarica.blogspot.com/2015/10/como-instalar-otra-distro-linux-en-la.html
+File: De Linux y otros_ Cómo Instalar otra distro Linux en la misma partición.pdf
+
+References:
+Topic: Create a Live DVD disc from the bootable Pendrive/ISO or the chrooted environment
+
+References:
+Topic: To create a Live DVD we need even more source packages built and installed, basically, no include the xserver, etc, up to Desktop Environments you can add later, plus teh ability to install the system (which is not built from source, or yes built, by creating the Live CD/DVD with just source repos setup in /etc/apt/sources.list file).
+You can use the same manual used in the section "Create a bootable Pendrive/ISO disc from the chrooted system", to verify what packages are required to build this Live system.
+You need to add all the software built from source of a Live system to the minimal debootrap installation and then create an bootable image.
+After that you can create your own Official Live ISO source using the tools in the referenced manual, so everybody could add the source to the tools repositories, download, install and create custom versions of the bootable drives or discs images.
+Modifying images with persistance, you can remaster your images to create your own version of a Debian Fork, as today Canonical makes Linux Ubuntu, basically.
+Web: http://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html
+File: live-manual.portrait.en.a4.pdf
+
+References:
+Topic: Create a bootable Pendrive/ISO disc from the chrooted system
+To create an ISO using tool dd:
+Before use 'dd', remove it and rebuild it from source. If possible build its dependencies and recursive dependencies.
+Live systems manual. See the page 53, actually the page 58 or 61 from 101.
+Web: http://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html
+File: live-manual.portrait.en.a4.pdf
+Note: The resultant ISO image is persistent (writable, rather than Live CD/DVD/BlueRay).
+
+References:
+Topic: To burn an ISO image to a physical medium with xorriso. 
+Live systems manual. Look for the section "Burning an ISO image to a physical medium", page 18, actually page 23 or 26 of 101.
+Also test the procedures:
+4.5.2 Copying an ISO hybrid image to a USB stick
+4.5.3 Using the space left on a USB stick
+4.6 Using a virtual machine for testing
+10.3 Persistence
+Web: http://debian-live.alioth.debian.org/live-manual/stable/manual/html/live-manual.en.html
+File: live-manual.portrait.en.a4.pdf
+

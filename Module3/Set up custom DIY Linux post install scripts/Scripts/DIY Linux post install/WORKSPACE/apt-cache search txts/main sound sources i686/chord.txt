@@ -1,0 +1,13 @@
+abcmidi - converter from ABC to MIDI format and back
+autotalent - pitch correction LADSPA plugin
+chordii - Text file (chordpro format) to music sheet converter
+gmorgan - MIDI rhythm station emulator software
+jfugue - Java API for music programming - transitional package
+libjfugue-java - Java API for music programming
+inputattach - utility to connect serial-attached peripherals to the input subsystem
+mma - Musical MIDI Accompaniment Generator
+musescore - Free music composition and notation software
+musescore-common - Free music composition and notation software (common files)
+elpa-projectile - project interaction library for Emacs
+solfege - Ear training software
+texlive-music - TeX Live: Music packages

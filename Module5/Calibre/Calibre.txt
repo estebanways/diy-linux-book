@@ -1,0 +1,7 @@
+Look for the app in the Debian repos main contrib and nonfree:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ apt-cache search calibre
+$ apt-cache show calibre
+$ sudo apt-get install calibre
+

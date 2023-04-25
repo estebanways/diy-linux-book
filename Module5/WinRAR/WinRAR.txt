@@ -1,0 +1,18 @@
+Go to http://www.rarlab.com/download.htm and download the file, or:
+wget -c http://www.rarlab.com/rar/rarlinux-x64-3.8.0.tar.gz
+and copy the file to /usr/src
+# cp -dpR /home/esteban/Downloads/rarlinux-x64-5.2.1.tar.gz /usr/src
+# cd /usr/src
+# tar -xzf rarlinux-x64-5.2.1.tar.gz
+# cd rar
+# make
+Output:
+mkdir -p /usr/local/bin
+mkdir -p /usr/local/lib
+cp rar unrar /usr/local/bin
+cp rarfiles.lst /etc
+cp default.sfx /usr/local/lib
+
+How to use rar:
+$ unrar x filename.rar
+Or use the program Archive Manager which is going to work now with the mouse, RIGHT CLICK and EXTRACT HERE...

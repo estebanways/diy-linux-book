@@ -1,0 +1,2 @@
+handbrake - versatile DVD ripper and video transcoder (GTK+ GUI)
+handbrake-cli - versatile DVD ripper and video transcoder (command line)

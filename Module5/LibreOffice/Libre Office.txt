@@ -1,0 +1,9 @@
+Libre Office comes with the Gnome Desktop
+
+The newest version can be downloaded from their Official website
+
+
+(Pending)
+How to improve Libre Office to make it more compatible with MS Office:
+
+

@@ -1,0 +1,13 @@
+Software sources available:
+- Microsoft's Windows world executables sources
+- Web site, P2P and Developers repositories
+
+Installation examples:
+- Proteus
+- WD External HDs lock
+- DLL registration
+- BIOS firmware upgrade from DOS
+
+For Executing MS Windows binaries on Linux:
+With the application Wine or Wine with A software like PlayOnLinux you can run Windows installations and programs under Linux. Wine is an alternative implementation of the Windows API.
+I am not running any Windows programs on my Linux Box, but Photoshop in a Virtual Machine. You are free to change my method by installing and setting up your Wine accordingly. You have to know that many Adobe Adobe Photoshop versions run very well in Linux with Wine.

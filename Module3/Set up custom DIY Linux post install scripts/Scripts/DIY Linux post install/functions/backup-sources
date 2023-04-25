@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function backup-sources {
+ echo "Not implemented yet:"
+ echo "Fuction: backup-sources"
+ exit 99
+}

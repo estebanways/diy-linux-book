@@ -1,0 +1,27 @@
+fookebox - web-based jukebox frontend to mpd
+gmusicbrowser - graphical jukebox for large music collections
+gnomad2 - Manage a Creative Labs Nomad Jukebox
+icecast2 - streaming media server
+jajuk - advanced jukebox and music organizer
+juk - music jukebox / music player
+kodi - Open Source Home Theatre (executable binaries)
+kodi-addons-dev - Open Source Home Theatre (Addons Dev package)
+kodi-bin - Open Source Home Theatre (architecture-dependent files)
+kodi-data - Open Source Home Theatre (arch-independent data package)
+kodi-eventclients-common - Open Source Home Theatre (Event Client Common package)
+kodi-eventclients-dev - Open Source Home Theatre (Event Client Dev package)
+kodi-eventclients-kodi-send - Open Source Home Theatre (Event Client Kodi-SEND package)
+kodi-eventclients-ps3 - Open Source Home Theatre (Event Client PS3 package)
+kodi-eventclients-wiiremote - Open Source Home Theatre (Event Client WII Remote support package)
+libaudio-moosic-perl - Moosic client library for Perl
+libcddb-perl - module to query CDDB and freedb servers
+libnjb-dev - Creative Labs Nomad Jukebox library development files
+libnjb-doc - Creative Labs Nomad Jukebox library documentation
+libnjb-tools - Creative Labs Nomad Jukebox library tools
+libnjb5 - Creative Labs Nomad Jukebox library
+mps-youtube - Terminal based YouTube jukebox with playlist management
+mtx - controls tape autochangers
+plait - command-line jukebox
+setcd - Control the behaviour of your cdrom device
+silverjuke - jukebox, karaoke, and kiosk mode mp3 player
+sugar-jukebox-activity - Sugar Learning Platform - music jukebox activity

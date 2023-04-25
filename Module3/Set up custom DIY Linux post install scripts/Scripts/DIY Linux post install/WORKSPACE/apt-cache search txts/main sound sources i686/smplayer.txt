@@ -1,0 +1,4 @@
+smplayer - Complete front-end for MPlayer and mpv
+smplayer-l10n - Complete front-end for MPlayer and mpv - translation files
+smplayer-themes - complete front-end for MPlayer - icon themes
+smtube - YouTube videos browser

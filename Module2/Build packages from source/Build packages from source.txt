@@ -1,0 +1,244 @@
+Choose a method to install software in Debian GNU/Linux:
+Warning: Sbuild is not the only way to install packages from source in GNU/Linux Deebian as is described in the section "Build Mini Howto" of the guide: Source code & Debian forks source code.
+
+
+Build packages from source with sbuild:
+
+This time we are going to be setting up sbuild, a program that builds debian packages from source, because I couldn't find the package in any of the repos include the "stable", the repo I use as a "conservative" user.
+
+References:
+Topic: To check the program (package) availability on the Official web site.
+https://www.debian.org/distrib/packages
+Web: https://packages.debian.org/jessie/sbuild
+Topic: Setup sbuild
+Web: https://wiki.debian.org/sbuild
+File: Setup sbuild.pdf
+
+To decide what package to test I considered:
+I know the Ubuntu's latest/current version: 2.22 Ubuntu 15.04 (Vivid Vervet), and it is not LTS (Long term Support) version.
+To know the Ubuntu's ultimate version:
+Web: http://en.wikipedia.org/wiki/List_of_Ubuntu_releases
+Debian has not any PPAs as Ubuntu and Mint. These distros are Debian Forks.
+Reference:
+Web: http://en.wikipedia.org/wiki/List_of_Linux_distributions
+
+And I went to the PPA to verify the package:
+Web: https://launchpad.net/~maarten-baert/+archive/ubuntu/simplescreenrecorder/+packages
+And my candidate is:  simplescreenrecorder - 0.3.3-1~ppa1~vivid1 
+Notice that TODAY is the latest source created to a non LTS Ubuntu release. I don't the real status of the package but the green check icon says is all right.
+I will explain the complete process with simplescreenrecorder.
+
+So is how Ubuntu tests works, according to the Web site of Ubuntu:
+Ubuntu testing
+In addition to our six-monthly stable releases and our daily development builds, we also make regular testing releases during the development cycle. With just a few spare minutes, you can provide valuable feedback on a test release and help polish and stabilize. Please see the testing wiki page for more information on how to test and report back. Links to the test release downloads can be found on the pages listed below.
+Please test the latest available edition. Thank you!  [...]
+Web: http://www.ubuntu.com/info/testing
+
+
+Setup steps:
+
+Check your repository file /etc/apt/sources.list
+My setup is a stable repo, i mean Jessie repo so I would create a stable (Jessie) package, because Jessie is the current stable Debian release.
+If you want to create a testing package you should add the testing repo to the source file. Currently the Debian release in the testing development branch is Stretch.
+
+To get started so you may build packages for Debian sid, run the following.
+Update sources:
+$ sudo apt-get update
+$ sudo apt-get install sbuild
+
+Generate apt keys used internally by sbuild. This only needs to be done once:
+$ sudo sbuild-update --keygen
+If you get an error about lack of entropy, you could do something else on the system, like browsing the web or running find /usr or so. Or skip down to creating the chroot, and come back to this step.
+
+How to fix the lack of entropy:
+How to increase entropy pool without keyboard/mouse:
+There are two random number sources on linux - /dev/random and /dev/urandom. /dev/random will block if there is nothing left in the entropy bit bucket. If your system does not have keyboard and mouse, you can use 'rngd' daemon to perform the task.
+
+To see the entropy:
+# cat /proc/sys/kernel/random/entropy_avail 
+Output:
+1802
+
+Install rngd daemon:
+$ sudo apt-get update
+$ sudo apt-cache search 'rngd'
+Output:
+rng-tools - Daemon to use a Hardware TRNG
+$ sudo apt-get install rng-tools
+I see some output errors during installation:
+Setting up rng-tools (2-unofficial-mt.14-1) ...
+Job for rng-tools.service failed. See 'systemctl status rng-tools.service' and 'journalctl -xn' for details.
+invoke-rc.d: initscript rng-tools, action "start" failed.
+Processing triggers for systemd (215-17) ...
+
+Now, start the 'rngd' daemon using following command and monitor the entropy on the system.
+# rngd -r /dev/urandom -o /dev/random -f -t 1
+In another term:
+# watch -n 1 cat /proc/sys/kernel/random/entropy_avail
+Output:
+3429
+
+Again run the command to generate the keys, but there an error:
+$ sudo sbuild-update --keygen
+Output:
+Generating archive key.
+gpg: keyblock resource `/root/.gnupg/secring.gpg': file open error
+gpg: keyblock resource `/root/.gnupg/pubring.gpg': file open error
+...+++++
+......+++++
+gpg: can't create `/root/.gnupg/random_seed': No such file or directory
+Exiting from key generation with status 2.
+
+At this point I create the directory:
+# mkdir /root/.gnupg
+
+And rerun the command to generate the keys, and this time works:
+# sudo sbuild-update --keygen
+Output:
+Generating archive key.
+gpg: keyring `/root/.gnupg/secring.gpg' created
+gpg: keyring `/root/.gnupg/pubring.gpg' created
+.+++++
+
+Now you can stop the rngd demon.
+
+Add user to sbuild group:
+$ sudo sbuild-adduser $LOGNAME
+
+Output:
+Adding user `esteban' to group `sbuild' ...
+Adding user esteban to group sbuild
+Done.
+
+# Setup tasks for sudo users:
+
+# BUILD
+# HOME directory in chroot, user:sbuild, 0770 perms, from
+# passwd/group copying to chroot, filtered
+# Maybe source 50sbuild, or move into common location.
+
+Next, copy the example sbuildrc file to the home directory of each user and
+set the variables for your system:
+
+  cp /usr/share/doc/sbuild/examples/example.sbuildrc /home/esteban/.sbuildrc
+
+Now try a build:
+
+  cd /path/to/source
+  sbuild-update -ud <distribution>
+  (or "sbuild-apt <distribution> apt-get -f install"
+       first if the chroot is broken)
+  sbuild -d <distribution> <package>_<version>
+
+End of the Output.
+
+This line will add your username so that it may use the sbuild command. Additional users may be added by running sudo sbuild-adduser USER1 USER2 ....
+sbuild-adduser will prompt you to copy the template sbuild configuration in /usr/share/doc/sbuild/examples/example.sbuildrc to each user's ~/.sbuildrc, to be used as their user sbuild configuration. You can customize sbuild settings here, but you usually won't need to customize anything. This should be done once per user. 
+
+So I do enter:
+$ cp /usr/share/doc/sbuild/examples/example.sbuildrc /home/esteban/.sbuildrc
+
+Next ... *logout* and *re-login*
+
+The next step uses sbuild-createchroot to create a chroot used by sbuild meant for building packages targeting Debian sid main. The chroot is saved as a tarball in /var/lib/sbuild/sid-amd64.tar.gz. The apt repository used is http://ftp.debian.org/debian. This can be changed to use a URL for a local mirror of the Debian archive. You can run this command once per distribution you want, and pass --arch=i386 to create a chroot for a different architecture (the default is your host architecture). i386 = i686.
+
+Before proceed with this command take time to look at the line:
+tarball=/var/lib/sbuild/sid-amd64.tar.gz sid `mktemp
+
+For example, if you are using i386 architecture (And it is supported by the package):
+# arch
+Output:
+i386
+A part of the command may be:
+tarball=/var/lib/sbuild/sid-i386.tar.gz sid `mktemp
+
+In my case:
+# arch
+Output:
+x86_64
+So, I am going to preserve the string amd-64, as appears in the most of my packages.
+
+For example, if you are implementing a new package is going to go to "unstable" acronym of "sid", but I am going to build a package from a Jessie Debian source, so I will change that entries in the command, so the part will look like this:
+tarball=/var/lib/sbuild/jessie-amd-64.tar.gz jessie `mktemp
+
+Note:
+You must prepare the environment for a certain package, for example I attempt to build the PPA package simplescreenrecorder from Ubuntu, because there is not Debian package in the Official Debian repos.
+I choose to put "jessie" in the command because I am using Jessie, the stable Debian release which has not simplescreenrecorder yet, but if I were using a newer Debian release I could choose it, for example using Strech I would choose the word "testing", because TODAY Stretch is in the testing development branch, otherwise I would choose "Sid" which I already said is ALWAYS the is unstable.
+References:
+Topic: Last paragraph was written when Debian 8 codename Jessie was current Stable release, and Debian 9 codename Stretch was current Testing release, but their status change pretty much every two years, as I explained in the guide.
+Guide: System version upgrade procedure
+
+And the next is the complete command, to create the dedicated clean environment in the "chroot" directory:
+$ sudo sbuild-createchroot --make-sbuild-tarball=/var/lib/sbuild/jessie-amd64.tar.gz jessie `mktemp -d` http://ftp.debian.org/debian
+Note: ftp is almost gone, according to latest Debian news, so change the argument of the command options accordingly, if you need.
+
+Configuration:
+If you're setting up sbuild for personal use, instead of as part of a build server, you might want to use the following options in your ~/.sbuildrc. These can also be set on the command line when running sbuild.
+
+Toggle line numbers
+
+   1 $build_arch_all = 1;
+   2 $build_source = 1;
+   3 $distribution = 'sid';
+
+The $build_arch_all variable will enable building of architecture independent packages by default. Since official build servers are used to build an existing package for a different architecture (e.g., the uploader builds for i386, uploads arch-i386 and arch-all binary packages, and a build server builds arch-amd64 packages), this is off by default. You can also enable this per build by passing -A to sbuild.
+
+The $build_source variable will enable building of source packages by default. Again, on official build servers, this isn't wanted, but for personal use it's generally useful. You can enable this per build with -s.
+
+The $distribution variable will set the distribution to build for as 'sid'. You can set the distribution per build by passing it to the -d option. Be careful not to use -d just to select a specific chroot (use -c for that, see below), as it will override the distribution set in debian/changelog and may lead you to upload a package to a distribution it was not intended for.
+
+To edit the default user configuration file: 
+$sudo nano /home/esteban/.sbuildrc
+Everything is commented out by default except for the number "1" at the end of the file.
+The file overwrites the default configuration in the file /etc/sbuild/sbuild.conf
+
+I am not doing anything in these files at the moment.
+
+
+Updating:
+
+The chroot should be up-to-date before building packages. Use the sbuild-update to perform updates.
+
+First, note the name of the sbuild chroot to be updated. All sbuild chroots built with sbuild-createchroot will have a suffix of '-sbuild' thus to find the names of all sbuild chroots, run the following.
+
+Toggle line numbers
+
+   1 schroot -l | grep sbuild
+
+If you followed the setup instructions above, there should be one chroot named source:sid-$arch-sbuild where $arch is the architecture installed on your machine.
+
+After noting the name of your sbuild chroot, run the following.
+
+Toggle line numbers
+
+   1 sudo sbuild-update -udcar sid-$arch
+
+I replace "sid" and "$arch" with my current system "jessie" and architecture "amd64":
+$ sudo sbuild-update -udcar jessie-amd64
+
+The arguments '-udcar' will tell sbuild-update to run an apt-get update, dist-upgrade, clean, autoclean, and autoremove in the chroot.
+
+You can also pass --apt-update --apt-distupgrade to the individual sbuild invocation to update the temporary copy of the build chroot, but this won't cause any changes to happen in the persistent copy of the chroot (in the .tar.gz file). So if you are building more than once, you should run sbuild-update instead of relying on this. 
+
+To remove chrooot environments:
+List existent environments and then choose which to remove, eg:
+$ sudo sbuild-destroychroot jessie-amd64
+Follow instructions
+
+More commands:
+# sbuild (and then press TAB to choose from the list)
+# man sbuild (and then press TAB to choose from the list)
+
+Next step shown in the Debian Wiki is building, but we are going to see it later on, with the package simplescreenrecorder.
+
+References:
+Topic: sbuild setup.
+Web: https://www.youtube.com/watch?v=-XwhslBL4TE
+
+Note: Remember that these strings like on my posts:
+–apt-update –apt-distupgrade that appear to be em dashes are two single dashes.
+
+See the guide SimpleScreenRecorder to know how to build a source package.
+References:
+Guide: SimpleScreenRecorder
+

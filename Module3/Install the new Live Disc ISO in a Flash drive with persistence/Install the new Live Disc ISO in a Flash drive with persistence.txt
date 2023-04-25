@@ -1,0 +1,52 @@
+
+Summary of steps:
+With the Live Debian ISO ready to burn and install:
+I am going to use 2 USB Flash drives to simplify the installation process, instead of divide one flash drive in partitions to store the ISO or ISOS and the Operating System or Systems (in the partition live-rw).
+
+Insert the first Flash drive.
+To read the hardware information:
+# dmesg
+To verify the device file and number:
+# fdisk -l
+# mount
+For example, the USB Flash drive is /dev/sdb or /dev/sdc. Do not write HD partitions.
+Use apps such as Gparted or Disks (Gnome) to format the USB Flash drive.
+To copy the ISO to the Flash:
+# cp -dpR live.iso /dev/sdb
+# sync
+You can use 'dd' instead of cp and sync.
+Do not use cp with /dev/sdb1, for example.
+The USB installer has been created and added to the USB Flash drive.
+Topic: Preparing Files for USB Memory Stick Booting
+Web: https://www.debian.org/releases/stable/i386/ch04s03.html.en
+File: Preparing Files for USB Memory Stick Booting.pdf
+
+Insert the second flash drive where I am going to install the OSs from or to.
+To read the hardware information:
+# dmesg
+To verify the device file and number:
+# fdisk -l
+# mount
+For example, the USB Flash drive is /dev/sdb or /dev/sdc. Do not write HD partitions.
+Use apps such as Gparted or Disks (Gnome) to format the USB Flash drive.
+In case of you want to use the USB flash drive with persistance, you need to create 2 separate partitions, the system partition and the persistance partition.
+Reference:
+Topic: Debian Live USB Flash Drive with Persistence
+Web: https://www.linux.com/blog/creating-debian-live-usb-flash-drive-persistence-non-techies
+File: Debian Live USB Flash Drive with Persistence.pdf
+
+Reboot and enter to the BIOS to set up the option to boot from the first flash drive.
+
+Reboot again to boot from the GNU/Linux installation ISO.
+
+At this point you can install the Live Disc in HDs or in the second Flash drive (with persistence), or just use Live Disc system.
+In case of the installation in the second Flash drive (with persistence), press ESC key when the Installatio menu appears, and when you see prompt "boot:" type: live persistent and press enter.
+In case of the installation in the second Flash drive as if it were a HD, you need to run the installer but chaging some options during the process, e.g: Create a ext4 root partition with boot flag, use the Flash as HD, eg: /dev/sdc1, don't use swap partition, don't install grub2 in MBR but manually in /dev/sdc1.
+References:
+Topic: USB Flash drive installation on second Flash drive
+Web: https://blog.desdelinux.net/como-instalar-linux-en-un-usb-en-forma-persistente/
+File: (Spanish) Como instalar Linux en USB en forma persistente.pdf
+
+Topic: Multiboot USB Pendrive with YUMI
+Guide: Multiboot USB Pendrive
+

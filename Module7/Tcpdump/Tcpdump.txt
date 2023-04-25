@@ -1,0 +1,25 @@
+For ping information, read the guide: "Ping"
+
+Who pings me?:
+Reference:
+Web: http://askubuntu.com/questions/430069/how-to-monitor-who-is-pinging-me
+File: Who is pinging me.pdf
+
+Useful commands:
+Pending:
+Paste here book "Entrenamiento profesional en redes" (Spanish)
+
+Send results to screen and file like this:
+Web: http://unix.stackexchange.com/questions/4782/how-to-pass-the-output-of-one-command-as-the-command-line-argument-to-another
+File: bash - How to pass the output of one command as the command-line argument to another - Unix & Linux Stack Exchange.pdf
+Web: http://askubuntu.com/questions/38126/how-to-redirect-output-to-screen-as-well-as-a-file
+File: bash - How to redirect output to screen as well as a file in a yet-to-be-created directory - Ask Ubuntu.pdf
+Web: https://felixmilea.com/2014/12/running-bash-commands-background-properly/
+File: Running bash commands in the background properly - Felix Milea-Ciobanu.pdf
+
+
+
+
+
+
+

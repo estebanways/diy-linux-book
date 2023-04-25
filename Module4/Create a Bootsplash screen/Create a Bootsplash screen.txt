@@ -1,0 +1,32 @@
+Choosing Bootsplash software involves security and system monitoring. Whether you use a silent mode only Bootsplash you cannot read the logs to identify system issues while is booting up, in this case the only advantage is that no one else in the room can see the logs to identify potential vulnerabilities and hack you. Some bootsplash software allow you to see the logs output when you need by pressing a key combination while the system is booting up.
+
+Plymouth:
+Plymouth presents a graphic animation (also known as bootsplash) while the boot
+process is occurring in the background. It is designed to be used with the Direct
+Rendering Manager (DRM) modesetting drivers. For systems that don't have
+DRM mode settings drivers, plymouth falls back to text mode ­ it can also use a
+legacy /dev/fb interface using a variation of these instructions (yet to be added).
+References:
+Web: https://wiki.debian.org/plymouth
+File: plymouth - Debian Wiki.pdf
+
+Debian monster [fbsplash]:
+Is a Boot splash who works in silent mode, and in version 1.0 has next features:
+-add resolution 1280x1024
+-change progress bar
+-change text information in silent mode
+Topic: Description and installation steps
+Web: https://www.gnome-look.org/p/1009732/
+File: debian monster [fbsplash] - www.gnome-look.pdf
+
+More alternative options:
+Topic: Premade splashscreens are available here: 
+References:
+Web: http://gnome-look.org
+
+Similar topics:
+References:
+Guide: Change the default login screen
+Topic: Change the Grub2 menu background image
+Guide: Boot Loaders and Dual Boot
+

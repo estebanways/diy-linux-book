@@ -1,0 +1,11 @@
+
+Use the menu rescue in the Distro installation disc or Rescatux
+(Example Pending)
+
+References:
+Web: https://www.debian.org/releases/stable/i386/ch08s07.html.en
+File: 8.7 Recovering a broken system.pdf
+Topic: Reset root password with Grub2
+Guide: Reset root password
+Topic: Repair Grub
+Guide: Boot Loaders and Dual Boot, section "- Repair Grub".

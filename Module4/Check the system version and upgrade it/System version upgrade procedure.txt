@@ -1,0 +1,883 @@
+Updates out of the guide content:
+
+------->
+
+Update version: 3
+Update for Debian 9 codename "Stretch":
+
+Due to the interfaces names cannot be upgraded to the new method at all, from Debian, release Jessie to release Stretch, which is uncommon in the Linux World, and also disgusting, and for a bunch of reason that I am not going to describe here, for this upgrade from Jessie to Stretch in my laptop computer, I have decided to re-install the system from the beginning. I know, it's contrary to the content of this guide so, I kept the content as is for teaching purposes. That doesn't mean that the upgrade is not possible, but I need to test the new changes to continue working and distributing the current documentation.  I am conscious that this can re-occur in some years. For that, I dedicated the next part of this update to mention the main keys of the process from take the decision to remove Jessie to install a new Stretch from an installation image (in my case the new official Debian Live DVD or my Debian custom build from a scratch):
+Content:
+- Considerations before upgrade to Stretch
+- What to do first after the installation
+- Upgrade alternatives
+
+- Considerations before upgrade to Stretch:
+
+Debian organization Official release notes: 
+It is a good idea to read the document and compare it to this guide key points before take decisions over system upgrades or new installations.
+
+Backup the important information, include: 
+Repositories and repository caches, downloads, personal documents and so on.
+Backup the directory /etc.
+
+Review the current configuration of the repositories:
+It is in /etc/apt
+
+Review the probability to continue using new versions of applications after the upgrade:
+For the Official repos it can be done in the Debian web site: https: www.debian.org
+References:
+Topic: Packages management.
+Module: Module 2.
+
+Update the current system version:
+Use 'apt-get update' and then 'apt-get -u upgrade'.
+
+ APT:
+To resolve conflicts, run 'apt-get -f install' and also 'apt-get --autoremove'.
+
+Aptitude: 
+Resolve packages issues before commit the upgrade. For example: Resolve the problems with packages in the 'on hold' status or with conflicts. Commands: '$ aptitude', '# aptitude', and then press the key 'G". Also press "U" to update. Also use: 'aptitude search _ahold'
+
+DPKG:
+Check the packages status with 'dpkg --audit'. The statuses are: Half installed, Failed-Config, and Error. 'dpkg -l | grep PACKAGE' or 'dpkg --get selections "*" > ~/curr-pkgs.txt' can be used to obtain an almost complete list of the packages that have been previously installed. To identify packages on hold with DPKG, use: 'dpkg --get selections | grep 'hold$'
+
+Set/unset on hold state of the package:
+# echo package_name hold | install dpkg --set-selections
+# echo package_name hold | hold dpkg --set-selections
+
+Linux Kernel: 
+New default Stretch version is 4.9. It has the ability to create new virtual GPUs. It is mandatory to install it before upgrade from Jessie to Stretch. I suggest to remove old kernel (no reboot required). According to the release notes, the person in charge has to upgrade the kernel to version 3.16.43 or later, as you can see in the section "Preparing for the upgrade," and in the "Chapter 5: Issues to aware of for Stretch, " the section "5.1.5 Executables are now compiled as position independent executables (PIE)" by default." Run 'uname -r' to check the running kernel version.
+References:
+Guide: Build the Linux Kernel
+
+Networking: 
+The interfaces names changed, as mentioned in previous updates sections of the current guide. IT is due to a race condition problem regarding the old name convention used. We are not going to see names like eth0 nor wlan0, and the new names will be generated auto-magically by the system.
+References:
+
+Iproute2 VS Nettools: 
+No nettools is available in any default installation method anymore. It was substituted to iproute2. However Nettools cn be installed after the system installation from the Official Debian sources. It is mandatory to know the iproute2 commands, like: 'ip addr show'. Also, you can mark net-tools as a manual installed package before upgrade, and uninstalled it to install iproute2 instead with 'apt-mark manual net-tools'
+
+MySQL: 
+Not abandoned but deprecated, and replaced with MariaDB. I need to confirm why, but I assume that there are two reason of the change. MySQL is Oracle proprietary software nowadays, and it uses LSB (Linux Standard Base).
+
+LSB: 
+Debian is leaving behind LSB (Linux Standard Base).
+
+
+Apps installed from source code and in alternative places: 
+Remember to keep copies of the sources, include the apps installed out of /usr/local/ and /opt.
+
+KXStudio: 
+Some programs or suites can fail, because their packages sources have not been upgraded to a new system release.
+References:
+Guide: KXStudio
+
+Systemd: 
+Systemd integration is almost complete in Stretch. Al least for Stretch, there aren't alternatives available. Some people talk of OpenRC as a possible option to substitute Sysytemd in future Debian releases. If you don't like the change to systemd, log a complaint with the Debian organization or change to alternative systems like Devuan, which still defends sysVinit service management method.
+
+Cinnamon: 
+In my opinion is the best Desktop Environment for Stretch.
+
+Official Live ISO: 
+The new ISO is all right. Anyway, it can be improved. It lacks of a post install script, but I have made my own for my build Live CD, which can be easily adapted by my readers to run semi-automatic versions of multiple installers. It could include the addition of the setup extra repositories like 'contrib' and 'non-free' for the installation of proprietary packages such as the wireless firmware ones.
+References:
+Module: Module 3.
+
+Gcc6: 
+Cons: It is slower than previous C compiler versions. Pros: The system doesn't crash, compared to Red Hat and Mint, just to mention two other GNU/Linux distributions.
+References:
+Topic: 
+https://distrowatch.com/
+File: DistroWatch.com Put the fun back into computing. Use Linux, BSD.pdf
+
+Upgrade commands: 
+Don't forget to download the upgrade files to don't get lost. This has to be done by running the command '# apt-get upgrade -d' in the appropriate moment.
+
+- What to do first after the installation:
+
+For that time we can install software and setup the system manually or by using a version of Post install script. I have a functional scrip I share with you in a guide.
+References:
+Guide: Set up custom DIY Linux post install scripts
+
+In order:
+
+
+Check networking interfaces and IP status:
+$ ip addr show
+You'll see the new interfaces names. You can install nettools to use the command 'ifconfig' (only for root or with sudo).
+The installation I complete I use the ethernet connection. After the installation I can update or install the WIFI drivers.
+Use commands such as:
+# systemctl
+$ systemctl
+nano /etc/network/interfaces
+References:
+Guide: Basic networking
+
+Openssh:
+Look for the package in the Official (remote) repositories:
+# apt-cache search openssh
+Add repositories contrib and non-free:
+# apt-get update
+# apt-get install openssh-client openssh-server
+# dpkg -l | grep "ssh"
+
+Setup file /etc/hosts:
+Modify in all host if required:
+# nano /etc/hosts
+
+Setup file /etc/resolv.conf:
+Modify in all host if required:
+# nano /etc/resolv.conf
+
+Scan the network:
+$ nmap -sP 192.168.1.0/24 
+References:
+Guide: Nmap
+
+Install screen to preserve terminal sessions:
+# apt-get install screen
+
+KXStudio:
+The version for Stretch appeared 6 months after this system release.
+You can install the equivalent sound apps manually or in a custom script. These packages have newer versions, but on the hand, KXStudio assures backwards compatibility among versions. By the way, mentioned that I required the GCC tools or later KXStudio package to upgrade it, over the Stretch which runs GCC6.
+
+Simplescreenrecorder:
+You don't require to build the application from source code anymore. It is in the Official repositories. Also, there are new alternatives available like Kazam and Vokoscreen.
+
+
+Setup the 3D card if required:
+References:
+Guide: 3D Acceleration and VR
+
+Install more Desktop Environments and laptop packages:
+It is good because they are more software:
+# tasksel
+I don't use 3D cube because some packages are experimental and can burn the video card, but I usually install it to test more the #D acceleration.
+References:
+Guide: Compiz-Fusion
+
+Steam:
+Install a Steam game
+References:
+Guide: Steam
+
+KODI:
+Install a media center
+References:
+Guide: KODI
+
+Clementine:
+I install the music server and the Android app
+References:
+Clementine
+
+Firewall:
+Install the Firewall install a Clementine or any server
+References:
+Netfilter
+
+Google Chrome:
+References:
+Guide: Google Chrome
+
+Flash Player:
+References:
+Guide: Flash Player
+
+WinRAR:
+References:
+Guide: WinRAR
+
+HuBic:
+The problem wiht it is taht they are not going to offer the cloud space for free anymore, so I decided not to install it anymore, and sync directories using alternative tools and a personal bash script that I created. To don't complicate this section explaining bash scripting, I suggest using services such as Google Drive or One or equivalents. The next Debian stable release, "Buster" promises to include the package "grive" which is a program to simplify the synchronization with Google Drive, which is only available to sync through browsers yet. Grive is an experimental package and maybe you ca build it for Stretch from the code sources if you want.
+
+Security applications:
+References:
+Module: Module 7.
+
+Virtualization:
+Install KVM and VirtualBox
+References:
+Guide: KVM
+Guide: VirtualBox
+
+
+- Upgrade alternatives:
+They are:
+The new Debian Live DVD
+Netinstall, mini, etc.
+Build your own Debian from a scratch
+References:
+Module: Module 1
+Module: Module 3
+
+
+------->
+
+Update version: 2
+Update for Debian 9 codename "Stretch":
+
+Remember that network interface names and networking tools changed since Debian 9 codename Stretch, but they don't change whether the system has been upgraded from Debian 8 codename Jessie.
+References:
+Topic: Detailed update info in the networking guide.
+Guide: Basic networking
+Guide: Iproute2
+Guide: Net-tools
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+The current guide explains a effective but pretty much straight forward upgrade. Operating System has changed a lot from Debian 8 codename Jessie to Debian 9 codename Stretch, and this affects many guides of the book, including this one. For example, if you are running an old Debian release, you need to upgrade to Jessie, then update and then upgrade to Stretch. Please match this guide and the Debian documentation from the Official web site before test and start system upgrades.
+References:
+Topic: Debian 9 "Stretch" released
+Web: https://www.debian.org/News/2017/20170617
+File: Debian -- News -- Debian 9 _Stretch_ released.pdf
+Topic: Release Notes for Debian 9 (stretch), 64-bit PC
+Web: https://www.debian.org/releases/testing/amd64/release-notes/index.en.html
+File: Release Notes for Debian 9 (stretch), 64-bit PC.pdf
+Topic: Chapter 1. Introduction
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-about.en.html
+File: Chapter 1.pdf
+Topic: Chapter 2. What's new in Debian 9
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-whats-new.en.html
+File: Chapter 2.pdf
+Topic: Chapter 3. Installation System
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-installing.en.html
+File: Chapter 3.pdf
+Topic: Chapter 4. Upgrades from Debian 8 (jessie)
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-upgrading.en.html
+File: Chapter 4.pdf
+Topic: Chapter 5. Issues to be aware of for stretch
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-information.en.html
+File: Chapter 5.pdf
+Topic: Chapter 6. More information on Debian
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-moreinfo.en.html
+File: Chapter 6.pdf
+Topic: Appendix A. Managing your jessie system before the upgrade
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ap-old-stuff.en.html
+File: Appendix A.pdf
+
+
+------->
+
+
+Nowadays, is a must to have the system up2date to avoid compromising the security, so at some point the only option is to upgrade the system version, cleaning up the "hard" drive and downloading the new stable Netinstall or upgrading the system to the next stable version using this procedure. 
+If you don't care of security, other reasons that force you to upgrade the current version are new applications or application updates, because sometimes these are incompatible with the current system, so you be prepared to update today or tomorrow. 
+I state that the upgrade is perfectly possible and a relative simple process, which is more like update but changing the system name to mark certain points in the system evolution, to show you what you can do with your software to make it work as well as possible. Actually, you have to pay especial attention to some aspects of the upgrade process: 
+- Backported software. In this case means the software installed no use the Official/typical package managers like APT.
+References:
+Guide: Update the system and applications
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+- Packages On Hold or in any Half Installed State.
+- File changes log. Back up important information before starting the distro upgrade process is a must.
+
+References:
+Topic: To review the potential isues with the backported software from previously "testing" distro versions.
+Guide: Manage traditional software repositories.
+Topic: To use Debian and Tor repos Services available as Onion Services:
+Guide: TOR
+Topic: Sometimes you require the machine to act as a Proxy client, and skip or route the access from the client to the Official repos via HTTP, etc. Look for the sections: "Proxy support for Synaptic Package Manager:" and" "Setting up apt-get to use a http-proxy:"
+Guide: Basic Networking
+Topic: How to set up proxies.
+Guide: Proxies
+Topic: Update the sytem is not upgrade the system (version)
+Guide: Update the system and applications
+
+Steps to upgrade:
+
+- Verify the current system release:
+
+$ sudo lsb_release -a
+Output example:
+No LSB modules are available.
+Distributor ID:	Debian
+Description:	DebianEdu/Skolelinux
+Release:	8.7
+Codename:	jessie
+End of Output.
+To pass only the description line:
+$ sudo lsb_release -b
+Note: 
+If the command does not work you don't have installed the package LSB, which stands for Linux Standard Base. To install this package and its dependencies:
+$ sudo apt-get update
+$ sudo apt-cache show lsb
+$ sudo apt-get install lsb
+If you don't want to install LSB use the command:
+$ uname --all
+Or combinations like:
+$ uname -r
+$ uname -o 
+$ uname -a 
+$ uname -n 
+$ cat /proc/version
+$ cat /etc/issue
+$ cat /etc/os-release
+For systemd:
+$ hostnamectl
+$ hostnamectl | grep "Operating System"
+References:
+Web: http://unix.stackexchange.com/questions/35183/how-do-i-identify-which-linux-distro-is-running
+File: version - How do I identify which Linux distro is running_ - Unix & Linux Stack Exchange.pdf
+
+- Update the current system:
+
+If you are accesing the system remotely, use Screen to keep sessions accessible from software like Putty.
+References:
+Guides:
+Screen
+OpenSSH server
+OpenVPN
+
+If you use a proxy:
+References:
+Guide:
+Proxies
+
+If you manage packages using tor:
+References:
+Guide: TOR
+
+If you have a firewall running, stop it:
+$ sudo iptables --flush && sudo iptables -P INPUT ACCEPT && sudo iptables -P OUTPUT ACCEPT && sudo iptables -P FORWARD ACCEPT
+References:
+Guide: Netfilter
+
+Review the file /etc/apt/sources.list and the sources directories and files under /etc/apt/.
+$ sudo nano /etc/apt/sources.list
+You have to verify what commented out lines you want to "activate". Remember that the same software packages can be in many repositories and if you activate all the lines these software packages will be updated to the newest version available in the file, no matter whether it is stable, unstable or even experimental, and this could damage the software or the system before it has been upgraded.
+The only way is to comment out every line except for the one contains the software you want to update from unofficial repositories, for example the backported repositories described in the next guide.
+References:
+Guide: Manage traditional software repositories
+For example, by the last part of the file you will see this section:
+
+{
+
+# Deb multimedia repo. This repo is Unofficial and untrusted in the MIT but in their 
+# own key servers. Some people recommends not to use it at all)
+# Packages: Avidemux(Qt),
+#deb http://deb-multimedia.org/ stable main non-free
+#deb-src http://deb-multimedia.org/ stable main non-free
+# Packages: libvidstab1.0,
+#deb http://deb-multimedia.org/ sid main non-free
+#deb-src http://deb-multimedia.org/ sid main non-free
+
+# Experimental are repos and packages rather than and considered after the  old-stable, 
+# stable, testing and unstable ones.
+
+}
+
+So the first step in a system with a file like this would be activate some lines to attempt to update the Packages libvidstab1.0 and Avidemux(Qt). But take a look at the repository lines. libvidstab1.0 was installed from "sid" and Avidemux(Qt) from "stable". In this case we should activate only the stable line to activate a possible update for Avidemux(Qt), because libvidstab1.0  could be a part of the system release we want to upgrade to so we can keep it back not activating the line and test the library application after the system upgrade, and then take a decision on what to do: keep the same library in the system, or add the sid snippet again to check for the sid upgrade. Activating Avidemux(Qt) in the code will look like this:
+
+{
+
+# Deb multimedia repo. This repo is Unofficial and untrusted in the MIT but in their 
+# own key servers. Some people recommends not to use it at all)
+# Packages: Avidemux(Qt),
+deb http://deb-multimedia.org/ stable main non-free
+deb-src http://deb-multimedia.org/ stable main non-free
+# Packages: libvidstab1.0,
+#deb http://deb-multimedia.org/ sid main non-free
+#deb-src http://deb-multimedia.org/ sid main non-free
+
+# Experimental are repos and packages rather than and considered after the  old-stable, 
+# stable, testing and unstable ones.
+
+}
+
+When the line has been changed to active, run a new update:
+$ sudo apt-get update
+And then a new system update:
+$ sudo apt-get -u upgrade
+
+After that, continue doing the same thing with the rest of the file /etc/apt/sources.list, from the end to the beginning. In my case, because I keep a log of every new repo and package in the file, I know exactly what I can activate at the same time no damage the system or applications due to package dependency conflicts. One rule I have applied in my installation is install applications from the stable repos only, except for when the application is not available in the stable repos, so I go to look for the application somewhere else, but not always in new repos to set up in the file sources.list because there are many ways to install software in Linux distributions include Debian GNU/Linux.
+References:
+Guide: Manage traditional software repositories
+Here is one section, the most important of the official ones, you can activate simultaneously because there is a specific type of repo for every type of software: main, contrib or non-free
+The actual state of the section is:
+
+{
+
+# Copy of the Original configuration after system installation, include 
+# sections (repos) "contrib" and non-free 
+# This the configuration I use the most, no fear of installation fails
+# because they are all Official repos.
+# Free software puritans would remove 'non-free'
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+
+}
+
+If you use the sources.list file like me, installing every application from the Official "stable" repos as possible, you don't need to comment out this section while activate other lines and then update, because never two versions of the same package are going to match when run a new update:
+$ sudo apt-get update
+And then a new system update:
+$ sudo apt-get -u upgrade
+
+- Check that no packages are On Hold Or In Any Half Installed State
+
+The system usually contains many many packages, and before the real upgrade stage we must fix such problem packages.
+Ensure that we do not have any packages on hold with:
+$ dpkg --audit 
+$ dpkg --get-selections | grep hold
+
+No packages can be on hold.
+References:
+Topic: To put Debian packages on hold / unhold packages, section "- Prevent a package from being updated:".
+Guide: Update the system and applications
+
+For the final go ahead test use:
+$ apt-get update
+$ apt-cache search aptitude
+$ apt-get install aptitude
+$ aptitude
+
+Press g and the list shows which packages need your attention. Fix any packages in the action list, until the message says:
+No packages are scheduled to be installed, removed or upgraded
+Only then you are done and ready to pass this point.
+
+- Upgrade the content of the file sources.list:
+
+The most simple way is to replace the current system version name with the name of the version you want to upgrade to. For example, the version is currently "stable", his name is "Jessie" and you want to upgrade to the "testing" version named "Stretch". Replace their names in the file, so that you will have an Initial and a New status of the sources file sources.list.
+References:
+Topic: Search on Google: "Understanding Debian pictures"
+Web: https://www.google.com/search?q=understanding+debian+pictures&oq=understanding+debian+pictures&aqs=chrome..69i57.9056j0j7&sourceid=chrome&es_sm=93&ie=UTF-8
+For example the Initial status of the most important official section of the file will be:
+
+# Copy of the Original configuration after system installation, include 
+# sections (repos) "contrib" and non-free 
+# This the configuration I use the most, no fear of installation fails
+# because they are all Official repos.
+# Free software puritans would remove 'non-free'
+deb http://ftp.us.debian.org/debian/ jessie main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main contrib non-free
+
+
+And the New status of the most important official section of the file will be:
+
+# Copy of the Original configuration after system installation, include 
+# sections (repos) "contrib" and non-free 
+# This the configuration I use the most, no fear of installation fails
+# because they are all Official repos.
+# Free software puritans would remove 'non-free'
+deb http://ftp.us.debian.org/debian/ stretch main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ stretch main contrib non-free
+
+deb http://security.debian.org/ stretch/updates main contrib non-free
+deb-src http://security.debian.org/ stretch/updates main contrib non-free
+# stretch-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free
+deb-src http://ftp.us.debian.org/debian/ stretch-updates main contrib non-free
+
+Notice that this is the only section I have set as 'active' the most of time.
+Notice also that any address like ftp urls could change within Debian releases, and exceptionally temporarily, for example the sub-section "volatile" is not supposed to appear at the very beginning when the new release has been published, but sometime later when the new release has ben touched by early updates. For this reason there is a better way to now exactly the format of the file in the release we want to upgrade to. It's to download the Netintall CD or get the Debian release on DVD to copy the new (stretch) version of the file sources.list and paste its content into our local file, but remember to backup a version of the file to add the all the sections  with repos later on, when the system had been upgrade successfully.
+To backup the file:
+$ sudo cp -dpR /etc/apt/sources.list /etc/apt/sources.list.jessie
+To blank the file:
+$ echo "" > /etc/apt/sources.list
+And then copy the content of the new release file in the current release file.
+
+Next is a second example of the file, generated in a very singular web site.
+References: 
+Web: https://debgen.simplylinux.ch/index.php
+File: Debian Sources List Generator.pdf
+The file:
+
+#------------------------------------------------------------------------------#
+#                   OFFICIAL DEBIAN REPOS                    
+#------------------------------------------------------------------------------#
+
+###### Debian Main Repos
+deb http://ftp.us.debian.org/debian/ stretch main 
+deb-src http://ftp.us.debian.org/debian/ stretch main 
+
+###### Debian Update Repos
+deb http://security.debian.org/ stretch/updates main 
+deb http://ftp.us.debian.org/debian/ stretch-proposed-updates main 
+deb-src http://security.debian.org/ stretch/updates main 
+deb-src http://ftp.us.debian.org/debian/ stretch-proposed-updates main 
+
+Notes:
+The differences between this file and the previous are:
+This file has not repos types contrib and non-free
+The 'volatile' is says stretch-proposed-updates instead of stretch-updates because TODAY Stretch is still in 'testing' status, for at least 4 months more until becomes the 'stable' release, but after this period of time the 'volatile' part of the file will change again to the status of the previous example.
+The look of this second example is not the look of the real file because has been generated on a web site, so the real look of the file would be the section of the first example, but replacing the 'volatile' section with the 'volatile' section of the second example. If you are confused at this point, go to doanload the Netinstall of Stretch, please, it is the best option to get the correct file format and content.
+References:
+Topic: Debian releases
+Web: https://www.debian.org/releases/
+File: Debian -- Debian Releases.pdf
+
+- Backup /etc
+
+To compress a copy of the directory /etc:
+# tar -cvzpf /home/esteban/etc-dirs.tgz 2>/home/esteban/error.log /etc
+
+- Update APT database using the new file:
+
+$ sudo apt-get update
+
+-  Download the new release upgrades:
+
+I have had issues in the past with a loss of network connectivity mid update causing serious issues. With
+option -d will download and then install (If fails, insist executing the command until there is nothing else tod download):
+$ sudo apt-get dist-upgrade -d
+
+- Install everything recently downloaded:
+
+$ sudo apt-get dist-upgrade
+
+- Log dist-upgrade issues and errors:
+
+Write the upgrade issues and errors in a txt file.
+Some errors could disallow you to upgrade.
+Some errors could appear after the upgrade has been completed.
+There is a list of resolved common issues/errors logs, at the end of this guide.
+
+- Update the new system, after the upgrade is complete:
+
+$ sudo apt-get -u upgrade
+Check that no packages are On Hold Or In Any Half Installed State:
+References:
+Section: - Check that no packages are On Hold Or In Any Half Installed State
+
+- Check new release:
+
+$ lsb_release -a
+The result must be something like this:
+No LSB modules are available.
+Distributor ID: Debian
+Description:  Debian GNU/Linux 7.0 (wheezy)
+Release:  7.0
+Codename: wheezy
+
+- Check new kernel:
+
+$ uname -a
+The result must be something like this:
+Linux mos.medisign.gr 3.2.0-4-amd64 #1 SMP Debian 3.2.41-2+deb7u2 x86_64 GNU/Linux
+
+- If kernel has been not upgraded, check your current kernel, using:
+
+$ dpkg -l | grep linux-image
+
+- Install a new kernel:
+
+References:
+Guide: Build the Linux Kernel
+
+- Add all the necessary backported and unofficial repos in the new file /etc/apt/sources.list and /etc/apt/ directory:
+$ sudo nano /etc/apt/sources.list
+
+- Update the repositories again and test your favorite applications:
+
+$ sudo apt-get update
+$ sudo apt-get -u upgrade
+References:
+Topic: Include the section: "- How to update programs that were not installed using APT, DPKG or Gdebi:".
+Guide:
+Update the system and applications
+
+References:
+Topic: Old references, but the procedure still the same
+Web: https://www.howtoforge.com/how-to-upgrade-debian-squeeze-to-wheezy
+File: How To Upgrade Debian Squeeze To Wheezy.pdf
+Web: http://www.pontikis.net/blog/debian-upgrade-squeeze-to-wheezy
+File: Upgrade Debian 6 Squeeze to 7 Wheezy.pdf
+
+- Common dist-upgrade issues and errors:
+
+Issue:
+No space to download new release upgrades.
+Solution:
+The solution is to review the partitions to clean up the drives before begin the whole upgrade 
+$ df -h
+$ apt-get COMMAND
+COMMAND OPTIONS:
+clean
+   clean clears out the local repository of retrieved package files.
+   It removes everything but the lock file from
+   /var/cache/apt/archives/ and /var/cache/apt/archives/partial/.
+autoclean
+   Like clean, autoclean clears out the local repository of retrieved
+   package files. The difference is that it only removes package files
+   that can no longer be downloaded, and are largely useless. This
+   allows a cache to be maintained over a long period without it
+   growing out of control. The configuration option
+   APT::Clean-Installed will prevent installed packages from being
+   erased if it is set to off.
+autoremove
+   autoremove is used to remove packages that were automatically
+   installed to satisfy dependencies for other packages and are now no
+   longer needed.
+
+
+LOGS taken from a server, after running dist-upgrade to upgrade from Debian Squeeze (6) to Wheezy (7):
+
+
+@@@ LOGS 1 @@@@
+
+Check:
+- grub boot loader change from legacy to grub 2:
+a line is in blank
+
+- mysql-server-5.0 has been removed but not purged
+
+- script firewall bastion-server-firewall.sh removed?
+- libdevmapper1.02 removed but not purged
+- openbsd inetd removed but not purged
+- x11-common removed but not purged
+
+Screen message also says:
+See http://wiki.debian.org/LSBInitScripts/DependencyBasedBoot for
+more information about dependency based boot sequencing. To
+reattempt the migration process run 'dpkg-reconfigure sysv-rc'.
+
+Check dovecot old and new dovecot.conf file and
+back up new and setup accordingly.
+See previous backup .confBAK or backup  etc-dirs.tgz
+Same for dovecot-sql.conf
+
+check database (mysql-5.0)
+
+Same for php:
+/etc/php5/cgi/php.ini
+(check)
+
+same  for file /etc/apache2/sites-available/default
+same for file /etc/apache2/apache.conf
+same for /etc/php5/apache2/php.ini
+same for /etc/amavis.conf.d/15-content_filter_mode
+
+phpmyadmin -- > Installed new. Maybe requires to configure dbs again (email, no more).
+
+Mysql password for phpmyadmin (root mysql pass ips.xlsx)
+Database backup is under /var/cache/db-config/backups/phpmyadmin_4:2.11.8.1-5+lenny3.mysql
+Error: can't connect to mysql server check db
+
+Remember to create file backups as .wheezy for maitainer 's versions of modified files.
+and .squeeze
+
+@@@@ END OF LOGS 1 @@@@@@
+
+
+After I see and write the logs I:
+
+Check That No Packages Are On Hold Or In Any Half Installed State
+The system usually contains many many packages, and before the real upgrade stage we must fix such problem packages.
+Ensure that we do not have any packages on hold. No packages can be on hold.
+$ dpkg --audit
+$ dpkg --get-selections | grep initramfs-tools
+Output:
+initramfs-tools                                 install
+
+Note:
+initramfs-tools output said is only half configured.
+Later, run: 
+$ dpkg --configure <package>
+
+For the final go ahead test use:
+$ aptitude
+Press g and the list shows which packages need your attention. Fix any packages in the action list, until the message says:
+No packages are scheduled to be installed, removed or upgraded
+Only then you are done and ready to pass this point.
+
+
+Review with aptitude returned errors:
+cpp 4.2
+initramfs-tools
+
+Review with system restart returned errors:
+EN=UTF_8 environment variable (deprecated)
+clamav database duplicated
+
+At this point I need more space on partition / so  will try to boot from CD-ROM Knoppix ISO image to resize partitions:
+
+To make possible to start from cdrom a KVM image add the CDROM to disk definitions:
+Edit x1 and x2:
+Add this section before hard drive section:
+
+<disk type='file' device='cdrom'>
+  <driver name='qemu' type='raw'/>
+  <source file='/var/lib/libvirt/images/KNOPPIX_V7.0.5DVD-2012-12-21-EN.iso'/>
+  <target dev='hdc' bus='ide'/>
+  <readonly/>
+  <address type='drive' controller='0' bus='1' unit='0'/>
+</disk>
+
+Add cdrom to <os> section before hd:
+
+<os>
+  <type arch='x86_64' machine='pc-0.12'>hvm</type>
+  <boot dev='cdrom'/>
+  <boot dev='hd'/>
+</os>
+
+To stop booting from cdrom remove the line <boot dev='cdrom'/> from <os> section.
+
+Once we boot from knoppix as root go to terminal:
+$ sudo su
+To switch to root.
+# gparted
+To enter to partitioning tool.
+Partitions:
+Resize /dev/sda9 from 32.82 GB to 22.65 GB to free unallocated space (10.24 GB)
+Resize /dev/sda1 from 266.67 MB to 2 GB (CAN'T IS BOOT EXACLY WHAT I NEEDED TO INCREASE)
+Resize /dev/sda6 from 2.80 GB to 6 GB
+Final Unallocated space 5GB
+Partitioning takes a lot of time then i'd better try to clean /boot first (anyway here is some partitioning information (no changes have been made to hd partitions for now)):
+
+Instead of resizing partitions, I try to clean the partition /boot in x1 and x2 as if it were dir /boot in foobar:
+Resources:
+Topic: Use this Ubuntu tutorial to clean up and rerun aptitude.
+Web: http://ubuntuforums.org/showthread.php?t=1435818
+File: ubuntu_boot partition is full.pdf
+List /boot partition:
+$ ls /boot
+You will see all the existent kernels files
+Check current kernel running:
+$ uname -r
+To list all installed kernels, run:
+$ dpkg -l linux-image-\* | grep ^ii
+Show all kernels and headers that can be removed, excluding the current running kernel:
+$ kernelver=$(uname -r | sed -r 's/-[a-z]+//')
+$ dpkg -l linux-{image,headers}-"[0-9]*" | awk '/ii/{print $2}' | grep -ve $kernelver
+Remove all other kernels (DON'T YOU USE THSI COMMAND HERE TO SVOID REMOVING THE PACKAGE THE DIST-UPGRADE IS
+TRYING TO INSTALL (PURGE MANUALLY BASE ON LIST OF THE LAST COMMAND):
+Note: These /boot clean up can be run after any installation after upgrading kernels and rebooting to test it. 
+I am using them just because I need more space)
+$ sudo apt-get purge $(dpkg -l linux-{image,headers}-"[0-9]*" | awk '/ii/{print $2}' | grep -ve "$(uname -r | sed -r 's/-[a-z]+//')")
+
+How to purge manually:
+Identify all the image and header packages:
+$ dpkg -l linux-image-\* | grep ^ii
+Then purge the older ones. Syntax:
+$ sudo apt-get purge <name of the old linux image package>
+In my case I removed:
+$ sudo apt-get purge linux-image-2.6.18-4-686
+$ sudo apt-get purge linux-image-2.6.26-2-686
+There are not headers:
+$ sudo apt-get purge linux-headers-...
+$ sudo apt-get purge linux-headers-...
+
+(Repeat some previous commands to see what was removed)
+
+We freed 110 MB and no old kernels are installed anymore:
+$ df -h
+
+Next, continue the kernel installation:
+$ sudo iptables --flush && sudo iptables -P INPUT ACCEPT && sudo iptables -P OUTPUT ACCEPT && sudo iptables -P FORWARD ACCEPT
+
+$ sudo aptitude
+$ sudo apt-get dist-upgrade -d
+$ sudo apt-get dist-upgrade
+$ dpkg --audit
+...
+
+No packages are scheduled to be installed, removed or upgraded
+
+Grub boot loader issue from LOGS 1:
+The issue has been resolved because the kernel boot up is ok.
+Just cleaning up system from unused kernels.
+
+Final upgrade:
+$ sudo apt-get -u upgrade
+Running this command resulted in more logs.
+
+
+@@@@@ LOGS 2 @@@@@
+
+/etc/crontab changed  during upgrade to maintainer's version
+
+/etc/sudoers changed  during upgrade to maintainer's version
+
+phpmyadmin db backup:  /var/cache/dbconfig-common/backups/phpmyadmin_4:3.3.7-7.mysql
+(Check other version in previous installation logs... needed to reconfigure or reinstall package
+or db????)
+
+@@@@@ END OF LOGS 2 @@@@@
+
+
+After reading the logs:
+Final dist-upgrade:
+$ sudo apt-get dist-upgrade -d
+$ sudo apt-get dist-upgrade
+DPKG audit.
+Running this commands resulted in more logs.
+
+
+@@@@@ LOGS 3 @@@@@
+
+install grub on  /dev/sda (not dev/sda1/ = /)
+
+grub install
+
+/etc/mysql/my.cnf changed during upgrade to maintainer's version
+
+/etc/vsftpd.conf changed during upgrade to maintainer's version
+
+Command dpkg --audit results on error:
+
+The following packages have been unpacked but not yet configured.
+They must be configured using dpkg --configure or the configure
+menu option in dselect for them to work:
+ dovecot-common       Transitional package for dovecot
+ dovecot-ldap         LDAP support for Dovecot
+ dovecot-pop3d        secure POP3 server that supports mbox, maildir, dbox and
+ dovecot-gssapi       GSSAPI authentication support for Dovecot
+ dovecot-sqlite       SQLite support for Dovecot
+ dovecot-pgsql        PostgreSQL support for Dovecot
+ dovecot-sieve        sieve filters support for Dovecot
+ dovecot-mysql        MySQL support for Dovecot
+ dovecot-imapd        secure IMAP server that supports mbox, maildir, dbox and
+
+The following packages are only half configured, probably due to problems
+configuring them the first time.  The configuration should be retried using
+dpkg --configure <package> or the configure menu option in dselect:
+ dovecot-core         secure mail server that supports mbox, maildir, dbox and
+
+The following packages are missing the md5sums control file in the
+database, they need to be reinstalled:
+ dhcp3-client         ISC DHCP server (transitional package)
+ libdb4.2             Berkeley v4.2 Database Libraries [runtime]
+ libdb4.3             Berkeley v4.3 Database Libraries [runtime]
+ libdb4.4             Berkeley v4.4 Database Libraries [runtime]
+ mpack                tools for encoding/decoding MIME messages
+ dhcp3-common         ISC DHCP common files (transitional package)
+ binutils             GNU assembler, linker and binary utilities
+
+Run $ sudo apt-get dist-upgrade to see dovecot errors during upgrade (partially installed)
+
+For dovecot use: dpkg --configure dovecot
+or reinstall
+
+@@@@@ END OF LOGS 3 @@@@@
+
+
+Again if errors:
+$ sudo apt-get dist-upgrade -d
+$ sudo apt-get dist-upgrade
+
+$ dpkg --audit
+$ dpkg --get-selections | grep dovecot
+Output:
+dovecot                                install
+
+$ sudo aptitude
+
+At this point I realized that it was better to do not upgrade this server, according to this log file entry: 
+This upgrade section is unfinished. I would need to installed mysql server 5.5 as miminm but I know that it is only
+compatible with mysql cluster 7.2 and would require more RAM memory resource to simulate the cluster ndb. Do not proceed in production.
+
+In conclusion, you have to test the dist-upgrade out of production in a testing environment or upgrade the system version and resolve the issues/problems after that. The upgrade will be positive since the up to date, full featured system and security view points, but negative in some cases, because you require more space and resources, take the time and the risk to upgrade, and some applications perhaps are going to stop working for some time or for the rest of your life :S, and you will have to look for solutions.

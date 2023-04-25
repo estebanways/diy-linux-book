@@ -1,0 +1,125 @@
+Mount ISO image is very easy in Gnome. make right click on the ISO image and then choose the option mount. A new virtual drive  containing the image files will appear in the file manager Nautilus.
+
+To mount external drives and pendrives as root, open the terminal, login as root  with the command 'su' and then run:
+# nautilus
+
+Reference:
+Web: http://www.cyberciti.biz/tips/how-to-mount-iso-image-under-linux.html
+File: Mount CDROM ISO.pdf
+
+Mount manually:
+
+To mount ISOs:
+1) Login as the root user (administrator), or switch to it using the following command:
+$ su -
+2) Create the mount point directory, i.e.:
+# mkdir -p /mnt/disk
+3) Mount the iso file, IE: disk1.iso:
+# mount -o loop disk1.iso /mnt/disk
+4) List files stored inside an ISO image:
+$ cd /mnt/disk
+$ ls -l
+
+Umount manually:
+Identify the devices:
+Open the application Disks, or use something like:
+$ df -h
+$ mount | grep "/dev"
+$ sudo fdisk -l
+$ sudo nano /etc/fstab
+Debusy the device going out of their dirs with "$ cd .." and run the next command:
+# umount /dev/<DEVICE>
+
+To force umounting:
+# umount -f /dev/<DEVICE>
+
+Fource mount after read or I/O error:
+This usually happends after you couldn't/fogot umount.
+# mount -t ntfs-3g /dev/sdb1 /mnt/myhddrive -o force
+At this point it is a good idea to backup the data, before work on teh issue.
+
+To mount NTFS HDs/SSDs:
+Linux uses VFS (Virtual File System) to be able to mount many filesystems, like NTFS, FAT, XFS, etc. You can add more support for other filesystems in the Kernel and install tools to format and manage them, for example, mkfs. See the availability:
+$ sudo mkfs. (And press TAB key)
+Need to setup repos main, contrib and non-free to install NTFS package ntfs-3g:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get install ntfs-3g
+# mount -t ntfs-3g /dev/sdb1 /mnt/myhddrive
+
+To fix a corrupt NTFS partition from Linux:
+$ sudo ntfsfix /dev/<name>
+$ sudo reboot
+Or with systemd:
+# systemctl reboot
+Verify that the device is working.
+
+To fix NTFS from Windows (Preferable):
+Check Disk then performs an analysis of the disk and returns a status message regarding any problems it encounters.Unless you specify further options, Check Disk won’t repair problems, however.To find and repair errors on drive C, use this command: 
+cmd> chkdsk /f C:
+The complete syntax to Check Disk is as follows: 
+CHKDSK [volume[[path]filename]] [/F] [/V] [/R] [/X] [/I] [/C] [/L[:size]]
+The options and switches for Check Disk are used as follows: 
+volume Sets the volume to work with 
+path/filename Specifies files to check for fragmentation (FAT16 and FAT32 only) 
+/F Fixes errors on the disk 
+/V Displays the full path and name of every file on the disk (FAT16 and FAT32); displays cleanup messages if any (NTFS) 
+/R Locates bad sectors and recovers readable information (implies /F) 
+/X Forces the volume to dismount first if necessary (implies /F) 
+/I Performs a minimum check of index entries (NTFS only) 
+/C Skips checking of cycles within the folder structure (NTFS only) 
+/L:size Sets the log file size (NTFS only) 
+/B Re-evaluates bad clusters on the volume (NTFS only; implies /R) 
+References:
+Web: https://technet.microsoft.com/en-us/magazine/ee872425.aspx
+File: Run Check Disk from a Command Line to Check for and fix Disk Errors.pdf
+Note:
+There is another issue with the NTFS external drives. Their unlock software only runs in Windows. VirutalBox USB is not working and I don't want to use KVM, so I am not encrypting content anymore but password and secret files with VeraCrypt, software. See VeraCrypt guide for details.
+
+Linux partitions and storage devices - Force fsck on the Next Reboot or Boot Sequence:
+References:
+Topic: /forcefsck and 'shutdown -rF' (old style for SysVinit)
+Web: http://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/
+File: Linux Force fsck on the Next Reboot or Boot Sequence.pdf
+
+Disable/enable fsck with systemd:
+You need to edit /etc/fstab. There is 1  at the end set to 1 to check you can toggle of by replacing the 1 by a 0.
+References:
+Web: https://ask.fedoraproject.org/en/question/45969/disabling-auto-dsck-systemd-service/
+File: Disabling auto-dsck systemd service - Ask Fedora_ Community Knowledge Base and Support Forum.pdf
+Topic: Issues with the mentioned disable/enable method
+Web: http://forums.debian.net/viewtopic.php?f=5&t=123199
+File: Debian User Forums • View topic - fsck on boot debian jessie.pdf
+
+Check and repair a Linux ext2/ext3/ext4 file system:
+
+Primarily, you can use fsck, with the device name, etc:
+$ man fsck
+
+You can also use e2fsck:
+Need to setup repos main, contrib and non-free to install NTFS package ntfs-3g:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get install e2fsck-static
+$ e2fsck /dev/<DEVICE>
+
+
+Use fsck since Gparted:
+Guide: Partitioning
+
+Another tool to restore deleted or broken partitions is Test Disk:
+Need to setup repos main, contrib and non-free to install NTFS package ntfs-3g:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-get install testdisk
+$ testdisk
+Press 'q' to exit the application.
+References:
+Web: http://www.taringa.net/post/linux/12296990/Test-Disk-y-recupera-tus-particiones-borradas-o-rotas.html
+File: Test Disk, y recupera tus particiones borradas o rotas - Taringa.pdf
+
+Repair defective sectors:
+(PENDING)
+
+
+

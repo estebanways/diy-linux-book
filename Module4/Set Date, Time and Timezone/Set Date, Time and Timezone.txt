@@ -1,0 +1,190 @@
+Topics:
+- Calendar
+- Date and Time
+- Timezone
+- Systemd timedatectl
+
+In Gnome the action seems easy, you go to menu Settings and then click on the option Date and Time, but let me tell that there are more powerful command line alternatives to take the control of this configuration. I am not saying Gnome is incomplete or buggy, but that's better to know the commands to clarify some important details you should know.
+
+- Calendar
+
+Display the calendr in the terminal:
+$ cal
+$ ncal
+
+- Date and Time
+
+The Hardware Clock: 
+This is a clock that runs  independently  of  any control  program running in the CPU and even when the machine is pow‐ered off.
+hwclock sets the kernel timezone to the value indicated by TZ and/or /usr/share/zoneinfo when you set the System Time using the  --hctosys option.
+
+Display the hardware clock:
+# hwclock
+Set up the hardware clock:
+# hwclock --set --date="2011-08-14 16:45:05"
+
+The System  Time:  
+This is the time kept by a clock inside the Linux kernel and driven by a timer interrupt.(On  an ISA machine, the timer interrupt is part of the ISA standard). It has meaning only while Linux is running on the machine. The System Time is the number of seconds since 00:00:00 January 1, 1970 UTC (or more succinctly, the number of seconds since 1969). The System Time is not an inte‐ger, though.  It has virtually infinite precision.
+The System Time is the time that matters. The Hardware Clock's basic purpose in a Linux system is to keep time when Linux is not running.
+You initialize the System Time to the time from the Hardware Clock when Linux starts up, and then never use the Hardware Clock  again.
+Note that in DOS, for which ISA was designed, the Hardware Clock is the only real time clock.
+It is important that the System Time not have any discontinuities such as would happen if you used the date(1L) program to set it while the system is running. You can, however, do whatever you want to the Hardware Clock while the system is running, and the next time Linux starts up, it will do so with the adjusted time from the Hardware Clock.
+
+Set the system time date and time:
+# date --set 1998-11-02
+# date --set 21:08:00
+
+More date examples:
+Convert seconds since the epoch (1970-01-01 UTC) to a date:
+$ date --date='@2147483647'
+Show  the  time  on the west coast of the US (use tzselect(1) to find TZ):
+$ TZ='America/Los_Angeles' date
+Show the local time for 9AM next Friday on the west coast of the US:
+$ date --date='TZ="America/Los_Angeles" 09:00 next Fri'
+Format date output:
+$ date +"%r %n%a %b %d, %Y"
+Output:
+12:05:00 PM  
+Thu Oct 11, 2012
+End of Output.
+
+NTP:
+Sync the time using Internet:
+$ sudo apt-get update
+$ sudo apt-get install ntp
+
+- Timezone
+
+For example, assume that your current timezone is UTC as shown below. You would
+like to change this to Pacific Time or something.
+$ date
+Output:
+Mon Sep 17 22:59:24 UTC 2010
+End of output.
+
+Method 1 - Change the system timezone using /etc/localtime file as root:
+
+On some distributions (for example, CentOS), the timezone is controlled by
+/etc/localtime file.
+Delete the current localtime file under /etc/ directory
+$ cd /etc
+Remove the file localtime:
+$ sudo rm localtime
+All US timezones are located under under the /usr/share/zoneinfo/US directory as shown
+below:
+# ls /usr/share/zoneinfo/US/
+Output:
+Alaska
+Arizona
+Aleutian
+Central
+Eastern
+East-Indiana
+Hawaii
+Indiana-Starke
+Michigan
+Mountain
+Pacific
+Samoa
+End of Output.
+Note: For other country timezones, browse the /usr/share/zoneinfo directory
+Link the Pacific file from the above US directory to the /etc/localtime directory as shown
+below.
+$ cd /etc
+$ sudo ln -s /usr/share/zoneinfo/US/Pacific localtime
+Now the timezone on your Linux system is changed to US Pacific time as shown below.
+$ date
+Output:
+Mon Sep 17 23:10:14 PDT 2010
+End of Output.
+
+Method 2 - Change the system timezone using /etc/timezone file as root:
+
+On some distributions (for example, Ubuntu), the timezone is controlled by
+/etc/timezone file.
+For example, your current timezone might be US Eastern time (New York) as shown
+below.
+$ cat /etc/timezone
+America/New_York
+To change this to US Pacific time (Los Angeles), modify the /etc/timezone file as shown
+below.
+$ sudo nano /etc/timezone
+America/Los_Angeles
+Also, set the timezone from the command line using the TZ variable.
+# export TZ=America/Los_Angeles
+
+Method 3 - Change the system timezone reconfiguring the timezone package as root:
+
+Debian/Ubuntu: 
+$ sudo dpkg-reconfigure tzdata
+
+Method 4 - Change the current user timezone using the command tzdata as current user:
+$ tzselect
+
+Once the time is set, you can make this change permanent for yourself by appending the line:
+TZ='America/New_York'; export TZ
+to the file '.profile' in your home directory; then log out and log in again.
+
+Another way to make this change permanent is to log as root and:
+1. Remove the file localtime
+2. Create the file as a symbolic link
+References:
+Section: "Method 1 - Change the system timezone using /etc/localtime file as root:" 
+
+References:
+Web: http://www.thegeekstuff.com/2010/09/change-timezone-in-linux
+File: 2 methods to change timezone.pdf
+
+- Systemd timedatectl
+
+With systemd you can use the timedatectl command to set or view the current date and time and timezone.
+References:
+Guide: Systemd
+
+Display the current date and time:
+$ timedatectl
+Change the current date. Set time = YYYY-MM-DD:
+$ sudo timedatectl set-time '2015-12-01'
+$ sudo timedatectl
+
+For example, set the date ’23rd Nov 2015′ and time to ‘8:10:40 am’, enter:
+# timedatectl set-time '2015-11-23 08:10:40'
+# date
+
+Set the time zone:
+To see list all available time zones, enter:
+$ timedatectl list-timezones
+$ timedatectl list-timezones | more
+$ timedatectl list-timezones | grep -i asia
+$ timedatectl list-timezones | grep America/New
+To set the time zone to ‘Asia/Kolkata’, enter:
+# timedatectl set-timezone 'Asia/Kolkata'
+Verify it:
+# timedatectl
+Output:
+Local time: Mon 2015-11-23 08:17:04 IST
+Universal time: Mon 2015-11-23 02:47:04 UTC
+RTC time: Mon 2015-11-23 13:16:09
+Time zone: Asia/Kolkata (IST, +0530)
+NTP enabled: no
+NTP synchronized: no
+RTC in local TZ: no
+DST active: n/a
+End of Output.
+
+Synchronize the system clock with a remote server using NTP:
+# timedatectl set-ntp yes
+Verify it:
+$ timedatectl
+
+
+Refereces:
+Topic: Debian Wiki: DateTime
+Web: https://wiki.debian.org/DateTime
+File: DateTime - Debian Wiki.pdf
+Topic: Linux Set Date and Time From a Command Prompt
+Web: http://www.cyberciti.biz/faq/howto-set-date-time-from-linux-command-prompt/
+File: Linux Set Date and Time From a Command Prompt.pdf
+Topic: Playing more with date. 
+Web: https://www.linux.com/learn/how-change-linux-date-and-time-simple-commands
+File: How to Change the Linux Date and Time_ Simple Commands _ Linux.pdf

@@ -1,0 +1,340 @@
+abinit - package for electronic structure calculations
+abinit-data - package for electronic structure calculations (Data files)
+abinit-doc - package for electronic structure calculations (Documentation)
+abx - audio ABX testing software
+alure-doc - AL Utilities REtooled (documentation)
+alure-utils - AL Utilities REtooled (utilities)
+libalure-dev - AL Utilities REtooled (development files)
+libalure1 - AL Utilities REtooled (shared library)
+amsynth - two oscillator software synthesizer
+ap-utils - Access Point SNMP Utils for Linux
+asterisk-core-sounds-en-wav - asterisk PBX sound files - en-us/wav
+asterisk-core-sounds-es-wav - asterisk PBX sound files - es-mx/wav
+asterisk-core-sounds-fr-wav - asterisk PBX sound files - fr-ca/wav
+asterisk-core-sounds-it-wav - asterisk PBX sound files - it-it/wav
+asterisk-core-sounds-ru-wav - asterisk PBX sound files - ru-ru/wav
+asterisk-moh-opsound-wav - asterisk extra sound files - English/wav
+asterisk-prompt-it-menardi-wav - asterisk PBX Italian sound files - wav prompts
+asunder - graphical audio CD ripper and encoder
+audacious - small and fast audio player which supports lots of formats
+audacious-dev - audacious development files
+libaudcore3 - audacious core engine library
+libaudgui3 - audacious media player (libaudgui shared library)
+libaudqt0 - audacious media player (libaudqt shared library)
+libaudtag2 - audacious media player (libaudtag shared library)
+audacious-plugins - Base plugins for audacious
+audacity - fast, cross-platform audio editor
+audex - Audio grabber tool for KDE
+audiofile-tools - sfinfo and sfconvert tools
+libaudiofile-dev - Open-source version of SGI's audiofile library (header files)
+libaudiofile1 - Open-source version of SGI's audiofile library
+python-audioread - Backend-agnostic audio decoding Python package
+python3-audioread - Backend-agnostic audio decoding Python 3 package
+bart - tools for computational magnetic resonance imaging
+bchunk - CD image format conversion from bin/cue to iso/cdr
+blender - Very fast and versatile 3D modeller/renderer
+blender-data - Very fast and versatile 3D modeller/renderer - data package
+blop - Bandlimited wavetable-based oscillator plugins for LADSPA hosts
+libboost-wave-dev - C99/C++ preprocessor library (default version)
+libboost-wave1.62-dev - C99/C++ preprocessor library
+libboost-wave1.62.0 - C99/C++ preprocessor library
+bplay - Buffered audio file player/recorder
+burn - command-line tool for writing optical media
+coop-computing-tools - cooperative computing tools
+cdparanoia - audio extraction tool for sampling CDs
+cdparanoia-dbg - audio extraction tool for sampling CDs (debug)
+libcdparanoia-dev - audio extraction tool for sampling CDs (development)
+libcdparanoia0 - audio extraction tool for sampling CDs (library)
+icedax - Creates WAV files from audio CDs
+libchealpix-dev - HEALPix representation of spherical data - C development library
+libchealpix0 - HEALPix representation of spherical data - C shared library
+chemps2 - Executable to call libchemps2-2 from the command line
+chemps2-doc - Documentation of the libchemps2-2 package
+libchemps2-2 - Spin-adapted DMRG for ab initio quantum chemistry
+libchemps2-dev - C++ headers, static library, and symlink for libchemps2-2
+python-chemps2 - Python 2 interface for libchemps2-2
+cmus - lightweight ncurses audio player
+cp2k - Ab Initio Molecular Dynamics
+libcpldrs26 - CPL higher level data processing algorithms
+cpl-plugin-fors - ESO data reduction pipeline for the FORS1/2 instruments
+cpl-plugin-uves - ESO data reduction pipeline for the UVES instrument
+cpl-plugin-vimos - ESO data reduction pipeline for the VIMOS instrument
+cpl-plugin-xshoo - ESO data reduction pipeline for the XSHOOTER instrument
+cplay - A front-end for various audio players
+cue2toc - converts CUE files to cdrdao's TOC format
+cuetools - tools for manipulating CUE/TOC files
+cynthiune.app - Music player for GNUstep
+debian-edu-artwork-softwaves - Debian Edu Softwaves (stretch) themes and artwork
+dgedit - drum kit editor for DrumGizmo
+din - digital audio synthesizer
+dir2ogg - audio file converter into ogg-vorbis format
+drumgizmo - Audio sampler plugin and stand-alone app that simulates a real drum kit
+libecereaudio0 - Ecere Audio
+elk-lapw - All-Electron Density-Functional Electronic Structure Code
+eso-pipelines - ESO VLT Instrument pipeline collection
+espeak - Multi-lingual software speech synthesizer
+espeak-ng - Multi-lingual software speech synthesizer
+quantum-espresso - Electronic-Structure and Ab-Initio Molecular Dynamics Suite
+quantum-espresso-data - Electronic-Structure and Ab-Initio Molecular Dynamics Suite (Documentation)
+extace - waveform viewer
+fapg - Fast Audio Playlist Generator
+fische - stand-alone sound visualisation for Linux
+flake - Alternative encoder for the Free Lossless Audio Codec
+libflake-dev - Alternative encoder for the Free Lossless Audio Codec -- Development files
+fmit - Free Music Instrument Tuner
+freecad - Extensible Open Source CAx program (alpha)
+freehdl - VHDL simulator for Linux
+libfreehdl0 - VHDL simulator for Linux (shared libraries)
+libfreehdl0-dev - VHDL simulator for Linux (development headers)
+funnyboat - side scrolling arcade shooter game on a steamboat
+fuse-emulator-utils - The Free Unix Spectrum Emulator - Utilities
+gimp-plugin-registry - repository of optional extensions for GIMP
+gjay - An automatic and learning DJ for audacious
+browser-plugin-gnash - GNU Shockwave Flash (SWF) player - Plugin for Mozilla and derivatives
+gnash - GNU Shockwave Flash (SWF) player
+gnash-common - GNU Shockwave Flash (SWF) player - Common files/libraries
+gnash-cygnal - GNU Shockwave Flash (SWF) player - Media server
+gnash-dbg - GNU Shockwave Flash (SWF) player - Debug symbols
+gnash-dev - GNU Shockwave Flash (SWF) player - Development files
+gnash-doc - GNU Shockwave Flash (SWF) player - API documentation
+gnash-ext-fileio - GNU Shockwave Flash (SWF) player - Fileio extension
+gnash-ext-lirc - GNU Shockwave Flash (SWF) player - LIRC extension
+gnash-ext-mysql - GNU Shockwave Flash (SWF) player - MySQL extension
+gnash-tools - GNU Shockwave Flash (SWF) player - Command-line Tools
+klash - GNU Shockwave Flash (SWF) player - Standalone player for KDE
+konqueror-plugin-gnash - GNU Shockwave Flash (SWF) player - Plugin for Konqueror
+python-gtk-gnash - GNU Shockwave Flash (SWF) player - Python bindings
+libgnuradio-wavelet3.7.10 - gnuradio wavelet functions
+gpaw - DFT and beyond within the projector-augmented wave method
+gr-osmosdr - Gnuradio blocks from the OsmoSDR project
+gramofile - transfer sound from gramophone records to CD
+gtkwave - VCD (Value Change Dump) file waveform viewer
+gvb - visual simulator of 1 and 2-dimensional vibrations
+gwave - waveform viewer eg for spice simulators
+gwc - Audio file denoiser
+python-hachoir-metadata - Program to extract metadata using Hachoir library
+python-hachoir-parser - Package of Hachoir parsers used to open binary files
+libhealpix-cxx-dev - representation of spherical data - C++ development library
+libhealpix-cxx0 - representation of spherical data - C++ shared library
+libhealpix-java - HEALPix representation of spherical data - Java library
+libhealpix-java-doc - HEALPix representation of spherical data - Java documentation
+python-healpy-data - HEALPix representation of spherical data - Python data
+horgand - JACK capable organ softsynth
+horgand-data - JACK capable organ softsynth (data files)
+htsengine - frontend of HMM-based speech synthesis engine
+libhtsengine-dev - Development files for HMM-based speech synthesis engine API
+libhtsengine1 - HMM-based speech synthesis engine API
+libhugs-alut-bundled - A binding for the OpenAL Utility Toolkit
+hydrogen - advanced drum machine/step sequencer
+jack - Rip and encode CDs with one command
+jack-capture - program for recording soundfiles with jack
+jnoise - white and pink noise generator
+libjs-jquery-jplayer - HTML5 Audio & Video for jQuery with a Flash fallback
+kid3 - KDE audio tag editor
+kid3-cli - Command line audio tag editor
+kid3-core - Audio tag editor core libraries and data
+kid3-qt - Audio tag editor
+kradio4 - comfortable radio application for KDE
+kwave - sound editor for KDE
+laserboy - Laser show software for soundcard operation
+laserboy-indep - Laser show software for soundcard operation - data files
+ldm-themes - Collection of themes for the LTSP login manager
+libao-common - Cross Platform Audio Output Library (Common files)
+libao-dbg - Cross Platform Audio Output Library Debug Symbols
+libao-dev - Cross Platform Audio Output Library Development
+libao4 - Cross Platform Audio Output Library
+libaudclient-dev - audacious D-Bus remote control library (development files)
+libaudclient2 - audacious D-Bus remote control library
+libaudio-scan-perl - module for reading metadata from common audio file formats
+libaudio-wav-perl - modules for manipulating WAV Audio files
+libccaudio2-2 - GNU ccAudio2 - a C++ class framework for processing audio files
+libccaudio2-dev - header files and static link library for GNU ccAudio
+epsilon-bin - Library for wavelet image compression - tools
+libepsilon-dev - Library for wavelet image compression - development files
+libepsilon1 - Library for wavelet image compression
+extract - displays meta-data from files of arbitrary type
+libextractor3 - extracts meta-data from files of arbitrary type (library)
+libg3d-plugins - plugins for the LibG3D library
+gigtools - command line tools for Gigasampler and DLS Level 1/2 files
+libimage-seek-perl - Perl module to find similar pictures in a library
+libimage-size-perl - module for determining image sizes in several common formats
+libinstpatch-1.0-0 - MIDI instrument editing library
+libinstpatch-dev - MIDI instrument editing library development files
+libinstpatch-doc - MIDI instrument editing library documentation
+libmediainfo-dev - library reading metadata from media files -- headers
+libmediainfo-doc - library for reading metadata from media files -- documentation
+libmediainfo0v5 - library for reading metadata from media files -- shared library
+python-mediainfodll - library for reading metadata from media files -- shared library
+python3-mediainfodll - library for reading metadata from media files -- shared library
+libmikmod-config - Portable sound library - development binaries
+libmikmod-dev - Portable sound library - development files
+libmikmod3 - Portable sound library
+libmpcdec-dev - MusePack decoder - development files
+libmpcdec6 - MusePack decoder - library
+musepack-tools - MusePack commandline utilities
+libsndfile1 - Library for reading/writing audio files
+lightspeed - Shows how objects moving at relativistic speeds look like
+lirc-x - infra-red remote control support - X utilities
+ll-scope - an oscilloscope DSSI plugin
+mcp-plugins - LADSPA plugins designed for Alsa Modular Synth
+mda-lv2 - Paul Kellett's MDA plugins ported to LV2
+mediainfo - command-line utility for reading information from audio/video files
+mediainfo-gui - graphical utility for reading information from audio/video files
+mhwaveedit - Simple and fast GTK2 sound editor
+milkytracker - music creation tool inspired by Fast Tracker 2
+minimodem - general-purpose software audio FSK modem
+mixxx - Digital Disc Jockey Interface
+mixxx-data - Digital Disc Jockey Interface -- data files
+mm3d - OpenGL based 3D model editor
+moc - ncurses based console audio player
+monitoring-plugins-standard - Plugins for nagios compatible monitoring systems (standard)
+moosic - Daemon/client combo to easily queue music files for playing
+morse2ascii - tool for decoding the morse codes from a PCM WAV file
+mp3burn - burn audio CDs directly from MP3, Ogg Vorbis, or FLAC files
+mp3cd - Burns normalized audio CDs from lists of MP3s/WAVs/Oggs/FLACs
+mp3roaster - Perl hack for burning audio CDs out of MP3/OGG/FLAC/WAV files
+mpd - Music Player Daemon
+multimail - Offline reader for Blue Wave, QWK, OMEN and SOUP
+music123 - Command-line shell for sound-file players
+pypy-mutagen - audio metadata editing library (PyPy)
+python-mutagen - audio metadata editing library
+python-mutagen-doc - audio metadata editing library - documentation
+python3-mutagen - audio metadata editing library (Python 3)
+normalize-audio - adjusts the volume of WAV, MP3 and OGG files to a standard volume level
+octave-ltfat - Large Time/Frequency Analysis Toolbox
+octave-ltfat-common - Large Time/Frequency Analysis Toolbox (arch-indep files)
+octave-signal - signal processing functions for Octave
+omins - collection of LADSPA plugins aimed at modular synthesizers
+open-invaders - Space Invaders clone
+open-invaders-data - Space Invaders clone (data package)
+libopenjp2-7 - JPEG 2000 image compression/decompression library
+libopenjp2-7-dev - development files for OpenJPEG, a JPEG 2000 image library
+libopenjp3d7 - JP3D (JPEG 2000 / Part 10) image compression/decompression library
+libopenjpip7 - JPEG 2000 Interactive Protocol
+libopenzwave-doc - documentation for the openzwave library
+libopenzwave1.5 - API to use a Z-Wave controller
+libopenzwave1.5-dev - header files for the openzwave library
+openzwave - Sample Program for libopenzwave
+libotbwavelet-5.8-1 - ORFEO Toolbox library - OTBWavelet
+pacpl - multi-purpose audio converter/ripper/tagger script
+paulstretch - Extreme sound time-stretch
+pd-bassemu - Pd object for transistor bass emulation
+pd-creb - Tom's bag of trick for Pure Data (Pd)
+pd-cxc - Pd library for working with patterns and numbers
+pd-ext13 - collection of file and message objects for Pd by dieb13
+pd-lyonpotpourri - potpourri of Pd objects for synthesizing with audio
+phasex - Phase Harmonic Advanced Synthesis EXperiment
+psi4 - Quantum Chemical Program Suite
+psi3 - Quantum Chemical Program Suite
+puddletag - simple, powerful audio tag editor
+pulseaudio-utils - Command line tools for the PulseAudio sound server
+pulseaudio-dlna - Stream audio to DLNA devices and Chromecasts
+python-pysynphot - Python Synthetic Photometry Utilities
+python3-pysynphot - Python 3 Synthetic Photometry Utilities
+python-dtcwt - Dual-Tree Complex Wavelet Transform library for Python 2
+python-dtcwt-doc - Documentation of the Python implementation of the DT-CWT
+python3-dtcwt - Dual-Tree Complex Wavelet Transform library for Python 3
+pyvnc2swf - screen recording tool with Flash (SWF) output
+python-pywt - Python extension implementing of wavelet transformations
+python-pywt-doc - Python extension implementing of wavelet transformations (Documentation)
+python3-pywt - Python3 extension implementing of wavelet transformations
+qjackrcd - Qt4 application to record JACK server outputs
+qmidiarp - MIDI arpeggiator for ALSA
+qmmp - feature-rich audio player with support of many formats
+quelcom - Command line editing tools for MP3 and WAV files
+exfalso - audio tag editor for GTK+
+quodlibet - audio library manager and player for GTK3
+r-cran-rcppgsl - GNU R package for integration with the GNU GSL
+ruby-carrierwave - Ruby file upload library
+ruby-wavefile - Pure Ruby library for reading and writing Wave sound files (*.wav)
+libsdl-sound1.2 - Sound library for Simple DirectMedia Layer 1.2, libraries
+libsdl-sound1.2-dev - Sound library for Simple DirectMedia Layer 1.2, development files
+shineenc - Fixed-point MP3 encoding library - frontend binary
+shntool - multi-purpose tool for manipulating and analyzing WAV files
+sidplay-base - Music player for tunes from C64 and C128 (console)
+siggen - Waveform generation tools
+silverjuke - jukebox, karaoke, and kiosk mode mp3 player
+libsnack-alsa - Sound extension to Tcl/Tk and Python/Tkinter - ALSA files
+libsnack-oss - Sound extension to Tcl/Tk and Python/Tkinter - OSS files
+python-tksnack - Sound extension to Tcl/Tk and Python/Tkinter - Python 2.x library
+python3-tksnack - Sound extension to Tcl/Tk and Python/Tkinter - Python 3.x library
+tcl-snack - Sound extension to Tcl/Tk and Python/Tkinter - Tcl/Tk library
+tcl-snack-dev - Sound extension to Tcl/Tk and Python/Tkinter - development files
+tcl-snack-doc - Sound extension to Tcl/Tk and Python/Tkinter - documentation
+sonic - Simple utility to speed up or slow down speech
+soundconverter - GNOME application to convert audio files into other formats
+soundscaperenderer - tool for real-time spatial audio reproduction
+soundscaperenderer-common - tool for real-time spatial audio reproduction (common-files)
+soundscaperenderer-nox - tool for real-time spatial audio reproduction (without X support)
+soundstretch - Stretches and pitch-shifts sound independently
+soundstretch-dbg - Debugging symbols for the soundstretch program
+libsox-fmt-base - Minimal set of SoX format libraries
+sox - Swiss army knife of sound processing
+speech-tools - Edinburgh Speech Tools - user binaries
+squeezelite - lightweight headless Squeezebox emulator - ALSA version
+squeezelite-pa - lightweight headless Squeezebox emulator - PortAudio version
+steghide - steganography hiding tool
+steghide-doc - steganography hiding tool - documentation files
+stymulator - Curses based player and converter for the YM chiptune format
+libsubtitleeditor-dev - subtitleeditor lib - development files
+libsubtitleeditor0 - subtitleeditor lib - runtime files
+subtitleeditor - Graphical subtitle editor with sound waves representation
+libswami-dev - MIDI instrument editor - development files
+libswami0 - MIDI instrument editor - shared libraries
+swami - MIDI instrument editor application
+sweep - Audio editor and live playback tool
+sweep-dev - Audio editor and live playback tool (development)
+swfmill - xml2swf and swf2xml processor
+swftools - Collection of utilities for SWF file manipulation/creation
+swftools-dbg - Collection of utilities for SWF file manipulation/creation (debug)
+swh-lv2 - Steve Harris's SWH plugins ported to LV2
+swh-plugins - Steve Harris's LADSPA plugins
+libtag1-dev - audio meta-data library - development files
+libtag1-doc - audio meta-data library - API documentation
+libtag1v5 - audio meta-data library
+libtag1v5-vanilla - audio meta-data library - vanilla flavour
+libtagc0 - audio meta-data library - C bindings
+libtagc0-dev - audio meta-data library - development files for C bindings
+libtag-extras-dev - TagLib extras library - development files
+libtag-extras1 - TagLib extras library - support for more file formats
+tempest-for-eliza - demonstrate electromagnetic emissions from computer systems
+terminatorx - realtime audio synthesizer
+tessa - simulation of 3D optical systems with the FDTD method
+tessa-mpi - simulation of 3D optical systems using FDTD on MPI clusters
+testdisk - Partition scanner and disk recovery tool, and PhotoRec file recovery tool
+texlive-latex-extra - TeX Live: LaTeX additional packages
+timemachine - JACK audio recorder for spontaneous and conservatory use
+timidity - Software sound renderer (MIDI sequencer, MOD player)
+transcalc - microwave and RF transmission line calculator
+ttf-aenigma - 465 free TrueType fonts by Brian Kent
+vamp-examples - example Vamp plugins, host and RDF generator
+vco-plugins - LADSPA plugin sporting anti-aliased oscillators
+xul-ext-video-without-flash - extension to watch videos without the Flash plugin
+view3dscene - VRML / X3D browser, and a viewer for other 3D model formats
+libwaili-dev - WAILI is a wavelet transform library (develop. files)
+libwaili1c2 - WAILI is a wavelet transform library
+wav2cdr - Converts wav files into CD-ROM audio file format
+wavbreaker - tool to split wave files into multiple chunks
+wavemon - Wireless Device Monitoring Application
+wavesurfer - Sound Manipulation Program
+libwavpack-dev - audio codec (lossy and lossless) - development files
+libwavpack1 - audio codec (lossy and lossless) - library
+wavpack - audio codec (lossy and lossless) - encoder and decoder
+wavtool-pl - tool to concatenate wav files
+whysynth - DSSI Soft Synth Interface
+wildmidi - software MIDI player
+wings3d - Nendo-inspired 3D polygon mesh modeller
+wmwave - Monitor status of an 802.11 wireless ethernet link
+wsynth-dssi - hack on Xsynth-DSSI to allow wavetable synthesis
+xawtv-tools - television viewer - tools
+xcfa - X Convert File Audio
+xcfa-dbg - X Convert File Audio - debugging symbols
+xdesktopwaves - Simulation of water waves on the X Window System
+xfce4-goodies - enhancements for the Xfce4 Desktop Environment
+xfce4-wavelan-plugin - wavelan status plugin for the Xfce4 panel
+xmms2-plugin-wavpack - XMMS2 - WavPack decoder plug-in
+xscreensaver-data - Screen saver modules for screensaver frontends
+yaret - console tool to turn CDs into encoded music
+yorick-yeti - utility plugin for the Yorick language
+youtube-dl - downloader of videos from YouTube and other sites
+zita-resampler - resampler application written with libzita-resampler

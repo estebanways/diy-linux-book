@@ -1,0 +1,74 @@
+Change the option "Login screen menu":
+$ sudo nano /etc/X11/default-display-manager
+For Gnome 2 , edit as:
+/usr/sbin/gdm
+For Gnome 3 , edit as:
+/usr/sbin/gdm3
+For KDE , edit as below
+/usr/lib/kde4/bin/kdm
+For Xfce, choose lightdm and edit as:
+/usr/sbin/lightdm
+or you can install xdm:
+$ sudo apt-get install xdm
+References:
+Web: https://packages.debian.org/jessie/xdm
+File: Debian -- Details of package xdm in jessie.pdf
+Web: https://wiki.debian.org/Xfce
+File: Xfce - Debian Wiki.pdf
+Guides:
+KDE
+LXDE
+XFCE
+Gnome Shell Extensions
+Gnome Desktop Icons, Themes and Cursors
+
+Once the changes have been saved, reboot the computer to make run the new Display Manager and find your new "Login screen menu".
+
+You can change more things on the menu, such as the background and colors, but depends on every Display Manager where to put what to show in the system.
+
+Change the option 'System Default' in the login screen menu:
+$ sudo update-alternatives --get-selections
+$ sudo update-alternatives --config x-session-manager
+And then choose an option
+
+References:
+Web: http://superuser.com/questions/376107/how-change-the-default-desktop-manager-in-debian
+File: linux - How change the default desktop manager in debian_ - Super User.pdf
+
+Slim:
+Is a desktop-independent graphical login manager for X11.
+Web: https://packages.debian.org/jessie/x11/slim
+File: Debian -- Details of package slim in jessie.pdf
+
+Change the login background: 
+Web: http://www.linuxquestions.org/questions/debian-26/changing-the-login-screen-background-in-debian-wheezy-lxde-4175446494/
+File: Changing The Login Screen Background in Debian Wheezy(LXDE)_.pdf
+
+Add new input sources (keyboard or keyboard configuration (layout)) to the login screen:
+References:
+Topic: Look for the section Keyboard
+Guide:
+Set Keyboard, Region and Language
+
+Note:
+Sometimes, when someone changes the "x-session manager" it is impossible to return to a previous Desktops Environment used. That could happens after a log out or even after a reboot or a power off. To resolve that problem we can try these alternatives:
+1. Change the current x-session manager, using the current guide, and then try to log in the environment again.
+2. Identify the running x-session manager service, and then stop and start the service, using a command like in the next example:
+Identify the x-session manager version:
+$ sudo dpkg -l | grep 'gdm'
+Output:
+ii  gdm3                                                             3.22.3-3+deb9u1                             amd64        GNOME Display Manager
+ii  gir1.2-gdm-1.0                                                   3.22.3-3+deb9u1                             amd64        GObject introspection data for the GNOME Display Manager
+ii  libgdm1                                                          3.22.3-3+deb9u1 
+End of output.
+Identify the status of the service and then restart it or stop it and start it (Systemd services):
+Display the services list, in order to identify the x-session manager:
+$ sudo systemd
+Display the status, attempt to restart the service, or finally stop it and restart it:
+$ sudo systemd status gdm.service
+$ sudo systemd restart gdm.service
+$ sudo systemd stop gdm.service
+$ sudo systemd start gdm.service
+3. If the last alternatives don't resolve the issue, reboot the computer and that is going to work.
+4. If nothing works as well, you can always un-install re-install any of your x-session managers.
+

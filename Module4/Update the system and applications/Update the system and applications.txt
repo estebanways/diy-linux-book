@@ -1,0 +1,186 @@
+Topics:
+- Prevent a package from being updated
+- To update the system and upgrade programs installed with DPKG, Gdebi or APT in Debian
+- Checkrestart
+- How to update programs that were not installed using APT, DPKG or Gdebi
+
+
+- Prevent a package from being updated:
+
+If you want to update all the packages other than one in your debian server follow this procedure, there are three ways of holding back packages, with dpkg, aptitude or with dselect.
+
+-- Using dpkg:
+Put a package on hold:
+$ echo "package hold" | dpkg --set-selections
+Example:
+$ echo "apache2 hold" | dpkg --set-selections
+Remove the hold:
+$ echo "package install" | dpkg --set-selections
+Example:
+$ echo "apache2 install" | dpkg --set-selections
+Knowing the status of your packages:
+$ dpkg --get-selections
+
+-- Using aptitude:
+With aptitude, you can hold a package using:
+# aptitude hold package_name
+Example:
+# aptitude hold apache2
+And remove the hold with:
+$ sudo aptitude unhold package_name
+Example:
+# aptitude unhold apache2
+References:
+Topic: To install aptitude, section: "- Check that no packages are On Hold Or In Any Half Installed State".
+Guide: Update the system and applications.
+
+-- Using dselect:
+With dselect, you just have to enter the [S]elect screen, find the package you wish to hold in its present state, and press the `=' key (or `H'). The changes will go live immediately after you exit the [S]elect screen.
+$ apt-get update
+$ apt-get install dselect
+
+-- More options:
+There’s also the dpkg-hold, dpkg-unhold, dpkg-purge, and dpkg-remove scripts in the dlocate package. They’re trivial wrapper scripts for the ‘echo “package hold” | dpkg –set-selections’ method mentioned above. dpkg-unhold is a bit of a misnomer. it actually flags the package for installation. if it was held, it’s now unheld. if it wasn’t, it’s now marked for installation in the next apt-get/aptitude/whatever upgrade.
+
+References:
+Topic: Putting Debian packages on hold
+Web:  https://administratosphere.wordpress.com/2011/07/13/putting-debian-packages-on-hold/
+File: Putting Debian packages on hold _ UNIX Administratosphere.pdf
+Topic: How to prevent a package from being updated in Debian
+Web: http://www.debianadmin.com/how-to-prevent-a-package-from-being-updated-in-debian.html
+File: How to prevent a package from being updated in Debian _ Debian Admin.pdf
+
+- To update the system and upgrade programs installed with DPKG, Gdebi or APT in Debian:
+
+Normally, the system will say you what of the programs installed with APT have to update, no configure the notifications.
+
+Check the file /etc/apt/sources.list and then use the graphical tool to update, 
+or use:
+# apt-get update
+# apt-get -u upgrade 
+In my case the tool downloaded only 15 MB the first run, because I have installed the newest release.
+
+Run the task once a week to keep your system up to date ans as secure as possible.
+
+In case of you have packages like dnsutils on hold:
+Example:
+# apt-get upgrade
+Output:
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following packages have been kept back:
+  bind9-host dnsutils libbind9-60 libdns64 libisc60 libisccfg60 liblwres60
+The following packages will be upgraded:
+  libisccc60
+1 upgraded, 0 newly installed, 0 to remove and 7 not upgraded.
+Need to get 29.9kB of archives.
+After this operation, 0B of additional disk space will be used.
+Do you want to continue [Y/n]? n
+Abort.
+End of Output.
+Notice the line that says: "The following packages have been kept back"
+
+- Checkrestart:
+
+Some applications and services need to restart after the update or security update is complete, but you don't notice it.
+What you have to do is:
+$ sudo apt‐get install debian‐goodies 
+$ sudo checkrestart 
+For example, below is a Debian Wheezy system that is completely up to date with apt-get updates. Most admins
+would assume all is well when actually their system still has unpatched code or services running. Eek.
+For processes that do not have any init or other script to restart, checkrestart will list the PID so you can
+investigate that process on how to best restart it.
+$ sudo checkrestart
+Output:
+Found 84 processes using old versions of upgraded files 
+(23 distinct programs) 
+(15 distinct packages) 
+ 
+Of these, 13 seem to contain init scripts that can be used to restart them: 
+The following packages seem to have init scripts that could be used 
+to restart them: 
+newrelic‐sysmond: 
+1777 /usr/sbin/nrsysmond 
+18114 /usr/sbin/nrsysmond 
+nslcd: 
+1754 /usr/sbin/nslcd 
+postfix: 
+2028 /usr/lib/postfix/qmgr 
+3806 /usr/lib/postfix/tlsmgr 
+2009 /usr/lib/postfix/master 
+openntpd: 
+1870 /usr/sbin/ntpd 
+1869 /usr/sbin/ntpd 
+udev: 
+289 /sbin/udevd 
+php5‐fpm: 
+15985 /usr/sbin/php5‐fpm 
+31018 /usr/sbin/php5‐fpm 
+31406 /usr/sbin/php5‐fpm 
+26885 /usr/sbin/php5‐fpm 
+cron: 
+1844 /usr/sbin/cron 
+openssh‐server: 
+5265 /usr/sbin/sshd 
+32166 /usr/sbin/sshd 
+32164 /usr/sbin/sshd 
+32203 /usr/sbin/sshd 
+32201 /usr/sbin/sshd 
+nginx‐full: 
+7860 /usr/sbin/nginx 
+7856 /usr/sbin/nginx 
+7857 /usr/sbin/nginx 
+7858 /usr/sbin/nginx 
+7859 /usr/sbin/nginx 
+rsyslog: 
+1698 /usr/sbin/rsyslogd 
+redis‐server: 
+1895 /usr/bin/redis‐server 
+memcached: 
+1826 /usr/bin/memcached 
+dbus: 
+1781 /usr/bin/dbus‐daemon 
+ 
+These are the init scripts: 
+service newrelic‐sysmond restart 
+service nslcd restart 
+service postfix restart 
+service openntpd restart 
+service udev‐mtab restart 
+service udev restart 
+service php5‐fpm restart 
+service cron restart 
+service ssh restart 
+service nginx restart 
+service rsyslog restart 
+service redis‐server restart 
+service memcached restart 
+service dbus restart 
+ 
+These processes do not seem to have an associated init script to restart them: 
+python2.7‐minimal: 
+7739 /usr/bin/python2.7 
+
+End of Output.
+
+References:
+Web: https://scottlinux.com/2014/08/13/important-use-checkrestart-on-debian-after-installing-security-updates/
+File: /media/esteban/HP8GB/Documents/WIP/Important_ Use checkrestart on Debian after installing security updates – scottlinux.pdf 
+
+- How to update programs that were not installed using APT, DPKG or Gdebi:
+
+Take care on how every program gets up to date. 
+
+If you upgrade your system, files under the /usr tree get overwritten, such as /usr/bin, /usr/sbin, /usr/src etc. However, anything under /usr/local will not be touched. This is why all the software you installed separately should go to /usr/local tree.
+Reference:
+This is mentioned in the next guide, section "usr/src/ VS /usr/local/src:"
+Source code & Debian forks source code
+
+Other programs will ask for an update when they start.
+
+Other you will have to ask them to check and download the updates periodically.
+
+To upgrade Gnome shell extensions, visit https://extensions.gnome.org/local/.
+References:
+This is mentioned in the guide: "Gnome Shell Extensions"

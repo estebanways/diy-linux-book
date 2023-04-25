@@ -1,0 +1,134 @@
+
+Correlation:
+
+MENU:					FUNCTIONS:	DATA:
+
+Main menu				check		dependencies.list
+
+Perform system update                  	update          -            		
+Install preferred applications          favs            favs.list              		
+Install preferred system utilities 	utilities	utilities.list			                                           
+Install preferred development tools     development     development.list                         
+Install Ubuntu Restricted Extras        codecs          -                          
+Install third-party applications        thirdparty      third-party/                                
+Install latest GNOME software           gnome           gnome-apps.list                          
+Configure system                        configure       gsettings.list                               
+Cleanup the system  			cleanup		purge.list
+
+
+To create submenus:
+We need to set up the new menu item in 4 places, under:
+Include files in DIY-Linux-post-install.sh
+MAIN Menu function in DIY-Linux-post-install.sh
+New menu item file name under functions/
+Function name in the function file under functions/
+
+
+--- New files: ---
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+DIY-Linux-post-install.sh						No				ubuntu-post-install-script.sh
+						check
+(MENU)
+Verify System information			sys-info
+Backup file /etc/apt/sources.list 		backup-sources		
+Add contrib and non-free on sources.list	repo-sections		
+Update sources in /etc/apt/			apt-update	
+Install DIY Linux Post-Install			diy-linux-post
+Update System and "auto-update-able" apps	update-sys
+Aptitude package manager			aptitude
+About						disp-about
+
+-------------+
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+check						No			dependencies.list		check
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+sys-info												
+		
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+backup-sources
+		
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+repo-sections													
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:	
+apt-update													
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+diy-linux-post								No				thirdparty
+
+(SUB-MENU)
+
+Install SoundNG Studio				soundng
+Install software from Official sources		ofsources
+Install software from Unofficial sources	unofsources
+Install everything				everything
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+update-sys																
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+aptitude													
+															
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+disp-about													
+
+-------------+
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+soundng													favs
+									SoundNG.list
+						audacity.conf
+						...
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+ofsources												favs
+						audacity.conf		Audacity.list           	
+						...			...
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+unofsources												favs	
+						adobe-digital-editions.install
+						adobe-digital-editions.config				
+						aptana-studio-3.install
+						aptana-studio-3.config
+						kxstudio.isntall
+						kxstudio.config
+						...
+
+FILE:						FUNCTION FILES:		DATA FILES:			ANCESTORS:
+everything												favs
+						soundng
+						ofsources
+						unofsources
+
+
+-------------+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

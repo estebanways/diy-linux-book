@@ -1,0 +1,10 @@
+Pending
+
+There are also good enterprise grade proprietary ESET and Kaspersky antiviruses.
+
+Run a scan:
+shell> clamscan –infected –remove –recursive /home
+
+References:
+
+

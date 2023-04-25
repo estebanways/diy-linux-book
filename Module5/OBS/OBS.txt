@@ -1,0 +1,14 @@
+Open Broadcaster Software (OBS)
+
+Install it from the Snap store
+Guide: Snap
+
+References:
+Topic: OBS software is not working in Debian Jessie nor Stretch (Debian 9 and 10)
+Guide: Static, shared dynamic and loadable libraries
+The software works on Ubuntu, so you can try to build the software cloned from GIT.
+Guides:
+Source code & Debian forks source code
+Build packages from source
+Linuxbrew - Git
+Linuxbrew - Git tools

@@ -1,0 +1,5 @@
+References:
+Topic: How to install Malware Detect software (Maldet) on your Ubuntu / Debian Linux Operating System
+Web: https://vpsineu.com/blog/how-to-install-malware-detect-software-maldet-on-your-
+ubuntu-debian-linux-operating-system/
+File: Maldet on Debian and Ubuntu.pdf

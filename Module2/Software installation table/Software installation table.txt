@@ -1,0 +1,582 @@
+0-9/symbols:
+3d acceleration
+
+A:
+About myself
+About xfce
+Access prompt
+Accessibility
+Adobe flash player
+Aisleriot solitaire
+Alien
+Alien-arena 
+Alien-arena-server
+Alsamixergui
+Amdappsdk-3.0
+Amsynth
+Appearance
+Application finder
+Aptana_studio_3
+Archive manager
+Ardour-4
+Ati catalyst control center
+Audacious
+Audacity
+Audio mixer
+Avidemux (qt)
+Avidemux jobs manager
+
+B:
+Background
+Bastille
+Betty
+Blender
+Blender-2.77a-linux-glibc211-x86_64
+Bluefish
+Bluetooth
+Bluetooth manager
+Bluetooth transfer
+Boinc manager
+Brackets
+Brasero
+Bulk rename
+
+C:
+Captive portal
+Cadence
+Cairo-dock
+Cairo-dock (fallback mode)
+Calculator
+Calf plugin pack for jack
+Carla
+Carla control
+Catia
+Cd player
+Cd/dvd creator
+Character map
+Cheese
+Chess
+Chrootkit
+Clamav
+Claudia
+Claudia launcher
+Clipit
+Clipman
+Clocks
+Cmail
+Color
+Color picker
+Color profile viewer
+Compiz fusion icon
+Compiz start
+Compizconfig settings manager
+Conky manager
+Connect to server
+Contacts
+Crack attack
+Create launcher on the panel
+Curl
+Customize look and feel
+
+D:
+Darktable
+Darkstat
+Date & time
+Dconf editor
+Default applications for lxsession
+Desktop
+Desktop icons
+Desktop preferences
+Desktop search
+Desktop session settings
+Desktop sharing
+Desktopnova
+Desktopnova-tray
+Details
+Dia
+Dictionary
+Disk image mounter
+Disk image writer
+Disk management
+Disk usage analyzer
+Disks
+Displays
+Document viewer
+Documents
+Drumkv1
+
+E:
+Echomixer
+Entangle
+Emerald theme manager
+Empathy
+Enqueue in smplayer
+Envy24 control
+Espdiff
+Etherape
+Etherape (as root)
+Etracer
+Evolution
+Evolution calendar
+Ex falso
+Extreme tux racer
+
+F:
+Fail2ban
+Fairymax
+Feh
+Ffado mixer
+Fgcom
+Fgelev
+Fgfs
+Fgjs
+Fglrx-15.9
+Fgpanel
+Fgviewer
+File manager
+File manager pcmanfm
+Files
+Filezilla client
+Firefox web browser
+Five or more
+Five-or-more
+Flightgear
+Fofix 
+Font viewer
+Fotoxx
+Four-in-a-row
+Frescobaldi
+Frets on fire
+Fretsonfire
+
+G:
+Galculator
+Gdebi
+Gedit
+Giggle
+Gimagereader
+Git cola
+Git dag
+Giteye-1.10.0-linux.x86_64 
+Gitg
+Glassfish-4.1
+Gnome mplayer
+Gnome shell
+Gnome shell (wayland compositor)
+Gnome shell classic
+Gnome shell extension preferences
+Gnome system monitor
+Gnome-chess
+Gnome-klotski
+Gnome-mahjongg
+Gnome-mines
+Gnome-nibbles
+Gnome-robots 
+Gnome-sudoku
+Gnome-tetravex
+Gnote
+Gnu image manipulation program
+Google
+Google chrome
+Gparted
+Gpssmooth 
+Guitarix
+Guvcview
+
+H:
+Handbrake
+Hardinfo
+Hdajackretask
+Hdspconf
+Hdspmixer
+Help
+Higan
+Hitori
+Hoichess
+Hoixiangqi
+Htop
+Hugin batch processor
+Hugin calibrate lens
+Hugin panorama creator
+Hugin pto generator
+Hydrogen
+
+I:
+Iagno
+Icc profile installer
+Icedove
+Icedtea java web start
+Icedtea web control panel
+Iceweasel
+Image viewer
+Imagemagick (display q16)
+Ingen
+Inkscape
+Ip
+
+J:
+Jack keyboard
+Jamin
+
+K:
+Keyboard
+Keyboard and mouse
+Keyboard layout
+Kingsoft
+Klotski
+Kxstudio
+Kxstudio welcome
+
+L:
+Leafpad
+Libreoffice
+Libreoffice base
+Libreoffice calc
+Libreoffice draw
+Libreoffice impress
+Libreoffice math
+Libreoffice writer
+Libreoffice xslt based filters
+Liferea
+Lights off
+Lightsoff 
+Lightworks
+Linthesia
+Linux
+Linux-headers-3.16.0-4-amd64
+Linux-headers-3.16.0-4-common
+Linux-kbuild-3.16
+Lispeak-master
+Lmms
+Log out
+Logical volume management
+Logout
+Logs
+lshw
+Lshw-gtk
+Luks
+Lxmusic simple music player
+
+M:
+Main menu
+Mahjongg
+Mail reader
+Maldet
+Maps
+Maxqi
+Mednafen
+Mednafen 
+Metacity
+Meterbridge
+Midgsmooth
+Midisnoop
+Midnight commander
+Mime type editor
+Mines
+Minetest
+Minetest-mapper 
+Minetestserver
+Mixxx
+Monitor settings
+Mouse & touchpad
+Mouse and touchpad
+Mousepad
+Mtpaint graphic editor
+Mudita24
+Multibootusb
+Multimedia systems selector
+Mupen64plus
+Muse
+Music
+Mutt
+Mutter
+Mutter (wayland compositor)
+Mypaint
+
+N:
+Natron
+Netbeans ide 8.0.2
+Netbeans-8.0.2-linux.sh
+Netfilter
+Netstat
+Network
+Network connections
+Network tools
+Nibbles
+Nmap
+Non mixer
+Non sequencer
+Non session manager
+Non timeline
+Notes
+Notifications
+Notifyosd configuration
+
+O:
+Obs
+Online accounts
+Open folder with thunar
+Openarena
+Openbox configuration manager
+Opencv_createsamples
+Opencv_haartraining
+Opencv_performance
+Opencv_traincascade
+Openjdk java 7 policy tool
+Openscad
+Openshot video editor
+Openssh server
+Openssl
+Openvpn
+Orage calendar
+Orage globaltime
+Orage preferences
+Osmo
+
+P:
+Package install
+Package log
+Package sources
+Package updater
+Palaver-master
+Panel
+Parcellite
+Password
+Personal file sharing
+Petri-foo
+Ping
+Phasex
+Photos
+Pidgin internet messenger
+Polari
+Popcorn time ce
+Power
+Power manager
+Power statistics
+Preferred applications
+Print preview
+Print settings
+Printers
+Privacy
+Privoxy
+Projectlibre
+Python (v2.7)
+Python (v3.4)
+
+Q:
+Qjackctl
+Qmidiarp
+Qsampler
+Qsynth
+Qtractor
+Quadrapassel
+
+R:
+Rakarrack
+Rar
+Rawtherapee
+Reactivate hp laserjet 1018/1020 after reloading paper
+Recordmydesktop
+Region & language
+Remote desktop viewer
+Remote viewer
+Removable drives and media
+Reportbug
+Rhythmbox
+Ring
+Ristretto image viewer
+Rkhunter
+Rmedigicontrol
+Robomongo
+Robots
+Root terminal
+Rosegarden
+Rstudio
+Run program...
+Rygel
+
+S:
+Samplv1
+Screen
+Screen reader
+Screenlets
+Screenlock
+Screensaver
+Screenshot
+Scribus
+Seahorse
+Search
+Search and indexing
+Selinux
+Sensor viewer
+Seq24
+Services
+Session and startup
+Setbfree
+Settings
+Settings editor
+Settings manager
+Shamax
+Shared folders
+Simple scan
+Simplescreenrecorder
+Sirius-1.0.1
+Skype
+Smplayer
+Software install
+Software sources
+Sooperlooper
+Sound
+Sound recorder
+Speedtest
+Spyder
+Spotify
+Steadyflow
+Steam
+Steam.real
+Stellarium
+Sudoku
+Supertuxkart
+Swell foop
+Swell-foop
+Synaptic package manager
+Synthv1
+Sysctl
+System log
+System monitor
+
+T:
+Tali
+Task manager
+Tcpdump
+Teamviewer 10
+Telegram
+Terminal
+Terminal emulator
+Terrasync
+Tetravex
+Texstudio
+Thunar file manager
+Time tracker
+Time tracking overview
+Tp-smapi-0.41
+Traceroute
+Transmission
+Trigger
+Trigger-rally
+Tripwire
+Tor
+Tweak tool
+
+U:
+Ufraw
+Ugsmooth
+Umbrello
+Universal access
+Unrar
+Users
+Users and groups
+Uxterm
+
+V:
+Vboxguest-4.1.18
+Vboxguestadditions-4.1.18
+Veracrypt
+Videos
+View file
+Vim
+Virtual machine manager
+Virtualbox
+Virtualbox-4.3.36
+Vlc media player
+Vmpk
+
+W:
+Wacom tablet
+Web browser
+Where am i?
+Wicd network manager
+Window manager
+Window manager tweaks
+Wine
+Wireshark
+Workspaces
+Wps presentation
+Wps spreadsheets
+Wps writer
+
+X:
+Xarchiver
+Xboard
+Xchat irc
+Xfburn
+Xfce terminal
+Xjadeo
+Xsane image scanning program
+Xterm
+
+Y:
+Yasim
+Yasim-proptest
+Yumi
+
+Z:
+Zynaddsubfx - alsa
+Zynaddsubfx - jack
+
+
+The most of the apps in the list have been found as follows:
+
+Group 1:
+Paste the next code onto the GNOME Terminal, and then hit enter:
+
+for file in /usr/share/applications/*.desktop;
+do
+    while IFS== read -r key val
+    do
+        if [[ -z $key ]]; then
+            continue
+        else
+            if [[ $key =~ ^\[Desktop\ Entry ]]; then
+                interesting_field=1
+            elif [[ $key =~ ^\[ ]]; then
+                interesting_field=0
+            fi
+        fi
+        [[ $interesting_field -eq 1 ]] && [[ $key == "Name" ]] && echo $val
+    done < $file
+done
+
+As I did, you can find and add more apps to your own list as follows:
+
+Starting from Group 2 some apps could lack of Icon, it depends on you or whether the app has been made to run only in the command line. Also I use folder names here to make two entries, one for the app version in installation paths and a second one to the excutable in the groups paths. I don't use this duplicates to app icons by creating new symlinks to second app versions under /usr/bin. For example there are blender and blender277.
+
+Group 2:
+List apps directories under /opt:
+$ ls /opt
+
+Group 3:
+List apps directories under /usr/games:
+$ ls /usr/games
+
+Group 4: List apps under /usr/src:
+$ ls /usr/src
+
+Group 5: List apps under /usr/bin:
+$ ls /usr/bin
+
+Group 6: List apps under /usr/local:
+$ ls /usr/local
+
+Group 7: List apps under /usr/local/bin:
+$ ls /usr/local/bin
+
+Group 8: List apps under /usr/local/src:
+$ ls /usr/local/src
+
+Group 9: List apps under /home/esteban/.linuxbrew/:
+$ ls /home/esteban/.linuxbrew/ (...)
+
+Group 10: List apps no Wine icon under /home/esteban/.wine/:
+$ ls /home/esteban/.wine/ (...)
+

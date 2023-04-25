@@ -1,0 +1,3 @@
+$ netstat
+
+Find my most used netstat commands in the guide "Netfilter", in the file "bastion-server-firewall.sh",  in the script section "# Useful commands at combat time versus attackers:"

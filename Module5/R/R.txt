@@ -1,0 +1,17 @@
+GNU R:
+
+R is an open source programming language (software package) and environment used mainly for statistical data analysis.
+R's strengths are: graphical visualization of data such as plots, data analysis, statistical data fits.
+R's weaknesses are: complex structured data storage, querying data, dealing with large data sets, which do not fit in the computer's memory.
+
+Installation:
+$ sudo apt-cache search r-base
+$ sudo apt-get install r-base r-base-dev r-core
+
+Installation:
+References:
+Web: https://wiki.debian.org/R
+File: R - Debian Wiki.pdf
+Web: https://linuxconfig.org/introduction-to-gnu-r-on-linux-operating-system
+File: Introduction to GNU R on Linux Operating System.pdf
+

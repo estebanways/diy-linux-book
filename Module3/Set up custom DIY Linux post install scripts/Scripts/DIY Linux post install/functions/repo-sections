@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function repo-sections {
+ echo "Not implemented yet:"
+ echo "Fuction: repo-sections"
+ exit 99
+}

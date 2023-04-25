@@ -1,0 +1,7 @@
+awesfx - utility programs for AWE32/64 and Emu10k1 driver
+freepats - Free patch set for MIDI audio synthesis
+opl3-soundfont - OPL3 SoundFont that simulates the sound of an OPL3 chip
+sfarkxtc - Converts soundfonts from legacy sfArk v2 file format to sf2
+texlive-latex-extra - TeX Live: LaTeX additional packages
+timgm6mb-soundfont - TimGM6mb SoundFont from MuseScore 1.3
+timidity - Software sound renderer (MIDI sequencer, MOD player)

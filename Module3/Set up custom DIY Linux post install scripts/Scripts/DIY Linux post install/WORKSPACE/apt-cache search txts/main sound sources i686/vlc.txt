@@ -1,0 +1,62 @@
+caffe-cpu - Fast, open framework for Deep Learning (Meta)
+caffe-doc - Caffe's doxygen docs and examples
+caffe-tools-cpu - Tools for fast, open framework for Deep Learning (CPU_ONLY)
+libcaffe-cpu-dev - development files for Caffe (CPU_ONLY)
+libcaffe-cpu1 - library of Caffe, deep learning framework (CPU_ONLY)
+python3-caffe-cpu - Python3 interface of Caffe (CPU_ONLY)
+cubemap - scalable video reflector, designed to be used with VLC
+dvblast - Simple and powerful dvb-streaming application
+forensics-extra-gui - Forensics Environment - extra GUI components (metapackage)
+fp-units-multimedia - Free Pascal - multimedia units dependency package
+fp-units-multimedia-3.0.0 - Free Pascal - multimedia units
+freeplayer - wrapper around vlc for French ADSL FreeBox
+freetuxtv - Internet television and radio player
+getstream - DVB streaming application
+kaffeine - versatile media player for KDE
+laditools - Linux Audio Desktop Integration Tools
+libbluray-bdj - Blu-ray Disc Java support library (BD-J library)
+libbluray-bin - Blu-ray disc playback support library (tools)
+libbluray-dev - Blu-ray disc playback support library (development files)
+libbluray-doc - Blu-ray disc playback support library (documentation)
+libbluray1 - Blu-ray disc playback support library (shared library)
+hdhomerun-config - Configuration utility for Silicon Dust HD HomeRun
+libhdhomerun-dev - Development library for Silicon Dust HD HomeRun
+libhdhomerun3 - Library for Silicon Dust HD HomeRun
+libreoffice-avmedia-backend-vlc - VLC backend for LibreOffice
+livestreamer - CLI that pipes video streams to video players
+mimms - mms (e.g. mms://) stream downloader
+mpris-remote - command-line interface for mpris compatible media players
+browser-plugin-vlc - multimedia plugin for web browsers based on VLC
+python3-pafy - Download videos and retrieve metadata from YouTube
+phonon-backend-vlc - Phonon VLC backend
+phonon4qt5-backend-vlc - Phonon4Qt5 VLC backend
+pidgin-mpris - sets your available message to your currently playing track
+smtube - YouTube videos browser
+libvcdinfo-dev - library to extract information from VideoCD (development files)
+libvcdinfo0 - library to extract information from VideoCD
+libvlc-bin - tools for VLC's base library
+libvlc-dev - development files for libvlc
+libvlc5 - multimedia player and streamer library
+libvlccore-dev - development files for libvlccore
+libvlccore8 - base library for VLC and its modules
+vlc - multimedia player and streamer
+vlc-bin - binaries from VLC
+vlc-data - Common data for VLC
+vlc-l10n - Translations for VLC
+vlc-nox - transitional dummy package
+vlc-plugin-access-extra - multimedia player and streamer (extra access plugins)
+vlc-plugin-base - multimedia player and streamer (base plugins)
+vlc-plugin-fluidsynth - FluidSynth plugin for VLC
+vlc-plugin-jack - Jack audio plugins for VLC
+vlc-plugin-notify - LibNotify plugin for VLC
+vlc-plugin-qt - multimedia player and streamer (Qt plugin)
+vlc-plugin-samba - Samba plugin for VLC
+vlc-plugin-sdl - SDL video and audio output plugin for VLC
+vlc-plugin-skins2 - multimedia player and streamer (Skins2 plugin)
+vlc-plugin-svg - SVG plugin for VLC
+vlc-plugin-video-output - multimedia player and streamer (video output plugins)
+vlc-plugin-video-splitter - multimedia player and streamer (video splitter plugins)
+vlc-plugin-visualization - multimedia player and streamer (visualization plugins)
+vlc-plugin-zvbi - VBI teletext plugin for VLC
+vlc-plugin-vlsub - VLC extension to download subtitles from opensubtitles.org
+x264 - video encoder for the H.264/MPEG-4 AVC standard

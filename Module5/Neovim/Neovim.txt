@@ -1,0 +1,16 @@
+Content:
+- Neovim installation
+
+Topics:
+
+- Neovim installation:
+
+Install using the steps from github.com. Neovim repo on github.com:
+
+References:
+Topic: Github installation
+Web: https://github.com/neovim/neovim/wiki/Installing-Neovim
+
+Open vim or nvim:
+$ vim
+$ nvim

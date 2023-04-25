@@ -1,0 +1,261 @@
+Content:
+- Tmux Installation
+- Vocabulary
+- Basic tmux commands
+- Scripting
+- Oh My Tmux github
+
+- Tmux Installation:
+$ sudo apt-get update
+$ sudo apt-get install tmux
+
+
+- Vocabulary:
+<Prefix>: There are two: C-b (CTRL + b) and C-a (CTRL + a).
+Please note that CTRL+b is the default tmux “prefix”. You can adjust it to a different key combination, if you want.
+
+
+- Basic tmux commands:
+
+----------- ENTER AND EXIT TMUX--------------------
+
+Enter the "termux":
+$ tmux
+
+Exit from tmux:
+$ exit
+
+----------- CREATE NEW SESSION --------------------
+
+Tmux has a feature for managing sessions, which is more organized and highly recommended due to the complexity of the application.
+
+Create a new tmux session "demo":
+$ tmux new -s demo
+
+Session will be talked later on.
+
+----------- SPLIT WINDOWS IN PANES AND KILL PANES -------------------
+
+Split the window horizontally into two panes:
+Press CTRL + b, press SHIFT + "
+
+Split the window vertically into two panes:
+Press CTRL + b,  press SHIFT + %
+
+Kill the active pane:
+$ exit
+Or use:
+Press CTRL + b, release b, press x, press y
+
+----------- ORDER PANES ------------------
+
+Order panes:
+Press CTRL + b, press SPACE BAR
+
+Order panes from left to right, or from down to up:
+Press CTRL + b, press SHIFT + {
+
+Order panes from right to left, or from up to down:
+Press CTRL + b, press SHIFT + }
+
+Rotate panes counter clockwise:
+Press CTRL + b, press CTRL + o
+
+Show the panes numbers:
+Press CTRL + b, q
+
+----------- ROTATE PANES ------------------
+
+Rotate the cursor clockwise:
+Press CTRL + b, o
+
+Rotate the cursor among panes counter clockwise:
+Press CTRL + b, press an ARROW (i.e.: --> or <--)
+
+----------- OPEN NEW WINDOWS AND MOVING THROUGH THEM ------------------
+
+Open a new window:
+Press CTRL + b, c
+
+Rename a window:
+Press CTRL + b, ,
+Then give it a name, for example, "scanning" or "exploiting"
+
+Go to the previous window:
+Press CTRL + b, p
+
+Go to the next window:
+Press CTRL + b, n
+
+Go to a window by number:
+Press CTRL + b, <#> (i.e.: 0, 1, 2, 3, etc.)
+
+From a current window, go to the previous window accessed, and come back to the current window if I run the command again:
+Press CTRL + b, l
+Press CTRL + b, l
+
+----------- MOUSE MODE (OH MY TMUX) -----------------
+
+Activate/Deactivate mouse mode (Only available if Oh My Tmux is installed. Otherwise, highlights the focused pane):
+Press CTRL + b, m
+
+Resize panes:
+Click on the pane border and drag it to its new position and then release the mouse button.
+
+Use a specific pane:
+Click on the pane to show activate the cursor in it.
+
+Use a specific window:
+Click on the window button in the status/menu like bar.
+
+----------- RESIZE PANES WITHOUT MOUSE -------------------
+
+Press CTRL + b but don't release b, press one ARROW key many times
+
+----------- SEND PANE/WINDOW SOMEWHERE ELSE ------------------
+
+Send pane to a totally new window:
+Press CTRL + b, SHIFT+!
+
+Send window to new pane in another window (existing):
+Example:
+I have 4 windows (0, 1, 2, 3). 
+The windows 2 and 3 have just 1 pane each.
+I wan to move the windows 2 to the window 3.
+So, from the window 2:
+Press CTRL + b, :, then type in the bar: join-pane -t 3
+The window 2 has to appear as a new pane below the first pane (pane 0) in the window 3
+The windows number disappears from the status like bar
+
+----------- SWAP WINDOWS AND SWAP PANES ------------------
+
+Swap two Windows:
+It means send window A to point B and window B to point A.
+For example, to swap the second (1) and the third windows (2):
+Press CTRL + b, :, then type in the bar: swap-window -s 1 -t 2
+The windows numbers swap also on the status like bar
+
+Swap two panes:
+For example, to swap the third (2) and the fourth panes (3):
+Press CTRL + b, :, then type in the bar: swap-pane -s 2 -t 3
+
+----------- ZOOM IN/OUT ----------------
+
+Activate/Dectivate zoom in one panel:
+Press CTRL + b, z
+
+
+----------- COPY TEXT IN MOUSE MODE -----------------
+
+Scroll down/Scroll up:
+Example:
+Open a config file:
+$ cat /etc/passwd
+
+In mouse mode (Oh My Tmux) use the scroller button to scroll up/down.
+Move the mouse and use LEFT CLICK, drag and drop to select text
+Press CTRL + ALT + C to copy he selected text
+Press CTRL + ALT + V to paste the selected text somewhere else (i.e.: any pane, window, editor)
+
+----------- COPY MODE OPTIONS -----------------
+
+Scroll down/Scroll up:
+Example:
+Open a config file:
+$ cat /etc/passwd
+
+When not in mouse mode, activate the "copy mode", like this:
+Press CTRL + b, [, 
+
+To scroll down/up:
+Press DOWN/UP ARROW key
+
+To move among words:
+Press LEFT/RIGHT ARROW key
+
+Copy text:
+NOTE:
+SOLUTION: A workaround for this problem is just open files with nano, instead of cat.
+TODO: CHECK IF THERE IS AN ENHANCEMENT FOR THIS ACTION IN OH MY TMUX!!!
+PROBLEM: The current Debian version of the package does not copy as it is described in the most of manuals, using the commands:
+press CTRL + b, [ to access copy mode
+press CTRL + SPACE BAR, from the starting point to copy and then move to end point to copy (ARROWS keys)
+press ALT + w to copy
+press CTRL + b, ] somewhere else (a pane or window) to paste
+
+Search and find text substring:
+Using the same example with cat to open the file.
+Press CTRL + b, [, to enter the copy mode
+Press CTRL + s, to search down the file
+Type in the text to find, i.e.: root
+The program highlights every "root" instance in the file
+Press ESC (Escape key) to stop finding substrigs
+Now, you are back in the copy mode
+
+To exit the copy mode:
+Pres ESC (Escape key)
+Or use:
+CTRL + c
+
+----------- MANAGE TMUX SESSIONS -----------------
+
+Detach from tmux session:
+Press CTRL + b, d
+Avoid using $ unset $TMUX to do not force the value of the environment's variable $TMUX (something like command $TMUX="").
+
+List the running tmux sessions:
+$ tmux list-sessions
+
+Reattach session "demo":
+$ tmux attach -t demo
+
+Swap among sessions in two different directions:
+Press CTRL + b, (
+Press CTRL + b, )
+
+Switch among different sessions:
+Press CTRL + b, w, and select a session or session > session's window
+
+Change session name:
+Press CTRL + b, SHIFT + $
+
+Kill a session:
+$ tmux kill-session -t <SESSION-NAME>
+It also works to kill the current session and come back the default terminal status without tmux.
+
+Display the current time in a pane:
+Press CTRL + b, t
+
+----------------------------------------------------
+
+
+- Scripting:
+
+These files include more tmux commands, run from the scripting instead of using prefixes.
+
+File: example-script.sh
+
+File: example-script (debugging learning copy).sh
+
+References:
+Topic: Tmux help
+File:
+Web: https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html
+
+
+- Oh My Tmux github:
+
+If you want to enable features such as mouse mode, download/clone and install this from github.com. A Google search like "oh my tmux github" would take you here: https://github.com/gpakosz/.tmux
+
+Basic Installation:
+Download the zip file or clone it from github using git:
+$ cd
+$ git clone https://github.com/gpakosz/.tmux.git
+The next line is not required if the repo is cloned instead of downloaded:
+$ mv .tmux-master .tmux/ 
+$ ln -s -f .tmux/.tmux.conf
+$ cp .tmux/.tmux.conf.local .
+
+References:
+Web: https://github.com/gpakosz/.tmux
+

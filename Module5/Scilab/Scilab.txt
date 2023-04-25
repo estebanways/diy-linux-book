@@ -1,0 +1,12 @@
+Scilab is a matrix-based scientific software package. Scilab contains hundreds of built-in mathematical functions, rich data structures (including polynomials, rationals, linear systems, lists, etc...) and comes with a number of specific toolboxes for control, signal processing, ...
+This package also provides Xcos, a graphical editor to design hybrid dynamical systems models. Models can be designed, loaded, saved, compiled and simulated. Stable and efficient solution for industrial and academics needs, Xcos provides functionalities for modeling of mechanical systems (automotive, aeronautics...), hydraulic circuits (dam, pipe modeling...), control systems, etc. Modelica capabilities are also provided.
+References:
+Web: https://packages.debian.org/jessie/scilab
+File: Debian -- Details of package scilab in jessie.pdf
+
+Installation:
+$ sudo nano /etc/apt/sources.lit
+$ sudo apt-get update
+$ sudo apt-cache search scilab
+$ sudo apt-get install scilab
+

@@ -1,0 +1,31 @@
+To work with modules you could use these commands:
+List modules loaded in the kernel:
+$ lsmod
+List correlations:
+$ lsmod | grep <MODULE>
+Remove module:
+# rmmod
+Probe module (Works until the next reboot):
+# modprobe
+Remove the module in probe:
+# modprobe -r
+Load the module to the kernel (Install):
+# insmod
+$ man <COMMAND>
+Module related directories under /etc/:
+modprobe.d/     modules         modules-load.d/
+Locating Module directories (For example, in a i686 computer):
+$ locate uvcvideo
+/lib/modules/3.16.0-4-686-pae/kernel/drivers/media/usb/uvc/uvcvideo.ko
+/usr/include/linux/uvcvideo.h
+/usr/src/linux-headers-3.16.0-4-common/include/uapi/linux/uvcvideo.h
+To install other Wi-Fi cards you could require to work on other directories like: /etc/modules, /proc/modules, /lib/firmware, /usr/bin and /usr
+
+
+References:
+Topic: These guides mention and/or include modules works
+Guides:
+Basic Networking
+DKMS (Dynamic Kernel Module Support)
+Webcam
+Video Card

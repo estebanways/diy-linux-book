@@ -1,0 +1,48 @@
+There are several low level shortcuts that are implemented in the kernel which can be used for debugging and
+recovering from an unresponsive system. Whenever possible, it is recommended that you use these shortcuts
+instead of doing a hard shutdown (holding down the power button to completely power off the system).
+
+A common idiom to remember this is "Reboot Even If System Utterly Broken" (also referred to as "REISUB").
+Alternatively, think of it as "BUSIER" backwards.
+
+Keyboard shorcut / description:
+
+Alt+SysRq+r = Unraw / Take control of keyboard back from X.
+Alt+SysRq+i = Kill / Send SIGKILL to all processes, forcing them to terminate immediately.
+Alt+SysRq+u = Unmount / Unmount and remount all filesystems read-only.
+Alt+SysRq+e = Terminate / Send SIGTERM to all processes, allowing them to terminate gracefully.
+Alt+SysRq+s = Sync / Flush data to disk.
+Alt+SysRq+b = Reboot / Reboot.
+
+** Note: Depending on the computer or keyboard, replace Alt+SysyRq with Alt+PrtScr or in notebooks with Alt+FN+SysRq or Alt+FN+PrtScr, followd by a shorcut.
+
+Complete the REISUB sequence in order to close the system the at least sub-normally and then reboot.
+
+Tips:
+
+If you are using a display manager and after Alt+SysRq+e you are presented with the login screen (or
+full desktop if autologin is enabled), it is most likely caused by Restart=always directive in the
+relevant service file. If necessary, edit the unit, however this should not prevent the "REISUB" sequence
+from working.
+
+If all the above combinations work except Alt+SysRq+b , try using the contralateral Alt key.
+On laptops that use Fn key to differentiate SysRq from PrtScrn, it may not actually be necessary to
+use the Fn key (i.e., Alt+PrtSc+letter could work).
+
+You may need to press Ctrl along with Alt. So for example, full key shortcut would be
+Ctrl+Alt+SysRq+b.
+
+References:
+Web: https://wiki.archlinux.org/index.php/Keyboard_shortcuts
+File: Keyboard shortcuts - Reboot Linux from keyboard.pdf
+Web: https://en.wikipedia.org/wiki/Magic_SysRq_key
+
+Note: If the sequence fails the system is frozen. In this case you can still use CTRL+ALT+DEL or press the power button.
+
+Note: You can assign actions to keys. Look key binding in the guide of Li-Speak, in the section "Setup the keyboard keys:" (Link)
+
+
+
+References:
+Topic: Kill programs and system users processes
+Guide: Manage processes

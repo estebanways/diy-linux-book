@@ -1,0 +1,57 @@
+This type of applications distribution includes approaches like "Self contained installers" and "AppImage". One advantage is that you can install the newest app version available, no matter whether you have old or new system libraries required to run the app. One disadvantage is the security, since the point of view that the distro application passed stability and other security tests. A second disadvantage is the space, due to every application have its own libraries copy, which differs of the shared libraries approach.
+References:
+Guide:
+Static, shared dynamic and loadable libraries
+
+Software sources available:
+- Web site, P2P and Developers repositories
+- Ubuntu PPA (Known exception)
+
+Installation examples: 
+- Netbeans IDE 
+- Sublime Text Editor
+- Aptana Studio 3 (Has a internal Java, Hot Spot)
+- Java (Cross platform applications)
+- Ruby (Cross platform applications)
+- C++ (Cross platform applications)
+- Some Themes, Icons and Cursors packages like Numix (For Jessie use Ubuntu 14.04 package)
+- Natron
+- AMD APP SDK
+- Genymotion
+
+Requirements:
+Make sure that the binaries are compatible with your distro, distro version and architecture (32 or 64 bit) before proceed with any installation, and that if your system meets all the dependencies required, otherwise, the app is not going to work.
+
+Download:
+This package binaries are fetched from somewhere else rather than the Official Debian repos.
+
+Package distribution:
+Many of these apps come as self contained tar archive with extensions such as *.tar.xz and a self-contained installer in Bash. In the case just extract the tarball file and then run the Installer or directly the executable binaries.
+
+Java, Ruby and similar languages:
+The default Debian installation has a free version of Java runtime to run Java applications, but to run Ruby applications you have to install ruby runtime. One method to install Ruby runtime is by installing KDE. See the KDE installation guide (LINK).
+
+Self contained installers:
+References:
+Web: http://www.matteomattei.com/create-self-contained-installer-in-bash-that-extracts-archives-and-perform-actitions/
+File: Create a self-contained installer in Bash Matteo Mattei.pdf
+
+AppImages:
+References:
+Topic: Linux apps that run anywhere
+Web: http://appimage.org/
+File: AppImage _ Linux apps that run anywhere.pdf
+Topic: List of Apps that use AppImage
+Web: https://bintray.com/probono/AppImages 
+File: AppImages - Generic - Bintray.pdf
+
+How can I install a .bin file:
+Go into a terminal and issue the following command in the directory where the bin file is,
+$ chmod a+x name_of_file.bin
+Then run it by writing
+$ ./name_of_file.bin
+If you get a permission error and/or you're dealing with an installer that applies system-wide changes you might have to launch your application with root privileges:
+$ sudo ./name_of_file.bin
+References:
+Web: http://askubuntu.com/questions/15093/how-can-i-install-a-bin-file
+File: software installation - How can I install a .pdf

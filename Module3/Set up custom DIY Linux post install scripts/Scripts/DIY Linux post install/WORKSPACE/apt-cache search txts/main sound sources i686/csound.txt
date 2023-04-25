@@ -1,0 +1,22 @@
+cecilia - Sound synthesis and audio signal processing environment
+csladspa - LADSPA plugin for Csound
+csound - powerful and versatile sound synthesis software
+csound-data - data files used by the csound library
+csound-utils - miscellaneous utilities for the Csound system
+libcsnd-dev - development files for Csound -- C++ API
+libcsnd6-6.0v5 - C++ bindings for the Csound API
+libcsnd6-java - Java bindings for the Csound API
+libcsound64-6.0 - main library for Csound
+libcsound64-dev - development files for Csound
+libcsound64-doc - Csound API documentation
+libcsoundac-dev - development files for CsoundAC
+libcsoundac6.0v5 - Csound Algorithmic Composition library
+liblua5.1-luacsnd - Lua bindings for the Csound API
+pd-csound - Csound external for PureData
+python-csound - Python bindings for Csound
+python-csoundac - Python bindings for CsoundAC
+csound-doc - documentation for csound
+csoundqt - frontend for the csound sound processor
+csoundqt-examples - example scores for csoundqt
+nyquist - language for music composition and sound synthesis
+rosegarden - music editor and MIDI/audio sequencer

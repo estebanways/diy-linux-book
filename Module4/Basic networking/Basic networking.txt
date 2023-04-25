@@ -1,0 +1,792 @@
+
+Topics:
+- Gnome networking applications
+- Ethernet installation in Gnome
+- Automatic Wireless interface installation in Gnome
+- Manual Wireless interface installation in Gnome
+- Wicd
+- Set up proxy in/out of Gnome
+- Networking
+- Bridge the Ethernet
+- Bridge the Wireless
+
+------->
+
+Update version: 1
+Update for Debian 10 codename "Buster":
+
+On Debian 10 codename Buster, network interfaces have finally changed and trimmed their names, in accordance with the newest naming standards. This is a historical naming reference for the first NIC installed on any computer:
+Ethernet: eth0 > enp2s0 > eno1
+Wireless: wlan0 > wlx00226b9b4104 > wlp2s0
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+Remember that network interface names and networking tools changed since Debian 9 codename Stretch, but they don't change whether the system has been upgraded from Debian 8 codename Jessie. Continue readind the update to modify the content of the guide to match your system and system configuration.
+References:
+Guide: Iproute2
+Guide: Net-tools
+Guide: System version upgrade procedure
+
+New method for naming network interfaces:
+
+The installer and newly installed systems will use a new standard naming scheme for network interfaces instead of eth0, eth1, etc. The old naming method suffered from enumeration race conditions that made it possible for interface names to change unexpectedly and is incompatible with mounting the root filesystem read-only. The new enumeration method relies on more sources of information, to produce a more repeatable outcome. It uses the firmware/BIOS provided index numbers and then tries PCI card slot numbers, producing names like ens0 or enp1s1 (ethernet) or wlp3s0 (wlan). USB devices, which can be added to the system at any time, will have names based upon their ethernet MAC addresses.
+References:
+web: https://www.debian.org/releases/testing/amd64/release-notes/ch-whats-new.en.html
+
+Chapter 2. What's new in Debian 9
+This change does not apply to upgrades of jessie systems; the naming will
+continue to be enforced by /etc/udev/rules.d/70-persistent-net.rules. For more information, see /usr/share/doc/udev/README.Debian.gz or the upstream
+documentation.
+
+References:
+Topic: Specific details in Section 2.2.8. New method for naming network interfaces
+Web: https://www.debian.org/releases/testing/amd64/release-notes/ch-whats-new.en.html
+File: Chapter 2.pdf, in Guide: System version upgrade procedure
+
+------->
+
+- Gnome networking applications
+
+Applications > Networks
+Applications > Network tools
+
+
+- Ethernet installation in Gnome
+
+Because of the Gnome installation, in order to run the Desktop properly use the default network tool to modify the IP address and networking configuration, the Gnome Network Manager:
+$ gnome-control-center
+And then, select the option "Network"
+By default you don't need to change the file /etc/network/interfaces, but if you apply changes on it the Gnome Network Manager is not going to work. See new configurations in the sections of this guide: "- Bridge the Ethernet" and "- Networking". When you have finished the configuration you can stop the unused service like this:
+# systemctl stop NetworkManager.service
+
+
+- Automatic Wireless interface installation in Gnome
+
+How can I find easily the drivers, if I don't know their names? 
+Before installing a computer, boot a Live Mint or Ubuntu DVD to go to Drivers Manager and see what options show up for wireless, since this will help find the proper driver names and versions for Debian to install during the system installation process or once the process finished.
+References: 
+Topic: Find more drivers
+Web: http://www.linux-drivers.org/
+File: linux-drivers org web site.pdf
+
+
+- Manual Wireless interface installation in Gnome
+
+If the System Netinstall disc didn't recognize the Wireless card, so that I finished up using wired eth0 setup, but now I want to go Wireless.
+To know if the system installed the wireless use:
+$ ip addr show
+# ifconfig
+Check if the wlan interface is present.
+The issue is that the wireless kernel module(s) with drivers are unavailable.
+You can attempt to install the wireless following almost the next steps:
+
+Next is an example of installation using my Laptop's Broadcom Wireless chipset.
+Constantly, verify system messages:
+$ less /var/log/messages
+And then press END key to go to the end and await for new messages to come.
+
+List PCI hardware:
+$ lspci
+List USB hardware (for USB wireless cards)
+$ lsusb
+
+Display kernel messages to help finding PCI hardware errors:
+# dmesg
+There is an error that includes: "Go to https://wireless.wiki.kernel.org/en/users/Drivers/b43#devicefirmware"
+
+List PCI hardware, include vendor and chipset model:
+$ lspci -nn
+Output extract:
+01:00.0 Network controller [0280]: Broadcom Corporation BCM4312 802.11b/g LP-PHY [14e4:4315] (rev 01)
+End of Output.
+
+To list only the Wireless device:
+$ lspci -nn -d 14e4:
+
+Search for Wireless modules, showing the status of modules in the Linux Kernel:
+$ lsmod
+After reboot attempt to list the new device interface:
+$ sudo apt-get update
+$ sudo apt-cache search iwconfig
+$ sudo apt-cache search wireless-tools
+$ sudo apt-get install iw wireless-tools
+# iwconfig
+# man iwconfig
+...And then No wireless modules but cfg80211 is present.
+
+Make sure repos "main" and "contrib" are in sources.list file:
+$ sudo nano /etc/apt/sources.list
+
+Update the repos DB:
+$ sudo apt-get update
+
+Search for the driver in the official Debian repos:
+$ apt-cache search firmware-linux-nonfree
+$ apt-cache search broadcom
+
+Install a driver (but none of the list works):
+$ sudo apt-get install firmware-linux-nonfree
+$ sudo reboot
+Or with systemd:
+# systemctl reboot
+After reboot attempt to list the new device interface:
+$ sudo iwconfig
+$ sudo ifconfig wlan0
+And then, list hardware again:
+$ lspci
+An then, verify the kernel (drivers) messages:
+$ dmesg
+$ dmesg | grep wireless 
+Then, verify kernel modules:
+$ lsmod
+This time this command shows new wireless modules: b43, bcma, mac80211 and cfg80211. cfg80211 depends on b43, mac80211.
+Remove the driver which fails:
+$ dpkg -l | grep 'firmware'
+$ sudo apt-get remove firmware-linux-nonfree
+
+I go to investigate what could happens and found the solution in the Debian Official pages and Wiki.
+
+I found 3 candidate options to install BCM4313: 
+b43 - b43legacy Broadcom chipsets
+brcms80211 - Broadcom chipsets (BCM4313, BCM43224, BCM43225)
+wl - Broadcom chipsets (BCM4311, BCM4312, BCM4313, BCM4321, BCM4322, BCM43224, BCM43225, BCM43227, BCM43228)
+References:
+Web: https://wiki.debian.org/WiFi
+File: ListofDebianWirelessdevicedrivers.pdf
+
+b43 is not going to work because BCM4313 is not listed and seems too old driver.
+References:
+Web: https://wiki.debian.org/bcm43xx
+File: Broadcom 43xx wireless devices.pdf
+
+brcm80211 is recommended but does not work with my card:
+References:
+Web: https://wiki.debian.org/brcm80211
+File: brcm80211.pdf
+
+wl has support for BCM4313 and works following these installation steps:
+Add non-free repo to sources.list:
+$ sudo nano /etc/apt/sources.list
+Update:
+# apt-get update
+Install packages required:
+# apt-get install linux-image-$(uname -r|sed 's,[^-]*-[^-]*-,,') linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') broadcom-sta-dkms
+Unload conflicting modules:
+# modprobe -r b44 b43 b43legacy ssb brcmsmac bcma
+The blacklisted modules will be stored here /etc/modprobe.d/broadcom-sta-dkms.conf
+Load the wl module:
+# modprobe wl
+# reboot
+Or with systemd:
+# systemctl reboot
+References:
+Web: https://wiki.debian.org/wl
+File: wl.pdf
+Note: The installation alternative that worked with this driver is DKMS. See the guide DKMS "(Dynamic Kernel Module Support)" for more DKMS information. DKMS enables WI-FI support in the core no need to recompile the kernel by hand (See the guide "Build the Linux Kernel"), and recompiles the kernel with the "wl" module.
+
+To work with modules you could use these commands:
+References:
+Guide: Working with Kernel modules
+
+After reboot, verify the interface wlan0 or equivalent is present:
+$ sudo iwconfig
+If the interface appears, go to the system bar to the Gnome Network Manager activate and configure Wireless network.
+
+List specific PCI hardware:
+$ lspci -nn -d 14e4:
+
+Display kernel messages no errors this time:
+$ dmesg | grep 80211
+$ dmesg | grep 802.11
+$ dmesg | grep wlan
+
+Other alternatives to show hardware information:
+# apt-cache search hardinfo
+Output:
+hardinfo - Displays system information
+End of Output.
+# apt-cache search lshw
+Output:
+lshw - information about hardware configuration
+lshw-gtk - graphical information about hardware configuration
+End of Output.                                    
+References:
+Topic: How To Identify A Device PCI. Show hardware information.
+Web: https://wiki.debian.org/HowToIdentifyADevice/PCI#pci-id
+File: How To Identify A Device PCI.pdf
+
+Note: Notice that the page of the kernel error was right, the alternative to 14e4:4315 is wl (See teh table on the web site):
+14e4:4315       yes     BCM4312         b/g     LP (r1)         wl 
+
+Fix broken connections:
+Restart the networking service with systemd:
+# systemctl restart networking.service
+
+Restart networking service with sysVinit:
+/etc/init.d/networking restart
+
+Verify the network-manager (Gnome) service status:
+# systemctl status network-manager.service
+References:
+Topic: Results for package Network Manager
+Web: https://packages.debian.org/search?keywords=network-manager
+File: Results for package Network Manager.pdf
+
+Turn ON and OFF interfaces:
+# ifdown eth0
+# ifup wlan0
+
+References:
+Topic: Debian Wifi
+Web: https://wiki.debian.org/WiFi
+File: WiFi - Debian Wiki.pdf
+Web: https://wiki.debian.org/WiFi/HowToUse
+File: WiFi_HowToUse - Debian Wiki.pdf
+Web: https://www.cyberciti.biz/faq/debian-linux-wpa-wpa2-wireless-wifi-networking/
+File: Debian Linux Configure Wireless Networking With WPA2.pdf
+Topic: Intel Wireless WiFi iwlwifi
+Web: https://wiki.debian.org/iwlwifi
+File: Intel Wireless WiFi - iwlwifi - Debian Wiki.pdf
+
+- Wicd
+
+When the gnome Network Manager service and/or the GUI fails recognizing or connecting the computer to the wireless network, use wicd, but you require to:
+Install wicd:
+$ sudo apt-get update
+$ sudo apt-cache search wicd
+$ sudo apt-get install wicd wicd-gtk
+Stop the Network Manager service:
+# systemctl stop Network Manager
+Modify a copy of the minimal file /etc/network/interfaces which includes your Wireless Network information. If you don't see that information since Wicd, add the network access information to the file.
+Verify that wicd is up and running:
+# systemctl status wicd.service
+The Network Manager service and Wicd service are incompatible, so to set up one of them correctly, first you have to stop the contrary service with systemctl:
+# systemctl stop servicename.service
+References:
+Topic: Something good to replace the Gnome Network Manager.
+Web: https://wiki.debian.org/WiFi/HowToUse
+File: WiFiHowToUse.pdf
+To use wicd you need to create a modified version of the minimal file /etc/network/interfaces: See the section "- Networking" on this guide to set up properly your Wicd file.
+
+
+- Set up proxy in/out of Gnome
+
+A "proxy" is simply a packet router/filter commonly used as a Web site blocker, but could work as a load balancer forwarding HTTP or other types of requests a farm or replicated servers. The proxy could run on the localhost or another machine.
+References:
+Topic: To install a Proxy software
+Guide: Proxies
+Topic: More software that improve their security with proxies
+Guide: OpenVPN
+Guide: TOR
+
+3 different ways to configure Linux clients to recognize a proxy service or proxy configuration file:
+
+Export Command for Proxy Environment Variables:
+
+Use the following commands to configure your proxy for http and ftp traffic on the command line:
+# export http_proxy=http://: export ftp_proxy=http://:
+If your proxy requires login/authentication, you can use the format:
+# export http_proxy=http://username:password@::
+To have this applied every time you log in, place these lines in your .bashrc in your home (~) directory.
+export http_proxy=http://:
+export ftp_proxy=http://:
+
+Network Proxy Settings:
+
+For Gnome, go to Settings > Network > Network Proxy
+In the setting, you can configure either by your proxy server and port, by the network, or a file via a URL/file location (e.g. http://myproxyserver:port/proxyfile.pac) .
+These settings work with most other applications (e.g. other browsers like Chrome, OS commands).
+
+Applications level:
+
+Some applications and commands need to be configured individually. Next are some common examples.
+
+Firefox:
+You can manually set up the Firefox proxy in Options menu. Go to Options > Advanced > Settings.
+
+Proxy support for Synaptic Package Manager:
+Start the software and click Settings > Preferences > Network Tab. Click Manual Proxy Configuration and enter your proxy information. If you have to login to the proxy then use the host format username:password@host.
+
+Setting up apt-get to use a http-proxy:
+These are three methods of using apt-get with a http-proxy.
+Temporary proxy session:
+This is a temporary method that you can manually use each time you want to use apt-get through a http-proxy. This method is useful if you only want to temporarily use a http-proxy.
+Enter this line in the terminal prior to using apt-get (substitute your details for yourproxyaddress and proxyport):
+# export http_proxy=http://yourproxyaddress:proxyport
+If you normally use sudo to run apt-get you will need to login as root first for this to work unless you also add some explicit environment settings to /etc/sudoers, e.g:
+Defaults env_keep = "http_proxy https_proxy ftp_proxy"
+APT configuration file method:
+This method uses the apt.conf file which is found in your /etc/apt/ directory. This method is useful if you only want apt-get (and not other applications) to use a http-proxy permanently.
+On some installations there will be no apt-conf file set up. This procedure will either edit an existing apt-conf file or create a new apt-conf file.
+# gksudo gedit /etc/apt/apt.conf
+Add this line to your /etc/apt/apt.conf file (substitute your details for yourproxyaddress and proxyport):
+Acquire::http::Proxy "http://yourproxyaddress:proxyport";
+Save the apt.conf file.
+BASH rc method:
+This method adds a two lines to your .bashrc file in your $HOME directory. This method is useful if you would like apt-get and other applications for instance wget, to use a http-proxy.
+$ gedit ~/.bashrc
+Add these lines to the bottom of your ~/.bashrc file (substitute your details for yourproxyaddress and proxyport):
+http_proxy=http://yourproxyaddress:proxyport
+export http_proxy
+Save the file. Close your terminal window and then open another terminal window or source the ~/.bashrc file:
+$ source ~/.bashrc
+Test your proxy with sudo apt-get update and whatever networking tool you desire. You can use firestarter or conky to see active connections.
+If you make a mistake and go back to edit the file again, you can close the terminal and reopen it or you can source ~/.bashrc as shown above.
+$ source ~/.bashrc
+References:
+Topic: APT Usage
+Guide: System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
+
+How to login a proxy user:
+
+If you need to login to the Proxy server this can be achieved in most cases by using the following layout in specifying the proxy address in http-proxy. (substitute your details for username, password, yourproxyaddress and proxyport):
+http_proxy=http://username:password@yourproxyaddress:proxyport
+
+Reference:
+Web: https://help.ubuntu.com/community/AptGet/Howto
+File: AptGet how to.pdf
+
+
+- Networking
+
+Checkout the IP address status. For more information see the manpage:
+# ifconfig
+
+Make a ping:
+# ping
+
+Verify host name:
+$ hostname
+
+Modify hostname:
+# nano /etc/hostname
+
+Verify domain name:
+$ hostname --fqdn
+
+Modify hosts file:
+# nano /etc/hosts
+
+Modify DNS:
+# nano /etc/resolv.conf
+
+Modify Network card (Gnome Network Manager does not uses the file, and Wicd a requires a minimal configuration in the file. Other options require the complete configuration in the file):
+# nano /etc/network/interfaces
+
+Restart the networking service with systemd (Useful to reestablish a broken connection):
+# systemctl restart networking.service
+References:
+Guide: systemd
+
+Restart networking service with sysVinit:
+/etc/init.d/networking restart
+
+Start, Stop or Verify the status of the current Network Manager:
+Gnome and XFCE Desktop Environments use this Network Manager service for their own Network Manager GUI:
+# systemctl status network-manager.service
+OR USE:
+# systemctl status NetworkManager.service
+Gnome Network Manager does not use the file /etc/network/interfaces
+
+Scan Wireless networks:
+Verify that the Wireless Card light is on and the card is not in a type of Airplane mode.
+# ifconfig wlan0
+# iwlist wlan0 scanning | more
+
+List SSIDs in terminal:
+$ sudo iwlist WIRELESSINTERFACENAME scan | grep ESSID
+Example:
+sudo iwlist wlx00226b9b4104 scan | grep ESSID
+
+
+Turn ON and OFF interfaces:
+# ifdown eth0
+# ifup wlan0
+
+
+Work with a copy of the current file interfaces:
+$ sudo
+# cd /etc/network
+# cp -dpR interfaces interfacesBAK3
+
+------->
+
+Update version: 1.
+Update for Debian 9 codename "Stretch":
+
+The next is an example of the new file /etc/network/interfaces ready to work since Debian 9 codename "Stretch". Actually the only changes made to the original minimal file in Stretch are 2: the first is/are the names of the network interfaces. Names can be: ens0 or enp1s1 (ethernet) or wlp3s0 (wlan). The second change is the line:
+source /etc/network/interfaces.d/* 
+to "include" the directory content in the configuration (The directory interfaces.d/ is empty in fresh system installations).
+To identify the ethernet interface name:
+# ifconfig
+OR use:
+$ ip addr show
+Output:
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp2s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 18:a9:05:98:a5:43 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.7/24 brd 192.168.1.255 scope global dynamic enp2s0
+       valid_lft 69090sec preferred_lft 69090sec
+    inet6 fe80::1aa9:5ff:fe98:a543/64 scope link 
+       valid_lft forever preferred_lft forever
+End of output.
+Notice that on this computer the first (the only in this case) ethernet interface name is: enp2s0
+You have also the option to use MAC addresses instead of network interfaces names.
+
+The file itself: 
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug enp2s0
+iface enp2s0 inet dhcp
+
+End of file.
+
+The following is the wireless version of the same file ready for Debian 9 codename "Stretch". Actually I preserved the wired ethernet configuration, to be able to switch from wired and wireless connection when necessary, by simply detaching the ethernet cable and reboot, or setting down the cabled interface and then setting up the wireless one with the commands ifup and ifdown. The process could require to stop and start the networking service:
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug enp2s0
+iface enp2s0 inet dhcp
+
+auto wlx00226b9b4104
+iface wlx00226b9b4104 inet dhcp
+        wpa-ssid AI
+        wpa-psk WIFIPASSHERE
+
+End of file
+
+Please remember to reflex the changes from the current update to your personal notes and system.
+Previous file versions will work well with Debian 8 codename Jessie and Wheezy, and perhaps with older stable Debian releases.
+
+End of update.
+
+------->
+
+Next is a copy of my /etc/network/interfaces file:
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+iface eth0 inet dhcp
+#iface eth0 inet manual
+#        address 192.168.1.5
+#        netmask 255.255.255.0
+#        broadcast 192.168.1.255
+#        gateway 192.168.1.1
+        # dns-* options are implemented by resolvconf
+        # package, if installed
+        #dns-nameservers 193.168.1.1
+        #dns-search sytes.net
+
+auto wlan0
+iface wlan0 inet dhcp
+        wpa-ssid WIRELESS-NETWORK-NAME
+        wpa-psk WIRELESS-NETWORK-PASSWORD
+#        address 192.168.1.5
+#        netmask 255.255.255.0
+#        broadcast 192.168.1.255
+#        gateway 192.168.1.1
+        # dns-* options are implemented by resolvconf
+        # package, if installed
+        #dns-nameservers 193.168.1.1
+        #dns-search sytes.net
+
+# Next is the creation of the bridge interface
+#auto br0
+#iface br0 inet dhcp
+#        pre-up /usr/sbin/tunctl -u esteban -t tap0
+#        pre-up ifconfig tap0 up
+#        bridge_ports all tap0
+#        post-down ifconfig tap0
+#        post-down tunctl -d tap0
+
+End of file.
+
+File notes:
+There are two active interfaces: DHCP eth0 and wlan0
+Lines beginning with "#" mean commented out (disabled configuration options). 
+The disabled bridge interface will be described later on in this guide.
+
+Detach the ethernet cable and then reboot the system (to restart the service) and to make the file work:
+# reboot 
+After the reboot you should see the Wicd network list, and should be connected to it. The services networking.service, NetworkManager.service and Wicd.service should be up and running. 
+
+Note:
+Text mode based system, Gnome, XFCE and other Desktop Environments and Window Managers can work without the Network Manager services or the mentioned GUIs, so you should stop those services when they are installed to set up the networking in other way.
+
+Turn ON and OFF the ethernet interface (Useful to reestablish a broken connection):
+# ifup eth0
+# ifdown eth0
+
+Scan Wireless networks:
+Verify that the Wireless Card light is on and the card is not in a type of Airplane mode.
+# ifconfig wlan0
+# iwlist wlan0 scanning
+
+Configure a wireless network interface:
+# iwconfig
+# man iwconfig
+
+
+- Bridge the Ethernet
+
+Install the requirements:
+$ sudo apt-get update
+$ sudo install bridge-utils
+$ sudo install uml-utilities
+If the installation of uml-utilities fails uninstall VMware Worstation:
+$ sudo vmware-installer -u vmware-workstation   8.0.2.591240
+$ sudo modprobe tun
+$ sudo cat /etc/modules
+$ sudo modinfo tun
+$ sudo cp -dpR /etc/network/interfaces /etc/network/interfacesBAK
+$ sudo nano /etc/network/interfaces
+
+Here is a copy the file /etc/network/interfaces before the edition, just for reference:
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+
+And this is the same file /etc/network/interfaces edited to connect virtual machines through the Virtual Appliance Machine, the host 'ProLiant' in my case, to the outside net-world:
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+allow-hotplug eth0
+# iface eth0 inet dhcp
+#iface eth0 inet manual
+#        address 192.168.1.4
+#        netmask 255.255.255.0
+#        broadcast 192.168.1.255
+#        gateway 192.168.1.1
+#        # dns-* options are implemented by resolvconf
+#        # package, if installed
+#        #dns-nameservers 193.168.1.1
+#        #dns-search sytes.net
+
+# Next is the creation of the bridge interface
+auto br0
+iface br0 inet dhcp
+        pre-up /usr/sbin/tunctl -u esteban -t tap0
+        pre-up ifconfig tap0 up
+        bridge_ports all tap0
+        post-down ifconfig tap0
+        post-down tunctl -d tap0
+
+End of file.
+File note:
+I can uncomment the interface eth0, but in my experience doesn't work sometimes, probably because in the section bridge (br0) eth0 is possessed by br0 ports = "all", which means all interfaces available. Set ports = eth0 can work, and add a separate ethernet card for the host too.
+
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+Next interface file version is for Debian 'Stretch'. It is here because the previous doesn't work in that Debian release. A reason why it's not working is probably because it's a little bit more complex file and its content strict.
+
+The file bridge with DHCP:
+
+$ cat /etc/network/interfaces
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto br0
+iface br0 inet dhcp
+      bridge_ports enp2s0
+      bridge_stp off
+      bridge_maxwait 0
+
+
+Set ports = eth0 can work, and add a separate ethernet card for the host too.
+
+FILE NOTES:
+To obtain the new name of interfaces, like ens3 or enp2s0, and after the bridge making process is complete, to check br0 is up and running, you need to use:
+$ ip addr show
+References:
+Web: https://www.hiroom2.com/2017/06/26/debian-9-bridge-interface/
+File: Debian 9 - Bridge interface.pdf
+
+------->
+
+Restart the networking service with systemd:
+$ sudo systemctl restart networking.service
+Otherwise Restart the networking service with sysvinit:
+$ sudo /etc/init.d/networking restart
+
+Restart the system to run the new module "tun", and apply the changes in the file:
+$ sudo reboot
+Or with systemd:
+# systemctl reboot
+
+NOTE:
+If the bridge is working but the system does not quit the vmware card and VirtualBox has not Drag and Drop.
+Restart again to make the new network configuration work:
+$ sudo reboot
+Or with systemd:
+# systemctl reboot
+
+After rebooting the system:
+Notice that the network icon on the system bar disappears 'cause the gnome network manager does not support the new configuration. It is possible to stop using the Gnome manager but it is not necessary.
+Check the IP configuration:
+$ sudo ifconfig
+$ sudo ifconfig eth0
+Or from stretch using ip (iproute2):
+$ ip addr show
+$ man ip
+Ping the DNS, gateway, bridge and a public address.
+
+To check bridge status use:
+root@ProLiant:/var/lib/libvirt/qemu# brctl show
+bridge name	bridge id		STP enabled	interfaces
+br0		8000.d8d385b2dabb	no		enp2s0
+							vnet0
+
+- Bridge the Wireless
+
+------->
+
+Update version: 1
+Update for Debian 9 codename "Stretch":
+
+I didn't include this section in versions previous to Debian Stretch. But, now is here because the wireless bridge can be required in some environments such as development or testing, when we use laptops.
+
+I changed the (Debian Stretch version of the) file "interfaces" a little, and ended up with 2 modifiable alternatives to bridge the network: 
+
+File option 1. Wired and Wireless interfaces are present and active. Only the ethernet interface, enp2s0, is bridged, to be used with KVM virtualization, due to KVM doesn't support wireless bridging (yet?). The wireless interface can work independently, in the same or different network. Besides, the wireless interface can be bridged with Virtualbox virtualization, which supports wireless bridging, without requiring any bridging declaration in this interfaces' file.
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto br0
+iface br0 inet dhcp
+      bridge_ports enp2s0
+      bridge_stp off
+      bridge_maxwait 0
+
+auto wlx00226b9b4104
+iface wlx00226b9b4104 inet dhcp
+        wpa-ssid AI
+        wpa-psk WIFIPASSHERE
+
+End of file.
+
+File option 2. Wired ethernet is inactive, but can be added to be used in the host (running libvirt). The wireless (wlx00226b9b4104) works as bridge, as can be seen in the declarations in the configuration. This file can't be used to bridge in KVM virtualization, because KVM doesn't support wireless bridging (yet?). Any of the two declared interfaces, br0 or wlx00226b9b4104, can be use as bridged wireless in Virtual Box virtual Machines:
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto br0
+iface br0 inet dhcp
+      bridge_ports wlx00226b9b4104
+      bridge_stp off
+      bridge_maxwait 0
+
+auto wlx00226b9b4104
+iface wlx00226b9b4104 inet dhcp
+        wpa-ssid AI
+        wpa-psk WIFIPASSHERE
+
+End of file.
+
+Notes regarding Virtualbox virtualization:
+To setup a VirtualBox Virtual Machine, I changed the Virtual Machine setup to work with the wireless interface instead of with the bridged wired ethernet interface, as follows:
+I open VirtualBox
+I select a VM and then go to the specific VM settings
+I go to the section Network
+Under the tab Adapter I, do:
+Toggle ON the option Enable Network Adapter
+Change the option Attached to: Bridged Adapter
+Set the name to the name of the wireless interface: wlx00226b9b4104
+The adapter type can be: Intel PRO/1000 T Server (82543GC)
+The promiscuous Mode can be: Allow All
+Reload the option MAC Address and read it
+Keep or Toggle ON the option: Cable connected
+The Virtual Machine should work no problems sharing the wireless between the host and the guest VM. Test it.
+
+Notes regarding KVM virtualization:
+Additional wireless cards can be installed, declared in the interfaces file in the host machine (EG. USB cards) and be used as dedicated cards by any KVM virtual machine.
+A second alternative is to create a subnetwork in the network of the host, using ProxyARP in the Virtual Manager of the KVM VM, and then use ARP command. When the subnetwork is finished you get a bridged wireless interface ready in the VM, but it is a different network and has a different gateway (EG: rather than 192.168.1.1), so the Internet is not going to work unless we route the interface properly. It can be done in Linux by bridging (connecting) the traffic of two networks, for example, networking in the command line of the host, or using a second address and network that can be configured in some routers.
+Topic: Create the Wireless bridge for KVM in Virtual Manager
+Web: https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine
+File: Create the Wireless bridge for KVM in Virtual Manager.pdf
+
+References:
+Guides: 
+VirtualBox
+KVM
+
+------->
+
+Gnome Network Manager has not the ability to create a bridge based on the wlan interface, so that I require to create an interfaces file based on previous sections of the current guide.
+References:
+Topic: How to use a WiFi interface. Go to the section "Command line" to see the basic Wireless /etc/networking/interfaces file.
+Web: https://wiki.debian.org/WiFi/HowToUse
+File: WiFiHowToUse.pdf
+Topic: Libvirt and bridging (Old. Section)
+Web: https://wiki.debian.org/BridgeNetworkConnections
+File: Libvirt and bridging.pdf
+Topic: Bridging LXC (Linux containers)
+Web: https://wiki.debian.org/LXC/SimpleBridge
+File: LXC Simple Bridge (Debian Official).pdf
+
+
+

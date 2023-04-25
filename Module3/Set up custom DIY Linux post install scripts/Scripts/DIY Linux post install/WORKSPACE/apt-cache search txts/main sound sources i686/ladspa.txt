@@ -1,0 +1,67 @@
+libasound2-plugin-equal - equalizer plugin for ALSA
+amb-plugins - ambisonics LADSPA plugins
+ambdec - Ambisonic decoder for first and second order
+ams - Realtime modular synthesizer for ALSA
+ardour - the digital audio workstation
+autotalent - pitch correction LADSPA plugin
+blepvco - LADSPA, minBLEP-based, hard-sync-capable oscillator plugins
+blop - Bandlimited wavetable-based oscillator plugins for LADSPA hosts
+bs2b-ladspa - Bauer stereophonic-to-binaural DSP LADSPA plugin
+caps - C* Audio Plugin Suite
+cmt - LADSPA plugin collection
+csladspa - LADSPA plugin for Csound
+dssi-dev - Header file for compiling DSSI plugins and hosts
+dssi-example-plugins - Examples of DSSI plugin
+dssi-host-jack - Example of DSSI host
+dssi-utils - Command-line utilities for sending commands to DSSI plugins
+fil-plugins - parametric equalizer LADSPA plugin
+fomp - collection of LV2 audio plugins
+guitarix - Rock guitar amplifier for Jack
+guitarix-common - Guitarix - Common files
+guitarix-doc - Guitarix - Development documentation
+guitarix-ladspa - Guitarix - ladspa plugins
+guitarix-lv2 - Guitarix - LV2 plugins
+gxw-glade - Guitarix - GTK+ library Glade support
+libgxw-dev - Guitarix - GTK+ library (development files)
+libgxw0 - Guitarix - GTK+ library
+libgxwmm-dev - Guitarix - GTK+ C++ widget library (development files)
+libgxwmm0 - Guitarix - GTK+ C++ widget library
+invada-studio-plugins-ladspa - Invada Studio Plugins - a set of LADSPA audio plugins
+jackeq - routes and manipulates audio from/to multiple sources
+jamin - Audio mastering from a mixed down multitrack source with JACK
+ladspa-sdk - sample tools for linux-audio-dev plugin architecture
+libaudio-ecasound-perl - Perl binding to the ecasound sampler, recorder, fx-processor
+liblrdf0 - library to manipulate RDF files describing LADSPA plugins
+liquidsoap-plugin-ladspa - audio streaming language -- LADSPA plugin
+calf-ladspa - Linux Multimedia Studio - Calf LADSPA plugins
+lv2-dev - LV2 audio plugin specification
+lv2-examples - LV2 audio plugin specification (example plugins)
+lvtk-dev - LV2 C++ wrappers and utilities
+lvtk-doc - LV2 Toolkit documentation
+lvtk-examples - LV2 C++ wrappers and utilities - examples plugins
+lvtk-tools - LV2 C++ wrappers and utilities - tools
+mcp-plugins - LADSPA plugins designed for Alsa Modular Synth
+mda-lv2 - Paul Kellett's MDA plugins ported to LV2
+muse - Qt4-based audio/MIDI sequencer
+naspro-bridges - collection of bridges to LV2
+libladspa-ocaml - OCaml bindings for LADSPA -- runtime files
+libladspa-ocaml-dev - OCaml bindings for LADSPA -- development files
+omins - collection of LADSPA plugins aimed at modular synthesizers
+pd-bsaylor - library of FFT-based Pd objects by Ben Saylor
+pd-plugin - LADSPA and VST plug-in hosting for Pd
+qmmp - feature-rich audio player with support of many formats
+rev-plugins - reverb LADSPA plugin
+rubberband-ladspa - LADSPA plugin for audio pitch-shifting
+sox - Swiss army knife of sound processing
+ste-plugins - stereo LADSPA plugins
+ladspalist - List LADSPA plugins for use by LADSPA UGen
+sweep - Audio editor and live playback tool
+sweep-dev - Audio editor and live playback tool (development)
+swh-plugins - Steve Harris's LADSPA plugins
+tap-plugins - Tom's Audio Processing LADSPA plugins
+tap-plugins-doc - TAP-plugins documentation
+terminatorx - realtime audio synthesizer
+vco-plugins - LADSPA plugin sporting anti-aliased oscillators
+vlevel - Levelling audio filter as command-line tool and LADSPA/JACK plugin
+wah-plugins - auto-wah LADSPA plugin
+zam-plugins - Collection of LV2, LADSPA, LINUX-VST and JACK plugins

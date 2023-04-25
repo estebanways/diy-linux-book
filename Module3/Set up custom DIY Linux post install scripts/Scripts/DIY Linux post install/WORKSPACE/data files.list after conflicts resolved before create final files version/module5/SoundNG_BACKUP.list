@@ -1,0 +1,157 @@
+a2jmidid laditools python-laditools zita-ajbridge
+
+alsa-utils libasound2-plugin-equal alsamixergui cairo-dock-alsamixer-plug-in gmerlin gnome-alsamixer mopidy-alsamixer mudita24 qasconfig qashctl qasmixer qastools-common
+
+ams blepvco fomp mcp-plugins
+
+a2jmidid aconnectgui aj-snapshot libasound2 libasound2-data libasound2-dev libasound2-doc libasound2-plugin-smixer libasound2-plugins alsa-tools alsa-tools-gui ld10k1 liblo10k1-0 liblo10k1-dev alsa-utils libasound2-plugin-equal alsamixergui alsaplayer-alsa alsaplayer-common alsaplayer-daemon alsaplayer-gtk alsaplayer-jack alsaplayer-nas alsaplayer-text alsaplayer-xosd libalsaplayer-dev libalsaplayer0 ams amsynth ardour aseqjoy asterisk audacious-plugins awesfx balsa balsa-dbg baresip baresip-core baresip-ffmpeg baresip-gstreamer baresip-gtk baresip-x11 blepvco cairo-dock-alsamixer-plug-in libclalsadrv-dev libclalsadrv2 codecgraph multimedia-jack drumkv1 drumkv1-common drumkv1-lv2 dssi-host-jack libecereaudio0 fische fomp gmerlin gnome-alsamixer gom gstreamer1.0-alsa libghc-cryptonite-dev libghc-cryptonite-doc libghc-cryptonite-prof hydrogen jaaa jack-keyboard japa kmetronome kmidimon kwave libao-common libao-dbg libao-dev libao4 libcrypto++-dev libcrypto++-doc libcrypto++-utils drumstick-tools libdrumstick-dev libdrumstick0 libdssialsacompat-dev libdssialsacompat0 libgcrypt-mingw-w64-dev libgcrypt20 libgcrypt20-dev libgcrypt20-doc libhinawa-dev libhinawa0 libmatemixer-common libmatemixer-dev libmatemixer-doc libmatemixer0 libmikmod-config libmikmod-dev libmikmod3 libomxil-bellagio0-components-alsa libsdl1.2debian libsdl2-2.0-0 liquidsoap-plugin-alsa mate-media mcp-plugins mhwaveedit mididings mididings-doc python-mididings midisnoop mkchromecast mkchromecast-alsa moc mopidy-alsamixer mpg123 mudita24 nautilus-sendto nted libalsa-ocaml libalsa-ocaml-dev libbjack-ocaml libbjack-ocaml-dev libopenal1 patchage libpcaudio-dev libpcaudio0 pd-mediasettings petri-foo phasex phasex-dbg playitslowly pmidi pnmixer libpt2.10.11 pulseaudio python-alsaaudio python-pyalsa qasconfig qashctl qasmixer qastools-common qmidiarp qmidinet qmmp qtractor quisk randomsound librtaudio-dev librtaudio5a librtmidi-dev librtmidi3 showq simplescreenrecorder libsnack-alsa tcl-snack snd-gtk-jack snd-nox sound-theme-freedesktop libsox-fmt-alsa libsox2 sox stymulator timidity tuxguitar-alsa libcw6 vkeybd vokoscreen volti volumecontrol.app volumeicon-alsa wildmidi xmms2-plugin-alsa zita-ajbridge libzita-alsa-pcmi-dev libzita-alsa-pcmi0 zita-alsa-pcmi-utils
+
+amsynth
+
+amb-plugins ardour ardour-altivec ardour-data ardour-i686 ardour-video-timeline ardour3 calf-plugins fil-plugins gjacktransport harvid so-synth-lv2 swh-lv2 tap-plugins tap-plugins-doc xjadeo
+
+qmidiarp
+
+audacity audacity-data debian-edu-doc-en debian-edu-doc-fr debian-edu-doc-nb debian-edu-doc-nl forensics-extra-gui silan vamp-plugin-sdk
+
+calf-plugins
+
+libasound2-plugin-equal caps
+
+abcmidi autotalent chordii gmorgan jfugue libjfugue-java inputattach mma musescore musescore-common elpa-projectile solfege texlive-music
+
+clementine gnome-shell-extension-mediaplayer
+
+cecilia csladspa csound csound-data csound-utils libcsnd-dev libcsnd6-6.0v5 libcsnd6-java libcsound64-6.0 libcsound64-dev libcsound64-doc libcsoundac-dev libcsoundac6.0v5 liblua5.1-luacsnd pd-csound python-csound python-csoundac csound-doc csoundqt csoundqt-examples rosegarden
+
+dgedit drumgizmo
+
+drumkv1 drumkv1-common drumkv1-lv2
+
+dssi-dev dssi-example-plugins dssi-host-jack dssi-utils fluidsynth-dssi ghostess hexter libdssialsacompat-dev libdssialsacompat0 liquidsoap-plugin-dssi ll-scope naspro-bridges nekobee libdssi-ocaml libdssi-ocaml-dev whysynth wsynth-dssi xsynth-dssi zynaddsubfx-dssi
+
+eq10q
+
+python-audioread python3-audioread baresip baresip-core baresip-ffmpeg baresip-gstreamer baresip-gtk baresip-x11 cmus-plugin-ffmpeg ffmpeg ffmpeg-doc libav-tools ffmpeg2theora ffmpegthumbnailer ffmpegthumbnailer-dbg libffmpegthumbnailer-dev libffmpegthumbnailer4v5 ffmpegthumbs ffmsindex libffms2-4 gmerlin-encoders-ffmpeg harvid imagination imagination-common libk3b6-extracodecs kdenlive kdenlive-data kdenlive-dbg kmplayer mkchromecast moc-ffmpeg-plugin qmmp silan squeezelite tumbler-plugins-extra vokoscreen winff winff-data winff-doc winff-gtk2 winff-qt libxine2-ffmpeg
+
+fluid-soundfont-gm
+
+fluid-soundfont-gm fluid-soundfont-gs fluidsynth libfluidsynth-dev libfluidsynth1 fluidsynth-dssi freewheeling libsdl2-mixer-2.0-0 libsdl2-mixer-dbg libsdl2-mixer-dev musescore musescore-common opl3-soundfont qsynth tinyeartrainer tuxguitar-fluidsynth vlc vlc-plugin-fluidsynth
+
+fomp
+
+frescobaldi python-ly python-ly-doc python3-ly
+
+fretsonfire fretsonfire-game fretsonfire-songs-muldjord fretsonfire-songs-sectoid
+
+python-audioread autoradio baresip baresip-core baresip-ffmpeg baresip-gstreamer baresip-gtk baresip-x11 brasero gir1.2-clutter-gst-3.0 gstreamer1.0-clutter-3.0 libclutter-gst-3.0-0 libclutter-gst-3.0-dev libclutter-gst-3.0-doc gir1.2-coglgst-2.0 libcogl-gst20 gstreamer1.0-crystalhd fso-deviced-player-gstreamer gambas3-gb-media gnome-sushi gnome-twitch-player-backend-gstreamer-cairo gnome-twitch-player-backend-gstreamer-clutter gnome-twitch-player-backend-gstreamer-opengl gnome-video-effects gnome-video-effects-dev gnome-video-effects-frei0r goobox gstreamer1.0-fluendo-mp3 gstreamer1.0-libav gstreamer1.0-libav-dbg gir1.2-gst-plugins-bad-1.0 gstreamer1.0-plugins-bad gstreamer1.0-plugins-bad-dbg gstreamer1.0-plugins-bad-doc libgstreamer-plugins-bad1.0-0 libgstreamer-plugins-bad1.0-dev gir1.2-gst-plugins-base-1.0 gstreamer1.0-alsa gstreamer1.0-plugins-base gstreamer1.0-plugins-base-apps gstreamer1.0-plugins-base-dbg gstreamer1.0-plugins-base-doc gstreamer1.0-x libgstreamer-plugins-base1.0-0 libgstreamer-plugins-base1.0-dev gstreamer1.0-espeak gstreamer1.0-plugins-good gstreamer1.0-plugins-good-dbg gstreamer1.0-plugins-good-doc gstreamer1.0-pulseaudio gstreamer1.0-plugins-ugly gstreamer1.0-plugins-ugly-dbg gstreamer1.0-plugins-ugly-doc python-gst-1.0 python-gst-1.0-dbg python3-gst-1.0 python3-gst-1.0-dbg gir1.2-gst-rtsp-server-1.0 gstreamer1.0-rtsp gstreamer1.0-rtsp-dbg libgstrtspserver-1.0-0 libgstrtspserver-1.0-0-dbg libgstrtspserver-1.0-dev libgstrtspserver-1.0-doc gst123 ges1.0-tools gir1.2-ges-1.0 libges-1.0-0 libges-1.0-0-dbg libges-1.0-dev libges-1.0-doc gstreamer1.0-vaapi gstreamer1.0-vaapi-doc gir1.2-gstreamer-1.0 gstreamer1.0-doc gstreamer1.0-tools libgstreamer1.0-0 libgstreamer1.0-0-dbg libgstreamer1.0-dev libgstreamermm-1.0-1 libgstreamermm-1.0-dev libgstreamermm-1.0-doc libcanberra-gstreamer gir1.2-nice-0.1 gstreamer1.0-nice libnice-dbg libnice-dev libnice-doc libnice10 gstreamer-qapt gstreamer0.10-qapt libreoffice libreoffice-avmedia-backend-gstreamer liquidsoap-plugin-gstreamer lua-lgi lua-lgi-dbg mkchromecast-gstreamer libgstreamer-ocaml libgstreamer-ocaml-dev gstreamer1.0-packagekit parole parole-dev phonon-backend-gstreamer phonon-backend-gstreamer-common phonon4qt5-backend-gstreamer pitivi playitslowly gstreamer1.0-pocketsphinx pulseaudio libqt5glib-2.0-0 libqt5gstreamer-1.0-0 libqt5gstreamer-dev libqt5gstreamerquick-1.0-0 libqt5gstreamerui-1.0-0 libqt5gstreamerutils-1.0-0 libqtglib-2.0-0 libqtgstreamer-1.0-0 libqtgstreamer-dev libqtgstreamerui-1.0-0 libqtgstreamerutils-1.0-0 qt5gstreamer-dbg qtgstreamer-dbg qtgstreamer-declarative qtgstreamer-doc qtgstreamer-plugins qtgstreamer-plugins-qt5 libqgsttools-p1 libqt5multimedia5-plugins roarplaylistd-codechelper-gst ruby-gstreamer librygel-renderer-gst-2.6-2 rygel rygel-gst-launch rygel-playbin sound-juicer soundconverter subtitlecomposer subtitleeditor tap-plugins tap-plugins-doc libtelepathy-qt4-farstream2 libtelepathy-qt5-farstream0 totem transmageddon vim-syntax-gtk vlevel voctomix volti
+
+handbrake handbrake-cli
+
+abx gjacktransport golang-github-hydrogen18-stalecucumber-dev golang-github-hydrogen18-stoppablelistener-dev hydrogen hydrogen-data hydrogen-doc hydrogen-drumkits hydrogen-drumkits-effects libchemistry-openbabel-perl libopenbabel-dev libopenbabel-doc libopenbabel4v5 openbabel openbabel-dbg openbabel-gui python-openbabel pdb2pqr
+
+a2jmidid aj-snapshot libasound2-plugins alsa-tools-gui alsaplayer-jack ams apf-firewall ardour asterisk baresip baresip-core baresip-ffmpeg baresip-gstreamer baresip-gtk baresip-x11 python-beaker python3-beaker bitmeter calf-plugins multimedia-jack din drumkv1 drumkv1-common drumkv1-lv2 dssi-host-jack ebumeter ebumeter-doc faust faust-common foo-yc20 fortunes-it freecontact libfreecontact-dev libfreecontact-doc libfreecontact0-dbg libfreecontact0v5 freewheeling ghostess gjacktransport gmidimonitor golang-github-elazarl-goproxy-dev golang-github-jackpal-gateway-dev golang-github-natefinch-lumberjack-dev golang-gopkg-natefinch-lumberjack.v2-dev gtklick guitarix guitarix-common guitarix-doc guitarix-ladspa guitarix-lv2 gxw-glade libgxw-dev libgxw0 libgxwmm-dev libgxwmm0 gxtuner horgand horgand-data hydrogen idjc jaaa jack jack-capture jack-keyboard jack-midi-clock jack-mixer jack-stdio jack-tools jackd jackeq jackmeter libjackrabbit-java libjackson2-annotations-java libjackson2-annotations-java-doc libjackson2-core-java libjackson2-core-java-doc libjackson2-databind-java libjackson2-databind-java-doc libjackson2-dataformat-cbor libjackson2-dataformat-cbor-doc libjackson2-dataformat-smile libjackson2-dataformat-smile-doc libjackson2-dataformat-xml-java libjackson2-dataformat-xml-java-doc libjackson2-dataformat-yaml libjackson2-dataformat-yaml-doc libjackson2-datatype-guava-java libjackson2-datatype-guava-java-doc libjackson2-datatype-joda-java libjackson2-datatype-joda-java-doc libjackson2-jaxrs-providers-java libjackson2-module-jaxb-annotations-java jacksum jacktrip jalv jamin japa jconvolver jkmeter jmeters jnoise klick kluppe laborejo gladish ladish ladish-dbg laditools python-laditools libambix-utils libaudio-ecasound-perl libb-hooks-op-annotation-perl libcrypto++-dev libcrypto++-doc libcrypto++-utils libfreecontact-perl libjackson-json-java libjackson-json-java-doc liblist-maker-perl libltcsmpte-dev libltcsmpte-doc liblwp-protocol-psgi-perl libmoosex-has-options-perl liquidsoap-plugin-jack meterbridge mhwaveedit mididings mididings-doc python-mididings midisnoop mixxx mixxx-data mpg123 libbjack-ocaml libbjack-ocaml-dev patchage libifd-cyberjack6 pd-mediasettings petri-foo phasex phasex-dbg playitslowly pnmixer projectm-jack pulseaudio pulseaudio-module-jack python-freecontact python-fudge python-fudge-doc python3-fudge python-jack-client python3-jack-client qjackctl qjackrcd qmidiarp qmmp qsapecng qtractor radium-compressor rotter librtaudio-dev librtaudio5a librtmidi-dev librtmidi3 ruby-lumberjack samplv1 samplv1-common samplv1-lv2 showq silentjack simplescreenrecorder snd-gtk-jack snd-nox sndfile-tools sooperlooper sslstrip tetraproc texlive-latex-extra timemachine timidity tinyeartrainer tuxguitar-jack twclock vlc vlc-plugin-jack vlevel xen-tools xjadeo xmms2-plugin-jack xscreensaver-data-extra zam-plugins zita-ajbridge zita-alsa-pcmi-utils zita-at1 zita-lrx zita-mu1 zita-njbridge
+
+jack-keyboard
+
+jack-midi-clock
+
+golang-github-dgrijalva-jwt-go-dev golang-github-dgrijalva-jwt-go-v3-dev jalv libjaba-client-java
+
+fookebox gmusicbrowser gnomad2 icecast2 jajuk juk kodi kodi-addons-dev kodi-bin kodi-data kodi-eventclients-common kodi-eventclients-dev kodi-eventclients-kodi-send kodi-eventclients-ps3 kodi-eventclients-wiiremote libaudio-moosic-perl libcddb-perl libnjb-dev libnjb-doc libnjb-tools libnjb5 mps-youtube mtx plait setcd silverjuke sugar-jukebox-activity
+
+juk k3b k3b-data k3b-extrathemes k3b-i18n libk3b-dev libk3b6 libk3b6-extracodecs
+
+kazam
+
+kdenlive kdenlive-data kdenlive-dbg
+
+kmidimon
+
+kodi kodi-addons-dev kodi-bin
+kodi-data kodi-eventclients-common kodi-eventclients-dev kodi-eventclients-kodi-send kodi-eventclients-ps3 kodi-eventclients-wiiremote kodi-pvr-argustv kodi-pvr-dvbviewer kodi-pvr-hdhomerun kodi-pvr-hts kodi-pvr-iptvsimple kodi-pvr-mediaportal-tvserver kodi-pvr-mythtv kodi-pvr-nextpvr kodi-pvr-njoy kodi-pvr-vdr-vnsi kodi-pvr-vuplus kodi-pvr-wmc kodi-visualization-spectrum libkodiplatform-dev libkodiplatform16 vdr-plugin-vnsiserver vdr-plugin-vnsiserver-dbg
+
+libasound2-plugin-equal amb-plugins ambdec ams ardour autotalent blepvco blop bs2b-ladspa caps cmt csladspa dssi-dev dssi-example-plugins dssi-host-jack dssi-utils fil-plugins fomp guitarix guitarix-common guitarix-doc guitarix-ladspa guitarix-lv2 gxw-glade libgxw-dev libgxw0 libgxwmm-dev libgxwmm0 invada-studio-plugins-ladspa jackeq jamin ladspa-sdk libaudio-ecasound-perl liblrdf0 liquidsoap-plugin-ladspa calf-ladspa lv2-dev lv2-examples lvtk-dev lvtk-doc lvtk-examples lvtk-tools mcp-plugins mda-lv2 muse naspro-bridges libladspa-ocaml libladspa-ocaml-dev omins pd-bsaylor pd-plugin qmmp rev-plugins rubberband-ladspa sox ste-plugins ladspalist sweep sweep-dev swh-plugins tap-plugins tap-plugins-doc terminatorx vco-plugins vlevel wah-plugins zam-plugins
+
+gigedit liblscp-dev liblscp-doc liblscp6 qsampler
+
+lmms lmms-common
+
+abgate avw.lv2 calf-plugins drumgizmo drumkv1 drumkv1-common drumkv1-lv2 eq10q fomp foo-yc20 guitarix guitarix-common guitarix-doc guitarix-ladspa guitarix-lv2 gxw-glade libgxw-dev libgxw0 libgxwmm-dev libgxwmm0 invada-studio-plugins-lv2 ir.lv2 jalv libanyevent-yubico-perl liblilv-0-0 liblilv-dev lilv-utils lv2-dev lv2-examples libpaq-dev libpaq0 lv2-c++-tools lv2-c++-tools-doc liblv2dynparam1-dev liblv2dynparamhost1-1 liblv2dynparamplugin1-0 lv2file lv2proc lv2vocoder lvtk-dev lvtk-doc lvtk-examples lvtk-tools mda-lv2 mupen64plus-video-arachnoid libnabrit-dbg libnabrit-dev libnabrit3 naspro-bridges libnacore-dev libnacore-doc libnacore5 libns3-3v5 libns3-dev ns3 ns3-doc python-ns3 libnss3 libnss3-dbg libnss3-dev qtractor libreadline-gplv2-dev samplv1 samplv1-common samplv1-lv2 libserd-0-0 setbfree sigrok-firmware-fx2lafw so-synth-lv2 libsratom-0-0 libsratom-dev libsratom-doc libsuil-0-0 swh-lv2 synthv1-common synthv1-lv2 vocproc x42-plugins zam-plugins zynadd
+
+mda-lv2
+
+a2jmidid abcmidi aconnectgui aeolus aj-snapshot alsa-utils ams amsynth ardour aseqjoy bristol bristol-data calf-plugins multimedia-looping multimedia-midi digitemp din drumgizmo drumkv1 drumkv1-common drumkv1-lv2 dssi-host-jack ecasound ecasound-doc ecasound-el ecatools libecasoundc-dev libecasoundc1v5 python-ecasound ruby-ecasound fluid-soundfont-gm fluid-soundfont-gs fluidsynth libfluidsynth-dev libfluidsynth1 foo-yc20 freepats freewheeling frescobaldi ghostess giada gimp gkrellweather gmidimonitor gmorgan gramophone2 python-hachoir-metadata hexter hydrogen jack-keyboard jack-midi-clock jack-mixer jfugue libjfugue-java kmetronome kmidimon laborejo ladish laditools drumstick-tools libdrumstick-dev libdrumstick0 libdssialsacompat-dev libdssialsacompat0 libinstpatch-1.0-0 libinstpatch-dev libinstpatch-doc libmidi-perl libsdl2-mixer-2.0-0 libsdl2-mixer-dbg libsdl2-mixer-dev smf-utils smitools lmms lmms-common midge midicsv mididings mididings-doc python-mididings midish midisnoop mixxx mixxx-data mma moosic muse musescore musescore-common libnabrit3 naspro-bridges libnacore5 nted openhpi-plugin-ipmidirect opl3-soundfont patchage pd-jmmmp pd-kollabs pd-mediasettings pd-mrpeach petri-foo phasex phasex-dbg pianobooster playmidi pmidi pmw libportmidi-dev libportmidi0 libportsmf-dev libportsmf0 pykaraoke pykaraoke-bin python-pykaraoke python-jack-client python3-jack-client python-messaging python-midiutil python3-midiutil python-mido python3-mido python-pyknon python-pyo python3-pyo python-pypm qmidiarp qmidinet qmidiroute qmmp qsynth qtractor qxgedit rakarrack libroar-dev libroar2 roaraudio-dbg rosegarden librtmidi-dev librtmidi3 rumor libsdl-mixer1.2 libsdl-mixer1.2-dbg libsdl-mixer1.2-dev setbfree sfront showq libsndio-dev libsndio6.1 sndio-tools sndiod sooperlooper libswami-dev libswami0 swami timidity timidity-daemon timidity-el timidity-interfaces-extra tk707 libtse3-0.3.1c2a libtse3-dev tse3play tuxguitar tuxguitar-alsa tuxguitar-fluidsynth tuxguitar-jack vkeybd vlc-plugin-fluidsynth vmpk wah-plugins libwildmidi-config libwildmidi-dev libwildmidi2 wildmidi wmfrog x42-plugins xfce4-weather-plugin xjadeo zita-at1
+
+mixxx mixxx-data
+
+abcde alsaplayer-common amarok ample libassimp3v5 asterisk-mp3 asunder audacious audacious-dev libaudcore3 libaudgui3 libaudqt0 libaudtag2 audacious-plugins audacity audiolink btag burn cdcat cdlabelgen clamz clementine cmus cmus-plugin-ffmpeg coccinella cplay crip cue2toc cynthiune.app darkice detox dir2ogg draai easytag ebook2cw ebook2cwgui entagged eyed3 python-eyed3 ezquake ezstream fadecut fapg fatsort flac libflac++-dev libflac++6v5 libflac-dev libflac-doc libflac8 gjay libgmp3-dev gmusicbrowser gnome-sound-recorder gpodder gstreamer1.0-fluendo-mp3 gst123 python-hachoir-metadata icecast2 id3tool id3v2 idjc imagination irssi-scripts jack libjs-jquery-jplayer jsymphonic libk3b6-extracodecs python-kaa-metadata kid3 kid3-cli kid3-core kid3-qt kradio4 lame lame-dbg lame-doc libmp3lame-dev libmp3lame0 libanydata-perl libapache2-mod-musicindex mod-musicindex-common libaudclient-dev libaudclient2 libaudio-file-perl libaudio-flac-decoder-perl libaudio-scan-perl libaudiomask-dev libaudiomask1 libcddb-perl extract libextractor3 libjaudiotagger-java libjlayer-java libjlayer-java-doc libmad0 libmad0-dev libmediainfo-dev libmediainfo-doc libmediainfo0v5 python-mediainfodll python3-mediainfodll libmp3-info-perl libmp3-tag-perl libmp3spi-java libmp3splt-dev libmp3splt0 libmp3splt0-flac libmp3splt0-mp3 libmp3splt0-ogg libmp4-info-perl libmpeg3-2 libomxil-bellagio0-components-mad libsdl2-mixer-2.0-0 libsdl2-mixer-dbg libsdl2-mixer-dev libshout3 libshout3-dev libpacketdump3 libpacketdump3-dev liburi-title-perl liquidsoap-plugin-lame liquidsoap-plugin-mad liquidsoap-plugin-shine lltag madplay magicrescue mat mediainfo mediainfo-gui mixxx mixxx-data mkchromecast moc moosic mp3blaster mp3burn mp3cd mp3check mp3diags mp3fs mp3info mp3info-gtk mp3rename mp3report mp3roaster mp3val mp3wrap mpc123 mpd libmpg123-0 libmpg123-dev libout123-0 mpg123 mpg123-el mpg321 mpgtx mencoder mupen64plus-rsp-hle music123 musiclibrarian mussort pypy-mutagen python-mutagen python-mutagen-doc python3-mutagen ncdt libsnmp30 libsnmp30-dbg normalize-audio browser-plugin-vlc libxcomp3 libxcomp3-dbg libcry-ocaml-dev libflac-ocaml libflac-ocaml-dev libmp3lame-ocaml libmp3lame-ocaml-dev libmad-ocaml libmad-ocaml-dev libshine-ocaml libshine-ocaml-dev libshout-ocaml libshout-ocaml-dev libagrep-ocaml libagrep-ocaml-dev libogmrip-dev libogmrip1 ogmrip ogmrip-doc oidua libopenal1 libosmcomp3 pacpl paulstretch pd-iemlib pd-unauthorized phonon-backend-gstreamer phonon-backend-gstreamer-common phonon4qt5-backend-gstreamer poc-streamer podracer psi4 puddletag pulseaudio-dlna pykaraoke pykaraoke-bin python-pykaraoke python-pymad python-pymad-dbg python3-pymad python3-pymad-dbg python-pymtp python-id3 qmmp quelcom exfalso quodlibet gir1.2-rb-3.0 librhythmbox-core10 rhythmbox rhythmbox-data rhythmbox-dev rhythmbox-doc rhythmbox-plugin-cdrecorder rhythmbox-plugins rio ripit ripperx ruby-mp3tag libsdl-mixer1.2 libsdl-mixer1.2-dbg libsdl-mixer1.2-dev libsdl-sound1.2 libsdl-sound1.2-dev libshine-dev libshine3 shineenc silverjuke libsmpeg-dev libsmpeg0 smpeg-gtv smpeg-plaympeg python-tksnack python3-tksnack tcl-snack tcl-snack-dev tcl-snack-doc sound-juicer soundconverter libsox-fmt-mp3 sox sweep sweep-dev swish-e taggrepper libtag1-dev libtag1-doc libtag1v5 libtag1v5-vanilla libtagc0 libtagc0-dev python-tagpy tagtool terminatorx testdisk texlive-metapost libtwolame-dev libtwolame0 twolame unmo3 vbrfix vdr-plugin-mp3 libvlc-bin libvlc-dev libvlc5 libvlccore-dev libvlccore8 vlc vlc-bin vlc-data vlc-l10n vlc-plugin-access-extra vlc-plugin-base vlc-plugin-fluidsynth vlc-plugin-jack vlc-plugin-notify vlc-plugin-qt vlc-plugin-samba vlc-plugin-sdl vlc-plugin-skins2 vlc-plugin-svg vlc-plugin-video-output vlc-plugin-video-splitter vlc-plugin-visualization vlc-plugin-zvbi vokoscreen xcfa xcfa-dbg libxine2 libxine2-all-plugins libxine2-dev libxine2-doc libxine2-plugins xmms2 xmms2-plugin-mad xmms2-plugin-mpg123 xwax youtube-dl
+
+atomicparsley audex easytag faad gpac libatomicparsley-dev libatomicparsley0 libjs-jquery-jplayer kid3 kid3-cli kid3-core kid3-qt libapache2-mod-musicindex libaudio-scan-perl libjaudiotagger-java libmp4-info-perl libwww-nicovideo-download-perl libxmp4 moc-ffmpeg-plugin motion mp4h libisoparser-java libmp4v2-2 libmp4v2-dev mp4v2-dbg mp4v2-utils mencoder mplayer mplayer-gui mps-youtube nginx-extras libogmrip-dev libogmrip1 ogmrip ogmrip-doc ogmrip-plugins pacpl psi4 puddletag python-pysnmp4 python-pysnmp4-doc python3 python-pysnmp4-apps python-pysnmp4-mibs sfront libtag1-dev libtag1-doc libtag1v5 libtagc0 libtagc0-dev libtag-extras-dev libtag-extras1 vokoscreen xmms2-plugin-avcodec xmms2-plugin-faad xmms2-plugin-mp4 yorick-av
+
+paulstretch
+
+jcadencii drumstick-tools mda-lv2 monobristol muse pd-moonlib pd-unauthorized libpiano-dev libpiano0 pianobar pianobar-dbg pianobooster pianobooster-dbg pithos rosegarden so-synth-lv2 texlive-music vmpk
+
+amsynth aubio-tools libaubio-dev libaubio-doc libaubio5 python-aubio python3-aubio autotalent beep blop dbmix multimedia-audio-utilities etw fonts-ipaexfont fonts-ipaexfont-gothic fonts-ipaexfont-mincho fonts-yozvox-yozfont fonts-yozvox-yozfont-antique fonts-yozvox-yozfont-cute fonts-yozvox-yozfont-edu fonts-yozvox-yozfont-new-kana fonts-yozvox-yozfont-standard-kana gespeaker gtranscribe hydrogen libaldmb1 libaldmb1-dev libdumb1 libdumb1 libsbsms-dev libsbsms10 mda-lv2 milkytracker libsoundtouch-ocaml libsoundtouch-ocaml-dev paulstretch pd-aubio pd-fftease pd-lyonpotpourri pd-moonlib petri-foo playitslowly praat qmidiroute librubberband-dev librubberband2 rubberband-cli rubberband-ladspa rubberband-vamp schism libsoundtouch-dev libsoundtouch1 libsoundtouch1-dbg soundstretch soundstretch-dbg stretchplayer stretchplayer-dbg swh-lv2 swh-plugins cwcp vocproc xwax yatm zita-at1
+
+cairo-dock-impulse-plug-in python3-checkbox-support gir1.2-cvc-1.0 libcvc0 conky-all conky-all-dbg gstreamer1.0-pulseaudio kwave libao-common libao-dbg libao-dev libao4 libcanberra-pulse libmatemixer-common libmatemixer-dev libmatemixer-doc libmatemixer0 libmikmod-config libmikmod-dev libmikmod3 libpulse-java libpulse-jni libsdl1.2debian libsdl2-2.0-0 liquidsoap-plugin-pulseaudio ltsp-server-standalone mate-media mhwaveedit mkchromecast mkchromecast-pulseaudio mpg123 libpulse-ocaml libpulse-ocaml-dev paman paprefs pasystray pavucontrol pavucontrol-dbg pavucontrol-qt pavumeter libpcaudio-dev libpcaudio0 pnmixer projectm-pulseaudio libpulse-dev libpulse-mainloop-glib0 libpulse0 libpulsedsp pulseaudio pulseaudio-equalizer pulseaudio-esound-compat pulseaudio-module-bluetooth pulseaudio-module-gconf pulseaudio-module-jack pulseaudio-module-lirc pulseaudio-module-raop pulseaudio-module-zeroconf pulseaudio-utils pulseaudio-dlna qmmp libqt5multimedia5-plugins libroar-compat-tools libroar-compat2 simplescreenrecorder snd-gtk-pulse libsox-fmt-pulse twclock libcw6 vokoscreen volti xfce4-pulseaudio-plugin xmms2-plugin-pulse
+
+pykaraoke pykaraoke-bin python-pykaraoke
+
+gmidimonitor qjackctl qjackrcd
+
+qsampler
+
+qsynth
+
+qtractor so-synth-lv2 swh-lv2
+
+rakarrack
+
+rev-plugins
+
+calf-plugins debian-edu-doc-en debian-edu-doc-es debian-edu-doc-fr debian-edu-doc-nb debian-edu-doc-nl rosegarden xjadeo
+
+samplv1 samplv1-common samplv1-lv2
+
+awesfx freepats opl3-soundfont sfarkxtc texlive-latex-extra timgm6mb-soundfont timidity
+
+silverjuke
+
+simplescreenrecorder
+
+smplayer smplayer-l10n smplayer-themes smtube
+
+libsfark0 sfarkxtc tinyeartrainer
+
+synthv1 synthv1-common synthv1-lv2
+
+libsdl2-mixer-2.0-0 libsdl2-mixer-dbg libsdl2-mixer-dev opl3-soundfont pykaraoke pykaraoke-bin python-pykaraoke libsdl-mixer1.2 libsdl-mixer1.2-dbg libsdl-mixer1.2-dev timidity timidity-daemon timidity-el timidity-interfaces-extra tk707
+
+tuxguitar tuxguitar-alsa tuxguitar-fluidsynth tuxguitar-jack tuxguitar-jsa
+
+libcsvjdbc-java libcsvjdbc-java-doc golang-github-vjeantet-grok-dev libtie-ical-perl lives lives-data lives-plugins liblavjpeg-2.1-0 prosody-modules
+
+caffe-cpu caffe-doc caffe-tools-cpu libcaffe-cpu-dev libcaffe-cpu1 python3-caffe-cpu cubemap dvblast forensics-extra-gui fp-units-multimedia fp-units-multimedia-3.0.0 freeplayer freetuxtv getstream kaffeine laditools libbluray-bdj libbluray-bin libbluray-dev libbluray-doc libbluray1 hdhomerun-config libhdhomerun-dev libhdhomerun3 libreoffice-avmedia-backend-vlc livestreamer mimms mpris-remote browser-plugin-vlc python3-pafy phonon-backend-vlc phonon4qt5-backend-vlc pidgin-mpris smtube libvcdinfo-dev libvcdinfo0 libvlc-bin libvlc-dev libvlc5 libvlccore-dev libvlccore8 vlc vlc-bin vlc-data vlc-l10n vlc-nox vlc-plugin-access-extra vlc-plugin-base vlc-plugin-fluidsynth vlc-plugin-jack vlc-plugin-notify vlc-plugin-qt vlc-plugin-samba vlc-plugin-sdl vlc-plugin-skins2 vlc-plugin-svg vlc-plugin-video-output vlc-plugin-video-splitter vlc-plugin-visualization vlc-plugin-zvbi vlc-plugin-vlsub x264
+
+vmpk
+
+vokoscreen
+
+cvsutils python-django-kvstore dssi-dev dssi-example-plugins dssi-host-jack dssi-utils envstore flvstreamer lvtk-dev lvtk-doc lvtk-examples lvtk-tools mda-lv2 pd-plugin python-bashate python-bashate-doc python3-bashate silverjuke vamp-plugin-sdk varnish-modules vstream-client vstream-client-dev libwvstreams-dev libwvstreams4.6-base libwvstreams4.6-doc libwvstreams4.6-extras zam-plugins
+
+abinit abinit-data abinit-doc abx alure-doc alure-utils libalure-dev libalure1 amsynth ap-utils asterisk-core-sounds-en-wav asterisk-core-sounds-es-wav asterisk-core-sounds-fr-wav asterisk-core-sounds-it-wav asterisk-core-sounds-ru-wav asterisk-moh-opsound-wav asterisk-prompt-it-menardi-wav asunder audacious audacious-dev libaudcore3 libaudgui3 libaudqt0 libaudtag2 audacious-plugins audacity audex audiofile-tools libaudiofile-dev libaudiofile1 python-audioread python3-audioread bart bchunk blender blender-data blop libboost-wave-dev libboost-wave1.62-dev libboost-wave1.62.0 bplay burn coop-computing-tools cdparanoia cdparanoia-dbg libcdparanoia-dev libcdparanoia0 icedax libchealpix-dev libchealpix0 chemps2 chemps2-doc libchemps2-2 libchemps2-dev python-chemps2 cmus cp2k libcpldrs26 cpl-plugin-fors cpl-plugin-uves cpl-plugin-vimos cpl-plugin-xshoo cplay cue2toc cuetools cynthiune.app debian-edu-artwork-softwaves dgedit din dir2ogg drumgizmo libecereaudio0 elk-lapw eso-pipelines espeak espeak-ng quantum-espresso quantum-espresso-data extace fapg fische flake libflake-dev fmit freecad freehdl libfreehdl0 libfreehdl0-dev funnyboat fuse-emulator-utils gimp-plugin-registry gjay browser-plugin-gnash gnash gnash-common gnash-cygnal gnash-dbg gnash-dev gnash-doc gnash-ext-fileio gnash-ext-lirc gnash-ext-mysql gnash-tools klash konqueror-plugin-gnash python-gtk-gnash libgnuradio-wavelet3.7.10 gpaw gr-osmosdr gramofile gtkwave gvb gwave gwc python-hachoir-metadata python-hachoir-parser libhealpix-cxx-dev libhealpix-cxx0 libhealpix-java libhealpix-java-doc python-healpy-data horgand horgand-data htsengine libhtsengine-dev libhtsengine1 libhugs-alut-bundled hydrogen jack jack-capture jnoise libjs-jquery-jplayer kid3 kid3-cli kid3-core kid3-qt kradio4 kwave laserboy laserboy-indep ldm-themes libao-common libao-dbg libao-dev libao4 libaudclient-dev libaudclient2 libaudio-scan-perl libaudio-wav-perl libccaudio2-2 libccaudio2-dev epsilon-bin libepsilon-dev libepsilon1 extract libextractor3 libg3d-plugins gigtools libimage-seek-perl libimage-size-perl libinstpatch-1.0-0 libinstpatch-dev libinstpatch-doc libmediainfo-dev libmediainfo-doc libmediainfo0v5 python-mediainfodll python3-mediainfodll libmikmod-config libmikmod-dev libmikmod3 libmpcdec-dev libmpcdec6 musepack-tools libsndfile1 lightspeed lirc-x ll-scope mcp-plugins mda-lv2 mediainfo mediainfo-gui mhwaveedit milkytracker minimodem mixxx mixxx-data mm3d moc monitoring-plugins-standard moosic morse2ascii mp3burn mp3cd mp3roaster mpd multimail music123 pypy-mutagen python-mutagen python-mutagen-doc python3-mutagen normalize-audio octave-ltfat octave-ltfat-common octave-signal omins open-invaders open-invaders-data libopenjp2-7 libopenjp2-7-dev libopenjp3d7 libopenjpip7 libopenzwave-doc libopenzwave1.5 libopenzwave1.5-dev openzwave libotbwavelet-5.8-1 pacpl paulstretch pd-bassemu pd-creb pd-cxc pd-ext13 pd-lyonpotpourri phasex psi4 psi3 puddletag pulseaudio-utils pulseaudio-dlna python-pysynphot python3-pysynphot python-dtcwt python-dtcwt-doc python3-dtcwt pyvnc2swf python-pywt python-pywt-doc python3-pywt qjackrcd qmidiarp qmmp quelcom exfalso quodlibet r-cran-rcppgsl ruby-carrierwave ruby-wavefile libsdl-sound1.2 libsdl-sound1.2-dev shineenc shntool sidplay-base siggen silverjuke python-tksnack python3-tksnack tcl-snack tcl-snack-dev tcl-snack-doc sonic soundconverter soundscaperenderer soundscaperenderer-common soundscaperenderer-nox soundstretch soundstretch-dbg libsox-fmt-base sox speech-tools steghide steghide-doc stymulator libsubtitleeditor-dev libsubtitleeditor0 subtitleeditor libswami-dev libswami0 swami sweep sweep-dev swfmill swftools swftools-dbg swh-lv2 swh-plugins libtag1-dev libtag1-doc libtag1v5 libtag1v5-vanilla libtagc0 libtagc0-dev libtag-extras-dev libtag-extras1 terminatorx tessa tessa-mpi testdisk texlive-latex-extra timemachine timidity transcalc ttf-aenigma vamp-examples vco-plugins xul-ext-video-without-flash view3dscene libwaili-dev libwaili1c2 wav2cdr wavbreaker wavemon wavesurfer libwavpack-dev libwavpack1 wavpack wavtool-pl whysynth wildmidi wings3d wmwave wsynth-dssi xawtv-tools xcfa xcfa-dbg xdesktopwaves xfce4-goodies xfce4-wavelan-plugin xmms2-plugin-wavpack xscreensaver-data yaret yorick-yeti youtube-dl zita-resampler
+
+gnome-colors gnome-wine-icon-theme gnome-exe-thumbnailer innoextract libkwineffects9 mingw-w64-i686-dev mingw-w64-x86-64-dev python-neo q4wine shiki-colors shiki-wine-theme tellico tellico-data tellico-doc tellico-scripts twine unmass fonts-wine wine wine-binfmt
+
+winetricks
+
+xoscope
+
+yoshimi yoshimi-data
+
+yoshimi yoshimi-data zynadd zynaddsubfx zynaddsubfx-data zynaddsubfx-dssi
+
+playonlinux
+

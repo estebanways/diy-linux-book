@@ -1,0 +1,88 @@
+First of all, define a back-up strategy, defining:
+- Back-up data (What to copy)
+- Back-up frequency (Schedule)
+- Back-up automation (yes/No)
+- Back-up type (Complete, incremental or differential) 
+- Back-up back-ups (Number of copies and location)
+
+You can use tools like:
+
+Disks:
+Make backups as HD image in img format.
+
+rsbackup:
+Backups are stored as complete filesystem trees on a (perhaps external) hard disk.  Multiple backups use hard links between identical files to save space.
+Backups may be taken from multiple machines (over SSH) and stored to multiple disks.
+Backups may be made automatically, i.e. without relying on the operator to remember to make a backup.
+
+Clonezilla:
+Make a backup from this live DVD backup tool.
+
+Partimage:
+Make local and over the network partition backups and restoration.
+
+Rudiments backup:
+Backup using shell scripts.
+
+Manual backups:
+There are more solutions, but in my case for system maintenance and especially for backups, my manual procedure is all right.
+
+
+My Debian Workstation back-up procedure is very simple. 
+Remember to keep the directory/file permissions and symlinks using the command 'cp -dpR':
+
+/etc
+Reasons:
+sudoers
+fluxbox/
+apt/
+hosts
+resolve.conf
+network/interfaces
+kvm/
+firewall script
+more...
+
+/home/esteban/Documents
+Reasons:
+All my docs are here
+
+/var/cache/apt/archives:
+Reason:
+Contains all the DEB packages, except for after a new system have been installed from netinstall Disc (at leat)
+
+/home/Esteban/Downloads/to Debian 8 Jessie repo
+Reason: The directory is the new mini-repo of packages downloaded to put into 2 remote/external HDs/SSDs repository directory called: Debian 8 Jessie repo
+
+
+Notes:
+I don't backup these directories:
+
+/usr
+Reason:
+I don't back up this directory but contains more software installations and configurations
+
+/opt
+Reason:
+I don't back up this directory but contains more software installations and configurations
+
+/home/esteban/Downloads
+Reason: I don't keep files in this directory. I put away the files in remote/external HDs/SSDs the weekends to free system space.
+
+/home/esteban/
+Reason:
+To much files to backup. I restore virtual machines templates from a Virtual Applicance directory in a remote or external HD/SSD. In this case I can backup just the virtual machines to my VM backups or create/merge a templete.
+Hidden files
+Hidden config files
+VirtualBox VMs/
+Documents/
+Downloads/
+
+/var/lib/libvirt
+Reasons:
+KVM virtual machines, qcow2 containers and ISO can be restored from here, but there are to much files to backup, and I restore virtual machines templates from a Virtual Applicance directory in a remote or external HD/SSD. In this case I can backup just the virtual machines to my VM backups or create/merge a templete.
+
+/boot
+Reason:
+grub/
+I can restore Grub manually, from the installation CD/DVD or using tools like Knoppix live DVD or another rescue CD/DVD.

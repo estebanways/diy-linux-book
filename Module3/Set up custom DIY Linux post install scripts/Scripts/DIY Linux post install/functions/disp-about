@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function disp-about {
+ echo "Not implemented yet:"
+ echo "Fuction: disp-about"
+ exit 99
+}

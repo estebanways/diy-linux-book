@@ -1,0 +1,6 @@
+tuxguitar - Multitrack guitar tablature editor and player (gp3 to gp5)
+tuxguitar-alsa - tuxguitar plugin for sound playback using ALSA
+tuxguitar-fluidsynth - tuxguitar plugin for sound playback using fluidsynth
+tuxguitar-jack - tuxguitar plugin for sound playback using JACKD
+tuxguitar-jsa - tuxguitar plugin for sound playback using Java Sound API
+tuxguitar-oss - tuxguitar plugin for sound playback using OSS

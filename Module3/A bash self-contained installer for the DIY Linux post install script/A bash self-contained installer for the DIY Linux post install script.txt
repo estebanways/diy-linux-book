@@ -1,0 +1,5 @@
+
+References: 
+Topic: Create a self-contained installer in Bash
+Web: http://www.matteomattei.com/create-self-contained-installer-in-bash-that-extracts-archives-and-perform-actitions/
+File: Create a self-contained installer in Bash Matteo Mattei.pdf

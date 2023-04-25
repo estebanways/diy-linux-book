@@ -1,0 +1,3 @@
+kdenlive - non-linear video editor
+kdenlive-data - non-linear video editor (data files)
+kdenlive-dbg - non-linear video editor (debugging symbols)

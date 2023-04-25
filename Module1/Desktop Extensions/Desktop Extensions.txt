@@ -1,0 +1,39 @@
+Software sources available:
+- Desktop Extensions sources
+
+Examples:
+There are some types of applications icons that appear and work in certain areas on the Gnome desktop:
+- Applets. Appear in the Notifications area panel at the bottom of the screen.
+- Extensions. Appear in the panel on top of the screen (Using the default panel location configuration).
+- Screenlets. Appear on any area on the screen. In Linux Mint they're called Desklets.
+Reference:
+Web: https://cinnamon-spices.linuxmint.com/extensions
+Web: https://cinnamon-spices.linuxmint.com/desklets
+web: https://cinnamon-spices.linuxmint.com/applets
+
+According to the installation method these Icons come from:
+- Applets: Debian application packages.
+- Screenlets: Screenlets application package.
+- Extensions: Desktop Extensions sources. They don't need to install new packages to work, mainly because the (DEB) package is the desktop itself.
+
+** Notice that Extensions is the only Icon that comes from the installation method "Desktop Extensions sources". The rest of Icons come from DEB applications.
+
+
+Anyway I am going to talk a little bit more of more Desktop possibilities.
+
+In Gnome, the Extensions are called "Gnome Shell Extensions".
+
+There are non Gnome (DEB) applications you can install to add features to your desktops. These types of applications use their own names, for example:
+- Screenlets installed from Screenlets (Acctually here because Gnome hasn't its own Desklets like Mint has).
+- Applets installed from Cairo Dock.
+- Widgets installed from Conky.
+- Widgets installed from Slit.
+
+Other Desktop Environments use their own Icon and app enhancement approaches like Gnome. For example, KDE uses KDE Widgets.
+
+Some other Apps come as DEB package, or a compressed tarball, can be installed as DEB packages or merged into directories, they are not applications but have the ability to change how the desktops looks like, include App shapes and Icons.
+- Desktop icons
+- Desktop themes
+- System cursors
+References:
+Web: http://gnome-look.org/

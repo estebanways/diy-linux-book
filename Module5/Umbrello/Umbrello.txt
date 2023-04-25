@@ -1,0 +1,10 @@
+I'd love to recommend you a free web application to create diagrams, but the good ones I know aren't for free, and you have to pay a cheap monthly membership.
+
+UML modelling with Umbrello:
+
+Edit /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search umbrello
+$ sudo apt-get install umbrello
+
+For UML (and more) you can also use DIA. Here is the installation Guide ().

@@ -1,0 +1,109 @@
+
+How to make the internet not suck (as much):
+
+# This hosts file is brought to you by Dan Pollock and can be found at
+# http://someonewhocares.org/hosts/
+# You are free to copy and distribute this file for non-commercial uses,
+# as long the original URL and attribution is included. 
+# 
+# See below for acknowledgements.
+
+# Please forward any additions, corrections or comments by email to
+# hosts@someonewhocares.org
+
+# Last updated: Jan 6th, 2016 at 10:58
+
+# Use this file to prevent your computer from connecting to selected
+# internet hosts. This is an easy and effective way to protect you from 
+# many types of spyware, reduces bandwidth use, blocks certain pop-up 
+# traps, prevents user tracking by way of "web bugs" embedded in spam,
+# provides partial protection to IE from certain web-based exploits and
+# blocks most advertising you would otherwise be subjected to on the 
+# internet. 
+
+# There is a version of this file that uses 0.0.0.0 instead of 127.0.0.1 
+# available at http://someonewhocares.org/hosts/zero/.
+# On some machines this may run minutely faster, however the zero version
+# may not be compatible with all systems. 
+
+# This file must be saved as a text file with no extension. (This means
+# that the file name should be exactly as below, without a ".txt" appended.)
+
+# Let me repeat, the file should be named "hosts" NOT "hosts.txt".
+
+# For Windows 9x and ME place this file at "C:\Windows\hosts"
+# For NT, Win2K and XP use "C:\windows\system32\drivers\etc\hosts"
+#                       or "C:\winnt\system32\drivers\etc\hosts"
+# For Windows 7 and Vista use "C:\windows\system32\drivers\etc\hosts"
+#			or "%systemroot%\system32\drivers\etc\hosts"
+# For Windows 8 use "C:\Windows\System32\drivers\etc\hosts"
+# 		You may need to tell Windows Defender to ignore this path
+# 		see: http://support.microsoft.com/kb/2764944
+# You may have to use Notepad and "Run as Administrator"
+# For Linux, Unix, or OS X place this file at "/etc/hosts" or on some
+#    systems at "/private/etc/hosts". You will require root access to do
+#    this. Saving this file to "~/hosts" will allow you to run something
+#    like "sudo cp ~/hosts /etc/hosts".
+# For OS/2 copy the file to "%ETC%\HOSTS" and in the CONFIG.SYS file,
+#    ensure that the line "SET USE_HOSTS_FIRST=1" is included.
+# For BeOS place it at "/boot/beos/etc/hosts"
+# On a Netware system, the location is System\etc\hosts"
+# For Macintosh (pre OS X) place it in the Mac System Folder or Preferences
+#    folder and reboot. (something like HD:System Folder:Preferences:Hosts)
+#    Alternatively you can save it elsewhere on your machine, then go to the 
+#    TCP/IP control panel and click on "Select hosts file" to read it in.
+#    ------------------
+#    | As well, note that the format is different on old macs, so
+#    | please visit http://someonewhocares.org/hosts/mac/ for mac format
+# For Android place the file at "/system/etc/hosts". You will need root
+#   access on your device to do this.
+#    ------------------
+# To convert the hosts file to a set of Cisco IOS commands for Cisco routers
+#   use this script by Jesse Baird:
+#   http://jebaird.com/blog/hosts-ip-host-generating-blocked-hosts-host-file-cisco-router
+
+# If there is a domain name you would rather never see, simply add a line
+# that reads "127.0.0.1 machine.domain.tld". This will have the effect of
+# redirecting any requests to that host to your own computer. For example
+# this will prevent your browser from downloading banner ads, or sending
+# your information back to a company.
+
+#<localhost>
+127.0.0.1	localhost
+127.0.0.1	localhost.localdomain
+255.255.255.255	broadcasthost
+::1		localhost
+127.0.0.1	local
+#fe80::1%lo0	localhost
+#</localhost>
+
+#<shock-sites>
+# For example, to block unpleasant pages, try:
+127.0.0.1 goatse.cx       # More information on sites such as 
+127.0.0.1 www.goatse.cx   # these can be found in this article
+127.0.0.1 oralse.cx       # en.wikipedia.org/wiki/List_of_shock_sites
+127.0.0.1 www.oralse.cx
+127.0.0.1 goatse.ca
+127.0.0.1 www.goatse.ca
+127.0.0.1 oralse.ca
+127.0.0.1 www.oralse.ca
+127.0.0.1 goat.cx
+127.0.0.1 www.goat.cx
+
+127.0.0.1 1girl1pitcher.com
+127.0.0.1 1girl1pitcher.org
+127.0.0.1 1guy1cock.com
+127.0.0.1 1man1jar.org
+127.0.0.1 1man2needles.com
+127.0.0.1 1priest1nun.com
+127.0.0.1 1priest1nun.net
+
+
+This is just a piece of the large script. You can download a complete up to date version from their web site.
+References:
+Web: http://someonewhocares.org/hosts/
+File: AdBlockerHostsFile.txt
+
+
+Browser Ad Blockers:
+(Pending)

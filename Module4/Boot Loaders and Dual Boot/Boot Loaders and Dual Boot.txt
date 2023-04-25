@@ -1,0 +1,114 @@
+Topics:
+- Lock the Grub2 boot menu
+- Change the GRUB2 Splash
+- Edit Grub2 menu entries
+- Hide the grub menu
+- Repair Grub
+- Dual Boot
+
+
+- Lock the Grub2 boot menu:
+
+This a very simple to way to lock the Grub2 boot menu, visible immediately after unlock the crypt password when the system starts.
+
+Preflight:
+First of all back-up the files involved on every step.
+Choose a Grub2 root user (MYUSER, not necessarily the system root), and a password but if you have chosen the root don't use the root password for the Grub2 configuration.
+
+Steps:
+Insert the next snippet at the end of the file /etc/grub.d/00_header:
+cat << EOF
+set superusers="root"
+password root PASSWORD_HERE
+EOF
+
+To setup one user:
+To setup the user root:
+$ sudo sed -i -e '/^menuentry /s/ {/ --users root {/' /etc/grub.d/10_linux /etc/grub.d/10_linux /etc/grub.d/10_linux /etc/grub.d/30_os-prober /etc/grub.d/40_custom
+
+The resultant lines in the code of the files should have added: --users root
+
+UNDO the changes:
+$ sudo sed -i -e '/^menuentry /s/ --users MYUSER[/B] {/ {/' /etc/grub.d/10_linux /etc/grub.d/20_memtest86+ /etc/grub.d/30_os-prober /etc/grub.d/40_custom
+
+Note that there are types of commas ("", '', ``, ‘’) and dashes (-, -- ==> This is two single dashes).
+
+Save the new changes with:
+# update-grub
+Don't run the command anymore, otherwise the changes made will be restored to default.
+
+Reboot the machine to make sure the Grub2 editor has been locked.
+
+References:
+Web: http://www.dedoimedo.com/computers/grub-2.html
+File: GRUB 2 bootloader - Full tutorial.pdf
+
+PENDING:
+I need to improve this process to add a second user and avoid password prompts in the Grub2 screen.
+
+If you reboot at this point the the Grub2 splash is going to ask for the password every time you power on the machine. To skip the recurrent password prompt just replace Grub2 user roo by adding the user esteban:
+
+Add esteban to /etc/grub.d/00_header:
+
+cat << EOF
+set superusers="root"
+password root PASSWORD_HERE
+password esteban PASSWORD_HERE
+EOF
+
+$ sudo sed -i -e '/^menuentry /s/ {/ --users esteban {/' /etc/grub.d/10_linux /etc/grub.d/10_linux /etc/grub.d/30_os-prober /etc/grub.d/40_custom
+
+If you open the files and search '--users' should look lines like this:
+$_get_device_id "${DEVICE}")'  --users root --users esteban {
+
+- Change the GRUB2 Splash:
+
+Change the image /boot/grub2/.background_cache.png which is mentioned in the file grub.cfg in the same directory.
+To change the text lines:
+$ sudo nano /boot/grub/grub.cfg
+Press CTRL + X to search the string "background_image"
+If you changed the image name or location remember to update GRUB.
+References:
+Web: https://wiki.debian.org/Grub/SplashImage
+File: Grub_SplashImage - Debian Wiki.pdf
+
+- Edit Grub2 menu entries:
+
+Change the default boot option... 
+(Pending)
+
+- Hide the grub menu:
+
+Backup and then edit this file:
+$ sudo nano /etc/default/grub
+Change the line:
+GRUB_TIMEOUT=0
+Save changes.
+Update the program:
+$ sudo update-grub
+References:
+Web: http://unix.stackexchange.com/questions/137856/how-hide-the-grub-2-start-up-screen-in-debian-during-bootup
+File: grub2 - How hide the grub 2 start up screen in debian during bootup_ - Unix & Linux Stack Exchange.pdf
+
+- Repair Grub:
+
+(Pending)
+References:
+Web: https://www.debian.org/releases/stable/i386/ch08s07.html.en
+File: 8.7 Recovering a broken system.pdf
+Web: https://feeding.cloud.geek.nz/posts/reinstalling-grub-on-unbootable-debian/
+File: Reinstalling grub on an unbootable Debian system.pdf
+Topic: System rescue
+Guide: System Rescue
+Topic: Reset root password with Grub2
+Guide: Reset root password
+
+- Dual Boot:
+
+Just say that if you have a dual boot with Windows the time will be affected and you will have to correct the issue.
+References:
+Guide: Set date, time and timezone
+
+Every non Linux system has his installation issues out of the objectives of this book, so the only thing I say is use a good partition software like Gparted
+References: 
+Guide: Partitioning

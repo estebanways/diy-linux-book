@@ -1,0 +1,21 @@
+To create sand boxed environments like chroot and schroot or in case of you get the error when installing DEB packages: “wrong architecture i386” you have to execute the following command lines as an administrator in 64bit platforms:
+# dpkg --add-architecture i386
+# apt-get update
+At this point I have installed Debian multiarchitecture to support 32 bit programs. They are gonna be install under 32bit directories as well.
+
+References:
+Best example is the Guide Teamviewer.
+
+By default, your system will install packages for your default system architecture.
+Before installing programs of another architecture in your system or sand boxed environments like chroot and schroot verify the availability of these in the repositories:
+$ sudo nano /etc/apt/sources.list
+$ apt-get update
+$ apt-cache search nmap
+$ apt-cache show nmap
+Find the line "Architecture" in the Output.
+$ sudo apt-get install nmap:i386
+
+References:
+Topic: To create 32bit chroot envronments
+Web: http://askubuntu.com/questions/29665/how-do-i-apt-get-a-32-bit-package-on-a-64-bit-installation
+File: 64 bit - How do I apt-get a 32-bit package on a 64-bit installation_ - Ask Ubuntu.pdf

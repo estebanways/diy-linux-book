@@ -1,0 +1,18 @@
+If the Desktop program doesn't work, you have the Web and the terminal command alternatives.
+
+Tested already on Jessie and Stretch version of Debian, include the Chrome extension.
+References:
+Topic: Visit to download the sync application for Debian.
+Web: https://mega.nz
+
+More Cloud Storage guides are available.
+Guides:
+DrBd
+Gogle Drive
+Hubic
+OneDrive
+Guide: "Share system directories across the network"
+
+Security notes (pending)
+References:
+Module 7: Security first

@@ -1,0 +1,13 @@
+
+Set_Audio_from_official_repo_-_for_i686.bash initialized... wait for the program to finish or press CTRL + C
+Action: System sources updating: 
+Hit:1 http://security.debian.org/debian-security stretch/updates InRelease
+Ign:2 http://ftp.us.debian.org/debian stretch InRelease
+Hit:3 http://ftp.us.debian.org/debian stretch-updates InRelease
+Hit:4 http://ftp.us.debian.org/debian stretch Release
+Set_Audio_from_official_repo_-_for_i686_quiet.bash initialized... wait for the program to finish or press CTRL + C
+Ign:1 http://ftp.us.debian.org/debian stretch InRelease
+Hit:2 http://security.debian.org/debian-security stretch/updates InRelease
+Hit:3 http://ftp.us.debian.org/debian stretch-updates InRelease
+Hit:4 http://ftp.us.debian.org/debian stretch Release
+Sat Jul  8 21:52:48 CDT 2017 --- SOMETHING WENT WRONG. RERUN OPTION TO COMPLETE ---. [0;31mERROR MESSAGE:[0m exit 1

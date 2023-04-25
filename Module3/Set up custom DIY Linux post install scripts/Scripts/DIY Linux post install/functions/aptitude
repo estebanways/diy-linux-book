@@ -1,0 +1,7 @@
+#!/bin/bash
+
+function aptitude {
+ echo "Not implemented yet:"
+ echo "Fuction: aptitude"
+ exit 99
+}

@@ -1,0 +1,567 @@
+
+
+
+------->
+
+Update version: 1
+Update for Debian 10 codename "Buster":
+
+On Debian 10 codename Buster, I finally decided to update this file because all the content consisted on a failed attempt to install git from brew, but is another way to have the latest version of git installed in our Debian or any other Linux or unix like distributions: Build it from the sources. So this is the update:
+References:
+Topic: Install Git from source. It is curently in the module 5.
+Guide:
+Git
+
+------->
+
+If you have a previous Git running installation:
+$ dpkg -l | grep 'git'
+Output:
+ii  git                                    1:2.1.4-2.1                                amd64        fast, scalable, distributed revision control system
+ii  git-man                                1:2.1.4-2.1                                all          fast, scalable, distributed revision control system (manual pages)
+
+Un-installation:
+$ sudo apt-get remove git git-man
+
+I don't usually purge programs to keep the output like an installation log and the packages fetched in /var/cache/apt/archives/. Here is the command to purge:
+$ sudo apt-get purge git git-man
+
+Update LinuxBrew:
+$ brew update
+Output:
+You must: brew install git
+You must: brew install git
+Error: Failure while executing: git checkout -q master
+
+Note: This error means that LinuxBrew requires a Git to update (and download bottles and source code).
+
+Search the formula:
+Go to http://braumeister.org/browse/s/8
+$ brew search git
+Output:
+bagit		    git-fixup		git-octopus	    git-url-sub
+bash-git-prompt	    git-flow		git-open	    gitbucket
+easy-git	    git-flow-avh	git-plus	    giter8
+geogit		    git-ftp		git-review	    github-release
+git		    git-gerrit		git-sh		    gitslave
+git-annex	    git-hooks		git-ssh		    gitup
+git-archive-all	    git-imerge		git-stree	    legit
+git-cal		    git-integration	git-subrepo	    libgit2
+git-cola	    git-lfs		git-test	    libgit2-glib
+git-crypt	    git-multipush	git-tf		    magit
+git-encrypt	    git-now		git-tig		    stgit
+git-extras	    git-number		git-tracker	    topgit
+
+Install a formula:
+$ brew install git
+Output:
+Error: No available formula for tcl-tk (dependency of git)
+Searching formulae...
+Searching taps...
+homebrew/dupes/tcl-tk
+
+Search the dependency:
+$ brew search tcl-tk
+Output: 
+homebrew/dupes/tcl-tk
+
+Search: tcl-tk
+http://braumeister.org/browse/s/8
+Result: No formulae available.
+
+Search: git
+http://braumeister.org/browse/s/8
+Result: tcl-tk does not appear as dependency.
+
+Show the dependencies of the APT version of git (Installed or not):
+$ sudo apt-cache show git
+
+At this point I decided to reinstall Git from APT. Either way the Git works equally on all the OSes. It is not going to cause code errors meanwhile it is up to date, synced and all the team members know exactly what they do.
+
+$ sudo apt-get install git git-man
+Or:
+$ sudo apt-get install git
+
+Output:
+[...]
+Suggested packages:
+  git-daemon-run git-daemon-sysvinit git-doc git-el git-email git-gui gitk
+  gitweb git-arch git-cvs git-mediawiki git-svn
+[...]
+
+Check git (APT) version:
+$ dpkg -l git
+Output:
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version      Architecture Description
++++-==============-============-============-=================================
+ii  git            1:2.1.4-2.1  amd64        fast, scalable, distributed revis
+
+Tests With Git already installed:
+Update LinuxBrew:
+$ brew update
+Attempt to install over existent git from Homebrew:
+$ brew install git
+Error: No available formula for tcl-tk (dependency of git)
+Searching formulae...
+Searching taps...
+
+In fact it is not possible to test what is going on when I install git from LinuxBrew on git from APT with, anyway there is no tcl-tk to initialize the installation.
+
+
+UPDATE:
+This is the Final attempt to install Git from Homebrew also failed, but I am loggin wverything I do:
+
+At a later point I installed a a new brew tap "dupes", which has tcl-tk. See the MongoDB installation guide for details.
+
+List taps:
+$ brew tap
+homebrew/science
+homebrew/games
+homebrew/dupes
+
+Get list of formulas in a tap:
+$ cd 
+$ cd .linuxbrew/Library
+$ ls
+$ cd to enter to Homebrew/ or Taps/ to list again with 'ls'.
+
+Review the dependencies of the formula:
+Web: http://braumeister.org/formula/vegeta
+Or use:
+See the dependencies for a given brew:
+$ brew deps git
+Output:
+bzip2
+expat
+gettext
+homebrew/dupes/tcl-tk
+pcre
+xz
+
+There is not tcl-tk installation:
+$ brew list
+
+Search the mongodb availability:
+$ brew search tcl-tk
+Output:
+homebrew/dupes/tcl-tk
+
+Install git:
+$ brew install git
+Output section to show the new error:
+[...]
+==> Downloading https://www.kernel.org/pub/software/scm/git/git-2.4.5.tar.xz
+######################################################################## 100.0%
+==> make install prefix=/home/esteban/.linuxbrew/Cellar/git/2.4.5 sysconfdir=/ho
+/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../x86_64-linux-gnu/libcurl.so: undefined reference to `UI_method_set_writer@OPENSSL_1.0.0'
+collect2: error: ld returned 1 exit status
+Makefile:1960: recipe for target 'git-imap-send' failed
+make: *** [git-imap-send] Error 1
+make: *** Waiting for unfinished jobs....
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+
+These open issues may also help:
+Sandbox breaks Git compile (https://github.com/Homebrew/homebrew/issues/38978)
+git-big-picture: new formula v0.9.0 (https://github.com/Homebrew/homebrew/pull/36812)
+always gives error when search "Error: Failed to connect to: https://api.github.com/repos/Homebrew/homebrew-binary/git/trees/HEAD?recursive=1" (https://github.com/Homebrew/homebrew/issues/40805)
+[...]
+End of output section.
+
+Verify installed versions:
+$ brew list openssl --versions
+$ brew list openssl --version
+Output:
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/bin/c_rehash
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/bin/openssl
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/include/openssl/ (75 files)
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/lib/engines/ (12 files)
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/lib/pkgconfig/ (3 files)
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/lib/ (6 files)
+/home/esteban/.linuxbrew/Cellar/openssl/1.0.2c/share/man/ (1538 files)
+End of output.
+
+It seems a conflict because according to the error message the version of OPENSSL required to compile Git is 1.0.0 and the version installed is 1.0.2.
+
+Let me review the installed programs that depend on OPENSSL:
+Ask brew to tell you which brews use a particular formula:
+$ brew uses --installed openssl
+Output:
+node   nginx
+
+Thinking on what to do:
+$man brew
+
+Attempt to find a compatible OPENSSL version:
+See the all the available homebrew taps:
+Web: http://braumeister.org
+Taps:
+Homebrew/homebrew-apache
+Homebrew/homebrew-binary
+Homebrew/homebrew-boneyard
+Homebrew/homebrew-completions
+Homebrew/homebrew-dupes
+Homebrew/homebrew-games
+Homebrew/homebrew-headonly
+Homebrew/homebrew-python
+Homebrew/homebrew-science
+Homebrew/homebrew-versions
+davidchall/homebrew-hep
+josegonzalez/homebrew-php
+
+Add versions' tap to attempt:
+$ brew tap homebrew/versions
+
+Quick search of the formula:
+$ brew search openssl
+Output:
+homebrew/versions/openssl098     
+homebrew/versions/openssl101
+openssl
+
+Note: It means that there is not compatible version of OPENSSL. At this point the only thing I can try is to find a Git version compatible with any of the existent OpenSSL versions but there are more dependencies to cover and then I don't think the Git downgrade is a good idea.. and I give up.
+
+Another important note is that according to the Formula's cookbook, Openssl is a keg formula, for example, a Formula resides in a the Library path like /usr/local/Library/Formula/foo.rb, defined in the installation prefix, but a keg has another installation prefix like  /usr/local/Cellar/foo/0.1.OpenSSL is keg_only to avoid conflicting with the system, so that sometimes formulae need to have environmental variables set or special configuration flags passed to locate our preferred OpenSSL; you can see this mechanism in the clamav formula. Usually this is unnecessary because when OpenSSL is specified as a dependency Homebrew temporarily prepends the $PATH with that prefix. (personal note: clamav method to change flag is not working to isntall guit, but I don't know why. See this document for details).
+Reference:
+Web: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md
+
+
+Untap the tap versions:
+$ brew untap homebrew/versions
+
+List taps:
+$ brew tap
+
+In summary, today I can't install the Git bottle, and will run it as always:
+$ git
+
+Take care of the version of the formula used, for example:
+Heartbleed OpenSSL vulnerability:
+Web: http://heartbleed.com/
+File: Heartbleed - OpenSSL vulnerability.pdf
+Text extracted from the web:
+What versions of the OpenSSL are affected?
+Status of different versions:
+OpenSSL 1.0.1 through 1.0.1f (inclusive) are vulnerable
+OpenSSL 1.0.1g is NOT vulnerable
+OpenSSL 1.0.0 branch is NOT vulnerable
+OpenSSL 0.9.8 branch is NOT vulnerable
+
+
+Playing some more with Homebrew:
+
+Steps of an attempt to install git with a new option in the installation command:
+
+Update Hpmebrew:
+$ brew update
+Quick inventory:
+$ brew tap
+$ brew ls
+Search the formula to install:
+$ brew search git
+Display information of the formula:
+$ brew info git
+Output:
+git: stable 2.4.5, HEAD
+Distributed revision control system
+https://git-scm.com
+Not installed
+From: https://github.com//homebrew/blob/master/Library/Formula/git.rb
+==> Dependencies
+Build: xz ✔
+Required: expat ✔
+Recommended: homebrew/dupes/tcl-tk ✔
+Optional: pcre ✔, gettext ✔
+==> Options
+--with-blk-sha1
+  Compile with the block-optimized SHA1 implementation
+--with-brewed-curl
+  Use Homebrew's version of cURL library
+--with-brewed-openssl
+  Build with Homebrew OpenSSL instead of the system version
+--with-brewed-svn
+  Use Homebrew's version of SVN
+--with-gettext
+  Build with gettext support
+--with-pcre
+  Build with pcre support
+--with-persistent-https
+  Build git-remote-persistent-https from 'contrib' directory
+--without-completions
+  Disable bash/zsh completions from 'contrib' directory
+--without-tcl-tk
+  Build without tcl-tk support
+--HEAD
+  Install HEAD version
+==> Caveats
+The OS X keychain credential helper has been installed to:
+  /home/esteban/.linuxbrew/bin/git-credential-osxkeychain
+
+The "contrib" directory has been installed to:
+  /home/esteban/.linuxbrew/share/git-core/contrib
+
+End of Output:
+
+Take a look at the lines:
+--with-brewed-openssl
+  Build with Homebrew OpenSSL instead of the system version
+
+--without-tcl-tk
+  Build without tcl-tk support
+
+Review information of a formula:
+$ brew info tcl-tk
+Open formula´s homepage in a browser:
+$ brew home tcl-tk 
+Open a browser to the GitHub History page for formula:
+$ brew info --github tcl-tk
+
+Next is an explanation of tcl-tk from their homepage:
+Tcl (Tool Command Language) is a very powerful but easy to learn dynamic programming language, suitable for a very wide range of uses, including web and desktop applications, networking, administration, testing and many more. Open source and business-friendly, Tcl is a mature yet evolving language that is truly cross platform, easily deployed and highly extensible.
+Tk is a graphical user interface toolkit that takes developing desktop applications to a higher level than conventional approaches. Tk is the standard GUI not only for Tcl, but for many other dynamic languages, and can produce rich, native applications that run unchanged across Windows, Mac OS X, Linux and more. 
+
+Anyway, I passed the tcl-tk problem by adding the tap "dupes" to homebrew.
+
+Install git with a new option:
+$ brew install git --with-brewed-openssl 
+
+Output error:
+==> Downloading https://www.kernel.org/pub/software/scm/git/git-2.4.5.tar.xz
+Already downloaded: /home/esteban/.cache/Homebrew/git-2.4.5.tar.xz
+==> make install prefix=/home/esteban/.linuxbrew/Cellar/git/2.4.5 sysconfdir=/ho
+/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../x86_64-linux-gnu/libcurl.so: undefined reference to `UI_method_set_writer@OPENSSL_1.0.0'
+collect2: error: ld returned 1 exit status
+Makefile:1960: recipe for target 'git-imap-send' failed
+make: *** [git-imap-send] Error 1
+make: *** Waiting for unfinished jobs....
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+
+These open issues may also help:
+Sandbox breaks Git compile (https://github.com/Homebrew/homebrew/issues/38978)
+git-big-picture: new formula v0.9.0 (https://github.com/Homebrew/homebrew/pull/36812)
+always gives error when search "Error: Failed to connect to: https://api.github.com/repos/Homebrew/homebrew-binary/git/trees/HEAD?recursive=1" (https://github.com/Homebrew/homebrew/issues/40805)
+
+End of output error.
+
+Note: The error is the same of the last time.
+
+
+At this point i tried to change the installation parameters, but the compilation throws the IMAP error:
+
+The another way used was to edit the formula file directly to add a line to the section args, as follows:
+Line to add: with-openssl=#{Formula["openssl"].opt_prefix}
+File: /home/esteba/.linuxbrew/Library/Formula/git.rb
+
+ args = %W[
+      prefix=#{prefix}
+      sysconfdir=#{etc}
+      CC=#{ENV.cc}
+      CFLAGS=#{ENV.cflags}
+      LDFLAGS=#{ENV.ldflags}
+      with-openssl=#{Formula["openssl"].opt_prefix}
+    ]
+    args << "NO_OPENSSL=1" << "APPLE_COMMON_CRYPTO=1" if build.without? "brewed-openssl"
+    args << "NO_TCLTK=1" if build.without? "tcl-tk"
+
+I also used: 
+$ brew install git --with-openssl=#{Formula["openssl"].opt_prefix}
+Change based on the example from: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/clamav.rb#L28
+
+A new attempt was to change to change the environment to clean up the installation, but the compilation throws the IMAP error.
+$ brew install git --env=std --with-brewed-openssl
+brew install git --env=super --with-brewed-openssl
+
+
+A new attempt was to build from source in the parameters, but the compilation throws the IMAP error.
+Build from source:
+$ brew install git --build-from-source
+The compilation throws the same error with IMAP.
+BTW I notice that brew used the file downloaded previously, instead of fetching the source code.
+
+
+At this point, I am going to try to install Git in another way.
+I am going to download the source code of the formula instead of the bottle with $ brew, and then change the compilation problems with OpenSSL 1.0.0 to the version already installed which is OpenSSL 1.0.2, and then cook the new formula version.
+References:
+Web: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-linuxbrew-on-a-linux-vps
+Web: https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/Formula-Cookbook.md
+
+Steps taken from the formula cookbook:
+Update Homebrew:
+$ brew update
+Quick inventory:
+$ brew tap
+$ brew ls
+Search the formula to install:
+$ brew search git
+Display information of the formula:
+$ brew info git
+Open formula´s homepage in a browser:
+$ brew home git 
+Open a browser to the GitHub History page for formula:
+$ brew info --github git
+
+Fetch the source code of the formula:
+$ brew fetch git --force
+Where:
+fetch    [--force]    [-v]   [--devel|--HEAD]   [--deps]
+           [--build-from-source|--force-bottle] formulae:  Download
+           the  source  packages  for  the given formulae. For tar‐
+           balls, also print SHA1 and SHA-256 checksums.
+
+Brew downloaded a copy of the Git source code in /home/esteban/.cache/Homebrew
+I saved a copy of the extracted source code under a new dir called TEMPOGIT/
+
+I require to setup a semantic tool to search for strings in a group of files or folders. I set-up sublime_text by going to MENU Files => Find files..., and then fill the text boxes as follows:
+Find: openssl
+Where: <open folders>,/home/esteban/Documents/TEMPOGIT/git--html-2.4.5
+Replace: KEEP BLANK
+
+In Sublime, the tab of the results references 15 files of teh sources. One of them tells something about IMAP:
+
+/home/esteban/Documents/TEMPOGIT/git--html-2.4.5/git-imap-send.html:
+  809  <p>
+  810          Talk to the IMAP server using git&#8217;s own IMAP routines instead of
+  811:         using libcurl.  Ignored if Git was built with the NO_OPENSSL option
+  812          set.
+  813  </p>
+
+The problem is that I cannot exclude the file and build git from source with brew because Git needs IMAP to send email, as the git man says:
+$ man git
+[...]
+git-imap-send(1)
+Send a collection of patches from stdin to an IMAP folder.
+[...]
+git-send-email(1)
+Send a collection of patches as emails.
+[...]
+
+A new attempt was to build from source in the parameters, but the compilation throws the IMAP error.
+$ brew install git --build-from-source
+I re-run this command because the last time I attempted to build from source had not the source downloaded, but the command is not using the new code fetched (At least not automatically, as I expected it to work).
+
+
+I double checked the error during the compilation and noticed that the error is not IMAP but appears to be the C builder version.
+[...]
+==> make install prefix=/home/esteban/.linuxbrew/Cellar/git/2.4.5 sysconfdir=/home/esteban/.linuxbrew/etc CC=/usr/bin/gcc-4.9 CFLAGS=-Os -w 
+/usr/lib/gcc/x86_64-linux-gnu/4.9/../../../x86_64-linux-gnu/libcurl.so: undefined reference to `UI_method_set_writer@OPENSSL_1.0.0'
+[...]
+
+List my C builder versions:
+$ cd /usr/bin
+$ gcc + PRESS TAB
+Output:
+gcc             gcc-ar          gcc-nm          gcc-ranlib      
+gcc-4.8         gcc-ar-4.8      gcc-nm-4.8      gcc-ranlib-4.8  
+gcc-4.9         gcc-ar-4.9      gcc-nm-4.9      gcc-ranlib-4.9  
+
+
+Brew runs the latest version available.
+
+Review the dependencies of a fomula:
+$ brew deps git
+bzip2
+expat
+gettext
+homebrew/dupes/tcl-tk
+pcre
+xz
+
+The issue is that the dependencies list does not show the builder C version.
+
+Miscellaneous:
+$ brew update
+$ brew doctor
+$ man brew
+
+Install git changing the C builder (compiler) in the installation command:
+$ brew install git --cc=gcc-4.8
+
+Where:
+If --cc=<compiler> is passed, attempt to  compile  using compiler.  compiler should be the name of the compiler´s executable, for instance gcc-4.2 for Apple´s GCC 4.2, or gcc-4.9 for a Homebrew-provided GCC 4.9.
+
+Output:
+Error: Homebrew GCC requested, but formula gcc48 not found!
+You may need to: brew tap homebrew/versions
+End of output.
+
+To avoid listing all the bottles of a tap and add a one unnecessarily, just search for it:
+$ brew search gcc
+Output:
+gcc          homebrew/versions/gcc47
+homebrew/dupes/apple-gcc42     homebrew/versions/gcc48
+homebrew/versions/gcc43      homebrew/versions/gcc49
+homebrew/versions/gcc44      homebrew/versions/gcc5
+homebrew/versions/gcc45      homebrew/versions/llvm-gcc28
+homebrew/versions/gcc46
+homebrew/head-only/gccxml
+
+$ brew install apple-gcc42
+Output:
+[...]
+### 100.0%
+Error: Failure while executing: /usr/bin/xar -xf /home/esteban/.cache/Homebrew/apple-gcc42-4.2.1-5666.3.pkg
+
+Unable to install Apples GCC.
+
+Attempt to install another version of gcc:
+Add new tap to homebrew:
+$ brew tap homebrew/versions
+List taps:
+$ brew taps
+
+Installation of the formula:
+$ brew install gcc43
+Output:
+The  output throws a new error.
+
+Installation of the formula:
+$ brew install gcc44
+Output:
+The  output throws a new error.
+
+Installation of the formula:
+$ brew install gcc48
+Output:
+The  output throws a new error.
+
+In summary, its not possible to install another gcc from homebrew to change the compiler in the command to install git.
+
+In conclusion:
+The actual state of the situation is that it is almost impossible to change git from system to a Mac's git version from Homebrew, so for that I am going to keep the git from the Operating system. In this case, the only option available to upgrade Git is to add a new repository to the file /etc/apt/sources.list.
+Git is using the system version of OpenSSL instead of the brew version 1.0.2, and the same would to occur with ssh:
+$ dpkg -l openssl
+You can update the system package Openssl with APT and it is not going to affect the brew version.
+
+
+To complete a GIT installation from the Official Debian repos:
+
+I personally decided to say no to install GIT during the installation of some apps, like Java, mainly because I know I could donwload the packages ZIPPED from the web instead of the runnig a typical 'git clone' command, so for that I know there is no GIT at all on my system, which made me attempt to isntall GIT from Linuxbrew no checking more than the '$ git' command availability in the system. But ow that have been trying to setup the Linux version of GIT I have to follow some natural installation steps:
+
+Setup repository sources main, contrib and non-free:
+$ sudo nano /etc/apt/sources.list
+
+Update the sources database:
+$ sudo apt-get update
+
+Search for GIT packages in the remote servers:
+$ sudo apt-cache search git
+
+To retrieve the program information, include description, dependencies, recommended and suggested packages:
+$ sudo apt-cache show
+
+Install Git:
+$ sudo apt-get install git git-man
+Or:
+$ sudo apt-get install git
+
+
+Update the the system after the installation:
+$ sudo apt-get -u upgrade
+
+To verify that the program has been installed correctly, run:
+$ git
+$ man git

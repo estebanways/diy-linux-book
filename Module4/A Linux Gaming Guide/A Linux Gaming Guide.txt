@@ -1,0 +1,8 @@
+
+
+Also:
+Topic:
+Xanmod Kernel installation (For gaming). The kernel can be installed and uninstalled, using apt-get remove PACKAGENAME. 
+Module: Module 2
+Guide:
+Build the Linux Kernel

@@ -1,0 +1,183 @@
+- Users
+- Groups
+- Terminals
+
+
+- Users
+
+Log in as root from user:
+# su
+return to user:
+# exit
+# adduser esteban <GROUP>
+List of user IDs:
+# nano /etc/passwd
+
+Note: Don't confuse # adduser and # useradd which adds new users to the system. More info type $ man <command>.
+
+
+- Groups
+
+List groups:
+# grep group_name_here /etc/group
+# vim /etc/group
+
+Add users to group staff (example using xcapncrunchx), and See Which Group Your Linux User Belongs To:
+# adduser user group
+
+List groups and users in specific group:
+# nano /etc/group
+To search for esteban in nano:
+CTRL + W amd type esteban.
+OR use:
+# grep staff /etc/group
+# grep xcapncrunchx /etc/group
+
+Print the groups a user is in. The first group in teh list is the "default" or "main" user group:
+# groups
+OR:
+# groups username
+OR USE:
+$ id -Gn esteban
+To know the id numbers:
+$ id
+
+Remove user from group, and See Which Group Your Linux User Belongs To:
+# deluser user group
+
+Give permissions to the file:
+# chmod 755 mysql-cluster-gpl-7.2.10-linux2.6-i686.tar.gz
+# chown root mysql-cluster-gpl-7.2.10-linux2.6-i686.tar.gz
+# chgrp staff mysql-cluster-gpl-7.2.10-linux2.6-i686.tar.gz
+
+Untar the file:
+# cd /usr/local/
+# tar xvzf mysql-cluster-gpl-7.2.10-linux2.6-i686.tar.gz
+The folder permissions are automatically set to owner: root and group: staff.
+
+
+- Terminals
+
+Clear the terminal:
+# clean
+Reset the terminal:
+# reset
+Restore lost remote terminal sessions through ssh:
+# apt-get install screen
+I am not showing how to use screen. It's kind of complicated to understand it the first time you use it, but.. do it yourself.
+Run screen to open a new terminal session:
+# screen <parameters>
+References:
+Guide: See the Guide Screen
+Topic: Screen know how
+Web: https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+File: How To Use Linux Screen.pdf
+
+Install Matrix like terminal fall:
+# apt-get update
+# apt-get install cmatrix
+Run with:
+$ cmatrix
+
+Change font color:
+Just edit your terminal profile:
+gnome-terminal: Edit -> Profiles -> Edit
+Uncheck option: Use colors from system theme.
+konsole: Settings -> Configure Profiles
+
+Open a new Xterm with green font:
+$ xterm -foreground green
+
+Setup all the Xterm (instead of gnome-terminal) as green
+on black:
+Create the file:
+
+/home/esteban/.Xresorces
+
+!
+! Comments begin with a "!" character.
+!
+
+XTerm*background:       black
+XTerm*foreground:       green
+XTerm*cursorColor:      green
+XTerm.vt100.geometry:   79x25
+XTerm*scrollBar:        true
+XTerm*scrollTtyOutput:  false
+
+
+or use this:
+!
+! Comments begin with a "!" character.
+!
+
+XTerm*Background: black
+XTerm*Foreground: green
+XTerm*transparent: true
+XTerm*font: 9x15
+XTerm*saveLines: 1000
+XTerm*HiForeColor: white
+XTerm*HiBackColor: #c06077
+XTerm*geometry: 79x25
+
+Next, XResources are read from the file ~/.Xresources when you login, but if you wish to force them to be reloaded you run the command:
+$ xrdb -merge ~/.Xresources
+
+Set Xterm geometry:
+$ Xterm -geometry 40x20
+
+Reference:
+Web: https://www.debian-administration.org/article/66/Customizing_your_xterm
+File: Customizing your xterm.pdf
+
+Xterm transparency:
+Reference:
+Topic: According to this article you cannot set transparency in Xterm.
+Web: http://forums.justlinux.com/showthread.php?110791-xterm-transparency
+The article says that you need eterm or aterm.
+To install Eterm:
+# apt-get install Xterm
+To run a term:
+# Eterm -X buttonbar=off --scrollbar=off -f blue
+To run a Eterm with transparency:
+# Eterm -X buttonbar=off --scrollbar=off -f blue --trans true
+
+Note: With this types of terminal you don't need to
+install gnome at all except for when there is a dependency
+problem, for example if gimp needs gnome to run, but you can
+install just x server xorg without gnome. I have installed
+gnome but as I don't enter to gnome desktop I save RAM memory to other apps, but I spend memory when I call Nautilus so it is better to use rox instead.
+
+I don't like Eterm but here are more config options:
+Reference:
+Web: http://www.brain-dump.org/blog/entry/38/Fluxbox_startup_techniques_and_transparent_Eterm_on_desktop
+File: Etermconfig.pdf
+For example here you can define the layer number of the terminals in a very simple way. This can work if you RIGHT CLICK MENU >  remember... the size and position of a term with fluxbox so that the next time when you start the system will look like waking up from hibernation and ordered.
+
+Install aterm:
+Aterm is teh best option because appears transparent by default, but I am not sure at this point if uses the file      .XResources. Anyways keep the file and remember to reload the configuration just in case:
+# apt-get update
+# apt-get install aterm
+# aterm
+# xrdb -merge ~./Xresources
+
+Make aterm work with [group] and add the app to replace gnome-terminal in [app] of the file apps and ad it to file menu in fluxbox if you want. In my opinion the term group looks bad and preferred to keep using gnome terminal but that is better to save resources. But in gnome terminal you can paste commands and on the other terms you cannot (Reminds me Windows).
+
+You can see aterm and Eterm in the Fluxbox term menu. For fluxbox information see the Fluxbox guide.
+References: 
+Guide: Fluxbox
+
+References:
+Topic: Neofetch. Terminal enhancers
+Web: https://packages.debian.org/stretch/neofetch
+File: Debian -- Details of package neofetch in stretch.pdf
+Topic: System languages enhancements:
+Guide: Bash
+Guide: Zsh
+
+Enhanced Terminals guides in this book:
+Fig
+Tabby
+Tmux
+Zsh
+

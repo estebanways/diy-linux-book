@@ -1,0 +1,18 @@
+fluid-soundfont-gm - Fluid (R3) General MIDI SoundFont (GM)
+fluid-soundfont-gs - Fluid (R3) General MIDI SoundFont (GS)
+fluidsynth - Real-time MIDI software synthesizer
+libfluidsynth-dev - Real-time MIDI software synthesizer (development files)
+libfluidsynth1 - Real-time MIDI software synthesizer (runtime library)
+fluidsynth-dssi - DSSI wrapper for the FluidSynth SoundFont-playing synthesizer
+freewheeling - live looping musical instrument
+libsdl2-mixer-2.0-0 - Mixer library for Simple DirectMedia Layer 2, libraries
+libsdl2-mixer-dbg - Mixer library for Simple DirectMedia Layer 2, debugging
+libsdl2-mixer-dev - Mixer library for Simple DirectMedia Layer 2, development files
+musescore - Free music composition and notation software
+musescore-common - Free music composition and notation software (common files)
+opl3-soundfont - OPL3 SoundFont that simulates the sound of an OPL3 chip
+qsynth - fluidsynth MIDI sound synthesiser front-end
+tinyeartrainer - A tool to learn recognizing musical intervals
+tuxguitar-fluidsynth - tuxguitar plugin for sound playback using fluidsynth
+vlc - multimedia player and streamer
+vlc-plugin-fluidsynth - FluidSynth plugin for VLC

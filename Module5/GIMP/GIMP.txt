@@ -1,0 +1,2 @@
+GIMP comes with the Gnome Desktop
+You can open Photoshop PSD files with GIMP

@@ -1,0 +1,222 @@
+Reference:
+Web: https://wiki.debian.org/JavaPackage
+File: java-package in Debian Wheezy.pdf
+
+To perform a full Java installation for the amd64 architecture:
+
+Install the latest Free Java:
+Package: default-jre (2:1.7-52). Standard Java or Java compatible Runtime:
+This dependency package points to the Java runtime, or Java compatible runtime recommended for the amd64 architecture, which is openjdk-7-jre for amd64. 
+References:
+Web: https://packages.debian.org/jessie/default-jre
+File: default-jre.pdf
+
+$ sudo apt-get update
+$ sudo apt-cache search 'java'
+$ sudo apt-get install default-jre
+Output:
+default-jre is already the newest version.
+default-jre set to manually installed.
+Notice that there is a java runtime installation running no OpenJDK in Jessie:
+$ dpkg -l | grep 'java'
+$ sudo apt-get install default-jdk
+Output:
+The following extra packages will be installed:
+  libice-dev libpthread-stubs0-dev libsm-dev libx11-dev libx11-doc libxau-dev
+  libxcb1-dev libxdmcp-dev libxt-dev openjdk-7-jdk x11proto-core-dev
+  x11proto-input-dev x11proto-kb-dev xorg-sgml-doctools xtrans-dev
+Suggested packages:
+  libice-doc libsm-doc libxcb-doc libxt-doc openjdk-7-demo openjdk-7-source
+  visualvm
+The following NEW packages will be installed:
+  default-jdk libice-dev libpthread-stubs0-dev libsm-dev libx11-dev libx11-doc
+  libxau-dev libxcb1-dev libxdmcp-dev libxt-dev openjdk-7-jdk
+  x11proto-core-dev x11proto-input-dev x11proto-kb-dev xorg-sgml-doctools
+  xtrans-dev
+
+To run java:
+$ java
+
+
+To switch between Java OpenJDK and Oracle Java:
+
+Reference:
+Web: http://askubuntu.com/questions/430434/replace-openjdk-with-oracle-jdk-on-ubuntu
+File: Java - OpenJDK to Oracle JDK.pdf
+
+Just to make sure I am using the default Jessie sources:
+$ sudo nano /etc/apt/sources.list
+
+Install java-package:
+$ sudo apt-get update
+$ sudo apt-cache search 'java-package'
+$ sudo apt-get install java-package
+
+The package is unavailable.
+Add a new repo to sources.list and comment out the default line while you are installing the package:
+$ sudo nano /etc/apt/sources.list
+
+My file looks like this after the modification:
+
+# 
+
+# deb cdrom:[Debian GNU/Linux 8.0.0 _Jessie_ - Official Multi-archit$
+
+#deb cdrom:[Debian GNU/Linux 8.0.0 _Jessie_ - Official Multi-archite$
+
+#deb http://ftp.us.debian.org/debian/ jessie main
+#deb-src http://ftp.us.debian.org/debian/ jessie main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# jessie-updates, previously known as 'volatile'
+deb http://ftp.us.debian.org/debian/ jessie-updates main
+deb-src http://ftp.us.debian.org/debian/ jessie-updates main
+
+# Debian 8 "Jessie" (testing for now I have installed newest
+# Jessie, version 8.0)
+# Packages: ATI drivers, Steam,
+#deb http://http.debian.net/debian/ jessie main contrib non-free
+
+# Mint
+# Packages: Firefox,
+#deb http://packages.linuxmint.com debian import 
+
+# Jessie default + contrib. Disable above while 
+# installing from this duplicate repo.
+# Packages: Flash plugin non-free, java-package
+deb http://ftp.us.debian.org/debian/ jessie main contrib
+deb-src http://ftp.us.debian.org/debian/ jessie main contrib
+
+Notice that the change is simple: The word "contrib" at the end of the copy of the default repo lines at the beginning of the file.
+Save changes.
+
+Re-run the installation commands:
+sudo apt-get update && sudo apt-get install java-package
+
+DISABLE TEMPORARY REPO:
+$ sudo nano /etc/apt/sources.list
+
+File section:
+
+# Jessie default + contrib. Disable above while
+# installing from this duplicate repo.
+# Packages: Flash plugin non-free, java-package
+#deb http://ftp.us.debian.org/debian/ jessie main contrib
+#deb-src http://ftp.us.debian.org/debian/ jessie main contrib
+
+When I installed java-package on Wheezy called Git as a dependency. I had to remove Git after that to use the Mac sources instead of the Debian repos. The installation on Jessie does not request the installation of Git.
+
+$ whereis java
+$ whereis git
+
+Fetch Oracle Java:
+
+I am going the install Oracle Java from the source code packages.
+
+When downloaded Java from the Oracle Web site I found that Oracle is serving misnamed and badly-tarred files (today, at least, who knows what tomorrow will be).
+Essentially, if you get a '.gz' file, it's probably a tar file, but you need to untar it and then re-tarball it or 'make-jpkg' won't work."
+I extracted and re-tar the files. The files are:
+Java Runtime Environment: jre-8u45-linux-x64.tar.gz
+Java Runtime Environment (Server): server-jre-8u45-linux-x64.tar.gz
+Java Development Kit: jdk-8u45-linux-x64.tar.gz
+Java Development Kit demos: jdk-8u45-linux-x64-demos.tar.gz
+
+To make the Java Development Kit package:
+$ make-jpkg jdk-8u45-linux-x64.tar.gz
+
+Install the new DEB package:
+$ sudo dpkg -i oracle-java8-jdk_8u45_amd64.deb
+
+To make Java Runtime Environment:
+$ make-jpkg jre-8u45-linux-x64.tar.gz
+
+Install the new DEB package:
+$ sudo dpkg -i oracle-java8-jre_8u45_amd64.deb
+
+To make Java Runtime Environment (Server):
+Create a new directory, for example:
+$ mkdir Server \ jre\ RENAMED/
+Copy the package server-jre-8u45-linux-x64.tar.gz into the directory:
+$ cp -dpR server-jre-8u45-linux-x64.tar.gz ./Server \ jre\ RENAMED/
+Rename the package jre-8u45-linux-x64.tar.gz, and re-run make:
+$ mv server-jre-8u45-linux-x64.tar.gz jre-8u45-linux-x64.tar.gz
+$ make-jpkg jre-8u45-linux-x64.tar.gz
+
+Install the new DEB:
+$ sudo dpkg -i oracle-java8-jre_8u45_amd64.deb
+
+Notes on the installation of Oracle Java from sources:
+
+On previous Java installations and perhaps depends on the subversion you could require to add some lines to the make script.
+
+This another error you could face, at least I got it with previous versions of Java (JRE Server):
+Selecting previously unselected package oracle-j2re1.8.
+(Reading database ... 156037 files and directories currently installed.)
+Unpacking oracle-j2re1.8 (from oracle-j2re1.8_1.8.0+update45_amd64.deb) ...
+Setting up oracle-j2re1.8 (1.8.0+update45) ...
+update-alternatives: error: alternative path /usr/lib/jvm/j2re1.8-oracle/bin/javaws doesn't exist
+dpkg: error processing oracle-j2re1.8 (--install):
+ subprocess installed post-installation script returned error exit status 2
+Errors were encountered while processing:
+ oracle-j2re1.8
+End of error.
+Basically, the error says that the configuration has not find javaws, but javaws stands for "Java Web Start", the Browser plugin to clients, not for a server. If you look the app seems installed already. I am going to test the server later on, but I am going to keep running Oracle JDK and JRE for no SERVER version, because it's a development desktop.
+Note: At least these JRE installations overwrite the previous installation. You can have server-jre and overwrite it with client jre installation to get the plugin javaws under: /usr/lib/jvm/j2re1.8-oracle/bin/
+
+Dealing with packages:
+List all packages:
+$ dpkg -l | grep 'oracle'
+If you decide to remove a package later on:
+$ sudo dpkg -r oracle-java8-jdk
+
+To show all the java alternatives (with java-package):
+$ sudo update-java-alternatives -l
+Output:
+java-1.7.0-openjdk-amd64 1071 /usr/lib/jvm/java-1.7.0-openjdk-amd64
+jdk-8-oracle-x64 318 /usr/lib/jvm/jdk-8-oracle-x64
+jre-8-oracle-x64 317 /usr/lib/jvm/jre-8-oracle-x64
+
+To display current version and best version possible (auto):
+$ update-alternatives --display java
+Output:
+java - auto mode
+  link currently points to /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
+/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java - priority 1071
+  slave java.1.gz: /usr/lib/jvm/java-7-openjdk-amd64/jre/man/man1/java.1.gz
+/usr/lib/jvm/jdk-8-oracle-x64/jre/bin/java - priority 318
+  slave java.1.gz: /usr/lib/jvm/jdk-8-oracle-x64/man/man1/java.1.gz
+/usr/lib/jvm/jre-8-oracle-x64/bin/java - priority 317
+  slave java.1.gz: /usr/lib/jvm/jre-8-oracle-x64/man/man1/java.1.gz
+Current 'best' version is '/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java'.
+
+Select a version manually:
+$ sudo update-alternatives --config java 
+I choose jdk-8-oracle-x64 which has a  java JRE.
+As user run the command to show the version set.
+If you don't want to select some option, press CTRL + C to get out of the program.
+
+Set a version at a time:
+$ update-java-alternatives -l
+$ sudo update-java-alternatives -s jdk-8-oracle-x64 318
+
+Set best option (to the system) automatically:
+$ sudo update-alternatives --auto java
+
+Options to test Java:
+Execute Openshot to verify the runtime.
+Create a small project like "Hello World", compile it and run it in the terminal.
+Install Netbeans IDE and develop a project.
+
+Remember these strings on my texts like --apt-update --apt-distupgrade --config java --add-architecture, etc., have symbols that appear to be em dashes, but in the real life they're two single dashes. And there are 4 kinds of "commas".
+
+Resources:
+Web: http://forums.debian.net/viewtopic.php?f=16&t=77140&start=15
+File: How to Install Oracle Java.pdf
+Web: http://forum.linuxmint.com/viewtopic.php?f=197&p=670017#p670017
+File: make - No matching plugin was found.pdf
+Web: http://en.wikipedia.org/wiki/Java_Web_Start
+File: Java_Web_Start.pdf
+Web: http://www.thegeekstuff.com/2010/06/install-remove-deb-package/
+File: How to Install or Remove DEB Packages Using dpkg.pdf

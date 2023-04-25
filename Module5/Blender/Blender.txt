@@ -1,0 +1,2 @@
+To active OPenGL, OpenCL and CUDA see guides: "Video Card" and "3D Acceleration and VR"
+The Official Blender version is not as good and complete as the version you can download from their web sites, but be careful.

@@ -1,0 +1,48 @@
+The basic configuration starts connecting the printer to the USB and that's all. Gnome is going to recognize the printer and open the printer properties to let you print the test page.
+
+# dpkg -l | grep 'cups'
+
+You can also setup the printer manually.
+Install cups, the printer server:
+# apt-get update
+# apt-get install cups
+
+To show printer and model:
+# lsusb
+Start and stop the service:
+# /etc/init.d/cupsd start
+If you don't want it running all the time:
+# /etc/init.d/cupsd stop
+
+If you are a power user, you may wish to modify the configuration file “/etc/cups/cupsd.conf”. That file will let you change certain printer settings, such as whether to enable shared printers and which type of authentication to use. If you make changes to this file while CUPS is already running, don’t forget to restart the server:
+# /etc/init.d/cupsd restart
+For more information about what you can do with the CUPS configuration file, visit the man page:
+# man cupsd.conf
+
+Web interface:
+It is easier than modify the configuration file with an editor like nano.
+Open the browser and enter the address:
+localhost:631
+
+In the “Administration” tab, add printer.
+
+The server will ask you for a username and password. You can log in as root, but if you want regular users to be able to use the printer too, you must add them to the lpadmin group.
+
+To see all the groups of my user:
+$ id
+Output:
+uid=1000(esteban) gid=1000(esteban) groups=1000(esteban),24(cdrom),25(floppy),29(audio),30
+(dip),44(video),46(plugdev),108(netdev),110(lpadmin),113(scanner),117(bluetooth)
+
+According to this message I don't need to add the user, but you could need to do so:
+# adduser esteban lpadmin
+
+Next, CUPS will attempt to autodetect your printer’s model. If it gets it wrong, you can select the correct model from the list of models that appears. If your particular model is not on the list, you can provide a PostScript Printer Definition (PPD) file. Some manufacturers may make the PPD available online for download.
+
+Note: Some printers share the same PPD file with another model of the same family and brand. If you can’t find the PPD for your printer, check with the printer’s manufacturer for the details. You can also find a number of printer drivers at OpenPrinting.org
+
+If you’re using a Hewlett-Packard (HP) printer, the easiest way to get CUPS to recognize it is to install Hewlett-Packard’s Linux Imaging and Printing Software (HPLIP). This collection of drivers may be included in one of your package repositories as “hplip.” Once you’ve installed it, refresh the “Add Printer” page in your browser. If all went according to plan, your HP printer should now show up in the list of supported models.
+
+After you’ve successfully added your printer, CUPS will present you with some more configuration options. If you have a standard home printer, you’ll probably wish to change the default media size to “Letter.”
+
+When you are printing, you can go back to the CUPS administration page and click on the “Jobs” tab to view a list of running and queued print jobs.

@@ -1,0 +1,7 @@
+The best free DVD and video player ever! also is in Linux. With VLC take video screenshots and change the format of the video files too.
+
+I use VLC to play karaoke songs. I don't use pykaraoke because the Debian version is incomplete.
+
+# apt-get update
+# apt-get install vlc
+$ vlc

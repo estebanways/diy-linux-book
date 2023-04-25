@@ -1,0 +1,64 @@
+amsynth - two oscillator software synthesizer
+aubio-tools - library for audio segmentation -- utilities
+libaubio-dev - library for audio and music analysis, synthesis, and effects
+libaubio-doc - library for audio segmentation -- documentation
+libaubio5 - library for audio segmentation
+python-aubio - python interface for aubio, a library for audio segmentation
+python3-aubio - python interface for aubio, a library for audio segmentation
+autotalent - pitch correction LADSPA plugin
+beep - advanced pc-speaker beeper
+blop - Bandlimited wavetable-based oscillator plugins for LADSPA hosts
+dbmix - DJ mixer for digital audio streams
+multimedia-audio-utilities - packages for manipulating & cataloging music and audio
+etw - arcade-style soccer game
+fonts-ipaexfont - Japanese OpenType font, all IPAex Fonts
+fonts-ipaexfont-gothic - Japanese OpenType font, IPAex Gothic Font
+fonts-ipaexfont-mincho - Japanese OpenType font, IPAex Mincho Font
+fonts-yozvox-yozfont - Japanese proportional Handwriting OpenType font
+fonts-yozvox-yozfont-antique - Japanese proportional Handwriting OpenType font (antique kana)
+fonts-yozvox-yozfont-cute - Japanese proportional Handwriting OpenType font (cute kana)
+fonts-yozvox-yozfont-edu - Japanese proportional Handwriting OpenType font (educational cana)
+fonts-yozvox-yozfont-new-kana - Japanese proportional Handwriting OpenType font (new kana)
+fonts-yozvox-yozfont-standard-kana - Japanese proportional Handwriting OpenType font (standard kana)
+gespeaker - GTK+ front-end for eSpeak and mbrola
+gtranscribe - simple GTK+ tool focussed on easy transcription of spoken words
+hydrogen - advanced drum machine/step sequencer
+libaldmb1 - dynamic universal music bibliotheque, Allegro version
+libaldmb1-dev - development files for libaldmb1
+libdumb1 - dynamic universal music bibliotheque
+libdumb1-dev - development files for libdumb1
+libsbsms-dev - Subband Sinusoidal Modeling Synthesis (development files)
+libsbsms10 - Subband Sinusoidal Modeling Synthesis
+mda-lv2 - Paul Kellett's MDA plugins ported to LV2
+milkytracker - music creation tool inspired by Fast Tracker 2
+libsoundtouch-ocaml - OCaml bindings for the sound stretching library -- runtime files
+libsoundtouch-ocaml-dev - OCaml bindings for the sound stretching library -- runtime files
+paulstretch - Extreme sound time-stretch
+pd-aubio - aubio external for PureData
+pd-fftease - live spectral sound processors for Pd
+pd-lyonpotpourri - potpourri of Pd objects for synthesizing with audio
+pd-moonlib - library of Pd objects related to GUI control
+petri-foo - MIDI controllable audio sampler - successor of specimen
+playitslowly - Plays back audio files at a different speed or pitch
+praat - program for speech analysis and synthesis
+qmidiroute - MIDI event router and filter
+librubberband-dev - audio time-stretching and pitch-shifting library (development files)
+librubberband2 - audio time-stretching and pitch-shifting library
+rubberband-cli - audio time-stretching and pitch-shifting utility
+rubberband-ladspa - LADSPA plugin for audio pitch-shifting
+rubberband-vamp - Vamp plugins using Rubber Band
+schism - ImpulseTracker clone aiming at providing the same look&feel
+libsoundtouch-dev - Development files for the sound stretching library
+libsoundtouch1 - Sound stretching library
+libsoundtouch1-dbg - Debugging symbols for the sound stretching library
+soundstretch - Stretches and pitch-shifts sound independently
+soundstretch-dbg - Debugging symbols for the soundstretch program
+stretchplayer - Audio file player with time stretch and pitch shifting
+stretchplayer-dbg - Debugging symbols for StretchPlayer
+swh-lv2 - Steve Harris's SWH plugins ported to LV2
+swh-plugins - Steve Harris's LADSPA plugins
+cwcp - Morse code tutor - text user interface
+vocproc - LV2 plugin for pitch shifting and vocoding
+xwax - open-source vinyl emulation software for Linux
+yatm - Command line audio file player with time stretching capabilities
+zita-at1 - JACK autotuner

@@ -1,0 +1,939 @@
+The video card of the computer was recognized by the Debian Jessie installation, but what about the acceleration, is it working, and if yes how well? The Desktop shows some transparencies like the give by managers like xcompmgr but I am not sure.. Is all the GPU power turned on?
+
+I have installed previously Wheezy on this computer and noted that I could not see
+the new Gnome 3 desktop effects.. it looked different. Gnome 3 looks pretty much like Ubuntu's Unity. At that point I realized that
+my video card was not configured and here is exactly what I did:
+
+I know that my video card is ATI so I need ATI driver. If you have an Nvidia card and drivers are not installed this section is not going to be useful for you and have to find the answer on the web.
+
+Steps to install the ATI or Nvidia drivers.
+
+To check the video hardware:
+$ lspci
+$ lspci | grep 'ATI'
+
+To verify rendering is on:
+$ glxinfo
+$ glxinfo | grep 'rendering'
+Output says:
+direct rendering: Yes
+
+But according to this script from: http://crunchbang.org/forums/viewtopic.php?id=31192
+I am using VESA Driver and it is not capable of running for example Compiz (The window manager with the 3Dcube). I am not going to continue install Compiz because has many bugs and will be deprecated since Ubuntu, and I have the new Gnome 3 interface, but I guess I have the default or free version of the video driver instead of the newest or proprietary version (See /etc/apt/sources.list).
+
+I downloaded the script and gave it the name Check-VideoAcceleration.sh
+
+Run the script like this:
+$ sh Check-VideoAcceleration.sh
+Output:
+Gathering information about your system...
+
+ Distribution:          Debian GNU/Linux (8.0)
+ Desktop environment:   GNOME
+ Graphics chip:         Advanced Micro Devices, Inc. [AMD/ATI] RS880M [Mobility Radeon HD 4225/4250]
+ Driver in use:         vesa
+ Rendering method:      AIGLX
+
+Checking if it's possible to run Compiz on your system...  [SKIP]
+
+ Checking for hardware/setup problems...           [SKIP]
+
+At least one check had to be skipped:
+ Error: vesa driver in use 
+
+Would you like to know more? (Y/n) y
+
+ The vesa driver is not capable of running Compiz, you need to install
+ the proper driver for your graphics card. 
+
+To install the proprietary drivers:
+I went to search on google: 'install amd drivers debian 8'
+I reached the site: https://wiki.debian.org/ATIProprietary
+
+Follow these steps:
+From a copy of the section of the page for Jessie:
+
+Debian 8 "Jessie"
+
+AMD Catalyst 14.9
+
+For support of Radeon R9 200, Radeon R7 200, Radeon HD 8000, Radeon HD 7000, Radeon HD 6000 and Radeon HD 5000 series GPUs (supported devices).
+
+<!> This driver is incompatible with the GNOME desktop, as it does not support the EGL interface. It is recommended to use the free radeon driver instead.
+
+Backup the file /etc/apt/sources.list
+# cp -dpR /etc/apt/sources.list /etc/apt/sources.listBAK
+Add "contrib" and "non-free" components to /etc/apt/sources.list:
+
+# Debian 8 "Jessie"
+# Packages: ATI Drivers, 
+deb http://http.debian.net/debian/ jessie main contrib non-free
+
+Update the list of available packages:
+# apt-get update
+
+Install the appropriate linux-headers and fglrx-driver packages:
+# aptitude -r install linux-headers-$(uname -r|sed 's,[^-]*-[^-]*-,,') fglrx-driver
+
+This will also install the recommended fglrx-modules-dkms package. DKMS will build the fglrx module for your system.
+
+Output:
+This system has a graphics card which is no longer handled by the Fglrx    
+ driver (package fglrx-driver). You may wish to keep the package            
+  installed - for instance to drive some other card - but the card with      
+  the following chipset won't be usable:                                     
+                                                                           
+  01:05.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc.     
+  [AMD/ATI] RS880M [Mobility Radeon HD 4225/4250] [1002:9712]                 
+                                                                              
+  The above card requires either the non-free legacy Fglrx driver (package    
+  fglrx-legacy-driver) or the free Radeon driver (package                     
+  xserver-xorg-video-radeon).                                                 
+                                                                              
+ Before the Radeon driver can be used you must remove Fglrx configuration  
+  from xorg.conf (and xorg.conf.d/).  
+
+I pressed on [OK] button and the terminal shows another dialog:
+
+Install Fglrx driver despite unsupported graphics card?
+                                                             
+ [Yes]                  [No]  
+I pressed [No]
+Search the the non-free legacy Fglrx driver (package fglrx-legacy-driver) or the free Radeon driver (package xserver-xorg-video-radeon):
+# apt-cache search 'fglrx-legacy-driver'
+No package is available to retrieve and at least the file sources.list has active the contributions (contrib) and proprietary packages (non-free) in the line repo added recently:
+# Debian 8 "Jessie"
+# Packages: ATI drivers,
+deb http://http.debian.net/debian/ jessie main contrib non-free
+
+I gooogled and find that other people have the same problem.
+
+I try to find the another package from the installation message: xserver-xorg-video-radeon.
+Here is the compatibility card list:
+Web: https://wiki.debian.org/AtiHowTo
+
+
+There I find how to install xserver-xorg-video-radeon:
+
+AMD/ATI Open Source Drivers (radeon, r128, mach64):
+
+Identification:
+The AMD/ATI graphics processing unit (GPU) series/codename of an installed video card can usually be identified using the lspci command.
+# lspci -nn | grep VGA
+Output:
+01:05.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] RS880M [Mobility Radeon HD 4225/4250] [1002:9712]
+
+
+Installation:
+The following procedure will install the open source display driver packages, DRI modules (for 3D acceleration) and driver firmware/microcode:
+
+    Add "contrib" and "non-free" components to /etc/apt/sources.list, for example:
+
+    # Debian 8 "Jessie"
+    deb http://http.debian.net/debian/ jessie main contrib non-free
+
+    Update the list of available packages:
+
+    # apt-get update
+
+    Install the firmware-linux-nonfree, libgl1-mesa-dri and xserver-xorg-video-ati packages:
+
+    # apt-get install firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
+
+
+Update Note: 
+In a new AMD64 Debian Stretch Linux which supports newer cards, next is the output showing all the packages to be install automatically.
+Output:
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+libgl1-mesa-dri is already the newest version (13.0.6-1+b2).
+libgl1-mesa-dri set to manually installed.
+xserver-xorg-video-ati is already the newest version (1:7.8.0-1+b1).
+xserver-xorg-video-ati set to manually installed.
+The following additional packages will be installed:
+  amd64-microcode firmware-amd-graphics firmware-misc-nonfree intel-microcode
+  iucode-tool
+The following NEW packages will be installed:
+  amd64-microcode firmware-amd-graphics firmware-linux-nonfree
+  firmware-misc-nonfree intel-microcode iucode-tool
+End of output.
+End of Update Note.
+
+To resolve dependencies error:
+# apt-get -f install
+
+A new dialog:
+ Configuring libfgl      
+                                                                            
+           Install Fglrx driver despite unsupported graphics card?            
+                                                                    
+                         [Yes]                  [No] 
+
+This time I hit [yes]
+
+The installation says:
+*** The following unsupported devices are present in the machine:
+01:05.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] RS880M [Mobility Radeon HD 4225/4250] [1002:9712]
+
+...but continues ans finishes.
+
+Again I install the xserver-xorg-video-radeon:
+# apt-get install firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
+
+Output:
+[...]
+The following NEW packages will be installed:
+  firmware-linux-nonfree
+[...]
+
+And remove the packages not required but previously auto-installed:
+# apt-get autoremove
+
+Just for fun here is the list of the auto-removed packages:
+fakeroot glx-alternative-fglrx glx-alternative-mesa glx-diversions
+  libbsd0:i386 libdrm-intel1:i386 libdrm-nouveau2:i386 libdrm-radeon1:i386
+  libdrm2:i386 libedit2:i386 libelf1:i386 libfakeroot libffi6:i386 libfglrx
+  libfglrx:i386 libfglrx-amdxvba1 libfglrx-amdxvba1:i386 libgl1-fglrx-glx
+  libgl1-fglrx-glx:i386 libgl1-fglrx-glx-i386:i386 libgl1-mesa-dri:i386
+  libgl1-mesa-glx:i386 libglapi-mesa:i386 libllvm3.5:i386 libpciaccess0:i386
+  libstdc++6:i386 libtxc-dxtn-s2tc0:i386 libudev1:i386 libx11-xcb1:i386
+  libxcb-dri2-0:i386 libxcb-dri3-0:i386 libxcb-glx0:i386 libxcb-present0:i386
+  libxcb-sync1:i386 libxshmfence1:i386 libxxf86vm1:i386
+  nvidia-installer-cleanup
+
+Restart your system to load GPU device firmware:
+# reboot
+Or with systemd:
+# systemctl reboot
+
+Troubleshooting:
+Use of firmware/microcode used by the radeon DRM driver can be verified using the dmesg command. For example:
+
+$ dmesg | grep -E 'drm|radeon' | grep -iE 'firmware|microcode'
+[    5.268609] [drm] Loading BARTS Microcode
+[    5.329862] radeon 0000:01:00.0: firmware: direct-loading firmware radeon/BARTS_pfp.bin
+[    5.341300] radeon 0000:01:00.0: firmware: direct-loading firmware radeon/BARTS_me.bin
+[    5.347745] radeon 0000:01:00.0: firmware: direct-loading firmware radeon/BTC_rlc.bin
+[    5.347911] radeon 0000:01:00.0: firmware: direct-loading firmware radeon/BARTS_mc.bin
+[    5.353336] radeon 0000:01:00.0: firmware: direct-loading firmware radeon/BARTS_smc.bin
+[    5.369449] radeon 0000:01:00.0: firmware: direct-loading firmware radeon/SUMO_uvd.bin
+
+And here is the Output on my screen:
+[   24.037939] [drm] Loading RS780 Microcode
+[   24.166929] radeon 0000:01:05.0: firmware: direct-loading firmware radeon/RS780_pfp.bin
+[   24.446720] radeon 0000:01:05.0: firmware: direct-loading firmware radeon/RS780_me.bin
+[   24.698199] radeon 0000:01:05.0: firmware: direct-loading firmware radeon/R600_rlc.bin
+
+
+If files were unable to be loaded, ensure the firmware-linux-nonfree package is installed (refer to Installation). 
+
+Screen flickering with Adobe Flash: see FlashPlayer#flickering. 
+
+Configuration:
+In most cases, manual configuration for the open source display drivers is not required, as the Xorg X server automatically detects and configures available hardware.
+
+The following optional configuration can be used to increase 3D performance. See the xorg.conf(5) and radeon(4) manual pages for more information.
+
+At this point I require to see before continue the installation:
+Reference: 
+Web: http://manpages.debian.org/cgi-bin/man.cgi?sektion=5&query=xorg.conf&apropos=0&manpath=sid&locale=en
+File: xorg configuration.pdf
+
+The file is too large so I am not going to paste the text here, In summary at the beginning says that as user you can find the Xorg xserver configuration files under /etc/ but the files available depending on your user level. Also says that the xserver looks for the configuration files in order and the configuration can be overwritten depending on where you added your personal configuration. As root I went to:
+# cd /etc/X11
+# ls -F
+The only file ending with .cong is Xwrapper.config, but it says I can run '# dpkg-reconfigure x11-common' to configure X server. The root is the only who can run dpkg; maybe users with sudo (but it is not configured yet) can do it.
+
+# dpkg-reconfigure x11-common
+
+The program opens dialog with three options:
+
+Users allowed to start the X server:                                      
+                                                                            
+                             Root Only                                        
+                             Console Users Only                              
+                             Anybody   
+
+I have chosen Anybody, but the program shows an error.
+Output:
+update-rc.d: warning: start and stop actions are no longer supported; falling back to defaults
+
+This problem is maybe related to the new systemd and I am investigating this matter.
+To list all the services with systemd:
+# systemctl
+
+To locate the file xorg.conf:
+# locate
+Output:
+locate xorg.conf
+/usr/share/X11/xorg.conf.d
+/usr/share/X11/xorg.conf.d/10-evdev.conf
+/usr/share/X11/xorg.conf.d/10-quirks.conf
+/usr/share/X11/xorg.conf.d/50-synaptics.conf
+/usr/share/X11/xorg.conf.d/50-vmmouse.conf
+/usr/share/X11/xorg.conf.d/50-wacom.conf
+/usr/share/man/man5/xorg.conf.5.gz
+/usr/share/man/man5/xorg.conf.d.5.gz
+
+# cd /usr/share/X11/xorg.conf.d
+Output:
+10-evdev.conf	50-synaptics.conf  50-wacom.conf
+10-quirks.conf	50-vmmouse.conf 10-amdgpu.conf
+
+There isn't any .conf file to edit or a template to create/modify a version of /etc/X11/xorg.conf.
+Update Note: 
+10-amdgpu.conf: The file has configuration a configuration "Section". Use its content information in case of acceleration modifications.
+Output:
+Section "OutputClass"
+        Identifier "AMDgpu"
+        MatchDriver "amdgpu"
+        Driver "amdgpu"
+EndSection
+End of Output.
+End of Update Note.
+
+I went back to check the configuration file:
+https://wiki.debian.org/ATIProprietary
+to this section:
+https://wiki.debian.org/ATIProprietary#configure
+
+The section says that the configuration file has to be created.
+The web page says that the file is not required the most of times. I think everything is already configured but I am not sure yet because the web also says: 'As the fglrx driver is not autodetected by Xorg, a configuration file is required to be supplied.'
+
+Anyway the file should help, because the ATI Web says: "optional configuration can be used to increase 3D performance. See the xorg.conf(5) and radeon(4) manual pages for more information."
+
+To create an Xorg server configuration directory and file:
+
+# mkdir /etc/X11/xorg.conf.d
+# echo -e 'Section "Device"\n\tIdentifier "My GPU"\n\tDriver "fglrx"\nEndSection' > /etc/X11/xorg.conf.d/20-fglrx.conf
+
+The basic file will look like this:
+
+/etc/X11/xorg.conf.d/20-fglrx.conf
+
+    Section "Device"
+            Identifier "My GPU"
+            Driver "fglrx"
+    EndSection
+
+
+But the ATI Web page shows the performance information to include in the file:
+Reference:
+Web: https://wiki.debian.org/AtiHowTo
+File: AMD - ATI Open Source Drivers.pdf
+
+Open the file to edit the first section and add the rest of the lines:
+# nano /etc/X11/xorg.conf.d/20-fglrx.conf
+
+
+The basic version will look like this:
+
+
+Section "Device"
+ Driver "radeon"
+ Identifier "My GPU"
+ Option "AccelMethod" "XAA"
+ # XAA/EXA
+ Option "AccelDFS"    "1"
+ # 1/0 On for PCIE, off for AGP
+ # Manpage: Use  or  don't  use accelerated EXA DownloadFromScreen hook
+ # when possible.
+ Option "AGPMode" "1"
+ # 1-8 Does not affect PCIE models.
+ Option "AGPFastWrite" "1"
+ # 1/0 Does not affect PCIE models. Not recommended.
+ Option "GARTSize" "64"
+ # 0-64 Megabytes of gart (system) memory used.
+ # Wrongly defaults to 8MB sometimes, see your logfile.
+ # Bigger seems better.
+ Option "EnablePageFlip" "1"
+ # 1/0 Increases 3D performance substantially
+ # seemingly in XAA mode only
+ Option "ColorTiling" "1"
+ # 1/0 Increases 3D performance substantially
+ # affected stability only positively on my system
+EndSection
+
+
+To see the an almost full list of options.
+Reference:
+Web: http://manpages.debian.org/cgi-bin/man.cgi?sektion=4&query=radeon&apropos=0&manpath=sid&locale=en
+File: RADEON(4).pdf
+
+Restart your system to enable the radeon blacklist. 
+
+Comment out the repo added to /etc/apt/sources.list:
+# Debian 8 "Jessie"
+# Packages: ATI Drivers, 
+#deb http://http.debian.net/debian/ jessie main contrib non-free
+
+
+To test the performance I will use Mesa.
+Reference: 
+Web: https://wiki.debian.org/Mesa#Testingperformance
+File: Performance test with Mesa.pdf
+
+To install Mesa:
+# apt-get update
+# apt-get install mesa-utils
+
+Among the mesa tools, glxinfo will help you to know more about the chip that your computer uses. The command:
+$ glxinfo | grep OpenGL
+My Output:
+OpenGL vendor string: X.Org
+OpenGL renderer string: Gallium 0.4 on AMD RS880
+OpenGL core profile version string: 3.3 (Core Profile) Mesa 10.3.2
+OpenGL core profile shading language version string: 3.30
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 3.0 Mesa 10.3.2
+OpenGL shading language version string: 1.30
+OpenGL context flags: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.0 Mesa 10.3.2
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.0
+OpenGL ES profile extensions:
+
+If in the OpenGL renderer string: you see llvmpipe, that means your system doesn't use the GPU but the CPU instead to render the computer graphics. If you want to use the GPU look at the Graphics Card page. Many times you just need to install the firmware-linux-nonfree package from the non-free repositories, in order to active the driver. 
+
+3D Acceleration:
+To determine whether 3D acceleration is working, use the glxinfo tool. Run the following command:
+$ glxinfo  | grep rendering
+The output should be and is:
+direct rendering: Yes
+
+Testing performance:
+To see how many frames per second your video card is putting out, run the following command:
+$ glxgears -info
+
+You should see the windows with the gears animation and and output with information.
+My Output:
+Running synchronized to the vertical refresh.  The framerate should be
+approximately the same as the monitor refresh rate.
+GL_RENDERER   = Gallium 0.4 on AMD RS880
+GL_VERSION    = 3.0 Mesa 10.3.2
+GL_VENDOR     = X.Org
+GL_EXTENSIONS = GL_ARB_multisample [...]
+VisualID 534, 0x216
+281 frames in 5.0 seconds = 56.106 FPS
+300 frames in 5.0 seconds = 59.908 FPS
+300 frames in 5.0 seconds = 59.906 FPS
+300 frames in 5.0 seconds = 59.907 FPS
+300 frames in 5.0 seconds = 59.909 FPS
+300 frames in 5.0 seconds = 59.904 FPS
+300 frames in 5.0 seconds = 59.908 FPS
+300 frames in 5.0 seconds = 59.907 FPS
+300 frames in 5.0 seconds = 59.907 FPS
+300 frames in 5.0 seconds = 59.908 FPS
+[...]
+
+
+Note: The gears test is not very effective, many drivers work very well with a bad FPS in this test.
+References:
+Web: http://www.mesa3d.org/
+
+Note: I want to verify the 3D with Iceweasel (Debian Firefox) but the program does not show 3D information like in Windows using about:support in the command line.
+Reference:
+Web: https://blog.mozilla.org/joe/2010/11/10/how-to-tell-if-youre-using-hardware-acceleration/
+File: How to tell if you have hardware accel.pdf
+
+
+Use DRI (Direct Rendering):
+
+# modeprobe radeon
+root@ProLiant:/usr/src# modinfo radeon
+Output:
+filename:       /lib/modules/3.16.0-4-amd64/kernel/drivers/gpu/drm/radeon/radeon.ko
+license:        GPL and additional rights
+description:    ATI Radeon
+author:         Gareth Hughes, Keith Whitwell, others.
+firmware:       radeon/R520_cp.bin
+firmware:       radeon/RS600_cp.bin
+firmware:       radeon/RS690_cp.bin
+firmware:       radeon/R420_cp.bin
+firmware:       radeon/R300_cp.bin
+firmware:       radeon/R200_cp.bin
+firmware:       radeon/R100_cp.bin
+firmware:       radeon/SUMO2_me.bin
+firmware:       radeon/SUMO2_pfp.bin
+firmware:       radeon/SUMO_me.bin
+firmware:       radeon/SUMO_pfp.bin
+firmware:       radeon/SUMO_rlc.bin
+firmware:       radeon/PALM_me.bin
+firmware:       radeon/PALM_pfp.bin
+firmware:       radeon/CYPRESS_smc.bin
+firmware:       radeon/CYPRESS_rlc.bin
+[and the rest of the list of firmware]
+
+
+# modprobe -r radeon
+
+Xorg Logs:
+
+Review DRI:
+$ cat /var/log/Xorg.0.log |grep DRI
+Output:
+[    37.663] (II) RADEON(0): [DRI2] Setup complete
+[    37.664] (II) RADEON(0): [DRI2]   DRI driver: r600
+[    37.664] (II) RADEON(0): [DRI2]   VDPAU driver: r600
+[    38.987] (II) GLX: Initialized DRI2 GL provider for screen 0
+
+Review AGP:
+$ cat /var/log/Xorg.0.log |grep AGP
+Output:
+ATI Radeon IGP330/340/350 (A4) 4137, ATI Radeon 9500 AD (AGP),
+ATI Radeon 9500 AE (AGP), ATI Radeon 9600TX AF (AGP),
+ATI FireGL Z1 AG (AGP), ATI Radeon 9800SE AH (AGP),
+ATI Radeon 9800 AI (AGP), ATI Radeon 9800 AJ (AGP),
+ATI FireGL X2 AK (AGP), ATI Radeon 9600 AP (AGP),
+ATI Radeon 9600SE AQ (AGP), ATI Radeon 9600XT AR (AGP),
+ATI Radeon 9600 AS (AGP), ATI FireGL T2 AT (AGP), ATI Radeon 9650,
+ATI FireGL RV360 AV (AGP), ATI Radeon 7000 IGP (A4+) 4237,
+ATI Radeon 8500 AIW BB (AGP), ATI Radeon IGP320M (U1) 4336,
+ATI Radeon Mobility 7000 IGP 4437, ATI Radeon 9000/PRO If (AGP/PCI),
+ATI Radeon 9000 Ig (AGP/PCI), ATI Radeon X800 (R420) JH (AGP),
+ATI Radeon X800PRO (R420) JI (AGP),
+ATI Radeon X800SE (R420) JJ (AGP), ATI Radeon X800 (R420) JK (AGP),
+ATI Radeon X800 (R420) JL (AGP), ATI FireGL X3 (R420) JM (AGP),
+ATI Radeon Mobility 9800 (M18) JN (AGP),
+ATI Radeon X800 SE (R420) (AGP), ATI Radeon X800XT (R420) JP (AGP),
+ATI Radeon X800 VE (R420) JT (AGP), ATI Radeon X850 (R480) (AGP),
+ATI Radeon X850 XT (R480) (AGP), ATI Radeon X850 SE (R480) (AGP),
+ATI Radeon X850 PRO (R480) (AGP), ATI Radeon X850 XT PE (R480) (AGP),
+ATI Radeon Mobility M7 LW (AGP),
+ATI Mobility FireGL 7800 M7 LX (AGP),
+ATI Radeon Mobility M6 LY (AGP), ATI Radeon Mobility M6 LZ (AGP),
+ATI FireGL Mobility 9000 (M9) Ld (AGP),
+ATI Radeon Mobility 9000 (M9) Lf (AGP),
+ATI Radeon Mobility 9000 (M9) Lg (AGP), ATI FireMV 2400 PCI,
+ATI Radeon 9700 Pro ND (AGP), ATI Radeon 9700/9500Pro NE (AGP),
+ATI Radeon 9600TX NF (AGP), ATI FireGL X1 NG (AGP),
+ATI Radeon 9800PRO NH (AGP), ATI Radeon 9800 NI (AGP),
+ATI FireGL X2 NK (AGP), ATI Radeon 9800XT NJ (AGP),
+ATI Radeon Mobility 9600/9700 (M10/M11) NP (AGP),
+ATI Radeon Mobility 9600 (M10) NQ (AGP),
+ATI Radeon Mobility 9600 (M11) NR (AGP),
+ATI Radeon Mobility 9600 (M10) NS (AGP),
+ATI FireGL Mobility T2 (M10) NT (AGP),
+ATI FireGL Mobility T2e (M11) NV (AGP), ATI Radeon QD (AGP),
+ATI Radeon QE (AGP), ATI Radeon QF (AGP), ATI Radeon QG (AGP),
+ATI FireGL 8700/8800 QH (AGP), ATI Radeon 8500 QL (AGP),
+ATI Radeon 9100 QM (AGP), ATI Radeon 7500 QW (AGP/PCI),
+ATI Radeon 7500 QX (AGP/PCI), ATI Radeon VE/7000 QY (AGP/PCI),
+ATI Radeon VE/7000 QZ (AGP/PCI), ATI ES1000 515E (PCI),
+ATI Radeon XPRESS 200M 5955 (PCIE), ATI Radeon 9250 5960 (AGP),
+ATI Radeon 9200 5961 (AGP), ATI Radeon 9200 5962 (AGP),
+ATI Radeon 9200SE 5964 (AGP), ATI FireMV 2200 (PCI),
+ATI Radeon Mobility 9200 (M9+) 5C61 (AGP),
+ATI Radeon Mobility 9200 (M9+) 5C63 (AGP),
+ATI Mobility Radeon HD 4650, ATI Radeon RV730 (AGP),
+ATI Mobility Radeon HD 4670, ATI Radeon RV730 (AGP),
+ATI Radeon HD 2400 Pro, ATI Radeon HD 2400 PRO AGP, ATI FireGL V4000,
+ATI Radeon HD 2600 XT AGP, ATI Radeon HD 2600 Pro AGP,
+ATI Radeon HD 3650 AGP, ATI Radeon HD 3600 PRO,
+[    37.784] (WW) RADEON(0): Option "AGPMode" is not used
+[    37.785] (WW) RADEON(0): Option "AGPFastWrite" is not used
+
+
+Note: As I have PCIE active I don't need AGP.
+
+Review drm radeon:
+$ dmesg | egrep 'drm|radeon'
+[   19.674719] [drm] Initialized drm 1.1.0 20060810
+[   21.294985] [drm] radeon kernel modesetting enabled.
+[   21.887725] [drm] initializing kernel modesetting (RS880 0x1002:0x9712 0x103C:0x1609).
+[   21.887746] [drm] register mmio base: 0xFE8F0000
+[   21.887748] [drm] register mmio size: 65536
+[   21.888691] radeon 0000:01:05.0: VRAM: 128M 0x00000000C0000000 - 0x00000000C7FFFFFF (128M used)
+[   21.888696] radeon 0000:01:05.0: GTT: 512M 0x00000000A0000000 - 0x00000000BFFFFFFF
+[   21.888703] [drm] Detected VRAM RAM=128M, BAR=128M
+[   21.888705] [drm] RAM width 32bits DDR
+[   21.888867] [drm] radeon: 128M of VRAM memory ready
+[   21.888869] [drm] radeon: 512M of GTT memory ready.
+[   21.888887] [drm] Loading RS780 Microcode
+[   21.975958] radeon 0000:01:05.0: firmware: direct-loading firmware radeon/RS780_pfp.bin
+[   21.981080] radeon 0000:01:05.0: firmware: direct-loading firmware radeon/RS780_me.bin
+[   21.991113] radeon 0000:01:05.0: firmware: direct-loading firmware radeon/R600_rlc.bin
+[   21.991188] [drm] radeon: power management initialized
+[   21.991206] [drm] GART: num cpu pages 131072, num gpu pages 131072
+[   22.005591] [drm] PCIE GART of 512M enabled (table at 0x00000000C0040000).
+[   22.005711] radeon 0000:01:05.0: WB enabled
+[   22.005721] radeon 0000:01:05.0: fence driver on ring 0 use gpu addr 0x00000000a0000c00 and cpu addr 0xffff880034097c00
+[   22.005728] [drm] Supports vblank timestamp caching Rev 2 (21.10.2013).
+[   22.005732] [drm] Driver supports precise vblank timestamp query.
+[   22.005737] radeon 0000:01:05.0: radeon: MSI limited to 32-bit
+[   22.005765] [drm] radeon: irq initialized.
+[   22.038801] [drm] ring test on 0 succeeded in 0 usecs
+[   22.039081] [drm] ib test on ring 0 succeeded in 0 usecs
+[   22.039998] [drm] Radeon Display Connectors
+[   22.040007] [drm] Connector 0:
+[   22.040010] [drm]   VGA-1
+[   22.040017] [drm]   DDC: 0x7e40 0x7e40 0x7e44 0x7e44 0x7e48 0x7e48 0x7e4c 0x7e4c
+[   22.040020] [drm]   Encoders:
+[   22.040024] [drm]     CRT1: INTERNAL_KLDSCP_DAC1
+[   22.090570] [drm] fb mappable at 0xF0141000
+[   22.090579] [drm] vram apper at 0xF0000000
+[   22.090582] [drm] size 5242880
+[   22.090585] [drm] fb depth is 24
+[   22.090589] [drm]    pitch is 5120
+[   22.090914] fbcon: radeondrmfb (fb0) is primary device
+[   22.147415] radeon 0000:01:05.0: fb0: radeondrmfb frame buffer device
+[   22.147421] radeon 0000:01:05.0: registered panic notifier
+[   22.158903] [drm] Initialized radeon 2.39.0 20080528 for 0000:01:05.0 on minor 0
+
+Review render with glxinfo (Not only rendering = YES):
+$ glxinfo | grep -i render
+
+Reveal unused options in the video card:
+$ grep EE /var/log/Xorg.0.log
+$ grep WW /var/log/Xorg.0.log
+Output:
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+[    38.462] (WW) The directory "/usr/share/fonts/X11/cyrillic" does not exist.
+[    39.667] (WW) RADEON(0): Option "AccelDFS" is not used
+[    39.667] (WW) RADEON(0): Option "AGPMode" is not used
+[    39.667] (WW) RADEON(0): Option "AGPFastWrite" is not used
+[    39.667] (WW) RADEON(0): Option "GARTSize" is not used
+[    41.815] (WW) evdev: USB USB Keyboard: ignoring absolute axes.
+[    41.821] (WW) evdev: Logitech USB Receiver: ignoring absolute axes.
+
+Make sure firmware is installed:
+# apt-cache policy firmware-linux-nonfree
+Output:
+firmware-linux-nonfree:
+  Installed: 0.43
+  Candidate: 0.43
+  Version table:
+ *** 0.43 0
+        100 /var/lib/dpkg/status
+
+
+Debug LIBGL:
+$ LIBGL_DEBUG=verbose glxinfo
+Output:
+The output is very big to show it here.
+Also use to show less info:
+$ LIBGL_DEBUG=verbose glxinfo | grep dri
+libGL: screen 0 does not appear to be DRI3 capable
+libGL: pci id for fd 4: 1002:9712, driver r600
+libGL: OpenDriver: trying /usr/lib/x86_64-linux-gnu/dri/tls/r600_dri.so
+libGL: OpenDriver: trying /usr/lib/x86_64-linux-gnu/dri/r600_dri.so
+libGL: Can't open configuration file /home/esteban/.drirc: No such file or directory.
+libGL: Can't open configuration file /home/esteban/.drirc: No such file or directory.
+
+Error:
+libGL: Can't open configuration file /home/esteban/.drirc: No such file or directory.
+Solution: 
+Install driconf:
+Verify /etc/apt/sources.list and then:
+# apt-get update
+$ apt-cache search driconf
+Output:
+driconf - DRI configuration applet
+# apt-get install driconf
+After the installation run:
+$ driconf
+The program is going to show the window "Direct Rendering Preferences" and is going to show the message: "...Created a new DRI configuration file "/home/esteban/.drirc" for you."
+The program open the Gallium Window (Direct rendering preferences)
+
+Note on Window options:
+OpenGL Shading Language (abbreviated: GLSL or GLslang), is a high-level shading language based on the syntax of the C programming language. It was created by the OpenGL ARB (OpenGL Architecture Review Board) to give developers more direct control of the graphics pipeline without having to use ARB assembly language or hardware-specific languages.
+Web: http://en.wikipedia.org/wiki/OpenGL_Shading_Language
+Picture: Linux_kernel_and_OpenGL_video_games.svg
+
+Warning: Take care with the options.. you could overheat the card and burn it!
+
+Also is recommended to verify the permissions of the file /etc/X11/xorg.conf.d/20-fglrx.conf, but I guess that they are ok and the LibGL error is not because of the permissions.
+
+Important: When using free version of the driver, the file should be or must be created here:
+/etx/X11/xorg.conf
+References:
+Web: https://wiki.debian.org/Xorg
+File: 
+
+Here is a copy of the the last file version with the new two sections at the end:
+
+Section "Device"
+ Driver "radeon"
+ Identifier "My GPU"
+ Option "AccelMethod" "XAA"
+ # XAA/EXA
+ Option "AccelDFS"    "1"
+ # 1/0 On for PCIE, off for AGP
+ # Manpage: Use  or  don't  use accelerated EXA DownloadFromScreen hook
+ # when possible.
+ Option "AGPMode" "1"
+ # 1-8 Does not affect PCIE models.
+ Option "AGPFastWrite" "1"
+ # 1/0 Does not affect PCIE models. Not recommended.
+ Option "GARTSize" "64"
+ # 0-64 Megabytes of gart (system) memory used.
+ # Wrongly defaults to 8MB sometimes, see your logfile.
+ # Bigger seems better.
+ Option "EnablePageFlip" "1"
+ # 1/0 Increases 3D performance substantially
+ # seemingly in XAA mode only
+ Option "ColorTiling" "1"
+ # 1/0 Increases 3D performance substantially
+ # affected stability only positively on my system
+EndSection
+Section "DRI"
+ Mode 0666
+EndSection
+Section "Module"
+ Load "dri2"
+ Load "glamoregl"
+EndSection
+
+To know where the new modules are located:
+$ locate glamoregl
+$ locate dri2
+
+Note:
+Glamor is a library for accelerating 2D graphics using GL functions.
+
+Reference:
+Web: http://www.linuxquestions.org/questions/debian-26/debian-wheezy-opengl-suddenly-stopped-working-908428/
+File: opengl-suddenly-stopped-working.pdf
+
+More Troubleshooting:
+
+To Answer the  Questions:
+It doesn't work. I don't have rendering, and I can't tell why.
+When I startx, I get this error: "[drm] failed to load kernel module agpgart"
+I have a Radeon, and I want TV-Out.
+It doesn't work. My card is so incredibly new and cool that it isn't supported at all.
+I have a PCI card and it doesn't work. Help!
+Use this Reference:
+Web: https://wiki.gentoo.org/wiki/Xorg/Hardware_3D_acceleration_guide
+File: 3daccelerationguide.pdf
+
+Can't activate OpenGL Driver:
+https://bbs.archlinux.org/viewtopic.php?id=160101
+
+A big old example of the .conf file:
+https://forums.gentoo.org/viewtopic.php?t=46681
+
+To regenerate /etc/X11/xorg.conf (But at this point you'd better edit the existent with nano or backup the file before proceed):
+Stop x server and try:
+# Xorg --configure
+
+You can locate files you thing you don't have like this (An example):
+$ locate r600_dri.so
+/usr/lib/i386-linux-gnu/dri/r600_dri.so
+/usr/lib/x86_64-linux-gnu/dri/r600_dri.so
+
+Final tips:
+You should enable the hardware acceleration in your browsers. You can test it in many ways.
+
+Test 3D+DRI:
+Use your Steam account to buy Half Life or download Half Life from:
+https://mega.co.nz/#F!FRoQBISY!uSKJuc_pq-51TSyTnMt_-Q
+Thanks to: https://inukaze.wordpress.com/
+
+Extract the files and:
+# cp -dpR HalfLife1EE/ /usr/src
+Change permissions as user esteban:
+# cd /usr/src
+# chmod 777 HalfLife1EE
+# chown esteban HalfLife1EE
+# chgrp esteban HalfLife1EE
+Run the scrip to setup the game:
+# sh Configurar_en_POSIX_HalfLifeEE
+Message: "Se ha configurado correctamente"
+And terminal Output is something like: 
+Se utilizara la version de wine : 1.7.29
+Lanzar Half Life:
+$  sh LanzarHLEE
+$  sh LanzarHLEE -windowed
+Wine is going to update and start the game.
+
+But the game is not working.
+There is another script to run like LanzarHLEE to clean up the system from Wine and delete the game icons from.
+
+I installed extremetuxracer since synaptic (to test 3d at least) and works.
+
+At this point I have found new options to modify # nano /etc/X11/xorg.conf.d/20-fglrx.conf. I am going to modify the file and show a newer version.
+
+# nano /etc/X11/xorg.conf.d/20-fglrx.conf
+
+Section "DRI"
+ Mode 0666
+EndSection
+Section "Module"
+ Load "dri2"
+ Load "glamoregl"
+EndSection
+Section "Device"
+ Driver "radeon"
+ Identifier "My GPU"
+ Option "AccelMethod" "glamor"
+ # XAA/EXA
+ Option "AccelDFS"    "1"
+ # 1/0 On for PCIE, off for AGP
+ # Manpage: Use  or  don't  use accelerated EXA DownloadFromScreen hook
+ # when possible.
+ Option "AGPMode" "1"
+ # 1-8 Does not affect PCIE models.
+ Option "AGPFastWrite" "1"
+ # 1/0 Does not affect PCIE models. Not recommended.
+ Option "GARTSize" "64"
+ # 0-64 Megabytes of gart (system) memory used.
+ # Wrongly defaults to 8MB sometimes, see your logfile.
+ # Bigger seems better.
+ Option "EnablePageFlip" "1"
+ # 1/0 Increases 3D performance substantially
+ # seemingly in XAA mode only
+ Option "ColorTiling" "1"
+ # 1/0 Increases 3D performance substantially
+ # affected stability only positively on my system
+EndSection
+
+Notes about the file:
+Option	"AccelMethod"           "glamor"
+Glamour is the newest Accel type but requires sections:
+Section "DRI"
+Section "Modules"
+The rest of options seems to be fine but yours not necessarily.
+
+
+I have installed the game Crack Attack and is working fine.
+It is a multiplayer OpenGL puzzle game like "Tetris Attack"
+Crack Attack is very slow without hardware acceleration.  For Xorg
+users, this means you want DRI.
+Install Crack Attack since synaptic software manager.
+
+I also installed Trigger Rally:
+Trigger is a free 3D rally car racing game. Fun for all the family!
+System Requirements consist of an OpenGL accelerated video card.
+
+I also installed Supertuxkart:
+# apt-get update
+# apt-get install supertuxkart
+
+To look for more games you can do like this:
+# apt-get update
+# apt-cache search 'arena'
+# apt-get install openarena
+# where is openarena
+Output:
+openarena: /usr/lib/openarena /usr/games/openarena /usr/share/man/man6/openarena.6.gz
+So to play enter:
+$ openarena
+dpkg -l | grep 'openarena'
+ii  openarena                             0.8.8-9
+Review program version:
+References: OpenArena-underwater.png
+
+I downloaded this version of Open Arena 
+OpenArena v0.8.8 Win/Lin/Mac Unified Zip
+from here:
+http://openarena.ws/download.php?list.61
+To play with Windows and Mac users XD!
+
+I downloaded Alien Arena from:
+http://red.planetarena.org/aquire.html
+The game comes with the compilation instructions.
+The compilation instructions failed, but I can go to: PlayDeb or Desura to Play.
+PlayDeb is at http://www.playdeb.net/.
+Desura is at http://www.desura.com/
+PlayDeb is to Ubuntu.
+Desura installations does not start on in my system, following the instructions for Ubuntu of a Blog.
+
+Powersaving:
+Available Methods:
+1. dynpm
+2. profile
+3. dpm (Available since kernel 3.11)
+you have to activate it manually.
+There are graphical options, for example to Gnome users:
+Gnome-shell-extension-Radeon-Power-Profile-Manager. It'a extension to change the profile of the potency of the radeon card when we use the open source controller (driver):
+gnome-shell-extension-radeon-power-profile-manager-git:
+https://github.com/StuntsPT/shell-extension-radeon-power-profile-manager
+gnome-shell-extension-radeon-ppm:
+(https://aur.archlinux.org/packages/gnome-shell-extension-radeon-ppm/) 
+(https://aur.archlinux.org/packages/gnome-shell-extension-radeon-power-profile-manager-git/)
+References:
+https://extensions.gnome.org/extension/356/radeon-power-profile-manager/
+Check TV output and more here:
+Reference (Spanish):
+https://wiki.archlinux.org/index.php/ATI_%28Espa%C3%B1ol%29
+
+To setup the power profile:
+Web: https://github.com/StuntsPT/shell-extension-radeon-power-profile-manager
+File:
+The first thing to do is to Download the file from the GIT repository.
+Package: shell-extension-radeon-power-profile-manager-master.zip
+Extract the package.
+According to the Official Gnome extensions site and Debian Wiki the best way to add a extension is to use the Gnome Tweak tool from the section extensions, but the extension is a Zip file from GitHub and when I added from the tools nothing happens.
+I will follow the instructions in the GitHub, that are also in the extracted file README.md.
+Here is a modified copy of the Usage instructions:
+To use this extension you need:
+A Radeon card that supports power profiles - r1xx and up;
+To be running the open source drivers;
+Make sure that /sys/class/drm/card0/device/power_method is set to profile;
+Before make the optional step I am going to backup the file to remember the default permissions:
+# cp -dpR power_profile power_profileBAK
+Curiously I cannot copy the filename, maybe because the card is on but here is an output of the original permissions to restore them in case of something fails:
+-rw-r--r-- 1 root root 4.0K May 17 18:19 power_profile
+And the content of the file is one line which says "default".
+Optional:
+Set the permissions of /sys/class/drm/card0/device/power_profile to be writable by your user (by default only root can change these values);
+chmod a+w /sys/class/drm/card0/device/power_profile will work, but feel free to use any other method;
+The new permissions should be:
+Output:
+-rw-rw-rw- 1 root root 4.0K May 17 18:19 power_profile
+to make the changes permanent don't forget to add the chmod line to your rc.local or equivalent in your distro (If your /etc/rc.local contains an exit 0 line, then the chmod line has to be placed before it);
+if you are using systemd, you can create /etc/tmpfiles.d/radeon-power-profile.conf with the following line:
+w /sys/class/drm/card0/device/power_profile 0666 - - - mid;
+this will change the permissions of power_profile so that any user can change the profile;
+If you do not do this, the extension will attempt to use polkit and ask for your password every time you change the profile.
+
+At this point I don't see any extension.
+I want to download extensions with the browser. Here is the troubleshooting from the Gnome site:
+https://extensions.gnome.org/about/#no-detection
+To find out more Gnome extensions go to:
+https://extensions.gnome.org/
+What I do is to active the Gnome Shell Integration plug-in in the browser with the Add-ons Manager.
+
+I restarted the computer check the Gnome extensions page and says that the extension is 'Outdated' but I finally could set it to ON no the web site.
+I double-checked the extension in the Gnome Tweak Center and I could set it to ON (Must say ON in light blue instead of OFF).
+To turn on and off Gnome extensions, use the Gnome Tweak Tool:
+$ gnome-tweak-tool
+After that you see the extension on the top in the black system bar next to the keyboard configuration.
+Click to display the menu and choose a profile.
+The system will display a prompt windows with a message to enter the administrator password. I am not going to read more the readme.md nor Github manual the password step to users but go ahead, if you will.
+I don't note a difference between profiles but is a good option for laptops to save battery energy. There was another tool in the official repo, I saw it from Synaptic but it was only for laptops and the app description said it could damage the hardware. I tested the profiles with the programs redeontop and glxgears.
+
+Add a complete Dock:
+With Cairo Dock added to GNOME 3, your experience will be made exponentially better. Install this great dock from within your distribution’s package manager.
+GNOME 3 doesn’t have to be seen as an inefficient, user UN-friendly, desktop. With just a tiny bit of tweaking, GNOME 3 can be made as powerful and user-friendly as any desktop available.
+Reference:
+Web: https://www.linux.com/learn/tutorials/781916-easy-steps-to-make-gnome-3-more-efficient
+
+radeontop:
+I have installed this utility to show Radeon GPU utilization.
+# radeontop
+
+rovclock:
+I have installed utility to control frequency rates of your Radeon card
+# rovclock
+# rovclock -i
+
+
+Take care with the video card. Reconfigure xserver xorg is going to overwrite your xorg.conf file. If you want to proceed, back-up the video card configuration first.
+To setup video card:
+References:
+Guides:
+Reconfigure Xserver hardware (Video Card, Keyboard, Mouse, Monitor)
+3D Acceleration and VR
+
+To use a second video card in a KVM sever guest Virtual Machine (VM):
+Topic: VGA and GPU passthrough. Sections of the guide: "OpenCL Virtualization ready Checklist", and "Versioning Compatibility Checklist".
+Guide:
+3D Acceleration and VR
+Topic: VGA and GPU passthrough.
+KVM
+

@@ -1,0 +1,132 @@
+Transcribed from the product's home page:
+"Brackets is a modern, open source text editor that understands web design."
+"With focused visual tools and preprocessor support, Brackets is a modern text editor that makes it easy to design in the browser. Try Creative Cloud Extract (preview) for Brackets for an easy way to get clean, minimal CSS straight from a PSD with no generated code.
+"The Extract for Brackets (Preview) extension lets you pull out design information from a PSD including colors, fonts, gradients, and measurement information as clean, minimal CSS via contextual code hints. You can also extract layers as images, use information from the PSD to define preprocessor variables, and easily get dimensions between objects. All in the context of your code."
+
+Ways to download the editor:
+
+I take a look at the active and available repos in the system:
+$ sudo nano /etc/apt/sources.list
+$ apt-cache search 'brackets'
+The package is not found in the Debian repos nor repos web site, so I am not going to setup the repos.
+
+I visit: http://brackets.io/
+The page instantly shows you what DEB package to download.
+Install the DEB package:
+$ sudo dpkg -i Brackets.1.3.Extract.64-bit.deb
+$ sudo apt-get -f install
+$ sudo dpkg -i Brackets.1.3.Extract.64-bit.deb
+
+The second way offered is to go to: https://github.com/adobe/brackets/releases
+Today, the latest version in the Git hosting is: Brackets.Release.1.3.64-bit.deb
+
+At this point I couldn't install the editor following any of these regular procedures. There's an issue with Debian which has been logged on the GitHub.
+Reference:
+Web: https://github.com/adobe/brackets/issues/4816
+
+The only way that works is to compile the program from a working PPA package of Ubuntu:
+Reference:
+Topic: Install Brackets from Ubuntu PPA:
+Web: http://www.webupd8.org/2013/11/install-brackets-in-ubuntu-via-ppa-open.html
+
+Go to search the program as a PPA: https://launchpad.net/ubuntu/+ppas
+Search for "Brackets".
+Click on the section " View package details".
+The web is going toe take you here: https://launchpad.net/~webupd8team/+archive/ubuntu/brackets/+packages
+On the page, expand the section to view the list of packages.
+There is a package for the 64bit computer architecture, recognized by the name string "amd64".
+RIGHT CLICK and select "Copy Link location" on the proper files to download the them, like this:
+$ wget -c https://launchpad.net/~webupd8team/+archive/ubuntu/brackets/+files/brackets_1.3.0libgcrypt11-16022%2B1%7Eextract%7Ewebupd8%7E0_amd64.deb https://launchpad.net/~webupd8team/+archive/ubuntu/brackets/+files/brackets_1.3.0libgcrypt11-16022%2B1%7Eextract%7Ewebupd8%7E0.dsc https://launchpad.net/~webupd8team/+archive/ubuntu/brackets/+files/brackets_1.3.0libgcrypt11-16022%2B1%7Eextract%7Ewebupd8%7E0.debian.tar.xz https://launchpad.net/~webupd8team/+archive/ubuntu/brackets/+files/brackets_1.3.0libgcrypt11.orig.tar.xz
+The option -c  of wget is going to resume a package partially downloaded. See the man of the program:
+$ man wget
+In order to compile the program I must prepare the build environment. I already prepared one to the installation of the program "SimpleScreenRecorder". Take a look at my guides here:
+References:
+Guides:
+Build packages from source
+SimpleScreenRecorder
+
+Remove the screenrecorder remaining directory, and then re-create the new temporary directory:
+$ cd /
+Remove the directory:
+$ sudo rm -rf /wrk
+Create the working directory:
+$ sudo mkdir wrk
+$ sudo chmod 777 wrk
+$ ls -hal /
+$ cd wrk
+Copy the files downloaded to the current directory:
+$ cp -dpR brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0.dsc brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0_amd64.deb brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0.debian.tar.xz brackets_1.3.0libgcrypt11.orig.tar.xz /wrk
+
+The process downloads some files from the repositories. Please double check the repos are ok with in the repos file:
+$ nano /etc/apt/sources.list
+
+Build for jessie, so set-up the command accordingly:
+$ sbuild -d jessie *.dsc
+
+According to the process, the packages to install are:
+The following extra packages will be installed:
+bsdmainutils debhelper file gettext gettext-base groff-base intltool-debian
+libasprintf0c2 libcroco3 libffi6 libglib2.0-0 libmagic1 libpipeline1
+libunistring0 libxml2 man-db po-debconf
+Suggested packages:
+wamerican wordlist whois vacation dh-make gettext-doc groff less www-browser
+libmail-box-perl
+Recommended packages:
+curl wget lynx-cur autopoint libasprintf-dev libgettextpo-dev
+libglib2.0-data shared-mime-info xdg-user-dirs xml-core
+libmail-sendmail-perl
+The following NEW packages will be installed:
+bsdmainutils debhelper file gettext gettext-base groff-base intltool-debian
+libasprintf0c2 libcroco3 libffi6 libglib2.0-0 libmagic1 libpipeline1
+libunistring0 libxml2 man-db po-debconf sbuild-build-depends-brackets-dummy
+
+At the end of the process a summary shows up with the message:
+Status: successful
+
+List the directory:
+$ ls
+Output:
+brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0_amd64-20150602-1711.build
+brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0_amd64.build
+brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0_amd64.changes
+brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0_amd64.deb
+brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0.debian.tar.xz
+brackets_1.3.0libgcrypt11-16022+1~extract~webupd8~0.dsc
+brackets_1.3.0libgcrypt11.orig.tar.xz
+
+
+Install the package with gdebi:
+$ sudo gdebi *.deb
+Output:
+Brackets
+ Brackets is an open-source editor for web design and development
+ built on top of web technologies such as HTML, CSS and JavaScript.
+ The project was created and is maintained by Adobe, and is released
+ under an MIT License.
+Do you want to install the software package? [y/N]: y and then PRESS ENTER.
+
+Run the application:
+$ brackets
+
+To install Brackets, you can optionally build a release since Grunt:
+References:
+Keywords: "install brackets since grunt"
+Topic: Many links on where to go to look for Brackets.
+Web: https://github.com/adobe/brackets/wiki/Linux-Version
+Topic: How to setup grunt
+Web: https://github.com/adobe/brackets/wiki/Grunt-Setup
+Topic: How to build Brackets releases with Grunt:
+Web: https://github.com/adobe/brackets/wiki/Building-Brackets-Releases
+Web: https://github.com/adobe/brackets-shell/wiki/Building-brackets-shell
+
+Brackets extensions:
+
+An extension for Brackets that adds items to the context menu for Gruntfile.js to run tasks or sub-tasks. You can run any tasks from the Grunt file from the main Project menu, or the context menu for the Gruntfile.js entry. Or, to run the default task(s), just hit F6.
+References:
+Web: https://github.com/dhategan/brackets-grunt
+Web: https://github.com/markrendle/brackets-grunt
+
+Extract for Brackets (Preview) (non-free):
+Adobe - Preview of Extract functionality inside Brackets. Extract design information and assets from a design comp via contextual code hints for CSS.
+References:
+Web: https://helpx.adobe.com/creative-cloud/help/extract-for-brackets.html

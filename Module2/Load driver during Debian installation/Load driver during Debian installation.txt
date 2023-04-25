@@ -1,0 +1,7 @@
+Pending
+
+References:
+Web: http://superuser.com/questions/267282/how-to-use-non-free-drivers-during-debian-install
+File: installation - How to use non-free drivers during debian install - Super User.pdf
+Web: http://unix.stackexchange.com/questions/273740/load-disk-driver-during-debian-installation
+File: Load disk driver during Debian installation - Unix & Linux Stack Exchange.pdf

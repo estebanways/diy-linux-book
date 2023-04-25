@@ -1,0 +1,376 @@
+Package management commands summary:
+
+Content:
+Aptitude: Fetch packages. Installs. Has Management options.
+Software: Fetch packages. Installs. Seems a virtual software center or store.
+Synaptic: Fetch packages. Installs. Has Management options.
+APT: Fetch packages. Installs. Has Management options.
+DPKG: Local packages. Installs. Has Management options.
+Gdebi: Local packages, Fetch dependencies. Installs. Has Management options.
+Complemetary: Various. Have options unfound in common package managers.
+Resolving troubles with repositories.
+
+Aptitude:
+--------->
+
+Open Aptitude Package Manager:
+$ aptitude
+
+
+Resolve the problems with packages in the 'on hold' status or with conflicts. Commands: '$ aptitude', '# aptitude', and then press the key 'G". Also press "U" to update. 
+Also use: 
+$ aptitude search _ahold
+
+Reinstall packages already installed:
+$ sudo aptitude reinstall libgl-mesa-dri libgl1-mesa-glx
+
+Shows a listing of each INSTALLED reverse dependency a package has. Reverse dependency means the packages that depends on the package specified in the command line. the output includes the type of dependency (Depends or Recommends). In other words, maybe any of the packages in the list installed this package before::
+$ aptitude why ppp
+Output:
+i   task-xfce-desktop     Recommends network-manager-gnome      
+i A network-manager-gnome Depends    network-manager (>= 0.9.10)
+i A network-manager       Recommends ppp (>= 2.4.6) 
+End of.
+
+
+Software:
+--------->
+
+No comments
+
+
+Synaptic:
+--------->
+
+Open Synaptic Package Manager:
+$ synaptic-pkexec
+
+
+APT:
+----->
+
+APT 'apt-get' alternative to install DEB package from servers:
+$ sudo apt install pack1-name
+References:
+Topic: Difference between apt and apt-get
+Web: https://itsfoss.com/apt-vs-apt-get-difference/?utm_source=newsletter&utm_medium=email&utm_campaign=fedora_26_release_bash_ebook_and_other_linux_stories_of_the_week&utm_term=2017-07-13
+File: Difference between apt and apt-get.pdf
+
+Display a list of the package dependencies:
+$ apt-cache depends package-name
+$ apt-cache depends fofix
+
+Show the version of the installed package / Verify whether the package has been installed or not. Verify
+what repository does the package come from, IE: main, contrib or non-free:
+$ sudo apt-cache policy firmware-linux-nonfree
+
+Retrieves from the sources database the listing of EVERY AVAILABLE, INSTALLED or NOT reverse dependencies of any package, INSTALLED or NOT. Reverse dependency means the packages that depends on the package specified in the command line. Depends on the configuration in the sources files, ie: /etc/apt/sources.list. In other words, any of the packages in the output are going to install the package mentioned to resolve dependencies:
+$ apt-cache rdepends bash:amd64
+
+Shows a listing of each INSTALLED reverse dependency a package has. Reverse dependency means the packages that depends on the package specified in the command line. The equivalent option in aptitude, ie: 'aptitude why ppp', shows also the type of dependency (Depends or Recommends). In other words, maybe any of the packages in the list installed this package before:
+$ apt-cache rdepends --installed ppp
+Note: To list every installed package by date use '$ grep 'install' /var/log/dpkg.log.1 | cut -f4 -d' ''
+
+Look for OpenCL packages in the official repos main contrib non-free (depends on configuration in the config files, primarily /etc/apt/sources.list):
+$ sudo apt-cache search opencl icd | less
+$ sudo apt-cache search opencl icd | grep "opencl"
+
+List all metapackages that start with the word "task":
+apt-cache search --names-only ^task-
+
+Retrieve complete package information, include: Name, Version, Installed-Size, Maintainer, Architecture, Replaces, Provides, Dependencies, Conflicts, Breaks, Description, Homepage, Tag, Section, Priority, Filename, Size, Checksums numbers.
+$ sudo apt-cache show nano
+
+Return what my package breaks when removed:
+$ apt-cache show ppp |grep '^Breaks: '
+
+Retrieve complete package information, include: Name, Version, Installed-Size, Maintainer, Architecture, Replaces, Provides, Dependencies, Conflicts, Breaks, Description, Homepage, Tag, Section, Priority, Filename, Size, Checksums numbers. Alternative version to option 'show' alone.
+$ sudo apt-cache showpkg fofix
+
+Find the DEB package the specified file comes from. The package does not need to be installed or fetched. The command does not work with directories names:
+$ apt-file search libtxc.dxtn.so
+Notes:
+The command works on directly on all teh existent databases, instead on the configured ones, as apt-cache workds. If the file does not exist in the package databases (local in the sources lists and Debian remote databases) the Output is not going to return anything.
+The same example using current directory (Working directory, with relative path defined in the command options. The path is not important for the command, will find only the file installed in the DPKG database, instead of files in alternative paths, for example apps under /opt taht could have a copy of the file in their own directories):
+$ apt-file search libnssdbm3.so
+Output composed by the package and where file has been or would be placed:
+icedove: /usr/lib/icedove/libnssdbm3.so
+icedove-dbg: /usr/lib/debug/usr/lib/icedove/libnssdbm3.so
+iceweasel: /usr/lib/iceweasel/libnssdbm3.so
+iceweasel-dbg: /usr/lib/debug/usr/lib/iceweasel/libnssdbm3.so
+libnss3: /usr/lib/x86_64-linux-gnu/nss/libnssdbm3.so
+End of.
+The same example using the absolute path, to a second file with the same name:
+$ apt-cache search /opt/firefox/libnssdbm3.so
+Output:
+EMPTY
+End of.
+
+You DON'T USE THIS COMMAND before read this information. Like the option clean, autoclean clears out the local repository of retrieved package files (in /var/cache/apt/archives. The difference is that it only removes package files that can no longer be downloaded, and are largely useless. This allows a cache to be maintained over a long period without it growing out of control. The configuration option APT::Clean-Installed will prevent installed packages from being erased if it is set to off.
+$ sudo apt-get autoclean 
+
+Remove unused packages automagically. Is used to remove packages that were automatically installed to satisfy dependencies for other packages and are now no longer needed:
+$ sudo apt-get autoremove
+
+Clean clears out the local repository of retrieved package files. It removes everything but the lock file from /var/cache/apt/archives/ and /var/cache/apt/archives/partial/:
+$ sudo apt-get clean
+
+Read what really would be removed if I remove certain package:
+$ echo $(apt-get --dry-run remove ppp | grep '^Remv ' | cut -d' ' -f2)
+Output:
+network-manager-pptp pptp-linux ppp
+End of.
+
+Just download the packages to the current directory:
+$ sudo apt-get download debootstrap syslinux isolinux squashfs-tools genisoimage memtest86+ rsync
+
+Install packages (depends on the configuration in /etc/apt/sources.list files):
+$ sudo apt-get install package1-name package2-name packageX-name
+
+Resolve un-specified dependencies before re-run the package installation command 'sudo apt-get install package-name':
+$ sudo apt-get -f install
+Note: Use Gdebi to resolve and install dependencies DEB packages fetched previously.
+
+Update the distro:
+$ sudo apt-get -u upgrade
+
+Update the (distro) release:
+References:
+Guides:
+Update the system and applications
+Check the system version and upgrade it
+
+Upgrade packages individually:
+$ apt list --upgradable | less
+Once you know the package you want to upgrade, use:
+$ sudo apt-get install libxml2:amd64
+
+Update the package availability in /etc/apt/ and /etc/apt/sources.list:
+$ sudo apt-get update
+
+Remove and purge packages:
+$ sudo apt-get remove package-name
+
+Purge packages:
+$ sudo apt-get purge package-name
+
+Get a package source code:
+$ sudo apt-get source fdupes
+References: 
+Guide: Debian source code
+
+You can mark a package as a manual installed with:
+$ sudo apt-mark manual net-tools
+
+
+DPKG:
+-------->
+
+The standard way to repair the dpkg database is to use this command:
+sudo dpkg --configure -a
+
+Display an Alphabetical list of all the packages installed on the system:
+$ dpkg --get-selections | cut -f1
+$ dpkg --get-selections | cut -f1 | more
+$ dpkg --get-selections | cut -f1 | less
+
+Check the packages status with 'dpkg --audit'. The statuses are: Half installed, Failed-Config, and Error. 'dpkg -l | grep PACKAGE' or 'dpkg --get selections "*" > ~/curr-pkgs.txt' can be used to obtain an almost complete list of the packages that have been previously installed. To identify packages on hold with DPKG, use: 'dpkg --get selections | grep 'hold$'
+
+Install a local package:
+$ sudo dpkg -i package-archive.deb
+
+Install a group of packages, autoresolving the dependencies order:
+$ sudo dpkg -i *
+$ sudo dpkg -i pack1-filenumber-*
+
+For the package on local that matches the filter, does the same of 'apt-cache show': Retrieve complete package information, include: Name, Version, Installed-Size, Maintainer, Architecture, Replaces, Provides, Dependencies, Conflicts, Breaks, Description, Homepage, Tag, Section, Priority, Filename, Size, Checksums numbers. Alternative version to option 'show' alone:
+$ ls /var/cache/apt/archives/*fofix (PRESS TAB KEY)
+$ dpkg -I /var/cache/apt/archives/*fofix*
+$ dpkg -I /var/cache/apt/archives/fofix_3.121-3_all.deb
+
+Find information of packages, based on the local DPKG package database:
+$ sudo dpkg -l | grep linux*
+
+Find information of packages, based on the local DPKG package database. This modification avoids to trim the package name column to show complete large package names:
+COLUMNS=132 dpkg -l | grep linux
+COLUMNS=132 dpkg -l | grep 'linux'
+
+For example to find out the installed version of a package, based on the package name you can search for it using variants in the command:
+$ COLUMNS=132 dpkg -l | grep gtk
+$ COLUMNS=132 dpkg -l | grep gtk*
+$ COLUMNS=132 dpkg -l | grep gtk-
+$ COLUMNS=132 dpkg -l | grep gtk-2
+$ COLUMNS=132 dpkg -l | grep gtk-3
+$ COLUMNS=132 dpkg -l | grep libgtk
+$ COLUMNS=132 dpkg -l | grep 'libgtk'
+$ COLUMNS=132 dpkg -l | grep libgtk2*
+$ COLUMNS=132 dpkg -l | grep libgtk3*
+
+Show where every package file has been installed on the system:
+$ dpkg -L amd-opencl-icd:amd64
+Note: ":amd64" means the architecture of the packages which has been installed on the system.
+
+Find information of INSTALLED (ii) packages, based on the local DPKG package database:
+$ dpkg-query -l linux* | grep ii
+
+Reconfigure an installed package (Some program display text-based screens. Reconfigure screens of system services are incompatible with the new systemd program, at the moment):
+$ sudo dpkg-reconfigure x11-common
+Note: Notice the command is to reconfigure the package, is not to reinstall it (see aptitude option) or to configure the package options usually under /etc/ or /home/userXXYY/ as a hidden file beginning with ".". This is not the only way to setup programs in the terminal. For example, to configure the program Xorg use the option --configure: 'Xorg --configure'.
+
+Remove a package on local:
+$ sudo dpkg -r package-archive.deb
+
+Purge the package with:
+$ sudo dpkg -P APPLICATION_NAME
+
+
+Gdebi:
+------->
+
+Install a local DEB package resolving dependencies automagically (dependes on sources.list files):
+$ sudo gdebi package.deb
+
+
+Complementary:
+--------------->
+
+More grep options for commands that use | (pipes):
+$ man grep
+
+Show current distro release:
+$ cat /etc/issue
+
+Backup sources.list file:
+$ cp -dpR /etc/apt/sources.list /etc/apt/sources.listBAK
+
+Weed unnecessary Debian packages. Caution, please:
+$ sudo apt-get install debfoster
+$ sudo debfoster
+$ man debfoster
+To list all recursive dependencies of a specific package (List of all packages that this package depends on):
+$ sudo debfoster -d ppp
+
+Set/unset on hold state of the package:
+# echo package_name hold | install dpkg --set-selections
+# echo package_name hold | hold dpkg --set-selections
+
+Check whether processor supports KVM  (Intel VT or AMD-V). If vmx or svm are present, architecture is 64bit:
+# egrep '(vmx|svm)' --color=always /proc/cpuinfo
+
+Find files in the system:
+$ find /root -iname *icy.txt
+
+List every installed package by date (No a package tool with the ability to do this!):
+$ grep " install " /var/log/dpkg.lo* | cut -d ' ' -f1,4
+Or:
+$ grep " install " /var/log/dpkg.lo* | cut -d ' ' -f4
+
+Locate files like libraries in the system:
+$ locate r600_dri.so
+
+Display the list of the packages in the APT cache:
+$ ls /var/cache/apt/archives
+$ ls /var/cache/apt/archives | more
+$ ls /var/cache/apt/archives | less
+
+List files or trim file strings when used with jockers:
+$ ls
+$ ls package-name*
+$ ls *file-name*
+$ ls packages*.deb
+$ ls -hal libOpenCL.so*
+$ ls .*
+$ ls -F
+
+Show command man pages:
+$ man command
+
+Runs shell scripts. Here because some actually support tasks over packages:
+$ sh packageinstallator.sh
+
+Display sources.list  file (main file):
+$ sudo nano /etc/apt/sources.list
+
+Sometimes you need to reboot after a installation (At least applies to kernel 3.19 and below):
+# reboot
+Or with systemd:
+# systemctl reboot
+
+Display running Linux kernel version:
+$ uname -r
+
+Find commands (programs) and their files locations,  include binaries with -b, manual sections with -m, sources with -s, and manual entries with -v:
+$ whereis blender
+$ whereis blender277
+
+
+More (PENDING):
+Comamnds to list all the apps installed int the system. References:
+(BLOG ARTICLE LINK)
+Pdf: command line - How can I list all applications installed in my system_ - Ask Ubuntu.pdf
+Web: http://askubuntu.com/questions/433609/how-can-i-list-all-applications-installed-in-my-system
+Basic commands to manage file and directories.
+Downlaod and install free sources from official repos (IE: Apache2 to add Apache modules to run anti-DDOS instances from xinit).
+Alternatives to extract and compress archives (.gz)
+Alternatives to make and open source tarballs (.tar)
+Alternatives to download packages or source (Web, curl, wget, git, SVN, Mercury).
+Alternatives to install apps no packages (IE: References: Guides: Flatpak, X-Apps or Snap packages Debian equivalent, Desktop Extensions, Multiplatform Desktop Applications).
+Alternatives to install app (or other type of packages such as libs) which are not for Debian and are not DEB packages (IE: References: Guide: Linuxbrew - libsass and sassc).
+Multimedia repo querying installation.
+How to download installation KEYS from MIT (Michigan Institute of Technology) to be able to update repositories sources databases.
+How to add an architecture like i386 to install 32 bit packages on 64bit systems.
+Setup (Dangerous) or install (Certain)PPA repo sources (like KXStudio).
+Kernel module commands, for example to install driver modules after driver installation.
+Kernel recompilation to add Kernel options to add support to certain software or technology.
+
+
+
+Resolving troubles with repositories:
+------------------------------------->
+
+Some corruption in apt db, how to fix. Backup first, and then run:
+$ sudo rm /var/lib/apt/lists/* -vf
+$ sudo apt-get update
+To finish the last interrupted installation if it complains:
+$ sudo dpkg --configure -a
+YOu could require one o these to resolve dependencies:
+$ sudo apt-get -f install
+Note: For DEB packages onlocal use the command gdebi instead of apt-get -f install.
+
+One of the most common issue is that when you run 'sudo apt-get update' get an error. The most frequent is a malformed file, so be strictly careful when you edit /etc/apt/sources.list or add new repository files under /etc/apt and /etc/apt/sources.list.d/. Test also the network connections with tools like 'ping' and 'traceroute' to make sure that you can reach the repository servers. Make sure that the file is in good state, and then rerun the command to update and verify that the work 'done' comes up at the end of the process.
+
+Some months ago, Google Chrome announced their 32bit version would be deprecated, and removed the browser from their repositories but the entry still remains in their repository file google-chrome.list, so still today running 'apt-get -update' returns this error:
+Output extract:
+Fetched 958 kB in 43s (21.9 kB/s)                                             
+W: Failed to fetch http://dl.google.com/linux/chrome/deb/dists/stable/Release  Unable to find expected entry 'main/binary-i386/Packages' in Release file (Wrong sources.list entry or malformed file)
+E: Some index files failed to download. They have been ignored, or old ones used instead.
+End of output.
+The error is not several, because you can skip it to download and install apps with 'sudo apt-get install', but it wasn't supposed to happen. There is a very simple workaround to clean up the repository file google-chrome.list and remove error.
+To fix this error on Ubuntu/Debian 64-bit, the repository must be specifically set for 64-bit only - this can be done by adding "[arch=amd64]" after "deb" in the /etc/apt/sources.list.d/google-chrome.list. To do this automatically, you can use the following command:
+$ sudo sed -i -e 's/deb http/deb [arch=amd64] http/' "/etc/apt/sources.list.d/google-chrome.list"
+
+References:
+Web: http://www.webupd8.org/2016/03/fix-failed-to-fetch-google-chrome_3.html
+File: Fix `Failed To Fetch` Google Chrome Repository After Google Dropped Support For Its Browser On Linux 32bit _ Web Upd8_ Ubuntu _ Linux blog.pdf
+
+Note: 
+You can still download a 32bit version of Chrome from external sources. On 32-bit, you should remove the repository and stop using Google Chrome since it won't receive any security updates. Also, the 32-bit build configurations for Chromium continues to be supported, so you can still use Chromium browser on 32-bit Linux distributions.
+References:
+Guide: Gooogle Chrome
+
+Resolve problems with unavailable/unsigned repository keys:
+Topic:Problems with repository keys
+Guide: Verify download integrity, PGP, GPG, GNUPG, Seahorse
+
+
+References:
+Topic: Sometimes you require the machine to act as a Proxy client, and skip or route the access from the client to the Official repos via HTTP, etc. Look for the sections: "Proxy support for Synaptic Package Manager:" and" "Setting up apt-get to use a http-proxy:"
+Guide: Basic Networking
+Topic: How to set up proxies.
+Guide: Proxies
+Topic: To use Debian and Tor repos Services available as Onion Services:
+Guide: TOR
+Topic: Setup the repositories file sources.list and directory.
+Guide: Manage traditional software repositories
+
+

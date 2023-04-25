@@ -1,0 +1,61 @@
+Installation:
+$ sudo apt-get update
+$ sudo apt-get install festival
+
+Test installation:
+$ echo "hello" | festival --tts
+
+List the voices available:
+$ festival
+Now, you see the REPL interactive shell:
+festival>
+Type in: (voice.list)
+OUTPUT:
+(kal_diphone)
+END OF OUTPUT.
+
+Exit the interactive shell:
+festival> (exit)
+
+Search for voices in English:
+$ apt-cache search mbrola | grep "us"
+Install specific (US English) voices:
+$ sudo apt-get install festvox-us1 festvox-us2 festvox-us3
+
+List the voices available:
+$ festival
+Now, you see the REPL interactive shell:
+festival>
+Type in: (voice.list)
+OUTPUT:
+(kal_diphone us1_mbrola us2_mbrola us3_mbrola)
+END OF OUTPUT.
+
+Test different voices to choose from:
+Once in the interactive shell, change the voice tone (voice package). Notice that you have to add the prefix "voice_" to a voice from the voices list.
+festival> (voice_us1_mbrola)
+festival> (SayText "Hello from Ubuntu")
+festival> (tts "story.txt" nil)
+festival> (intro)
+festival> (exit)
+
+Alternative voices repositories are available for installation from different sources.
+
+Set up the new voice in the festival configuration file /etc/festival.scm:
+
+$ sudo cp -dpR /etc/festival.scm /etc/festival.scmBAK
+# nano /etc/festival.scm
+Or as user use:
+$ sudo nano /etc/festival.scm
+
+Attach the next line to the end of the file:
+(set! voice_default 'voice_us1_mbrola)
+
+Save changes made.
+
+Test the completed installation:
+$ echo "Hi, How are you doing? This is Esteban, but you can call me Steve" | festival --tts
+
+The sound should output the sentence above using the new voice defined in the config file.
+
+

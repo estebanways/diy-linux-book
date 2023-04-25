@@ -1,0 +1,22 @@
+References:
+Topic: Download The Spellcheck Zip Install Package
+Web: ../download/dicts/ - WPS Office Community
+File: _download_dicts_ - WPS Office Community.pdf
+Topic: AMD 64 Downloads. WPS Office Community
+File: Downloads - WPS Office Community (AMD 64 Package).pdf
+Topic: How to install Kingsoft Office on Linux
+Web: http://ask.xmodulo.com/install-kingsoft-office-linux.html
+File: How to install Kingsoft Office on Linux - Ask Xmodulo.pdf
+Topic: Open Document Format (ODF): guidance for UK government
+Web: https://www.gov.uk/guidance/open­document­format­odf­guidance­for­uk­government
+File: Open Document Format (ODF)_ guidance for UK government.pdf
+Topic: Issue with the classic menu in WPS Office 2014 Beta 2 9.1.0.4746, which was not present
+in the 2013 version. 
+Web: http://wps-community.org/forum/viewtopic.php?f=10&t=692
+File: View topic - Classic Menu Problem - WPS Office Community.pdf
+Topic: Download WPS Office Suite for Linux
+File: WPS Office for Linux - Kingsoft Office.pdf
+Topic: Spanish Dictionary
+Web: http://help.wps.com/customer/portal/questions/8374120-spanish-dictionary
+File: WPS Office _ Spanish Dictionary.pdf
+

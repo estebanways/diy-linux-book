@@ -1,0 +1,30 @@
+TeXstudio is a program based on Texmaker, which integrates many tools needed to develop documents with LaTeX in just one application. Using its editor you can write your documents with the help of interactive spell checking, syntax highlighting, code completion and more...
+
+Export TeXstudio LaTex file to PDF and other formats.
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search texstudio
+$ sudo apt-cache show texstudio
+$ sudo apt-get install texstudio
+
+References:
+Topic: Best LaTeX Editors
+Web: http://beebom.com/best-latex-editors/
+File: 8 Best LaTeX Editors For 2016 (TeX Editors).pdf
+Topic: Debian documentation
+Web: https://packages.debian.org/jessie/texstudio
+File: Debian -- Details of package texstudio in jessie.pdf
+
+LaTeX:
+Topic: LaTeX basics
+Web: http://stackoverflow.com/questions/1017055/get-started-with-latex-on-linux
+File: Get started with Latex on Linux - Stack Overflow.pdf
+Web: https://linuxconfig.org/introduction-to-latex-on-linux
+File: Introduction to LaTeX on Linux.pdf
+Web: http://www.latex-project.org/
+FIle: LaTeX - A document preparation system.pdf
+Topic: Other programs that use LaTeX
+References:
+Guide: Scribus

@@ -1,0 +1,5 @@
+There is no Debian repository for Bastille
+Use the book of security and maybe web sites articles saved in the HDs
+
+Alternatives to Bastille
+Guide: Lynis

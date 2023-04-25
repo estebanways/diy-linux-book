@@ -1,0 +1,8 @@
+Filezilla is a Full-featured graphical FTP/FTPS/SFTP client
+
+Installation:
+$ sudo nano /etc/apt/sources.list
+$ sudo apt-get update
+$ sudo apt-cache search filezilla
+$ sudo apt-cache show filezilla
+$ sudo apt-get install filezilla

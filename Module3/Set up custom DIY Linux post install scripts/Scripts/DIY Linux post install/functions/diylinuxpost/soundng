@@ -1,0 +1,58 @@
+#!/bin/bash
+# 
+# DEBUGGER:
+# To create application list instead of packages names:
+# ls /usr/share/applications/ > applications-list.txt
+# To verify application categories:
+# cat mixxx.desktop
+
+dir="$(dirname "$0")"
+
+# One sources per application: .config
+source $dir/functions/diylinuxpost/Soundng/audacity.config 
+
+
+# Applications SETS based on $ apt-cache search APPNAME1 APPNAME2
+# You can use 'single quotes' to operate on a path that contains spaces,
+# but with $dir it doesn't work and preferred to use underscores
+# for files *.list with spaces
+SOUNDNG="$dir/data/SoundNG.list"
+
+# Install software from Official sources
+function soundng {
+	if (eval `resize` && whiptail \
+		--title "Install SoundNG Studio" \
+		--yesno "Current list of SoundNG Studio software to install: \n\n$(cat $SOUNDNG) \n\nProceed with installation?" \
+		$LINES $COLUMNS $(( $LINES - 12 )) \
+		--scrolltext) then
+		show_info 'Installing...'
+		show_warning 'Requires root privileges'
+		# apt-get install -y = --assume-yes
+		#sudo apt install -y --no-install-recommends $(cat $SET)
+		# There is an "apt install" for every application and also a function
+		# with its name in lowecase in case of the application requires
+		# further configuration
+		# Note: Originally, the script was made for 1 apt run, with more than one apt
+		# lines cat is capable of remove duplicates in different files, but if you
+		# add more .list files later, the program will read not installed and installed
+		# packages, install the pending files packages and say that everything was
+		# installed already.
+		sudo apt install -y $(cat $SOUNDNG)
+		audacity.config
+		# Done
+		show_success 'Done.'
+		# Check
+		EXITSTATUS=$1
+		if [[ $EXITSTATUS != 0 ]]; then
+			# Already installed
+			show_success 'Already installed.'
+			whiptail --title "Finished" --msgbox "Your SoundNG Studio softwares are installed." 8 78
+			diy-linux-post
+		else
+			whiptail --title "Finished" --msgbox "Installation complete." 8 78
+			diy-linux-post
+		fi
+	else
+		diy-linux-post
+	fi
+}

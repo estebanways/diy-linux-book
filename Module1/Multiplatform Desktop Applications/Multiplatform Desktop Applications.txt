@@ -1,0 +1,9 @@
+Software sources available:
+- Multiplatform Desktop Applications sources
+
+They work on every Desktop or OS type (Linux, OSX, Windows, Android, etc). 
+
+Installation examples:
+- Electron (Node + JS Multiplatform desktop apps, Info under Web-libs)
+- Chrome App Launcher (Chrome extensions)
+- Firefox Add-ons

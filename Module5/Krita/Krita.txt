@@ -1,0 +1,8 @@
+Krita is a creative sketching and painting application based on Calligra technology. Whether you want to create art paintings, cartoons, concept art or textures, Krita supports most graphics tablets out of the box. Krita’s vision statement is:
+Krita is a KDE program for sketching and painting, offering an end–to–end solution for creating digital painting files from scratch by masters.
+Fields of painting that Krita explicitly supports are concept art, creation of comics and textures for rendering.
+Modelled on existing real-world painting materials and workflows, Krita supports creative working by getting out of the way and with snappy response.
+
+References:
+Web: https://www.howtoinstall.co/en/debian/jessie/krita-sketch
+File: How to install krita-sketch on Debian 8 (Jessie).pdf

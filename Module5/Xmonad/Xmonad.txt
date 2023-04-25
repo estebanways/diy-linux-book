@@ -1,0 +1,9 @@
+
+
+Install this:
+https://xmonad.org/
+https://xmonad.org/TUTORIAL.html
+Install this:
+xmobar and trayer-srg
+Remember that it is for
+More github configs on distrotube on youtube.com.

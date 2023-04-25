@@ -1,0 +1,55 @@
+
+References:
+Topic: Install git from the official Debian Repositories or from the source code
+Web: https://www.digitalocean.com/community/tutorials/how-to-install-git-on-debian-10
+File: How To Install Git on Debian 10 _ DigitalOcean.pdf
+
+References:
+Guides:
+A GIT manual
+Linuxbrew - Git
+
+Topic: Git versions
+File: Git - Wikipedia (versions).pdf
+Web: https://en.wikipedia.org/wiki/Git
+
+Installation on Debian 11 codename Bullseye:
+
+Steps:
+
+If you have a previous git version installed. This could affect somehow git repositories using too old git versions, so proceed with caution, document the versions used up to now, and make backup copies of your development repos, and source repos used/installed before continue. 
+$ sudo apt-get remove git
+$ sudo apt autoremove
+
+Update the repos:
+$ sudo apt-get update
+
+Install build dependencies:
+$ sudo apt install make libssl-dev libghc-zlib-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
+OUTPUT:
+The following additional packages will be installed:
+ghc libbsd-dev libffi-dev libgmp-dev libgmpxx4ldbl libmd-dev libncurses-dev
+libncurses5-dev zlib1g-dev
+END OF OUTPUT.
+
+Get the version of Git you would like to install by visiting the Git project’s mirror on GitHub, available via the following URL:
+Web: https://github.com/git/git
+The current latest version available is 2.36-rc1, but it is a release candidate, so let's download another one, like this:
+$ cd /tmp
+$ wget https://github.com/git/git/archive/refs/tags/v2.35.1.zip -O git.zip
+
+Unzip the file downloaded:
+$ unzip git.zip
+
+Enter the directory:
+$ cd git-*
+
+Make the package:
+$ make prefix=/usr/local all
+
+Install the package:
+$ sudo make prefix=/usr/local install
+
+Check version:
+$ git --version
+

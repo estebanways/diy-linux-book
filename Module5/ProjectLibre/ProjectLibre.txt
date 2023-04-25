@@ -1,0 +1,40 @@
+ProjectLibre is an Alternative to MS Project.
+ProjectLibre updates OpenProj to open and edit MS project 2010 mpp files (same dev team).
+ProjectLibre (previously known as OpenProj) is open source project management software that openly bills itself as a replacement for MS Project. (Cheeky!) It's compatible with MS Project 2003, 2007, and 2010, and Linux, MacOS, and Windows, so it covers almost everybody. It also supports several languages.
+ProjectLibre server version is under development.
+ProjectLibre project web site:
+http://sourceforge.net/projects/projectlibre/
+OpenProj project web site:
+https://sourceforge.net/projects/openproj/
+
+Installation:
+Download ProjectLibre (Open source version) from Sourceforge.net
+Install alien:
+$ sudo apt-get update
+$ sudo apt-get install alien
+Convert .rpm Package To Debian/Ubuntu .deb Format:
+$ alien projectlibre-1.6.2-1.rpm
+$ ls -l projectlibre*
+Install the new DEB package:
+$ dpkg -i projectlibre_1.6.2-2_all.deb
+Or resolve the dependencies and install like this:
+$ gdebi projectlibre_1.6.2-2_all.deb
+References:
+Topic: Installing and using the command 'alien' in Debian. Converting .rpm Packages To Debian/Ubuntu .deb Format.
+Web: https://www.howtoforge.com/converting_rpm_to_deb_with_alien
+File: Converting .rpm Packages To Debian_Ubuntu .pdf
+
+
+Alternatives to MS Project:
+References:
+Topic: Alternatives VS.
+Web: http://www.techrepublic.com/blog/five-apps/five-free-microsoft-project-alternatives/
+File: Five free Microsoft Project alternatives - TechRepublic.pdf
+Web: http://alternativeto.net/software/microsoft-project/?platform=linux
+File: Microsoft Project Alternatives for Linux - AlternativeTo.pdf
+Web: https://www.maketecheasier.com/5-best-free-alternatives-to-microsoft-project/
+File: 5 Best Microsoft Project Alternatives.pdf
+
+Topic: Install Open Workbench and JRE on Wine in Linux Mint
+Web: http://mgw.dumatics.com/install-open-workbench-and-jre-on-wine-in-linux-mint/
+File: Install Open Workbench and JRE on Wine in Linux Mint.pdf

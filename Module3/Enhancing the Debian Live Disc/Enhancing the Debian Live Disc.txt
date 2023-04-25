@@ -1,0 +1,401 @@
+I am using the existent References to help enhance the existent (Minimal) Debian Live Disc.
+References:
+Guide: Build a Debian Live Disc from source code
+
+At any point you can create an alternative chroot for a new project, or intall more to the existent project and then rebuild a renewed Live Disc ISO.
+
+Systemd:
+
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+Install systemd:
+# nano /etc/apt/sources.list
+# apt-get update
+# apt-get install systemd-sysv
+Output:
+Preparing to unpack .../systemd-sysv_232-25+deb9u1_i386.deb
+End of output.
+Remember to add those packages to our reproducible builds lists.
+References:
+Guide: Systemd
+Topic: I wrote some lines about systemd already in this previous guide.
+Guide: Build a Debian Live Disc from source code
+
+Systemd alternatives:
+
+For Stretch, you'll need to install a package to provide `init`. I use `systemd-sysv`, but you can see here there are multiple Debian packages that can provide `/sbin/init`, and I *think* you can choose any of them. I believe that `runit-init` works fine too.
+References:
+Guide: Systemd
+
+Iproute2:
+
+The package iproute2 which contains the command "ip" is the default to configure a network interface in Debian 9 codename Stretch. In previous relases the tool was noet-tools, which contains the command "ifconfig".
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+Install iproute2:
+# nano /etc/apt/sources.list
+# apt-get update
+# apt-get install iproute2
+Output:
+The following additional packages will be installed:
+  libatm1 libelf1 libmnl0 libxtables12
+Suggested packages:
+  iproute2-doc
+The following NEW packages will be installed:
+  iproute2 libatm1 libelf1 libmnl0 libxtables12
+End of output.
+Remember to add those packages to our reproducible builds list queue.
+References:
+Guide: Basic networking
+Guide: Iproute 2
+Guide: Net-tools
+
+Ping:
+
+Test ICMP connection.
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+Install iproute2:
+# nano /etc/apt/sources.list
+# apt-get update
+# apt-get install  apt-get install inetutils-ping
+Remember to add those packages to our reproducible builds lists.
+References:
+Guide: Ping
+Guide: Basic networking
+
+Create a basic file /etc/network/interfaces:
+
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+# no networks file exists
+Do not copy paste a copy of your system file, for example, next one is a fresh installation copy:
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+End of file.
+That fresh copy does not contain what our text based Live Disc needs to up and run the networking, primarily due to the file has no much content because the file is not in use in a graphical Desktop environment and the system is using a network manager and its GUI to manage the network. You can use the file and complex file configurations in Desktop environments. I go deep into this topic in the networking guide. Remember that network interface names changed since Debian 9 codename Stretch, but they don't change whether the system has been upgraded from Debian 8 codename Jessie. 
+References:
+Guide: Basic networking
+Guide: System version upgrade procedure
+
+Create the interfaces file:
+
+# echo -e "# This file describes the network interfaces available on your system\n# and how to activate them. For more information, see interfaces(5).\n\nsource /etc/network/interfaces.d/*\n\n# The loopback network interface\nauto lo\niface lo inet loopback\n\n# The primary network interface\nallow-hotplug enp2s0\niface enp2s0 inet dhcp" > /etc/network/interfaces
+
+Note:
+Due to the names of the network interfaces can change due to BIOS firmwares, for example, Names can be: ens0 or enp1s1 (ethernet) or wlp3s0 (wlan), you could require to change it acordingly in the file to be able to connect the computer to networks. Use this commands:
+# ifconfig
+# pico /etc/network/interfaces
+Save changes
+Restart networking service (systemd):
+# systemctl restart networking.service
+# systemctl status networking.service
+
+Also, remember to edit the file: /etc/resolv.conf to define DNS servers and the rest the networking, for example proxies and firewalls.
+Guide: Basic networking
+Guide: Proxies
+Topic: Local machine firewall not installed yet.
+Guide: Netfilter
+Restart the networking service after changes.
+
+Nano and Net-tools:
+
+I added the two packages in the first installation. Anyway the can be substituted by Pico and iproute2, respectively.
+
+Add more sources to file /etc/apt/sources.list:
+
+Whe we created the chroot we typed: "$ sudo debootstrap --arch=i386 --variant=minbase stretch $HOME/live_boot/chroot http://ftp.us.debian.org/debian/ | tee -a logfile20.log", but know I require to add more repositories to be used at this point of the enhancements.
+Commands:
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+# cp -dpR /etc/apt/sources.list /etc/apt/sources.listBAK
+# echo -e "#\n\n# deb cdrom:[Debian GNU/Linux 9.0.0 _Stretch_ - Official i386 NETINST 20170617-14:23]/ stretch main\n\n#deb cdrom:[Debian GNU/Linux 9.0.0 _Stretch_ - Official i386 NETINST 20170617-14:23]/ stretch main\n\ndeb http://ftp.us.debian.org/debian/ stretch main\ndeb-src http://ftp.us.debian.org/debian/ stretch main\n\ndeb http://security.debian.org/debian-security stretch/updates main\ndeb-src http://security.debian.org/debian-security stretch/updates main\n\n# stretch-updates, previously known as 'volatile'\ndeb http://ftp.us.debian.org/debian/ stretch-updates main\ndeb-src http://ftp.us.debian.org/debian/ stretch-updates main" > /etc/apt/sources.list
+
+Set Date, Time and Timezone, Set Keyboard, Local options, Region and Language, Create device files, Mount Partitions, Configure Networking, Configure Locales and Keyboard, add user test:
+
+Configuration required to add command adduser:
+I really don't need a second user and can setup users when the Live Disc booted up.
+Steps done:
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+Create device files:
+# apt install makedev
+# mount none /proc -t proc
+# cd /dev
+# MAKEDEV generic
+NOTE: I think live can create devices at boot time but not sure. When I create the generic the directory changed a lot bacause has just some basic drives, as you can see:
+Output before run MAKEDEV:
+agpgart   core	kmem   loop6   midi03  mixer3	   ram	  ram14  ram6	 rmidi2     smpte3   tty1  tty8
+audio	  dsp	loop0  loop7   midi1   mpu401data  ram0   ram15  ram7	 rmidi3     sndstat  tty2  tty9
+audio1	  dsp1	loop1  mem     midi2   mpu401stat  ram1   ram16  ram8	 sequencer  stderr   tty3  urandom
+audio2	  dsp2	loop2  midi0   midi3   null	   ram10  ram2	 ram9	 shm	    stdin    tty4  zero
+audio3	  dsp3	loop3  midi00  mixer   port	   ram11  ram3	 random  smpte0     stdout   tty5
+audioctl  fd	loop4  midi01  mixer1  ptmx	   ram12  ram4	 rmidi0  smpte1     tty      tty6
+console   full	loop5  midi02  mixer2  pts	   ram13  ram5	 rmidi1  smpte2     tty0     tty7
+End of output.
+Output AFTER run MAKEDEV:
+[Consists of a large list of drivers that make gro the final live iso]
+End of output.
+Umount /proc before "Compress the chroot environment into a Squash filesystem", or the compression will show a lot of errors.
+# mount
+# umount /proc
+References:
+Guide: Build a Debian Live Disc from source code
+
+PENDING TO DO OR REMOVE THIS SNIPPET:
+D.3.4.2. Mount Partitions
+Also in: Web: https://www.debian.org/releases/stable/i386/apds03.html
+I am not sure, about install it because the is a Live system.
+# nano /etc/fstab says the fstab is not configured. Message: "# UNCONFIGURED FSTAB FOR BASE SYSTEM" Anyway I can create mount points and mount when the live is running. Use this web site as reference.
+
+Setting Timezone steps:
+# dpkg-reconfigure tzdata
+Settings:
+Current default time zone: 'US/Central'
+Local time is now:      Sat Jul 29 20:55:52 CDT 2017.
+Universal Time is now:  Sun Jul 30 01:55:52 UTC 2017.
+
+Configure Networking (Pending steps):
+# cp -dpR /etc/hosts /etc/hostsBAK
+The new file should look like this:
+
+127.0.0.1       localhost
+127.0.1.1       hpbook.aestudio.sytes.net       hpbook
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+End of file.
+
+Here the command to edit, but don't copy paste from term, because the Live distribution lacks of the second line because the host is not in a FULL Domain yet (you can use hostname to add it to one when the Live is running editing this file and reviewing with '# hostname --fqdn') and also the hostname alias is not "hpbook", is the return of the command# cat /etc/hostname (= debian-live):
+# nano /etc/hosts
+Or using echo:
+# echo -e "127.0.0.1       localhost\n\n# The following lines are desirable for IPv6 capable hosts\n::1     localhost ip6-localhost ip6-loopback\nff02::1 ip6-allnodes\nff02::2 ip6-allrouters" > /etc/hosts
+
+Review the resultant file:
+# cat /etc/hosts
+
+Note: remember to remove BAK and LOG files to build a perfect ISO no trash files.
+# rm -rf /etc/hostsBAK
+The old file was too much basic:
+127.0.0.1       localhost
+::1             localhost ip6-localhost ip6-loopback
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+End of file.
+
+Configure Locales and Keyboard steps:
+To configure your locale settings to use a language other than English, install the locales support package and configure it. Currently the use of UTF-8 locales is recommended.
+# apt-get install locales
+# dpkg-reconfigure locales
+
+Note:
+ To configure your keyboard (if needed, but after the Live running):
+# apt-get install console-setup
+# dpkg-reconfigure keyboard-configuration 
+Note that the keyboard cannot be set while in the chroot, but will be configured for the next reboot. 
+
+References:
+Topic: Follow this and next guides to apply the temporary changes in RAM, once the LIVE system booted up
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: How to Build a Debian LiveCD.pdf
+Guide: Set Date, Time and Timezone
+Guide: Set Keyboard, Local options, Region and Language
+Remember to add those packages to our reproducible builds lists.
+
+
+
+------ PENDING QUEUE FOR NEXT ISO VERSION ------
+My own strategy of the modules you want in the system:
+
+(ALMOST READY) WIFI
+(PENDING) Background splash image
+(PENDING) XFCE Desktop
+(PENDING) Re-built system installation packages like Anaconda, the standard installer among Linux distributions (Not required if DIY Linux post install scripts is available for the final user). It has to install GRUB2.
+(POSTINSTALLSCRIPT) Official software installation and set up (See guide: Set up custom DIY Linux post install scripts. You can use these scripts to test different packages trees blends and obtain exactly what you want instead of allow a Live user run post install programs)
+(POSTINSTALLSCRIPT) Unofficial software installation and set up (See guide: Set up custom DIY Linux post install scripts. You can use these scripts to test different packages trees blends and obtain exactly what you want instead of allow a Live user run post install programs)
+(PENDING) Desktop and system personalizations
+(PENDING) Add your own modifications to applications source code
+(NOT WORKING) Tasksel
+
+(ALMOST READY)
+WIFI:
+
+# dpkg -l | grep "wpa"
+Seems to be configured through the installation of wpagui in the first ISO build.
+With cable connection ready, you will be able to:
+Modify /etc/network/interfaces accordingly
+Add contrib and non-free in /etc/apt/sources.list
+Install the proprietary firmware for the wireless card
+NOTE: I can make a non-free Live DVD that includes all the available firmwares, install the proper on the fly while the Live system is booting and logins with the wireless active (Eg: Ubuntu (Live)) 
+References:
+Guide: Basic networking
+Restart the network
+
+(PENDING)
+There are existent guides but for a regular Debian installation:
+Background splash image:
+Topic: That guide should noramlly help achieve this goal. 
+Guide: Create a Bootsplash screen
+Disable Grub Boot Menu:
+Topic: We are not using grub2 as bootloader, so that guide is not going to help at all. Look up the section called Disable Grub Boot Menu:
+Guide: Optimization and performance, speed up computer, save battery power
+
+References:
+Topic: Menu additions to the configuration file: MENU BACKGROUND background
+Web: http://www.syslinux.org/wiki/index.php/Comboot/menu.c32
+File: Menu additions to the configuration file.pdf
+Topic: ISOLINUX/SYSLINUX splash image mini-HOWTO
+Web: http://frantisek.rysanek.sweb.cz/splash/isolinux-splash-HOWTO.html
+File: Splash image mini-HOWTO.pdf
+Remember to add those packages to our reproducible builds lists.
+
+(PENDING)
+XFCE Desktop:
+
+List all metapackages that start with the word "task":
+$ apt-cache search --names-only ^task-
+References:
+Topic: Manual Xfce installation
+Guide: Xfce 
+Remember to add those packages to our reproducible builds lists.
+
+(PENDING)
+Re-built system installation packages like Anaconda, the standard installer among Linux distributions (Not required if DIY Linux post install scripts is available for the final user). It has to install GRUB2:
+References:
+Topic: Grub2. Review this section: Set up the Boot Loader
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+(PENDING: Review directories existent in the current book module:
+Boot chrooted system from Grub2 
+Debian Live USB Flash Drive with Persistence)
+
+THIS SECTION IS ONLY FOR YOU INFORMATION TO KNOW THE PACKAGES USED TO BE ABLE TO INSTALL LIVE DISC SYSTEM IN HD. DON'T PROCEED OR WILL HAVE A DEBIAN LIVE ISO AT THE END OF THE ISO BUILD:
+(See Debian Live ISO file.packages. If you install everything from a Official Live, yous system will SEEM completely and exactly Debian, include the welcome message in text mode in the login screen)
+An alternative to create a complete installable (no commands like fdisk, mount, gparted, etc., all build-able for or installable for the Live Disc) live system:
+If you don't know what do but want complete Desktop Environments you can download the original live cds/dvds from Debian Official web sites. In these sites you will find the .packages file, for example: debian-live-9.1.0-i386-xfce.packages. This file has the list of all the packages you need to run and install the Live XFCE Debian 9.1 release. Open the file, copy the files and add the list to list of packages you want to build or apt install in your Live Disc. At the end you will have a live XFCE Debian 9.1 build from source or an hybrid, since the development point of view.
+Remember to add those packages to our reproducible builds lists.
+
+(POSTINSTALLSCRIPT)
+Official software installation and set up (See guide: Set up custom DIY Linux post install scripts. You can use these scripts to test different packages trees blends and obtain exactly what you want instead of allow a Live user run post install programs):
+
+Remember to add those packages to our reproducible builds lists.
+
+(POSTINSTALLSCRIPT)
+Unofficial software installation and set up (See guide: Set up custom DIY Linux post install scripts. You can use these scripts to test different packages trees blends and obtain exactly what you want instead of allow a Live user run post install programs):
+
+Remember to add those packages to our reproducible builds lists.
+
+(PENDING)
+Desktop and system personalizations:
+
+Subdivide these topics that include:
+- DIY Linux Edu packages (Based on Debian EDU or similar)
+- Costumize what is not included in the Debian EDU. These topics are in the Module 4 of the book: "Module 4 - Set up and maintain a perfectly functional operating system". Best idea is follow almost the chapter to setup a great system, but at least hide the basic/Debian appearance with guides like these:
+References:
+Guide: Change the default login screen
+Guide: Create a Bootsplash screen
+Guide: Gnome Desktop Icons, Themes and Cursors (But applied to XFCE)
+Guide: Gnome Shell Extensions (But applied to XFCE)
+Guide: Reconfigure Xserver hardware (Video Card, Keyboard, Mouse, Monitor)
+Topic: XFCE, but the guide is in Module 5 of the book.
+Guide: Xfce 
+Remember to add those packages to our reproducible builds lists.
+
+(PENDING)
+Add your own modifications to applications source code:
+
+Remember to add those packages to our reproducible builds lists.
+
+(NOT WORKING)
+Tasksel:
+
+As mentioned earlier, the installed system will be very basic. If you would like to make the system a bit more mature, there is an easy method to install all packages with “xxyyzz” priority. 
+Enter the Live Disc chrooted environment:
+$ sudo chroot $HOME/live_boot/chroot
+Install tasksel:
+# nano /etc/apt/sources.list
+# apt-get update
+# apt-get install tasksel
+Output:
+The following additional packages will be installed:
+  dmidecode laptop-detect tasksel-data
+The following NEW packages will be installed:
+  dmidecode laptop-detect tasksel tasksel-data
+End of output.
+Remember to add those packages to our reproducible builds lists.
+Tasksel man page:
+# man tasksel
+List tasks available:
+# tasksel --list-tasks
+Output:
+u desktop	Debian desktop environment
+u gnome-desktop	GNOME
+u xfce-desktop	Xfce
+u kde-desktop	KDE
+u cinnamon-desktop	Cinnamon
+u mate-desktop	MATE
+u lxde-desktop	LXDE
+u web-server	web server
+u print-server	print server
+u ssh-server	SSH server
+u laptop	laptop
+End of output.
+Configure tasksel to avoid command errors:
+This to be able to reconfigure debconf and to allow debconf to run its frontends. No debconf frontends tasksel is not going to work:
+# echo $TERM
+# export TERM=xterm-color
+Install the readline lib:
+apt-cache search readline | more
+# apt-get install libreadline-dev
+
+--- TASKSEL LAPTOP NOT WORKING FROM HERE SO THAT I DECIDED TO DO NOT INSTALL TASK LAPTOP, ANYWAY I CAN INSTALL Package: task-laptop ONCE IN THE LIVE SYSTEM OR BEFORE THE NEXT VERSION OF THE LIVE DISC. I DON'T DO IT RIGHT KNOW BECAUSE MAYBE THE INSTALLATION WILL INSTALL SOMETHING I DONT LIKE. Remember the command to help the laptop: $ apt get install task-laptop ---
+Reconfigure debconf
+# dpkg-reconfigure debconf
+Choose a text based frontend rather than Teletype
+Repeat the export command after every chrooting, when you require to use debconf (debconf is not the only case).
+Review the value of the variable when Live is booting and use the command if you need:
+# echo $TERM
+
+Next block is more information on this sub-topic (I am not using it for now):
+D.3.4. Configure The Base System
+Now you've got a real Debian system, though rather lean, on disk. chroot into it:
+# LANG=C.UTF-8 chroot /mnt/debinst /bin/bash
+If the target architecture is different from the host, you will need to first copy qemu-user-static to the new host:
+# cp /usr/bin/qemu-ARCH-static /mnt/debinst/usr/bin
+# LANG=C.UTF-8 chroot /mnt/debinst qemu-ARCH-static /bin/bash
+After chrooting you may need to set the terminal definition to be compatible with the Debian base system, for example:
+# export TERM=xterm-color
+Depending on the value of TERM, you may have to install the ncurses-term package to get support for it.
+If the target architecture is different from the host, you need to finish the multi-stage boot strap:
+/debootstrap/debootstrap --second-stage
+References:
+Topic: D.3.4. Configure The Base System
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: How to Build a Debian LiveCD.pdf
+Even more information:
+Normaly debconf is installed to use frontend Dialog, which actually needs a cursor addressable terminal. Frontend Dialog needs the enviroment variable TERM set, in order to ask questions using a curses interface.
+So when you ssh into a container and want to install something, you can select the Dialog frontend and set the TERM by export TERM=linux.
+
+References:
+Web: https://www.debian.org/releases/stable/i386/apds03.html
+File: How to Build a Debian LiveCD.pdf
+
+Test a task:
+# apt-get update
+# tasksel -t install laptop | tee -a logfile30.log
+# tasksel install laptop | tee -a logfile31.log
+Remember to add those packages to our reproducible builds lists.
+
+--- END OF TASKSEL LAPTOP WHICH IS NOT WORKING (NOT INSTALLING) ---
+
+

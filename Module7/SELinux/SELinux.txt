@@ -1,0 +1,24 @@
+In sever projects in web servers the only LOG MODE that allows users to read, and write on web pages is "Permissive", but logs spend RAM memory and space. With the MODE the program does nothing but read, however we installed the program later on, and set the MODE to be able to review the logs that are going to help to verify systems traffic activities, in post-morten analysis, and in general to enforce the whole security and Policies.
+
+In the Linux Desktop the thing is farly different.... (pending)
+
+Debian offers several Mandatory Access Control (MAC) implementations: AppArmor, SeLinux, Grsecurity and Tomoyo.
+References:
+Web: https://wiki.debian.org/AppArmor
+File: AppArmor.pdf
+Web: https://wiki.debian.org/AppArmor/HowToUse
+File: How to use AppArmor.pdf
+Web: https://wiki.debian.org/Tomoyo
+File: Tomoyo.pdf
+
+Topic: Linux Kernel Security (SELinux vs AppArmor vs Grsecurity).
+Reference:
+Web: http://www.cyberciti.biz/tips/selinux-vs-apparmor-vs-grsecurity.html
+To the article's writer the favorite is grsecurity, widely used in servers and hosting companies, AppArmor covers all my needs: Enfocerment the sytem against app vulnerabilities, medium learn curve, access apps by path instead of inodes (SELinux).etc.
+
+NSA SELinux:
+
+Web: https://wiki.debian.org/SELinux
+File: SELinux.pdf
+Web: https://wiki.debian.org/grsecurity
+File: grsecurity.pdf

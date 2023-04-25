@@ -1,0 +1,23 @@
+
+Pre-requisites:
+You need a running kernel which is one of the following:
+- The default from the system installation
+- A personal kernel compilation
+References:
+Guide: Build the Linux kernel
+- A custom kernel which meets specific features:
+References:
+Guide: 
+Optimization and performance, speed up computer, save battery power
+
+Sometimes you require to add a driver module to specific image directory to make the driver work or work properly. This is the case of the SCSI hard drives of certain DELL computers.
+
+If you have installed more than one kernel, remember that the current kernel  is the kernel you chose in the Grub2 menu, when the computer booted up.
+To verify the current kernel version:
+$ uname -r
+(Pending)
+
+References:
+Web: http://www.thegeekstuff.com/2009/07/how-to-view-modify-and-recreate-initrd-img/
+File: How to View, Modify and Recreate initrd.pdf
+

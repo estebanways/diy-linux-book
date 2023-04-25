@@ -1,0 +1,50 @@
+Installation steps:
+Install repo and GPG key:
+# wget -q http://download.tuxfamily.org/compiz/apt/key.pub -O- | apt-key add - && echo "deb
+http://download.tuxfamily.org/compiz/debian $(lsb_release -sc) main" | tee
+/etc/apt/sources.list.d/compiz-debian.list && apt-get update
+Install Compiz:
+$ sudo apt-get install compiz-reloaded
+Install optional package Emerald:
+$ sudo apt-get install emerald
+Install optional package Fusion Icon:
+$ apt-get install fusion-icon
+Install optional package mate-compat plugin for better compatibility with MATE Desktop:
+$ sudo apt-get install compiz-reloaded-mate
+nstall simple Compiz settings manager focused on simplicity for an end-user:
+$ sudo apt-get install simple-ccsm-reloaded
+Install optional package Plugins:
+$ sudo apt-get install compiz-reloaded-plugins-extra
+Install the plugins unsupported and experimental, which have received the least
+amount of review and are the most likely to be problematic on your system:
+$ sudo apt-get install compiz-reloaded-plugins-experimental
+
+Compiz is not comptible with Gnome 3, so don't run Compiz in this Desktop Environment. In case of you want to use Gnome you can use a newer Desktop like Mate, a evolution of Gnome 2.
+
+I personally use the Compiz-Fusion plugins to create the cube virtual desktops, in XFCE and LXDE, for example. The problem with these Destops is that, at least in Debian, they don't support my USB headset, which I love to make web video conferences and record my voice, digitally instead of analogically, of course.
+
+I hope that the XFCE and LXDE maintainers notice these kind of problems and send me a solution.
+
+References:
+Web: http://compiz-debian.tuxfamily.org/
+File: Compiz Debian.pdf
+Guides: 
+Change the default desktop manager
+Fluxbox
+LXDE
+XFCE
+Gnome Shell Extensions
+Gnome Desktop Icons, Themes and Cursors
+Video card
+3D acceleration and VR
+
+If you can't enable the fusion icon or see windows titles:
+After all, remove the Desktop configuration files or directories of the current user such as /home/esteban/.config/xfce4, for Xfce:
+$ cd
+$ rm -rf ./config/xfce
+Log out and log in the session to load a new default desktop configuration, turn on the fusion icon, and then choose Compiz as your Window Manager.
+
+
+Compiz-Fusion can overheat the computer, especially laptops and notebooks. Use 'sensors' to monitor the temperature and disable what you need.
+References:
+Guide: Optimization and performance, speed up computer, save battery power

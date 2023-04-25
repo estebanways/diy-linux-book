@@ -1,0 +1,9 @@
+Audacity Installation:
+# apt-get update
+# apt-get install audacity
+You don't need to install LAME as in Windows to export the files.
+
+Test the program editing and exporting sound files:
+$ audacity
+
+For professional audio install KXStudio

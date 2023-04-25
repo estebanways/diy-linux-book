@@ -1,0 +1,3 @@
+References:
+Topic: Look for the section "Install the User Themes extension:" of the guide.
+Guide: Gnome Shell Extensions

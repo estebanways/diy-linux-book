@@ -1,0 +1,3 @@
+drumkv1 - old-school drum-kit sampler - standalone
+drumkv1-common - old-school drum-kit sampler - common files
+drumkv1-lv2 - old-school drum-kit sampler - lv2-plugin

@@ -1,0 +1,111 @@
+
+
+http://askubuntu.com/questions/289190/how-to-change-system-language
+
+http://usuariodebian.blogspot.com/
+
+Topics:
+- Gnome
+- Terminal
+- XFCE
+
+- Gnome
+
+Setup Keyboard and local options:
+
+In Gnome, go to menu Settings > Keyboard
+
+Keyboard Layout (Keys), Region and Language:
+
+Add new keyboard layout:
+In Gnome, go to menu Settings > Region and Language.
+Here add or change the keyboard layout, language and region in the section Input Sources.
+New languages are going to appear to switch in the Language Gnome Shell Extension.
+Every user preserves his/her personal configuration.
+
+Add new keyboard layout for the login screen:
+In Gnome, go to menu Settings > Region and Language, and then click the button "Login Screen"
+Here add or change the keyboard layout, language and region in the section Input Sources.
+Type the Administrator (root) password to save changes globally for all the users.
+New languages are going to appear in the login screen.
+
+Review the keyboard layout:
+Log in. Next, click on the Language Gnome Shell extension, and then click on Keyboard Layout.
+References:
+Guide:
+Change the default login screen
+
+References:
+Topic: Look for the section "Install the Language extension:"
+Guide: Gnome Shell Extensions
+
+- Terminal
+
+This could be useful for other Desktop Environments without GUIs with the configuration options mentioned for Gnome.
+
+Add new Languages, and/or change the default Language (Include locales values):
+
+You have to be root user:
+$ sudo dpkg-reconfigure locales
+To move in the terminal interface use the Arrows keys and TAB key or SHIFT+TAB keys, and to highlight values to select use the space key. You can select more than one value. To Accept use Enter key.
+Note: For all the options the first two letters mean the Language, the two letters after the underscore mean the Region or Country, and the lat value is the collation for example:
+en_US.UTF-8 = English from the United States, collation UTF-8  (8-bit Unicode Transformation Format).
+To review the configuration, use:
+$ locale
+Output:
+LANG=C.UTF-8
+LANGUAGE=
+LC_CTYPE="C.UTF-8"
+LC_NUMERIC="C.UTF-8"
+LC_TIME="C.UTF-8"
+LC_COLLATE="C.UTF-8"
+LC_MONETARY="C.UTF-8"
+LC_MESSAGES="C.UTF-8"
+LC_PAPER="C.UTF-8"
+LC_NAME="C.UTF-8"
+LC_ADDRESS="C.UTF-8"
+LC_TELEPHONE="C.UTF-8"
+LC_MEASUREMENT="C.UTF-8"
+LC_IDENTIFICATION="C.UTF-8"
+LC_ALL=
+End of Output.
+
+Change the Keyboard Layout:
+
+Method 1: Reconfigure keyboard settings:
+$ sudo dpkg-reconfigure keyboard-configuration
+References:
+Web: https://wiki.debian.org/Xorg
+File: Xorg - Debian Wiki.pdf
+
+Method 2: Reconfigure the server xorg:
+$ sudo dpkg-reconfigure xserver-xorg
+You are going to be prompted to configure 4 sections:
+Video Card
+Keyboard
+Mouse
+Monitor
+
+Change the console keymap:
+
+Install the console packages:
+$ sudo apt-get update
+$ sudo apt-get install console-setup console-common
+$ sudo apt-get install console-data
+
+First time the configuration will ask you to take an action, but next times do run:
+$ dpkg-reconfigure console-data
+In the next screen " Policy for handling keymaps:", select the option:
+'Select keymap from full list'
+$ locale
+$ dpkg-reconfigure console-setup
+$ locale
+
+- XFCE
+Change the kyboard layout, for example to switch between English and Spanish (Use the Country name):
+$ setxkbmap -layout us
+setxkbmap -layout en
+
+References:
+Web: http://wiki.laptop.org/go/Keyboard_layouts
+File: Keyboard layouts - OLPC.pdf

@@ -1,0 +1,269 @@
+Bower is a package manager of: frameworks, libraries, assets, utilities, and rainbows. Bower manages all these things for you.
+
+Update nodejs:
+$ brew update
+$ brew upgrade node
+
+If you want to update only npm from npm:
+$ npm update -g npm
+
+Formula version:
+$ brew info node
+$ brew info npm
+
+Display npm manpage:
+$ man npm 
+
+More npm help (taken from the man page):
+$ npm help help
+$ npm help 7 faq
+$ README
+$ npm help 5 package.json
+$ npm help install
+$ npm help config
+$ npm help 7 config
+$ npm help 5 npmrc
+$ npm help 7 index
+$ npm apihelp npm
+
+Commands available:
+$ npm help
+
+Search the package bower (takes a lot of time):
+$ npm search bower
+Or use:
+http://npmsearch.com/
+
+Install bower:
+$ npm install -g bower
+Output:
+/home/esteban/.linuxbrew/bin/bower -> /home/esteban/.linuxbrew/lib/node_modules/bower/bin/bower
+bower@1.4.1 /home/esteban/.linuxbrew/lib/node_modules/bower
+├── is-root@1.0.0
+├── junk@1.0.2
+├── stringify-object@1.0.1
+├── user-home@1.1.1
+├── chmodr@0.1.0
+├── rimraf@2.4.1
+├── abbrev@1.0.7
+├── archy@1.0.0
+├── opn@1.0.2
+├── bower-logger@0.2.2
+├── bower-endpoint-parser@0.2.2
+├── graceful-fs@3.0.8
+├── lockfile@1.0.1
+...
+
+Update Bower:
+First remember that you come from brew > node > npm and tha's the best order to update, if possible.
+Next, update the npm package:
+$ npm update -g npm
+Update a package:
+$ npm help
+$ npm update -g bower 
+$ npm upgrade -g bower
+
+
+Topic: Getting started guide
+References:
+Web: http://bower.io
+
+Installing packages from Bower:
+
+Install packages with bower install. Bower installs packages to bower_components/.
+Syntax:
+$ bower install <package>
+A package can be a GitHub shorthand, a Git endpoint, a URL, and more. Read more about bower install.
+Examples:
+Install a registered package:
+$ bower install jquery
+Install from GitHub shorthand:
+$ bower install desandro/masonry
+Install from Git endpoint:
+$ bower install git://github.com/user/package.git
+Install from URL:
+$ bower install http://example.com/script.js
+
+Search packages:
+Search Bower packages and find the registered package names for your favorite projects.
+Web: http://bower.io/search/
+A list of some packages of the firt page (At the time they list 932 packages and list is growing):
+bootstrap
+tfeslee-temp
+angular
+fontawesome
+impress.js
+animate.css
+backbone
+moment
+jquery-file-upload
+threejs
+semantic-ui
+ionic
+material-design-icons
+normalize.css
+chartjs
+underscore
+select2
+skrollr
+async
+less.js
+purecss
+jquery-pjax
+bootstrap-material-design
+ratchet
+hammer.js
+polymer
+coffee-script
+slick.js
+materialize
+sweetalert
+typeahead.js
+Hover
+flat-ui
+lodash
+fullpage.js
+fastclick
+jquery-mobile
+video.js
+nprogress
+intro.js
+bootstrap-sass
+Respond
+SpinKit
+jasmine-core
+skeleton
+jquery.ui
+phaser
+angular-seed
+photoswipe
+parallax
+masonry
+history.js
+dropzone
+pixi.js
+velocity
+mustache.js
+onepage-scroll
+keen-dashboards
+TimelineJS
+...
+
+Save packages:
+Save your packages to bower.json with bower init.
+
+Use packages:
+How you use packages is up to you. We recommend you use Bower together with Grunt, RequireJS, Yeoman, and lots of other tools or build your own workflow with the API. You can also use the installed packages directly, like this, in the case of jquery:
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+The path of the directory bower_components/ is: /home/esteban/.linuxbrew/
+Then you can list to see the packags installed.
+
+Install a registered package:
+$ bower install jquery
+Output:
+bower cached        git://github.com/jquery/jquery.git#2.1.4
+bower validate      2.1.4 against git://github.com/jquery/jquery.git#*
+bower install       jquery#2.1.4
+
+Command line reference:
+Web: http://bower.io/docs/api/
+cache
+help
+home
+info
+init
+install
+link
+list
+login
+lookup
+prune
+register
+search
+update
+uninstall
+unregister
+version
+
+Some important commands:
+
+Bower cache:
+$ bower cache <command> [<args>]
+
+Bower command help:
+$ bower help <command>
+$ bower help search
+
+Package info (Works with installed and not installed packages):
+$ bower info <package>
+$ bower info jquery
+Output:
+bower cached        git://github.com/jquery/jquery.git#2.1.4
+bower validate      2.1.4 against git://github.com/jquery/jquery.git#*
+
+{
+  name: 'jquery',
+  version: '2.1.4',
+  main: 'dist/jquery.js',
+  license: 'MIT',
+  ignore: [
+    '**/.*',
+    'build',
+    'dist/cdn',
+    'speed',
+    'test',
+    '*.md',
+    'AUTHORS.txt',
+    'Gruntfile.js',
+    'package.json'
+  ],
+  devDependencies: {
+    sizzle: '2.1.1-jquery.2.1.2',
+    requirejs: '2.1.10',
+    qunit: '1.14.0',
+    sinon: '1.8.1'
+  },
+  keywords: [
+    'jquery',
+    'javascript',
+    'library'
+  ],
+  homepage: 'https://github.com/jquery/jquery'
+}
+
+Available versions:
+  - 2.1.4
+  - 2.1.3
+  - 2.1.2
+...
+
+Package homepage:
+$ bower home <package>
+
+List local packages and possible updates:
+Go to the user home:
+$ cd
+$ bower list [<options>]
+Output:
+bower check-new     Checking for new versions of the project dependencies..
+esteban /home/esteban
+└── jquery#2.1.4 extraneous
+
+Authenticate with GitHub and store credentials. Required to unregister packages:
+$ bower login
+
+Unregister a packages:
+$ bower unregister <package>
+
+Verify the package version:
+Run this in a package directory to bump the version and write the new data back to the bower.json file:
+$ bower version [<newversion> | major | minor | patch]
+
+Update a package:
+Syntax:
+$ bower update <name> [<name> ..] [<options>]
+$ bower update jquery 
+
+Uninstalls a package locally from your bower_components directory
+$ bower uninstall <name> [<name> ..] [<options>]

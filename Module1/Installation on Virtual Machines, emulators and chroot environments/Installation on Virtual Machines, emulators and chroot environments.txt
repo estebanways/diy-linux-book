@@ -1,0 +1,21 @@
+Software sources available:
+- Chrooted Operating System or VM app sources
+- Distribution DVDs
+- Disc image
+- Automatic installation frameworks
+- Distribution DVDs
+- Netinstall CD
+
+Installation examples: 
+- Photoshop
+- Run Android apps in the Debian OS
+- Create a chroot environment to install Linux Mint inside
+
+I am not running any Windows programs on my Linux Box, but Photoshop in a Virtual Machine. 
+
+You are free to change my method by installing and setting up your Wine accordingly. You have to know that many Adobe Adobe Photoshop versions run very well in Linux with Wine.
+
+You can install other system rather than Debian inside Debian using chroot environments and then run the distro apps normally no matter that Debian is the main OS.
+
+References:
+Guides: Photoshop, VirtualBox, KVM

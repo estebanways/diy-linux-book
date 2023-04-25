@@ -1,0 +1,448 @@
+How to create Taps and add existing Taps:
+
+HomeBrew/LinuxBrew repositories are called TAPS. These are simply GitHub repositories containing Ruby scripts ('Formulas'). The HomeBrew Github User has several common repositories.
+
+Update LinuxBrew, include taps:
+$ brew update
+
+Add the homebrew-science repository (containing many useful open-source scientific programs) and the HomeBrew-Games repository:
+$ brew tap homebrew/science
+Output:
+==> Tapping homebrew/science
+Cloning into '/home/esteban/.linuxbrew/Library/Taps/homebrew/homebrew-science'...
+remote: Counting objects: 522, done.
+remote: Compressing objects: 100% (518/518), done.
+remote: Total 522 (delta 4), reused 157 (delta 3), pack-reused 0
+Receiving objects: 100% (522/522), 404.94 KiB | 103.00 KiB/s, done.
+Resolving deltas: 100% (4/4), done.
+Checking connectivity... done.
+Tapped 515 formulae (542 files, 2.9M)
+
+$ brew tap homebrew/games
+Output:
+==> Tapping homebrew/games
+Cloning into '/home/esteban/.linuxbrew/Library/Taps/homebrew/homebrew-games'...
+remote: Counting objects: 85, done.
+remote: Compressing objects: 100% (85/85), done.
+remote: Total 85 (delta 0), reused 26 (delta 0), pack-reused 0
+Unpacking objects: 100% (85/85), done.
+Checking connectivity... done.
+Tapped 82 formulae (189 files, 1.2M)
+
+List my taps:
+$ brew tap
+homebrew/science
+homebrew/games
+
+$ cd
+$ find homebrew ./
+$ cd .linuxbrew/Library
+$ ls
+Output:
+Aliases  brew.rb  Contributions  ENV  Formula  Homebrew  LinkedKegs  Taps
+$ cd taps/
+$ ls
+
+Now that I have added the new taps (repos) I can install them as bottles or source code.
+
+Before and during any installations check the dependencies to take control of the interactions and versions of the programs installed in the linuxbrew path. For example xmoto requires libxml2, a lib required by other development software.
+
+Install xmoto game:
+$ brew install xmoto
+Output:
+==> Installing xmoto from homebrew/homebrew-games
+==> Installing dependencies for homebrew/games/xmoto: libxml2, xz, gettex
+==> Installing homebrew/games/xmoto dependency: libxml2
+==> Downloading http://xmlsoft.org/sources/libxml2-2.9.2.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/libxml2/2.9.2 --without
+==> make
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/libxml2/2.9.2: 275 files, 11M, built in 3.4 minutes
+==> Installing homebrew/games/xmoto dependency: xz
+==> Downloading https://fossies.org/linux/misc/xz-5.2.1.tar.gz
+######################################################################## 100.0%
+==> ./configure --disable-silent-rules --prefix=/home/esteban/.linuxbrew/Cellar/
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/xz/5.2.1: 65 files, 1.9M, built in 95 seconds
+==> Installing homebrew/games/xmoto dependency: gettext
+==> Downloading http://ftpmirror.gnu.org/gettext/gettext-0.19.4.tar.xz
+==> Downloading from http://mirror.cedia.org.ec/gnu/gettext/gettext-0.19.4.tar.x
+######################################################################## 100.0%
+==> ./configure --disable-silent-rules --prefix=/home/esteban/.linuxbrew/Cellar/
+==> make
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/gettext/0.19.4: 1911 files, 22M, built in 11.6 minutes
+==> Installing homebrew/games/xmoto dependency: jpeg
+==> Downloading http://www.ijg.org/files/jpegsrc.v8d.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/jpeg/8d
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/jpeg/8d: 18 files, 800K, built in 44 seconds
+==> Installing homebrew/games/xmoto dependency: sdl
+==> Downloading https://www.libsdl.org/release/SDL-1.2.15.tar.gz
+######################################################################## 100.0%
+==> Downloading http://bugzilla-attachments.libsdl.org/attachment.cgi?id=1320
+==> Downloading from https://bugzilla-attachments.libsdl.org/attachment.cgi?id=1
+######################################################################## 100.0%
+==> Downloading http://bugzilla-attachments.libsdl.org/attachment.cgi?id=1324
+==> Downloading from https://bugzilla-attachments.libsdl.org/attachment.cgi?id=1
+######################################################################## 100.0%
+==> Patching
+patching file src/video/quartz/SDL_QuartzVideo.h
+patching file src/video/quartz/SDL_QuartzVideo.h
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/sdl/1.2.15 --disable-na
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/sdl/1.2.15: 223 files, 2.2M, built in 111 seconds
+==> Installing homebrew/games/xmoto dependency: sdl_mixer
+==> Downloading http://www.libsdl.org/projects/SDL_mixer/release/SDL_mixer-1.2.1
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/sdl_mixer/1.2.12
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/sdl_mixer/1.2.12: 8 files, 468K, built in 57 seconds
+==> Installing homebrew/games/xmoto dependency: sdl_net
+==> Downloading http://www.libsdl.org/projects/SDL_net/release/SDL_net-1.2.8.tar
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/sdl_net/1.2.8 --disable
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/sdl_net/1.2.8: 8 files, 104K, built in 16 seconds
+==> Installing homebrew/games/xmoto dependency: libpng
+==> Downloading https://downloads.sourceforge.net/project/libpng/libpng16/1.6.17
+==> Downloading from http://iweb.dl.sourceforge.net/project/libpng/libpng16/1.6.
+######################################################################## 100.0%
+==> ./configure --disable-silent-rules --prefix=/home/esteban/.linuxbrew/Cellar/
+==> make
+==> make test
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/libpng/1.6.17: 17 files, 1.3M, built in 2.1 minutes
+==> Installing homebrew/games/xmoto dependency: freetype
+==> Downloading https://downloads.sf.net/project/freetype/freetype2/2.6/freetype
+==> Downloading from http://iweb.dl.sourceforge.net/project/freetype/freetype2/2
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/freetype/2.6 --without-
+==> make
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/freetype/2.6: 60 files, 2.8M, built in 73 seconds
+==> Installing homebrew/games/xmoto dependency: sdl_ttf
+==> Downloading http://www.libsdl.org/projects/SDL_ttf/release/SDL_ttf-2.0.11.ta
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/sdl_ttf/2.0.11 --disabl
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/sdl_ttf/2.0.11: 8 files, 108K, built in 52 seconds
+==> Installing homebrew/games/xmoto dependency: readline
+==> Downloading http://ftpmirror.gnu.org/readline/readline-6.3.tar.gz
+==> Downloading from http://mirror.cedia.org.ec/gnu/readline/readline-6.3.tar.gz
+######################################################################## 100.0%
+==> Downloading https://gist.githubusercontent.com/jacknagel/d886531fb6623b60b2a
+######################################################################## 100.0%
+==> Patching
+patching file display.c
+patching file input.c
+patching file misc.c
+patching file patchlevel
+patching file readline.c
+patching file rltypedefs.h
+patching file util.c
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/readline/6.3.8 --enable
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/readline/6.3.8: 40 files, 1.7M, built in 63 seconds
+==> Installing homebrew/games/xmoto dependency: lua
+==> Downloading http://www.lua.org/ftp/lua-5.2.3.tar.gz
+######################################################################## 100.0%
+==> Downloading http://lua-users.org/files/wiki_insecure/power_patches/5.2/lua-5
+######################################################################## 100.0%
+==> Patching
+patching file src/lua.c
+==> make linux INSTALL_TOP=/home/esteban/.linuxbrew/Cellar/lua/5.2.3_2 INSTALL_M
+==> make install INSTALL_TOP=/home/esteban/.linuxbrew/Cellar/lua/5.2.3_2 INSTALL
+==> Downloading https://keplerproject.github.io/luarocks/releases/luarocks-2.2.2
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/lua/5.2.3_2/libexec --r
+==> make build
+==> make install
+==> Caveats
+Please be aware due to the way Luarocks is designed any binaries installed
+via Luarocks-5.2 AND 5.1 will overwrite each other in /home/esteban/.linuxbrew/bin.
+
+This is, for now, unavoidable. If this is troublesome for you, you can build
+rocks with the `--tree=` command to a special, non-conflicting location and
+then add that to your `$PATH`.
+
+If you have existing Rocks trees in $HOME, you will need to migrate them to the new
+location manually. You will only have to do this once.
+
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/lua/5.2.3_2: 81 files, 1.4M, built in 18 seconds
+==> Installing homebrew/games/xmoto dependency: ode
+==> Downloading https://bitbucket.org/odedevs/ode/downloads/ode-0.13.1.tar.gz
+==> Downloading from https://bbuseruploads.s3.amazonaws.com/odedevs/ode/download
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/ode/0.13.1 --disable-de
+==> make
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/ode/0.13.1: 34 files, 2.2M, built in 118 seconds
+==> Installing homebrew/games/xmoto
+==> Downloading http://download.tuxfamily.org/xmoto/xmoto/0.5.10/xmoto-0.5.10-src.tar.gz
+
+
+Dependencies summary:
+libxml2, xz, gettex
+libxml2
+xz
+gettext
+jpeg
+sdl
+sdl_mixer
+sdl_net
+libpng
+freetype
+sdl_ttf
+readline
+lua
+ode
+
+The installation shows an output error:
+==> Patching
+patching file src/image/tim_png.cpp
+Hunk #1 succeeded at 24 with fuzz 2.
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/xmoto/0.5.10 --disable-
+checking lua5.1/lua.h usability... no
+checking lua5.1/lua.h presence... no
+checking for lua5.1/lua.h... no
+checking for library containing dJointAttach... no
+configure: error: libode required
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+If reporting this issue please do so at (not Homebrew/homebrew):
+  https://github.com/homebrew/homebrew-games/issues
+ 
+
+I am not going to continue this installation nor attempt to the resolve the game issue. It doesn't matter to me.
+
+
+Install armadillo science:
+$ brew install armadillo 
+Output:
+==> Installing armadillo from homebrew/homebrew-science
+==> Installing dependencies for homebrew/science/armadillo: gmp, mpfr, li
+==> Installing homebrew/science/armadillo dependency: gmp
+==> Downloading http://ftpmirror.gnu.org/gmp/gmp-6.0.0a.tar.bz2
+==> Downloading from http://mirror.cedia.org.ec/gnu/gmp/gmp-6.0.0a.tar.bz2
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/gmp/6.0.0a --enable-cxx
+==> make
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/gmp/6.0.0a: 15 files, 3.6M, built in 3.0 minutes
+==> Installing homebrew/science/armadillo dependency: mpfr
+==> Downloading http://ftpmirror.gnu.org/mpfr/mpfr-3.1.2.tar.bz2
+==> Downloading from http://mirror.cedia.org.ec/gnu/mpfr/mpfr-3.1.2.tar.bz2
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/mpfr/3.1.2-p11
+==> make
+==> make check
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/mpfr/3.1.2-p11: 24 files, 3.8M, built in 3.3 minutes
+==> Installing homebrew/science/armadillo dependency: libmpc
+==> Downloading http://ftpmirror.gnu.org/mpc/mpc-1.0.3.tar.gz
+==> Downloading from http://mirror.cedia.org.ec/gnu/mpc/mpc-1.0.3.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/libmpc/1.0.3 --with-gmp
+==> make
+==> make check
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/libmpc/1.0.3: 10 files, 472K, built in 2.1 minutes
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/mpfr/3.1.2-p11
+==> make
+==> make check
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/mpfr/3.1.2-p11: 24 files, 3.8M, built in 3.3 minutes
+==> Installing homebrew/science/armadillo dependency: libmpc
+==> Downloading http://ftpmirror.gnu.org/mpc/mpc-1.0.3.tar.gz
+==> Downloading from http://mirror.cedia.org.ec/gnu/mpc/mpc-1.0.3.tar.gz
+######################################################################## 100.0%
+==> ./configure --prefix=/home/esteban/.linuxbrew/Cellar/libmpc/1.0.3 --with-gmp
+==> make
+==> make check
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/libmpc/1.0.3: 10 files, 472K, built in 2.1 minutes
+==> Installing homebrew/science/armadillo dependency: isl
+==> Downloading http://isl.gforge.inria.fr/isl-0.14.1.tar.xz
+######################################################################## 100.0%
+==> ./configure --disable-silent-rules --prefix=/home/esteban/.linuxbrew/Cellar/
+==> make
+==> make install
+==> Caveats
+
+==> Summary
+/home/esteban/.linuxbrew/Cellar/isl/0.14.1: 68 files, 4.0M, built in 2.6 minutes
+==> Installing homebrew/science/armadillo dependency: gcc
+==> Downloading http://ftpmirror.gnu.org/gcc/gcc-5.1.0/gcc-5.1.0.tar.bz2
+==> ../configure --prefix=/home/esteban/.linuxbrew/Cellar/gcc/5.1.0  --enable-la
+==> make bootstrap
+^[Makefile:20523: recipe for target 'stage2-bubble' failed
+make[1]: *** [stage2-bubble] Error 2
+make[1]: Leaving directory '/tmp/gcc20150623-22174-cri248/gcc-5.1.0/build'
+Makefile:20726: recipe for target 'bootstrap' failed
+make: *** [bootstrap] Error 2
+
+READ THIS: https://github.com/Homebrew/linuxbrew/blob/master/share/doc/homebrew/Troubleshooting.md#troubleshooting
+
+These open issues may also help:
+Error installing vim 7.4 due to Clang not working as the gcc compiler (https://github.com/Homebrew/homebrew/issues/40910)
+Object files deleted during build of gcc needed by gdb (https://github.com/Homebrew/homebrew/issues/35734)
+rotrrent v0.9.4 failed to build on OS X v10.10.3 with gcc v5.1.0 (https://github.com/Homebrew/homebrew/issues/40046)
+gcc 4.9.2 fails to produce debugging information (https://github.com/Homebrew/homebrew/issues/34976)
+MacOS.(gcc|clang|llvm)_version can return nil (https://github.com/Homebrew/homebrew/issues/18781)
+
+I run the doctor:
+$ brew doctor
+Please note that these warnings are just used to help the Homebrew maintainers
+with debugging if you file an issue. If everything you use Homebrew for is
+working fine: please don't worry and just ignore them. Thanks!
+
+Warning: Unbrewed header files were found in /usr/local/include.
+If you didn't put them there on purpose they could cause problems when
+building Homebrew formulae, and may need to be deleted.
+
+Unexpected header files:
+    /usr/local/include/opencv/highgui.h
+    /usr/local/include/opencv/cvaux.h
+    /usr/local/include/opencv/cxcore.h
+    /usr/local/include/opencv/cv.h
+    /usr/local/include/opencv/ml.h
+    /usr/local/include/opencv/cxmisc.h
+    /usr/local/include/opencv/cvwimage.h
+    /usr/local/include/opencv2/photo/photo_c.h
+    /usr/local/include/opencv2/flann/timer.h
+    /usr/local/include/opencv2/flann/heap.h
+    /usr/local/include/opencv2/flann/dummy.h
+    /usr/local/include/opencv2/flann/kdtree_single_index.h
+    /usr/local/include/opencv2/flann/general.h
+    /usr/local/include/opencv2/flann/hdf5.h
+    /usr/local/include/opencv2/flann/saving.h
+    /usr/local/include/opencv2/flann/sampling.h
+    /usr/local/include/opencv2/flann/kmeans_index.h
+    /usr/local/include/opencv2/flann/simplex_downhill.h
+    /usr/local/include/opencv2/flann/matrix.h
+    /usr/local/include/opencv2/flann/defines.h
+    /usr/local/include/opencv2/flann/linear_index.h
+    /usr/local/include/opencv2/flann/composite_index.h
+    /usr/local/include/opencv2/flann/ground_truth.h
+    /usr/local/include/opencv2/flann/object_factory.h
+    /usr/local/include/opencv2/flann/all_indices.h
+    /usr/local/include/opencv2/flann/random.h
+    /usr/local/include/opencv2/flann/params.h
+    /usr/local/include/opencv2/flann/index_testing.h
+    /usr/local/include/opencv2/flann/config.h
+    /usr/local/include/opencv2/flann/result_set.h
+    /usr/local/include/opencv2/flann/nn_index.h
+    /usr/local/include/opencv2/flann/hierarchical_clustering_index.h
+    /usr/local/include/opencv2/flann/any.h
+    /usr/local/include/opencv2/flann/allocator.h
+    /usr/local/include/opencv2/flann/logger.h
+    /usr/local/include/opencv2/flann/kdtree_index.h
+    /usr/local/include/opencv2/flann/dynamic_bitset.h
+    /usr/local/include/opencv2/flann/dist.h
+    /usr/local/include/opencv2/flann/lsh_table.h
+    /usr/local/include/opencv2/flann/lsh_index.h
+    /usr/local/include/opencv2/flann/autotuned_index.h
+    /usr/local/include/opencv2/core/core_c.h
+    /usr/local/include/opencv2/core/types_c.h
+    /usr/local/include/opencv2/imgproc/imgproc_c.h
+    /usr/local/include/opencv2/imgproc/types_c.h
+    /usr/local/include/opencv2/ts/ts_gtest.h
+    /usr/local/include/opencv2/highgui/ios.h
+    /usr/local/include/opencv2/highgui/cap_ios.h
+    /usr/local/include/opencv2/highgui/highgui_c.h
+
+Warning: Unbrewed .pc files were found in /usr/local/lib/pkgconfig.
+If you didn't put them there on purpose they could cause problems when
+building Homebrew formulae, and may need to be deleted.
+
+Unexpected .pc files:
+    /usr/local/lib/pkgconfig/opencv.pc
+
+Warning: Unbrewed static libraries were found in /usr/local/lib.
+If you didn't put them there on purpose they could cause problems when
+building Homebrew formulae, and may need to be deleted.
+
+Unexpected static libraries:
+    /usr/local/lib/libopencv_ts.a
+
+
+In summary, I could't install the neither the game nor the science programs from taps. The error messages say that I can report the issues so the LinuxBrew team can work to fix them.
+
+I am not going to continue trying to install science apps from their tap because at this point I think these feature of the LinuxBrew develop is too new and also because I can install science apps in other way. I know that installing these apps in other ways will not be a problem to almost every development project you can image.
+
+References:
+Search: science armadillo.rb
+Web: https://github.com/Homebrew/homebrew-science/blob/master/armadillo.rb
+
+More tap options with brew:
+$ man brew
+Reference:
+Web: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-linuxbrew-on-a-linux-vps
+
+To install packages from specific taps, run:
+
+$ brew install agordon/gordon/coreutils
+
+
+To upgrade formulas:
+$ brew upgrade <FORMULA>
+
+Some ways to Install science:
+Web: http://datasciencetoolbox.org/
+Web: http://www.dataiku.com/
+Web: http://www.datascienceriot.com/?p=33

@@ -1,0 +1,10 @@
+irssi-scripts - collection of scripts for irssi
+lure-of-the-temptress - classic 2D point and click fantasy adventure game
+openarena-081-players-mature - OpenArena game data - "mature" player graphics from 0.8.1
+pccts - The Purdue Compiler Construction Tool Set (PCCTS).
+scummvm - engine for several graphical adventure games
+scummvm-data - engine for several graphical adventure games (data files)
+wesnoth-1.12-dw - "Dead Water" official campaign for Wesnoth (branch 1.12)
+fheroes2-pkg - fheroes2 package downloader and builder
+game-data-packager - Installer for game data files
+zangband - A single-player, text-based, roguelike game

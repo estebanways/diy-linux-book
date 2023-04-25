@@ -1,0 +1,9 @@
+MS OCS with Wine, is possible? Just a question.
+
+Pidgin plugins:
+References:
+Web: http://news.tecmint.com/purple-hangouts-is-a-pidgin-plugin-for-hangouts-with-more-functions/
+File: Purple Hangouts is a Pidgin Plugin For Hangouts With More Functions.pdf
+Web: http://news.tecmint.com/skype4pidgin-is-a-plugin-that-enables-you-to-use-skype-with-pidgin/
+File: Skype4pidgin is a plugin that enables you to use Skype with Pidgin.pdf
+

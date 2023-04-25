@@ -1,0 +1,80 @@
+abgate - LV2 noise gate plugin
+avw.lv2 - collection of Voltage Controlled LV2 modules
+calf-plugins - Calf Studiogear - audio effects and sound generators
+drumgizmo - Audio sampler plugin and stand-alone app that simulates a real drum kit
+drumkv1 - old-school drum-kit sampler - standalone
+drumkv1-common - old-school drum-kit sampler - common files
+drumkv1-lv2 - old-school drum-kit sampler - lv2-plugin
+eq10q - LV2 plugins bundle
+fomp - collection of LV2 audio plugins
+foo-yc20 - YC-20 organ emulation
+guitarix - Rock guitar amplifier for Jack
+guitarix-common - Guitarix - Common files
+guitarix-doc - Guitarix - Development documentation
+guitarix-ladspa - Guitarix - ladspa plugins
+guitarix-lv2 - Guitarix - LV2 plugins
+gxw-glade - Guitarix - GTK+ library Glade support
+libgxw-dev - Guitarix - GTK+ library (development files)
+libgxw0 - Guitarix - GTK+ library
+libgxwmm-dev - Guitarix - GTK+ C++ widget library (development files)
+libgxwmm0 - Guitarix - GTK+ C++ widget library
+invada-studio-plugins-lv2 - Invada Studio Plugins - a set of LV2 audio plugins
+ir.lv2 - LV2 IR reverb
+jalv - tool to run LV2 plugins as stand-alone applications
+libanyevent-yubico-perl - Perl module for validating YubiKey OTPs in AnyEvent applications
+liblilv-0-0 - library for simple use of LV2 plugins
+liblilv-dev - library for simple use of LV2 plugins (development files)
+lilv-utils - library for simple use of LV2 plugins (runtime files)
+lv2-dev - LV2 audio plugin specification
+lv2-examples - LV2 audio plugin specification (example plugins)
+libpaq-dev - library for parsing and querying RDF data (header files)
+libpaq0 - library for parsing and querying RDF data
+lv2-c++-tools - library and tools for LV2 plugins
+lv2-c++-tools-doc - lv2-c++-tools documentation
+liblv2dynparam1-dev - lv2dynparam is a LV2 plugin interface extension
+liblv2dynparamhost1-1 - LV2 plugin interface extension - host
+liblv2dynparamplugin1-0 - LV2 plugin interface extension - plugin
+lv2file - Command-line program to apply LV2 effects to audio files
+lv2proc - command line effect processor
+lv2vocoder - LV2 vocoder plugin
+lvtk-dev - LV2 C++ wrappers and utilities
+lvtk-doc - LV2 Toolkit documentation
+lvtk-examples - LV2 C++ wrappers and utilities - examples plugins
+lvtk-tools - LV2 C++ wrappers and utilities - tools
+mda-lv2 - Paul Kellett's MDA plugins ported to LV2
+mupen64plus-video-arachnoid - Arachnoid high-level graphics emulation for mupen64plus
+libnabrit-dbg - LV2 bridging helper library (debugging symbols)
+libnabrit-dev - LV2 bridging helper library (development files)
+libnabrit3 - LV2 bridging helper library
+naspro-bridges - collection of bridges to LV2
+libnacore-dev - NASPRO core library (development files)
+libnacore-doc - NASPRO core library (documentation)
+libnacore5 - NASPRO core library
+libns3-3v5 - shared libraries of ns-3
+libns3-dev - Static and header files of ns-3
+ns3 - discrete-event network simulator for Internet systems
+ns3-doc - documentation for ns3
+python-ns3 - Python binding of ns3
+libnss3 - Network Security Service libraries
+libnss3-dbg - Debugging symbols for the Network Security Service libraries
+libnss3-dev - Development files for the Network Security Service libraries
+qtractor - MIDI/Audio multi-track sequencer application
+libreadline-gplv2-dev - GNU readline and history libraries, development files
+samplv1 - polyphonic sampler synthesizer - standalone
+samplv1-common - polyphonic sampler synthesizer - common files
+samplv1-lv2 - polyphonic sampler synthesizer - LV2 plugin
+libserd-0-0 - lightweight RDF syntax library
+setbfree - DSP tonewheel organ
+sigrok-firmware-fx2lafw - Firmware for Cypress FX2(LP) based logic analyzers
+so-synth-lv2 - Set of synthesizers for the LV2 plugin format
+libsratom-0-0 - library for serialising LV2 atoms to/from Turtle
+libsratom-dev - library for serialising LV2 atoms to/from Turtle - development files
+libsratom-doc - library for serialising LV2 atoms to/from Turtle - documentation
+libsuil-0-0 - library for loading and wrapping LV2 plugin UIs
+swh-lv2 - Steve Harris's SWH plugins ported to LV2
+synthv1-common - old-school polyphonic synthesizer - common files
+synthv1-lv2 - old-school polyphonic synthesizer - LV2 plugin
+vocproc - LV2 plugin for pitch shifting and vocoding
+x42-plugins - Collection of LV2 plugins
+zam-plugins - Collection of LV2, LADSPA, LINUX-VST and JACK plugins
+zynadd - ZynAddSubFX engines converted to LV2 plugin format

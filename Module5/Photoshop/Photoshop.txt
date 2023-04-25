@@ -1,0 +1,25 @@
+I could install and run some Photoshop versions with Wine or PLayOnLinux, basically implementations of the Windows system calls to be able to run Windows programs in other platforms like Linux.
+
+Some people think that this is hacking, and/or don't use Wine to do not violate copyright law.
+
+Alternatively, you can install programs in a Virtual machine on solutions such as VirtualBox or Linux KVM. Here is the example of Photoshop running on a VirtualBox Virtual Machine.
+
+
+To share PSD and other files between the host and the guest VM you have these options:
+
+Share a directory in the VM guest, for example the host Window XP Pro SP2:
+I have written some guide lines about how to share directories in the guide dedicated to VirtualBox. 
+
+Share a local directory:
+I have chosen to share Windows folders to keep the system as safe as possible from hacker attacks to your local system.
+
+Up a FTP server in one of the hosts or use a Internet service, for example DropBox:
+You can install a FTP service. I have installed VSFTPD and Filezilla Client as FTP Client in the past but I don't recommend FTP for Workstations. The maintenance of services like FTP isn't easy and I am not gonna use FTP 'cause I have replaced my FTP with Git repos. I am going to talk a little bit more of FTP in the post about system security.
+
+Drag and Drop:
+I have written some guide lines about how to share directories in the guide dedicated to VirtualBox, in the section "More Virtualbox Tricks:"
+
+
+Photoshop CC. Add this versions to your requirements list only if the work of Development is combined with Web Graphics Design. The program has great new features, for example the ability to simultaneously export an image to every size required in a responsive design.
+
+Other free software alternatives to Professional Adobe(R) software you can install in Linux are, for example: GIMP, Inkscape, Darktable, MyPaint, Krita, Blender, Natron, KDEnlive, Cinelerra, Ardour, Audacity, etc.
