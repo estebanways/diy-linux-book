@@ -7,7 +7,7 @@ The source of the book "DIY Linux: MASTER YOURSELF PURE BLEND DEBIAN DESKTOPS FR
 
 To contribute to the DIY Linux book, follow these steps:
 
-1. Choose your type or types of contribution, among:
+1. Choose your type or types of contribution among:
 * Recreate a new version of any guide using the markdown file and format.
 * Copywriting and Proofreading on any specific guide.
 * Re-write or rephrase a complete guide using AI tools aid.
