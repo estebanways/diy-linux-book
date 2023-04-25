@@ -17,7 +17,8 @@ To contribute to the DIY Linux book, follow these steps:
 
 The complete project documentation is only available here:
 <https://drive.google.com/drive/folders/1FyXI0XZmpVmEEPXrT1beBs8HI6i6ioOB?usp=share_link>
-< /br>You can also contribute directly to the documentation with your comments.
+
+You can also contribute directly to the documentation with your comments.
 
 2. Fork this repository.
 
