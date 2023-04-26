@@ -1,7 +1,7 @@
 # diy-linux-book
 The source of the book "DIY Linux: MASTER YOURSELF PURE BLEND DEBIAN DESKTOPS FROM A SCRATCH"
 
-<img alt="Neovim" src="./screenshots/cover.png?raw=true" width="550" height="291" />
+<img alt="Cover" src="./screenshots/cover.png?raw=true" width="550" height="291" />
 
 ## Contributing
 
