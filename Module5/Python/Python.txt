@@ -65,9 +65,28 @@ Python 3.11.1
 
 So, at this point, Python 3.11.1 has been set as the default version of Python.
 
+Verify the pip version:
+$ pip -V
+
+Output:
+[...] (python 3.9)
+
+Upgrade the pip version:
+$ whereis python
+$ /usr/local/bin/python3.11 -m pip install --upgrade pip
+$ pip3.11 install --upgrade pip
+$  whereis pip
+
+Check the new pip version:
+$ pip3.11 -V
+
+Output:
+pip: /usr/bin/pip /usr/local/bin/pip3.11 /usr/share/man/man1/pip.1.gz
+
+From now on, you can use this new command pip3.11 to install the most of your pip packages.
 
 Install Python 3.7
---------------------
+-------------------
 
 $ sudo apt-get update
 $ apt-cache search python 3.7
@@ -82,7 +101,6 @@ Prints a list of installed pip packages:
 $ pip list | more
 $ pip3 list | more
 $ pip3.7 list | more
-
 
 Install many pip versions will allow you to choose a package version using the pip version. For
 example:
