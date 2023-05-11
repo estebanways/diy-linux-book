@@ -1,0 +1,92 @@
+Content:
+1. Build Python 3.11.1 on Debian 11 Bullseye
+2. Install Python 3.7
+
+Build Python 3.11.1 on Debian 11 Bullseye
+------------------------------------------
+
+Check the current version:
+$ apt info python3
+
+Info:
+https://www.python.org/downloads/release/python-3111/
+
+Download and extract the Python source code:
+$ cd /tmp/
+$ wget https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz
+$ tar -xzvf Python-3.11.1.tgz
+$ cd Python-3.11.1/
+
+Install the build tools:
+$ sudo apt update
+$ sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev
+If you are prompted to install other dependencies, select yes.
+
+Configure, make and make install:
+$ ./configure --enable-optimizations
+
+Run make. You can make the build using nproc, which returns the number of CPUs.
+$ make -j `nproc`
+
+Make install.
+The default Python installation is /usr/bin. If you want to install Python under /usr/local/bin instead of overwriting the default, do this:
+$ sudo make altinstall
+
+This will install Python at /usr/local/bin/python3.11. To test the version, run this:
+$ python3.11 -V
+You will get this output:
+Python 3.11.1
+
+Make Python 3.11.1 the default version.
+To make the default version of Python 3.11.1, run this:
+$ sudo ln -s /usr/local/bin/python
+Output:
+ln: failed to create symbolic link './python': File exists
+$ sudo ln -s /usr/local/bin/python3.11 /usr/local/bin/python
+This creates a bunch of softlinks and links the latest Python to /usr/local/bin.
+
+Test whether Python 3.11.1 is the default version:
+$ ls -al /usr/local/bin/python
+
+Output:
+lrwxrwxrwx 1 root root 25 May 11 16:52 /usr/local/bin/python -> /usr/local/bin/python3.11
+
+$ ls -al /etc/alternatives/python
+Output:
+ls: cannot access '/etc/alternatives/python': No such file or directory
+
+$ /usr/local/bin/python3.11 -V
+Output:
+Python 3.11.1
+
+$ python -V
+The output will be:
+Python 3.11.1
+
+So, at this point, Python 3.11.1 has been set as the default version of Python.
+
+
+Install Python 3.7
+--------------------
+
+$ sudo apt-get update
+$ apt-cache search python 3.7
+$ sudo apt-get install python3.7
+
+pip3.7:
+$ /usr/bin/python3 -m pip install --upgrade pip
+$ /usr/bin/python3 -m pip3 install --upgrade pip
+$ /usr/bin/python3.7 -m pip3.7 install --upgrade pip
+
+Prints a list of installed pip packages:
+$ pip list | more
+$ pip3 list | more
+$ pip3.7 list | more
+
+
+Install many pip versions will allow you to choose a package version using the pip version. For
+example:
+$ pip install subprocess.run
+Or:
+$ pip3 install subprocess.run
+
