@@ -83,7 +83,7 @@ $ pip3.11 -V
 Output:
 pip: /usr/bin/pip /usr/local/bin/pip3.11 /usr/share/man/man1/pip.1.gz
 
-From now on, you can use this new command pip3.11 to install the most of your pip packages.
+From now on, you can use this new command pip3.11 to install most of your pip packages.
 
 Install Python 3.7
 -------------------
