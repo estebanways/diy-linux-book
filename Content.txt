@@ -221,6 +221,7 @@ Development Editors and IDEs:
 [X] Brackets
 [X] Builder
 [✔] Code::Blocks
+[X] Kate
 [X] MonoDevelop
 [X] Neovim
 [✔] Netbeans IDE
