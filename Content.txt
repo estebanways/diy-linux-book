@@ -187,11 +187,13 @@ Collaborative:
 [X] Mailman
 [X] Slack
 [X] Teams
-Compressors:
-[✔] WinRAR
 Clipboard Management:
 [X] Clipit
 [X] Diodon
+Compressors:
+[✔] WinRAR
+Containerization:
+[X] Podman
 Databases:
 [X] SQLite
 Desktop Enhancers:
