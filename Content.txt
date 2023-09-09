@@ -196,6 +196,8 @@ Containerization:
 [X] Podman
 Databases:
 [X] SQLite
+Database Tools:
+[X] DBeaver
 Desktop Enhancers:
 [✔] Cairo-dock
 [✔] Compiz-Fusion
