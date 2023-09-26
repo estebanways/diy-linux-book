@@ -124,6 +124,7 @@ SSDs/HDS/CDs:
 [X] Multiboot USB Pendrive
 [X] Set up software RAID
 [✔] Solid State Drives (SSDs)
+[X] SSD and HDD monitoring
 [X] Tune Hard Disk with hdparm
 Updates and Upgrades:
 [✔] Update the system and applications
