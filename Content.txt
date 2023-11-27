@@ -228,7 +228,7 @@ Development Editors and IDEs:
 [✔] Code::Blocks
 [X] Kate
 [X] MonoDevelop
-[X] Neovim
+[✔] Neovim
 [✔] Netbeans IDE
 [X] PyDev
 [X] RStudio
