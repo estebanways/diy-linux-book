@@ -276,6 +276,11 @@ It can replace many use cases served by other search tools because it contains m
 bat (batcat) - A cat(1) clone with syntax highlighting and Git integration
 ------------------------------------------------------------------
 
+Installation:
+
+$ sudo apt-get update
+$ sudo apt-get install bat
+
 Command:
 
 $ batcat <file>.
