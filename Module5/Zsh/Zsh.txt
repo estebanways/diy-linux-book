@@ -17,3 +17,7 @@ To return to bash shell:
 $ bash
 
 NO need to default a shell
+
+Update the application:
+
+$ omz update
