@@ -14,3 +14,8 @@ Web: https://github.com/neovim/neovim/wiki/Installing-Neovim
 Open vim or nvim:
 $ vim
 $ nvim
+
+Resources:
+Sword vim. A Neovim Text Editor and IDE:
+Web: https://github.com/estebanways/sword-vim
+
