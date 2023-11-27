@@ -265,6 +265,7 @@ Enhanced Terminals:
 [✔] Tmux
 [X] WezTerm
 [X] Zsh
+[✔] zplug, fzf, ripgrep, bat
 Electronics:
 [X] KiCad
 [✔] Oregano

@@ -1,0 +1,292 @@
+Content:
+- zplug
+- fzf
+- ripgrep (rg)
+- bat (batcat)
+
+zplug - Zsh Plugin Manager
+--------------------------
+
+Zplug can manage various add-ons for zsh. Get it from https://github.com/zplug/zplug. It's hugely flexible and can manage installing code from gists, local files, github repos, and more!
+
+Installation:
+
+$ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+Add a zplug section to your .zshrc file (~/.zshrc):
+
+```zsh
+# Zplug plugins
+source ~/.zplug/init.zsh
+
+# Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+
+# Use the package as a command
+# And accept glob patterns (e.g., brace, wildcard, ...)
+zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
+
+# Can manage everything e.g., other person's zshrc
+zplug "tcnksm/docker-alias", use:zshrc
+
+# Disable updates using the "frozen" tag
+zplug "k4rthik/git-cal", as:command, frozen:1
+
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/git",   from:oh-my-zsh
+
+# Also prezto
+#zplug "modules/prompt", from:prezto
+
+# Load if "if" tag returns true
+zplug "lib/clipboard", from:oh-my-zsh, if:"[[ $OSTYPE == *linux* ]]"
+
+# Run a command after a plugin is installed/updated
+# Provided, it requires to set the variable like the following:
+# ZPLUG_SUDO_PASSWORD="********"
+zplug "jhawthorn/fzy", \
+    as:command, \
+    rename-to:fzy, \
+    hook-build:"make && sudo make install"
+
+# Supports checking out a specific branch/tag/commit
+zplug "b4b4r07/enhancd", at:v1
+zplug "mollifier/anyframe", at:4c23cb60
+
+# Can manage gist file just like other packages
+zplug "b4b4r07/79ee61f7c140c63d2786", \
+    from:gist, \
+    as:command, \
+    use:get_last_pane_path.sh
+
+# Support bitbucket
+zplug "b4b4r07/hello_bitbucket", \
+    from:bitbucket, \
+    as:command, \
+    use:"*.sh"
+
+# Rename a command with the string captured with `use` tag
+zplug "b4b4r07/httpstat", \
+    as:command, \
+    use:'(*).sh', \
+    rename-to:'$1'
+
+# Set the priority when loading
+# e.g., zsh-syntax-highlighting must be loaded
+# after executing compinit command and sourcing other plugins
+# (If the defer tag is given 2 or above, run after compinit command)
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+# Can manage local plugins
+zplug "~/.zsh", from:local
+
+# Load theme file
+#zplug 'dracula/zsh', as:theme
+
+zplug "zsh-users/zsh-autosuggestions"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+```
+
+Source to run installations:
+
+$ source ~/.zshrc
+
+Alternatively, run:
+
+$ zplug install
+
+Note: Run one of those commands after any "zplug plugins" section modification in ~/.zshrc.
+
+Reopen the terminal. zplug will install the plugins.
+
+If zplug says that there is no cache directory just create it.
+
+$ mkdir .zplug/cache
+
+Reopen the terminal. zplug will install the plugins.
+
+You could get error messages like:
+
+```bash
+User
+~/.zsh: no such directory
+[zplug] Loaded from cache (/home/esteban/.zplug/cache)
+ Load "~/.zplug/repos/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" (zsh-users/zsh-autosuggestions)
+```
+
+To resolve it, simply add the directory .zsh and restart the terminal:
+
+$ touch ~/.zsh
+
+Reopen the terminal. zplug load the plugins every time you open a terminal.
+
+To update the plugins:
+
+$ zplug update
+
+To remove a plugins:
+
+Simply, comment out the plugin in ~./zshrc:
+
+```
+# Can manage everything e.g., other person's zshrc
+#zplug "tcnksm/docker-alias", use:zshrc
+```
+
+Source the file again.
+
+To delete a plugin:
+
+Delete it from ~/.zplug/repos/.
+
+Complete list of commands:
+
+install:	Install packages in parallel	(None)
+load:	Source installed plugins and add installed commands to $PATH	--verbose
+list:	List installed packages (more specifically, view the associative array $zplugs)	--select,--installed,--loaded
+update:	Update installed packages in parallel	--select,--force
+check:	Return true if all packages are installed, false otherwise	--verbose
+status:	Check if the remote repositories are up to date	--select
+clean:	Remove repositories which are no longer managed	--force,--select
+clear:	Remove the cache file	(None)
+info:	Show the information such as the source URL and tag values for the given package	
+
+Resources:
+
+Title: Contains a Darwin installation.
+Web: https://github.com/zplug/zplug
+
+Title: Making a Nice ZSH Environment.
+Web: https://gist.github.com/aclarknexient/0ffcb98aa262c585c49d4b3f3ae24019
+
+fzf - a general-purpose command-line fuzzy finder
+-------------------------------------------------
+
+Web: https://github.com/junegunn/fzf
+
+Installation:
+
+Using git:
+
+Alternatively, you can "git clone" this repository to any directory and run install script.
+
+$ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+$ ~/.fzf/install
+
+$ source ~/.zshrc
+$ source ~/.bashrc
+
+Alternatively, reopen the terminal.
+
+Type fzf in the command line, then press enter. fzf appears.
+
+Type chars to filter the file list.
+
+Select a file using UP/DOWN ARROWS, then press ENTER to write the file in the output.
+
+Press ESC to exit fzf without writing files to the output.
+
+Fuzzy completion for bash and zsh:
+
+Files and directories:
+
+Fuzzy completion for files and directories can be triggered if the word before the cursor ends with the trigger sequence, which is by default **.
+
+Syntax:
+COMMAND [DIRECTORY/][FUZZY_PATTERN]**<TAB>
+
+# Files under the current directory
+# - You can select multiple items with TAB key
+vim **<TAB>
+
+# Files under parent directory
+vim ../**<TAB>
+
+# Files under parent directory that match `fzf`
+vim ../fzf**<TAB>
+
+# Files under your home directory
+vim ~/**<TAB>
+
+
+# Directories under current directory (single-selection)
+cd **<TAB>
+
+# Directories under ~/github that match `fzf`
+cd ~/github/fzf**<TAB>
+
+Process IDs:
+
+Fuzzy completion for PIDs is provided for kill command.
+
+# Can select multiple processes with <TAB> or <Shift-TAB> keys
+kill -9 **<TAB>
+
+Host names:
+
+For ssh and telnet commands, fuzzy completion for hostnames is provided. The names are extracted from /etc/hosts and ~/.ssh/config.
+
+ssh **<TAB>
+telnet **<TAB>
+Environment variables / Aliases
+unset **<TAB>
+export **<TAB>
+unalias **<TAB>
+
+"Setup" topic, and a lot of more options:
+
+Check out the GitHub documentation.
+
+ripgrep (rg) - a line-oriented search tool
+------------------------------------------
+
+ripgrep is a line-oriented search tool that recursively searches the current directory for a regex pattern. By default, ripgrep will respect gitignore rules and automatically skip hidden files/directories and binary files. (To disable all automatic filtering by default, use rg -uuu.) 
+
+Web: https://github.com/BurntSushi/ripgrep
+
+Installation:
+
+$ sudo apt-get install ripgrep
+
+Usage:
+
+$ cd /path/to/a/repository/
+
+$ rg -i 2023
+
+```bash
+3:Copyright (c) 2023 Esteban Herrera
+```
+
+Why should I use ripgrep?
+
+It can replace many use cases served by other search tools because it contains most of their features and is generally faster.  
+
+bat (batcat) - A cat(1) clone with syntax highlighting and Git integration
+------------------------------------------------------------------
+
+Installation:
+
+$ sudo apt-get update
+$ sudo apt-get install bat
+
+Command:
+
+$ batcat <file>.
+
+It is also a A Neovim fzf.vim plugin dependency.
+
+Resources:
+Guide: Neovim.
+
