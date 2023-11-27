@@ -150,6 +150,18 @@ To delete a plugin:
 
 Delete it from ~/.zplug/repos/.
 
+Complete list of commands:
+
+install:	Install packages in parallel	(None)
+load:	Source installed plugins and add installed commands to $PATH	--verbose
+list:	List installed packages (more specifically, view the associative array $zplugs)	--select,--installed,--loaded
+update:	Update installed packages in parallel	--select,--force
+check:	Return true if all packages are installed, false otherwise	--verbose
+status:	Check if the remote repositories are up to date	--select
+clean:	Remove repositories which are no longer managed	--force,--select
+clear:	Remove the cache file	(None)
+info:	Show the information such as the source URL and tag values for the given package	
+
 Resources:
 
 Title: Contains a Darwin installation.
