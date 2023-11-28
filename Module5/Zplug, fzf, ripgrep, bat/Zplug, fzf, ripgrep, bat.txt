@@ -112,7 +112,9 @@ Reopen the terminal. zplug will install the plugins.
 
 If zplug says that there is no cache directory just create it.
 
-$ mkdir .zplug/cache
+$ mkdir -p .zplug/cache
+
+$ chmod -R 755 ~/.zplug/cache
 
 Reopen the terminal. zplug will install the plugins.
 
