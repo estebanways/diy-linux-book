@@ -81,6 +81,9 @@ References:
 Topic: /forcefsck and 'shutdown -rF' (old style for SysVinit)
 Web: http://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/
 File: Linux Force fsck on the Next Reboot or Boot Sequence.pdf
+New updated version that contains how to force fsck in Linux with Systemd instead of SysVinit:
+Web: https://www.cyberciti.biz/faq/linux-force-fsck-on-the-next-reboot-or-boot-sequence/
+File: How To Linux Force fsck on the Next Reboot or Boot Sequence - nixCraft.pdf
 
 Disable/enable fsck with systemd:
 You need to edit /etc/fstab. There is 1  at the end set to 1 to check you can toggle of by replacing the 1 by a 0.
