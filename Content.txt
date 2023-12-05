@@ -362,7 +362,7 @@ Version Control:
 [✔] Git
 [X] Gitg
 [X] GitLab
-[x] Meld
+[✔] Meld
 Video + Audio Tools:
 [✔] FFmpeg
 [X] Handbrake
