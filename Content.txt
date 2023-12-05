@@ -55,7 +55,7 @@ Repositories:
 
 Module 3 - Create your own GNU/Linux distribution or Pure Blend
 [✔] Options to build Linux distributions
-[✔] A GIT manual
+[x] A GIT manual
 [✔] Build secure sbuild and pbuilder build environments with reproducible builds 
 [✔] Build a Debian Live Disc from source code
 [✔] Testing the minimal Live Disc build
@@ -362,6 +362,7 @@ Version Control:
 [✔] Git
 [X] Gitg
 [X] GitLab
+[x] Meld
 Video + Audio Tools:
 [✔] FFmpeg
 [X] Handbrake
