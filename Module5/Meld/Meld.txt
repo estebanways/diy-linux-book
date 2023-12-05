@@ -1,0 +1,50 @@
+**Meld**:
+
+Meld is **a visual diff and merge tool**. It helps you compare and merge changes between files and directories.
+
+You can install it using the command `$ sudo apt-get install meld`
+
+```shell
+$ sudo apt-get install meld
+$ meld . &
+```
+
+**Setting up a merge tool for the comamnd `git mergetool`**:
+
+Check Available merge tools.
+
+```shell
+$ git mergetool --tool-help
+```
+
+Configure Git (merge tool set to Meld).
+
+```shell
+git config --global merge.tool meld
+```
+
+Proceed with the optional configuration.
+
+Some merge tools may require additional configuration. You can check the specific documentation for the merge tool you've chosen. For example, if you're using meld, you might need to set it as the difftool as well.
+
+```shell
+git config --global diff.tool meld
+```
+
+To run the Git merge tool (using the command `git`, instead of `meld`):
+
+```shell
+$ git mergetool
+```
+
+Some other popular and widely used merge tools include:
+
+Meld
+KDiff3
+TortoiseMerge
+P4Merge
+Araxis Merge
+Beyond Compare (bc)
+
+It's a good idea to try out a few of them and see which one aligns best with your workflow and preferences.
+
