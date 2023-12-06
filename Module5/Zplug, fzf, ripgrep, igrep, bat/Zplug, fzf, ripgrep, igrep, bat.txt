@@ -202,9 +202,15 @@ Press ESC to exit fzf without writing files to the output.
 
 Fuzzy completion for bash and zsh:
 
+$ nvim (do not press enter yet)
+
 CTRL + R: Fuzzy find a command in the command history.
 
 CTRL + T:	Fuzzy find a file from the current working tree.
+
+Press ENTER to open the file.
+
+Press ESC to exit the program.
 
 Files and directories:
 
