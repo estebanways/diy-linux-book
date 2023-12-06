@@ -215,7 +215,7 @@ Press CTRL + b, )
 
 Switch among different sessions:
 Press CTRL + b, w, and select a session or session > session's window
-Press CTRL + b, s, ans select a session using up/down arrows
+Press CTRL + b, s, and select a session using up/down arrows
 
 Change session name:
 Press CTRL + b, SHIFT + $
