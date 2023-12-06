@@ -288,6 +288,11 @@ Runs grep (ripgrep's library) in the background, allows interactively pick its r
 Install igrep (requires Rust and Cargo):
 $ cargo install igrep
 
+Command Args:
+<PATTERN>    Regular expression used for searching.
+<PATHS>...   Files or directories to search. Directories are searched recursively.
+             If not specified, searching starts from current directory.
+
 List the compatible editor values:
 $ ig help . --editor
 
