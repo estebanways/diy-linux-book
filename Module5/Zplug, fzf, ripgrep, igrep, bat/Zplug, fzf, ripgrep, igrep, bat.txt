@@ -2,6 +2,7 @@ Content:
 - zplug
 - fzf
 - ripgrep (rg)
+- igrep
 - bat (batcat)
 
 zplug - Zsh Plugin Manager
@@ -201,6 +202,10 @@ Press ESC to exit fzf without writing files to the output.
 
 Fuzzy completion for bash and zsh:
 
+CTRL + R: Fuzzy find a command in the command history.
+
+CTRL + T:	Fuzzy find a file from the current working tree.
+
 Files and directories:
 
 Fuzzy completion for files and directories can be triggered if the word before the cursor ends with the trigger sequence, which is by default **.
@@ -273,10 +278,58 @@ $ rg -i 2023
 
 Why should I use ripgrep?
 
-It can replace many use cases served by other search tools because it contains most of their features and is generally faster.  
+It can replace many use cases served by other search tools because it contains most of their features and is generally faster.
+
+igrep - Interactive Grep
+------------------------
+
+Runs grep (ripgrep's library) in the background, allows interactively pick its results and open selected match in text editor of choice (vim by default).
+
+Install igrep (requires Rust and Cargo):
+$ cargo install igrep
+
+List the compatible editor values:
+$ ig help . --editor
+
+Possible values: vim, neovim, nvim, nano, code, vscode, code-insiders, emacs, emacsclient, hx, helix, subl, sublime-text, micro, intellij, goland, pycharm.
+
+Look for the word help from the current/working directory:
+$ ig help . --editor nvim
+
+Keybindings:
+
+| Key             | Action                              |
+| --------------- | ----------------------------------- |
+| q, Esc, Ctrl+c  | Quit                                |
+| ?, F1           | Open/close the keymap popup          |
+| Down, j         | Scroll down in the keymap popup      |
+| Up, k           | Scroll up in the keymap popup        |
+| Right, l        | Scroll right in the keymap popup     |
+| Left, h         | Scroll left in the keymap popup      |
+| Down, j         | Select next match                    |
+| Up, k           | Select previous match                |
+| Right, l, PageDown | Select match in the next file      |
+| Left, h, PageUp | Select match in the previous file    |
+| gg, Home        | Jump to the first match              |
+| Shift-g, End    | Jump to the last match               |
+| Enter           | Open the current file                |
+| dd, Delete      | Filter out the selected match        |
+| dw              | Filter out all matches in the current file |
+| v               | Toggle vertical context viewer        |
+| s               | Toggle horizontal context viewer      |
+| +               | Increase context viewer size          |
+| -               | Decrease context viewer size          |
+| F5              | Open the search pattern popup         |
+
+Resources:
+Topic: How to install Rust and cargo. It contains how to update rustc.
+Guide: Rust
+
+Topic: igrep.
+Web: https://github.com/konradsz/igrep
 
 bat (batcat) - A cat(1) clone with syntax highlighting and Git integration
-------------------------------------------------------------------
+--------------------------------------------------------------------------
 
 Installation:
 
