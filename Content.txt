@@ -247,6 +247,7 @@ Development Languages:
 [X] Node.js
 [X] Python
 [✔] R
+[✔] Rust
 DevOps:
 [✔] Ansible
 [X] Jenkins

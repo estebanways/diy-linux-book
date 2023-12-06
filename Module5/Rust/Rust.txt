@@ -1,0 +1,114 @@
+Install the Rust compiler
+-------------------------
+
+Install Rust on Debian 11 / Debian 10 using the script below
+
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Proceed with the Option 1.
+
+Output:
+
+....
+   default host triple: x86_64-unknown-linux-gnu
+     default toolchain: stable (default)
+               profile: default
+  modify PATH variable: yes
+
+1) Proceed with installation (default)
+2) Customize installation
+3) Cancel installation
+> 1
+......
+info: default toolchain set to 'stable-x86_64-unknown-linux-gnu'
+
+  stable-x86_64-unknown-linux-gnu installed - rustc 1.58.1 (db9d1b20b 2022-01-20)
+
+
+Rust is installed now. Great!
+
+To get started you may need to restart your current shell.
+This would reload your PATH environment variable to include
+Cargo's bin directory ($HOME/.cargo/bin).
+
+To configure your current shell, run:
+source $HOME/.cargo/env
+Source the cargo environment.
+
+End of Output.
+
+Source the cargo environment.
+$ source $HOME/.cargo/env
+
+Ensure that you have the right compiler.
+
+$ rustup override set stable
+$ rustup update stable
+
+Update Cargo to the latest official release
+-------------------------------------------
+
+Verify current rustc and cargo versions:
+
+$ rustc -V
+
+Output:
+rustc 1.9.0 (e4e8b6668 2016-05-18)
+
+$ cargo -V
+
+Output:
+cargo 0.10.0-nightly (10ddd7d 2016-04-08)
+
+Update rust:
+
+$ rustup update
+
+Output:
+
+info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
+info: latest update on 2023-11-16, rust version 1.74.0 (79e9716c9 2023-11-13)
+info: downloading component 'cargo'
+  8.2 MiB /   8.2 MiB (100 %)   3.1 MiB/s in  2s ETA:  0s
+info: downloading component 'clippy'
+info: downloading component 'rust-docs'
+ 14.4 MiB /  14.4 MiB (100 %)   3.2 MiB/s in  4s ETA:  0s
+info: downloading component 'rust-std'
+ 26.3 MiB /  26.3 MiB (100 %)   3.3 MiB/s in  8s ETA:  0s
+info: downloading component 'rustc'
+ 58.7 MiB /  58.7 MiB (100 %)   3.0 MiB/s in 19s ETA:  0s
+info: downloading component 'rustfmt'
+info: removing previous version of component 'cargo'
+info: removing previous version of component 'clippy'
+info: removing previous version of component 'rust-docs'
+info: removing previous version of component 'rust-std'
+info: removing previous version of component 'rustc'
+info: removing previous version of component 'rustfmt'
+info: installing component 'cargo'
+info: installing component 'clippy'
+info: installing component 'rust-docs'
+ 14.4 MiB /  14.4 MiB (100 %)   4.6 MiB/s in  2s ETA:  0s
+info: installing component 'rust-std'
+ 26.3 MiB /  26.3 MiB (100 %)  10.6 MiB/s in  2s ETA:  0s
+info: installing component 'rustc'
+ 58.7 MiB /  58.7 MiB (100 %)  12.2 MiB/s in  4s ETA:  0s
+info: installing component 'rustfmt'
+info: checking for self-updates
+info: downloading self-update
+
+  stable-x86_64-unknown-linux-gnu updated - rustc 1.74.0 (79e9716c9 2023-11-13) (from rustc 1.61.0 (fe5b13d68 2022-05-18))
+
+End of output.
+
+References:
+
+File: Install and Configure Alacritty terminal on Debian 11_10 - TechViewLeo.pdf
+https://techviewleo.com/install-and-configure-alacritty-terminal-on-debian/
+
+File: How to Install and use Rust on Debian 11 Bullseye - Linux Shout.pdf
+https://linux.how2shout.com/how-to-install-and-use-rust-on-debian-11-bullseye/
+
+Guide:
+Topic: Example.
+Guide: Alacritty.
+
