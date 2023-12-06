@@ -247,6 +247,7 @@ Development Languages:
 [X] Node.js
 [X] Python
 [✔] R
+[✔] Rust
 DevOps:
 [✔] Ansible
 [X] Jenkins
@@ -265,7 +266,7 @@ Enhanced Terminals:
 [✔] Tmux
 [X] WezTerm
 [X] Zsh
-[✔] zplug, fzf, ripgrep, bat
+[✔] zplug, fzf, ripgrep, igrep, bat
 Electronics:
 [X] KiCad
 [✔] Oregano
