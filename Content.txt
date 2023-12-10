@@ -264,6 +264,7 @@ Enhanced Terminals:
 [X] Tabby
 [X] Tmate
 [✔] Tmux
+[X] Vifm
 [X] WezTerm
 [X] Zsh
 [✔] zplug, fzf, ripgrep, igrep, bat

@@ -1,0 +1,48 @@
+Vifm – Vim-like file manager
+
+Installation:
+
+$ sudo apt-gte install vifm
+
+Install the color schemes.
+
+Use:
+
+Run the program:
+
+$ vifm
+
+Use arrows or h, j, k, l to mode among files.
+
+Press enter to enter a directory or open a file.
+
+The file will open using the default system editor, E.g.: nano.
+
+To change the editor for terminal:
+
+Make Neovim the terminal editor. Put: export EDITOR=/usr/local/bin/nvim in .bashrc, .zshrc or the like.
+
+Exit the program:
+
+Press Z + Z
+
+Vim like commands:
+
+:colorschemes
+
+Check out the cheatsheets.
+
+Notes:
+The installation adds Vim as a dependency, and if you have Neovim installed, Vim is not going to work as expected if it is executed, unless you remove the symbolic link from the ~/.vimrc file.
+
+References:
+
+Topic: Vifm – Vim-like file manager
+Web: https://github.com/vifm/vifm
+
+Topic: Cheat sheets
+Web: https://vifm.info/cheatsheets.shtml
+
+Topic: vifm-colors. Various colorschemes for vifm
+Web: https://github.com/vifm/vifm-colors
+
