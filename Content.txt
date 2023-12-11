@@ -260,6 +260,7 @@ Enhanced Terminals:
 [X] Alacritty
 [X] Fig
 [X] Fish
+[✔] Kitty
 [✔] Screen
 [X] Tabby
 [X] Tmate
@@ -267,7 +268,7 @@ Enhanced Terminals:
 [X] Vifm
 [X] WezTerm
 [X] Zsh
-[✔] zplug, fzf, ripgrep, igrep, bat
+[✔] Zplug, fzf, ripgrep, igrep, bat
 Electronics:
 [X] KiCad
 [✔] Oregano

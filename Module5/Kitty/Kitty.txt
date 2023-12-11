@@ -1,0 +1,58 @@
+Instalation from repo:
+----------------------
+
+$ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+Desktop integration on Linux:
+
+Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in your system-wide PATH)
+
+$ ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+
+Place the kitty.desktop file somewhere it can be found by the OS
+
+$ cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+
+If you want to open text files and images in kitty via your file manager also add the kitty-open.desktop file
+
+$ cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+
+Update the paths to the kitty and its icon in the kitty.desktop file(s)
+
+$ sed -i "s|Icon=kitty|Icon=/home/$USER/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+$ sed -i "s|Exec=kitty|Exec=/home/$USER/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+
+Resources:
+Web: https://sw.kovidgoyal.net/kitty/binary/
+File: Install kitty - kitty.pdf
+
+This version requires to add a command manually if you like to run kitty from any other terminal.
+Copy the Commbase executable to the executable binaries directory.
+Require root user permissions to run as root or run with sudo to work.
+$ sudo su -
+# cp ~/.local/kitty.app/bin/kitty /usr/bin/kitty
+
+Installation from the official sources:
+---------------------------------------
+
+$ sudo apt-get update
+$ sudo apt-get install kitty
+
+Restart the terminal.
+
+Open images in the terminal:
+
+$ kitty +kitten icat image.jpeg
+
+$ kitty icat image.png
+
+ImageMagick must be installed for icat kitten to work.
+
+Resources:
+Topic: Colors, opacity, blur, etc.
+Web: https://sw.kovidgoyal.net/kitty/conf/#color-scheme
+File: kitty.conf - kitty.pdf
+Topic: Clipboard.
+Web: https://sw.kovidgoyal.net/kitty/kittens/clipboard/#clipboard
+File: clipboard - kitty.pdf
+
