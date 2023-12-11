@@ -261,11 +261,12 @@ Enhanced Terminals:
 [X] Fig
 [X] Fish
 [✔] Kitty
+[✔] Nnn
 [✔] Screen
 [X] Tabby
 [X] Tmate
 [✔] Tmux
-[X] Vifm
+[✔] Vifm
 [X] WezTerm
 [X] Zsh
 [✔] Zplug, fzf, ripgrep, igrep, bat
@@ -388,14 +389,16 @@ Video Players:
 [✔] VLC Player
 Video Recorders:
 [✔] Guvcview
-Virtualization:
+Virtualization and the like:
 [X] Anbox
+[✔] Debootstrap
 [X] Docker
 [X] Genymotion
 [X] GNOME Boxes
 [✔] KVM
 [X] Kubernetes
 [X] Linux Containers
+[X] Podman
 [X] Vagrant [container]
 [✔] VirtualBox
 Windows:

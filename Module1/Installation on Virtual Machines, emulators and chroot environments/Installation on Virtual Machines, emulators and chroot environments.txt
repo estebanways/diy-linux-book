@@ -10,6 +10,7 @@ Installation examples:
 - Photoshop
 - Run Android apps in the Debian OS
 - Create a chroot environment to install Linux Mint inside
+- Run a container using containerization technologies
 
 I am not running any Windows programs on my Linux Box, but Photoshop in a Virtual Machine. 
 
@@ -17,5 +18,7 @@ You are free to change my method by installing and setting up your Wine accordin
 
 You can install other system rather than Debian inside Debian using chroot environments and then run the distro apps normally no matter that Debian is the main OS.
 
+Containerization is a lightweight form of virtualization that allows you to package and isolate applications along with their dependencies, configuration files, libraries, and binaries into a single container. Containers provide a consistent and reproducible environment for applications to run, regardless of the underlying infrastructure.
+
 References:
-Guides: Photoshop, VirtualBox, KVM
+Guides: Photoshop, VirtualBox, KVM, Podman, Debootstrap
