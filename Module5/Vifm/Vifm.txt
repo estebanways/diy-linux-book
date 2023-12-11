@@ -20,9 +20,16 @@ The file will open using the default system editor, E.g.: nano.
 
 To change the editor for terminal:
 
-Make Neovim the terminal editor. Put: export EDITOR=/usr/local/bin/nvim in .bashrc, .zshrc or the like.
+Make Neovim the terminal editor.
 
-Exit the program:
+Put in .bashrc, .zshrc or the like: 
+
+# Set Neovim as default text editor
+export EDITOR="/usr/local/bin/nvim"
+
+The default editor for Vifm is Vim.
+
+To exit the program:
 
 Press Z + Z
 
