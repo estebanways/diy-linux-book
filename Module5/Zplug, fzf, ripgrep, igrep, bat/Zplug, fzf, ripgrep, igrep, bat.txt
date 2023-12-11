@@ -185,10 +185,21 @@ Using git:
 Alternatively, you can "git clone" this repository to any directory and run install script.
 
 $ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+Installation:
 $ ~/.fzf/install
 
+This updates the next code in the file ~/,zshrc:
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 $ source ~/.zshrc
+
+You can add that line in the file ~/.bashrc to enable fzf in Bash shell.
+
 $ source ~/.bashrc
+
+Fzf keybinds are not set up in Bash shell.
 
 Alternatively, reopen the terminal.
 
