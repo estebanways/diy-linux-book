@@ -1,0 +1,40 @@
+nnn (n³) is a full-featured terminal file manager. It's tiny, nearly 0-config and incredibly fast.
+It is designed to be unobtrusive with smart workflows to match the trains of thought.
+
+Basic installation from the official sources:
+---------------------------------------------
+
+$ sudo apt-get update
+$ sudo apt-get install nnn
+
+In the shells files .bashrc and .zshrc, add the lines:
+
+# Set Neovim as default text editor
+export EDITOR="/usr/local/bin/nvim"
+
+# NNN plugins
+export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview;r:preview-tui'
+export NNN_FIFO=/tmp/nnn.fifo
+
+Installation from source code:
+------------------------------
+
+The build males possible to add fonts with icons.
+
+References:
+
+Topic: Official repository.  
+Web: https://github.com/jarun/nnn?tab=readme-ov-file
+
+Topic: https://www.youtube.com/watch?v=OuFTWM5S9K8
+Web: https://www.youtube.com/watch?v=OuFTWM5S9K8
+
+Topic: Usage
+Web:  https://github.com/jarun/nnn/wiki/Usage
+File: nnn keyboard keys.png
+
+Topic: Plugins
+Web: https://github.com/jarun/nnn/tree/master/plugins#installation
+
+Topic: Live previews
+Web: https://github.com/jarun/nnn/wiki/Live-previews

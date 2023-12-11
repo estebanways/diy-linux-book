@@ -1,0 +1,19 @@
+
+References:
+
+Topic: A quick guide to podman and toolbox in Debian (and maybe Ubuntu)
+Web: https://dev.to/bureado/a-quick-guide-to-podman-and-toolbox-in-debian-5672
+File: A quick guide to podman and toolbox in Debian and maybe Ubuntu - DEV Community.pdf
+
+Topic: Create Debian container using Toolbox
+Web: https://support.endlessos.org/en/dev/toolbox-debian
+File: Create Debian container using Toolbox  Support and Training Endless OS Foundation.pdf
+
+Topic: Podman and Toolbox in Debian (and Potentially Ubuntu): An Efficient Guide
+Web: https://copyprogramming.com/howto/a-quick-guide-to-podman-and-toolbox-in-debian-and-maybe-ubuntu
+File: Debian Podman and Toolbox in Debian and Potentially Ubuntu An Efficient Guide.pdf
+
+Topic: oolbox - Tool for containerized command line environments on Linux
+Web: https://manpages.debian.org/unstable/podman-toolbox/toolbox.1.en.html
+File: toolbox podman-toolbox Debian unstable Debian Manpages.pdf
+
