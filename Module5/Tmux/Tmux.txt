@@ -3,7 +3,7 @@ Content:
 - Vocabulary
 - Basic tmux commands
 - Scripting
-- Oh My Tmux github
+- Oh My Tmux GitHub
 
 - Tmux Installation:
 $ sudo apt-get update
@@ -17,7 +17,7 @@ Please note that CTRL+b is the default tmux “prefix”. You can adjust it to a
 
 - Basic tmux commands:
 
------------ ENTER AND EXIT TMUX--------------------
+----------- ENTER AND EXIT TMUX --------------------
 
 Enter the "termux":
 $ tmux
@@ -244,19 +244,179 @@ File:
 Web: https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html
 
 
-- Oh My Tmux github:
+- Oh My Tmux GitHub:
 
 If you want to enable features such as mouse mode, download/clone and install this from github.com. A Google search like "oh my tmux github" would take you here: https://github.com/gpakosz/.tmux
 
 Basic Installation:
+
+Installing in ~:
+
 Download the zip file or clone it from github using git:
+
 $ cd
+
 $ git clone https://github.com/gpakosz/.tmux.git
+
 The next line is not required if the repo is cloned instead of downloaded:
-$ mv .tmux-master .tmux/ 
+$ mv .tmux-master .tmux/
+
 $ ln -s -f .tmux/.tmux.conf
+
 $ cp .tmux/.tmux.conf.local .
 
-References:
+Resources:
+Topic: Official GitHub repository.
 Web: https://github.com/gpakosz/.tmux
+
+A simple configuration example:
+
+Add the next lines at the end of the file ~/.tmux.conf.local, in the section custom:
+
+# Enabling the Powerline look
+tmux_conf_theme_left_separator_main='\uE0B0'
+tmux_conf_theme_left_separator_sub='\uE0B1'
+tmux_conf_theme_right_separator_main='\uE0B2'
+tmux_conf_theme_right_separator_sub='\uE0B3'
+
+Now you have a Powerline like status line.
+
+Resources:
+Topic: Powerline fonts, etc.
+Web: https://github.com/gpakosz/.tmux?tab=readme-ov-file#configuration
+Topic: Powerline fonts. But I use a Monospace or the like, and te Powerline look just works.
+Web: https://github.com/powerline/fonts
+
+Using TPM plugins:
+
+This configuration now comes with built-in TPM support.
+
+Resources:
+Web: https://github.com/gpakosz/.tmux?tab=readme-ov-file#using-tpm-plugins
+
+Installing TPM (Tmux Plugin Manager):
+
+Requirements: tmux version 1.9 (or higher), git, bash.
+
+Verify the tmux version:
+$ tmux -V
+
+Clone TPM:
+
+$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+Put this at the bottom of ~/.tmux.conf ($XDG_CONFIG_HOME/tmux/tmux.conf works too):
+
+# List of plugins:
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+Snippet:
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+
+End of snippet.
+
+Reload TMUX environment so TPM is sourced:
+
+Type this in terminal if tmux is already running:
+$ tmux source ~/.tmux.conf
+
+The command returns:
+
+Output:
+
+'cut -c3- ~/.tmux.conf | sh -s __apply_plugins "1" "true" "true" "true"' returned 127 
+
+End of output.
+
+Installing plugins:
+Add new plugin to ~/.tmux.conf with set -g @plugin '...'
+Press prefix + I (capital i, as in Install) to fetch the plugin.
+You're good to go! The plugin was cloned to ~/.tmux/plugins/ dir and sourced.
+
+Uninstalling plugins:
+Remove (or comment out) plugin from the list.
+Press prefix + alt + u (lowercase u as in uninstall) to remove the plugin.
+All the plugins are installed to ~/.tmux/plugins/ so alternatively you can find plugin directory there and remove it.
+
+Key bindings:
+
+prefix + I:
+Installs new plugins from GitHub or any other git repository
+Refreshes TMUX environment
+
+prefix + U:
+updates plugin(s)
+
+prefix + alt + u:
+remove/uninstall plugins not on the plugin list
+
+Resources:
+Web: https://github.com/tmux-plugins/tpm
+
+Installing a plugin:
+
+Resources:
+Topic: A plugin directory on Github.
+Web: https://github.com/rothgar/awesome-tmux
+
+Install the plugin tmux-nova:
+
+Add this line in your .tmux.conf:
+set -g @plugin 'o0th/tmux-nova'
+
+The section of the file would look like this:
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+# Themes - tmux-nova
+
+set -g @plugin 'o0th/tmux-nova'
+run-shell ~/.tmux/plugins/tmux-nova/nova.tmux
+
+[...]
+
+End of file section.
+
+Add this line in your .tmux.conf:
+
+run-shell ~/.tmux/plugins/tmux-nova/nova.tmux
+
+Reload TMUX:
+tmux source-file ~/.tmux.conf
+
+To achieve the (GitHub.com repo) screenshot look use this configuration add to the .tmux.conf Simple  theme section:
+
+# "Simple configuration"
+set -g @plugin 'o0th/tmux-nova'
+
+set -g @nova-nerdfonts true
+set -g @nova-nerdfonts-left 
+set -g @nova-nerdfonts-right 
+
+#set -g @nova-rows 0
+
+# Add more themes here ...
+
+End of section.
+
+Resources:
+Topic: tmux-nova
+Web: https://github.com/o0th/tmux-nova
 
