@@ -1,43 +1,199 @@
-
 References:
 
-Topic: 
-Web: 
-File: 
+Topic: Universal Chroot environment that can be deployed to most Linux distros and with a portable chroot image that can be moved from one host to another.
+Web: https://github.com/estebanways/pandoras
 
-Topic: 
-Web: 
-File: 
+Topic: Creating a minimal Debian based Live ISO using chroots.
+Guide: Build a Debian Live Disc from source code
 
-Topic: 
-Web: 
-File: 
+Topic: Chroot on Unix-like operating systems is an operation that changes the apparent root directory for the current running process and its children. 
+Web: https://wiki.debian.org/chroot
+File: chroot - Debian Wiki.pdf
 
-Topic: 
-Web: 
-File: 
+Topic: Schroot allows users to execute commands or interactive shells in different chroots.
+Web: https://wiki.debian.org/Schroot
+File: Schroot - Debian Wiki.pdf
 
-Topic: 
-Web: 
-File: 
+Topic: How to use chroot on Debian 11
+Web: https://vitux.com/debian-chroot/ 
+File: How to use chroot on Debian 11 - VITUX.pdf
 
-Topic: 
-Web: 
-File: 
+Topic: Install Ubuntu with debootstrap and chroot, without rebooting the host machine or using a iso
+Web: https://gist.github.com/KsaRedFx/2b4863e5d18eea57a6ca
+File: install-live.sh
 
-Topic: 
-Web: 
-File: 
+Topic: Booting linux system from chroot: is there a better way to do this?
+Web: https://superuser.com/questions/384437/booting-linux-system-from-chroot-is-there-a-better-way-to-do-this
+File: Booting linux system from chroot. Is there a better way to do this.pdf
 
-Topic: 
-Web: 
-File: 
+Topic: The problem: You like the flexibility of running various systems inside a chroot, but once in a while you need to boot from them. What do you do ?
+Web: https://github.com/lemonsqueeze/boot-chroot
 
-Topic: 
-Web: 
-File: 
+Topic: How to: Chroot into a broken system via live CD/ISO or alternate Linux system
+Web: https://www.turnkeylinux.org/docs/chroot-to-repair-system 
+File: How to Chroot into a broken system via live CD ISO or alternate Linux system.pdf
 
-Topic: 
-Web: 
-File: 
+Common questions and answers about debootstrap
+----------------------------------------------
+
+- What size is debootstrapped debian?
+
+The size of a debootstrapped Debian system can vary depending on several factors, such as the selected Debian version, the package selection, and the architecture. However, as a general guideline, a minimal debootstrapped Debian installation might be around 200-300 MB.
+
+Keep in mind that this is just a rough estimate, and the actual size may be different based on the factors mentioned above. Additionally, as you install more packages and components, the size of the system will increase accordingly.
+
+If you have specific requirements or constraints regarding the size of your Debian installation, you can customize the debootstrap process by specifying a minimal set of packages during the installation or by using tools like debtree to analyze the installed packages and their sizes.
+
+- Can I run an entire window manager from a chroot jail with debootstrap?
+
+It is possible to run an entire window manager from a chroot jail using debootstrap, and you can use startx from the console to initiate the X server and the window manager within the chroot environment.
+
+- Can I access graphical applications inside the root?
+
+-- Here are the general preparing steps you can follow:
+
+Chroot into the environment.
+$ sudo chroot /path/to/chroot
+
+Install X server and window manager.
+# apt-get install xorg
+# apt-get install your-window-manager
+
+Replace "your-window-manager" with the name of the window manager you want to install, such as "openbox," "i3," or any other.
+
+# apt-get install black-box
+
+Exit the chroot environment.
+# exit
+
+In the main system shell.
+$ xhost + localhost
+
+The xhost command adds or deletes host names on the list of machines from which the X Server accepts connections. This command must be run from the machine with the display connection. 
+
+-- Accessing graphical applications inside the chroot:
+
+Once in the Chroot shell, type:
+# export DISPLAY=:0
+
+Open any graphical application installed in the Chroot.
+# audacious
+# xterm
+
+Running a command like firefox from within the chroot environment will launch the Firefox instance that is installed within the chroot, not the one from your main system. The chroot environment operates in isolation and has its own set of installed programs and libraries.
+
+- Is `xhost` considered dangerous?
+
+I've been using it so I can run programs with graphical user interfaces within docker containers in linux. Should I worry? I usually do it as follows:
+
+xhost +
+xhost local:root
+
+docker run -it -v/tmp/.X11-unix -e DISPLAY=unix$DISPLAY image_name
+
+Concerning a Docker example -- I don't see this as enormously risky. However, an alternative approach that I've used from time to time is to embed a VNC server in the docker image, and access it using a VNC viewer. You're essentially providing the image with a private X desktop, avoid the need to share. However, this is fiddly to set up, and the appearance isn't as nice as interacting directly with the desktop.
+
+- How to resize a dd-created img file and its file system?
+
+-- Upsize the image using qemu-utils (it resizes the chroot filesystem inside):
+
+Install qemu-utils in the main system.
+$ sudo apt-get install qemu-utils
+
+Resize to 4 GB.
+$ sudo qemu-img resize -f raw /var/pandoras/images/image.img 4G
+
+-- Downsize the image using truncate:
+
+You need to shrink the chroot partition before truncate the image from the main system, or will destroy the image.
+Resources:
+Topic: SLook fot the reply "Shrinking images on Linux"
+Web: https://superuser.com/questions/610819/how-to-resize-img-file-created-with-dd
+File: How to resize img file created with dd - Super User.pdf
+
+-- Filesystem Resize:
+
+After resizing the image file, you may need to resize the filesystem inside the image to make use of the additional space.
+
+Install e2fsprogs in the main system:
+
+# apt-get install e2fsprogs
+
+$ sudo e2fsck -f /var/pandoras/images/image.img
+
+Filesystem Resize (requires root privileges):
+
+$ sudo resize2fs /var/pandoras/images/image.img
+
+Verify the size of the chroot partitions:
+
+Start and Enter the chroot, for example, with Pandoras.
+
+$ sudo pandoras --start-box
+$ sudo pandoras --enter-box
+
+Check the chroot filesystem partitions:
+
+# df -h
+
+# exit
+
+- What is /dev/pts directory in Linux?
+
+Linux distributions, the /dev/pts directory is associated with pseudo-terminals (PTYs). A pseudo-terminal is a pair of virtual character devices that provide a communication channel, allowing processes to emulate a text terminal.
+
+When you open a terminal window or connect to a remote server via SSH, a pseudo-terminal is typically created. The /dev/pts directory contains the master and slave devices for these pseudo-terminals. The master device is used by the terminal emulator or SSH client, while the slave device is used by the shell or command-line interface running within the terminal.
+
+Each terminal session is assigned a unique number, and you'll find subdirectories within /dev/pts corresponding to these sessions. For example, /dev/pts/0 might represent the first terminal session, /dev/pts/1 the second, and so on.
+
+In summary, the /dev/pts directory is crucial for managing terminal sessions and facilitating communication between terminal emulators or remote clients and the processes running within them.
+
+If you are mounting the directory /dev to a chroot /dev/pts is not needed to be mounted, because it is inside of /dev.
+
+- What happens if I mount the chroot and then there is an outage?
+
+If you have a chroot environment mounted and there is a system outage or a sudden interruption, it can lead to potential issues or data corruption within the chroot. When a chroot is mounted, it essentially changes the apparent root directory for the running process and its children to a different location in the filesystem.
+
+Here are some potential consequences of a system outage while a chroot is mounted:
+
+Data Corruption: If the outage occurs during a write operation or while data is being manipulated within the chroot, it may lead to data corruption or incomplete transactions.
+
+Filesystem Inconsistency: The abrupt interruption might leave the filesystem within the chroot in an inconsistent state. This can result in file system errors and require a filesystem check (e.g., fsck) upon the next boot.
+
+Process Termination: The processes running within the chroot might be terminated abruptly, which can leave certain tasks incomplete and potentially lead to a loss of data.
+
+To minimize the risks:
+
+Graceful Shutdown: Whenever possible, unmount the chroot and gracefully shut down or exit the chroot environment before a system outage or shutdown.
+
+Backup: Regularly backup the data and configurations within the chroot environment so that you can restore it in case of any issues.
+
+Transaction Safety: If the chroot involves database operations or other critical transactions, ensure that these transactions are handled in a way that supports recovery in case of an interruption.
+
+Use Containers or Virtualization: Consider using containerization or virtualization technologies (such as Docker, Kubernetes, or virtual machines) for more isolated and reproducible environments. These environments provide better encapsulation and can be more resilient to system outages.
+
+Remember to always take precautions and perform adequate testing before deploying systems or making significant changes, especially in production environments.
+
+- I have a chroot running a mounted directory. What would happen if there is an outage?
+
+If you have a chroot environment running with a mounted directory and there is an outage, several things could happen depending on the nature and duration of the outage. Here are some potential scenarios:
+
+Unmounted File System:
+
+If the outage causes the mounted directory's underlying file system to become unavailable or unmounted, processes within the chroot environment accessing files from that directory may encounter errors or hang.
+Any attempt to access files within the chroot that are on the now-unmounted file system could result in errors.
+Process Interruption:
+
+If the outage is severe enough to halt or interrupt processes running within the chroot environment, those processes may terminate or become unresponsive.
+Processes relying on services or resources outside the chroot may be affected if those services are impacted by the outage.
+Data Corruption or Loss:
+
+If the outage occurs while there are ongoing write operations or changes to files within the chroot, there is a risk of data corruption or loss.
+Chroot Environment Becomes Unusable:
+
+In extreme cases, if the outage affects critical components of the chroot environment or the underlying system, the chroot environment itself may become unusable.
+Recovery Difficulties:
+
+After an outage, bringing the chroot environment back to a consistent and functional state may require manual intervention, particularly if there are issues with file system integrity or other configurations.
+To mitigate these risks, it's a good practice to design your system with appropriate backup and recovery mechanisms. This might include regularly backing up critical data, monitoring the health of the system, and implementing redundancy where necessary. Additionally, having a well-documented recovery plan can help minimize downtime and potential data loss in the event of an outage.
 
