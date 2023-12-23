@@ -7,6 +7,8 @@ Topic: Debian-KDE teams
 Web: http://pkg-kde.alioth.debian.org/join.html
 
 Installation:
+-------------
+
 References:
 Web: https://wiki.debian.org/KDE
 File: KDE in Debian.pdf
@@ -18,10 +20,49 @@ $ sudo aptitude install ~t^desktop$ ~t^kde-desktop$
 
 (This is what DebianInstaller would have installed in a new system, but you might want/need to uninstall the current display manager). 
 
-The appearance of GTK-applications in Plasma
+The appearance of GTK-applications in Plasma:
+---------------------------------------------
+
 To get gtk-applications look native in Plasma you need install these packages and configure appearance of them through System Settings > Application appearance:
 
 kde-config-gtk-style. KDE configuration module for GTK+ 2/3.x style selection
 kde-config-gtk-style-preview.
 gtk2-engines-oxygen. Oxygen widget theme for GTK2+-based applications
 gtk3-engines-oxygen. Oxygen widget theme for GTK3+-based applications (Debian Wheezy) 
+
+To install the Wayland support:
+-------------------------------
+
+Wayland is a replacement for the X11 window system protocol and architecture with the aim to be easier to develop, extend, and maintain.
+
+$ sudo nala search plasma-workspace
+
+$ sudo nala install plasma-workspace-wayland
+
+References:
+Topic: What is Wayland.
+Web: https://wayland.freedesktop.org/
+
+LightDM is a free and open-source X display manager that aims to be lightweight, fast, extensible and multi-desktop. It can use various front-ends to draw the user interface,[6] also called Greeters. It also supports Wayland.
+
+$ sudo nala install lightdm
+
+$ sudo dpkg-reconfigure lightdm
+
+Choose Lightdm as the display manager.
+
+Close and choose KDE (Plasma) from the LightDM menu to start a Wayland session instead of a X Server session.
+
+To verify that you are using Wayland in the system:
+Search for "About" in the applications search field.
+Open the kDE application About the Sysstem.
+You will see the next in the list of sofware:
+Graphics Platform: Wayland.
+
+To verify that any KDE application is running on Wayland.
+Go to the menu About of the application.
+Go to the tab components.
+Scroll down and you will see teh message: "The wayland windowing system."
+
+Non KDE applications could be verified in different ways.
+Some would required to download or build a versions with Wayland support, additionally.

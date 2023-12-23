@@ -71,6 +71,7 @@ Back-up, Emergency and Restore:
 [✔] Data recovery
 [✔] Emergency keys combinations
 [✔] Manage processes
+[X] Rsync
 [X] System Rescue
 Filesystems:
 [✔] Boot Loaders and Dual Boot
@@ -385,6 +386,7 @@ Video Players:
 [✔] Flash Player
 [X] FreetuxTV
 [X] KODI
+[X] Mpv
 [X] Popcorn Time CE
 [✔] VLC Player
 Video Recorders:

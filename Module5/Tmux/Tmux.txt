@@ -420,3 +420,7 @@ Resources:
 Topic: tmux-nova
 Web: https://github.com/o0th/tmux-nova
 
+Resources:
+Topic: More TPM plugins.
+Web: https://github.com/tmux-plugins
+Web: https://github.com/orgs/tmux-plugins/repositories
