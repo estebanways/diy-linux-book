@@ -1,0 +1,81 @@
+# Wayland vs X Server
+
+## X Server (X11):
+
+- **Description:** X Server, also known as X11 or X Window System, is the traditional and widely used display server protocol for Unix-like systems, including Linux.
+
+- **Architecture:** X11 follows a client-server model. Applications (clients) communicate with the X Server to display graphical user interfaces (GUIs).
+
+- **Features:** X11 has been in use for many years and has a mature set of features. It supports network transparency, which allows applications to run on a remote server and display on a local machine.
+
+- **Issues:** However, X11 has some limitations, including performance issues, security concerns, and complexity in development.
+
+## Wayland:
+
+- **Description:** Wayland is a more recent display server protocol designed as a replacement for X11. It aims to provide a simpler and more modern architecture for graphical display on Linux systems.
+
+- **Architecture:** Wayland simplifies the design by combining the roles of the traditional X Server and the window manager. It is more integrated and provides a direct connection between applications and the display hardware.
+
+- **Features:** Wayland is designed with a focus on performance, security, and simplicity. It aims to eliminate some of the shortcomings of X11.
+
+- **Adoption:** While Wayland has gained popularity, not all applications and desktop environments have fully transitioned to it, and X11 remains widely used.
+
+## Pros and Cons:
+
+### X Server (X11):
+
+- **Pros:** Legacy support, extensive features, and a wide range of applications are compatible.
+
+- **Cons:** Complexity, potential security vulnerabilities, and performance concerns.
+
+### Wayland:
+
+- **Pros:** Simplicity, improved performance, and enhanced security.
+
+- **Cons:** Limited legacy support for some applications, as not all have transitioned to Wayland.
+
+## Usage:
+
+- X11 is still the default display server for many Linux distributions, especially those that have been around for a while.
+
+- Wayland is gaining adoption and is the default in some newer distributions and desktop environments.
+
+In summary, the choice between Wayland and X Server depends on factors such as system requirements, compatibility with applications, and personal preferences. The Linux community continues to discuss and work on improving both display server options.
+
+# List of Window Managers and Desktop Environments Supporting Wayland
+
+## Desktop Environments:
+
+1. **GNOME:**
+   - GNOME has been a strong supporter of Wayland and is designed to work seamlessly with it.
+
+2. **KDE Plasma:**
+   - The KDE Plasma desktop environment has been making efforts to support Wayland, and it provides Wayland sessions for users.
+
+3. **Xfce:**
+   - Xfce is known for its lightweight nature, and while it traditionally used X11, there have been efforts to make it compatible with Wayland.
+
+4. **Enlightenment:**
+   - Enlightenment (E17) has Wayland support, providing a compositor to work with Wayland.
+
+5. **LXQt:**
+   - LXQt, a lightweight desktop environment, has been working on Wayland compatibility.
+
+## Window Managers:
+
+1. **Sway:**
+   - Sway is a tiling Wayland compositor and a drop-in replacement for the i3 window manager for X11.
+
+2. **wlroots:**
+   - While not a window manager itself, wlroots is a set of libraries upon which various Wayland compositors and window managers are built.
+
+3. **Mutter (Wayland):**
+   - Mutter is the window manager for GNOME on Wayland.
+
+4. **Wayfire:**
+   - Wayfire is a 3D Wayland compositor that provides a flexible and feature-rich environment.
+
+5. **Qtile:**
+   - Qtile is a lightweight, dynamic tiling window manager that supports Wayland through the QtWayland library.
+
+Please note that the landscape of Wayland support is continuously evolving, and new developments may have occurred since my last update in January 2022. It's advisable to check the latest documentation or community discussions for the most up-to-date information on Wayland support for specific desktop environments and window managers.

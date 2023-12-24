@@ -83,6 +83,7 @@ Desktop Environments and Window Managers:
 [✔] KDE
 [X] LXDE
 [X] Openbox
+[X] Sway
 [✔] Xfce
 [X] Xmonad
 Filesystems:
@@ -146,6 +147,7 @@ Video:
 [X] Color calibration
 [✔] Reconfigure Xserver hardware (Video Card, Keyboard, Mouse, Monitor)
 [✔] Video card
+[✔] Wayland vs X11 Display
 [✔] Webcam
 [✔] A Linux Gaming Guide
 

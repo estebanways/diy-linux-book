@@ -1,0 +1,5 @@
+Installation:
+
+Resources:
+Web: https://wiki.debian.org/sway
+File: sway - Debian Wiki.pdf
