@@ -73,6 +73,18 @@ Back-up, Emergency and Restore:
 [✔] Manage processes
 [X] Rsync
 [X] System Rescue
+Desktop Environments and Window Managers:
+[X] Awesome
+[X] Cinnamon
+[✔] Fluxbox
+[✔] Gnome Desktop Icons, Themes and Cursors
+[✔] Gnome Shell Extensions
+[X] IceWM
+[✔] KDE
+[X] LXDE
+[X] Openbox
+[✔] Xfce
+[X] Xmonad
 Filesystems:
 [✔] Boot Loaders and Dual Boot
 [X] Clean up the system
@@ -81,9 +93,6 @@ Filesystems:
 [✔] Sudo
 [✔] Users, groups and terminals
 [✔] Working with directories
-Gnome Desktop:
-[✔] Gnome Desktop Icons, Themes and Cursors
-[✔] Gnome Shell Extensions
 Networking:
 [✔] Basic networking
 [✔] Bluetooth
@@ -207,16 +216,6 @@ Desktop Enhancers:
 [✔] Screenlets
 [X] Wbar
 [✔] Xscreensaver
-Desktop Environments and Window Managers:
-[X] Awesome
-[X] Cinnamon
-[✔] Fluxbox
-[X] IceWM
-[✔] KDE
-[X] LXDE
-[X] Openbox
-[✔] Xfce
-[X] Xmonad
 Development Editors and IDEs:
 [X] Anaconda
 [X] Android Studio
