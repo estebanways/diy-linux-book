@@ -30,6 +30,13 @@ kde-config-gtk-style-preview.
 gtk2-engines-oxygen. Oxygen widget theme for GTK2+-based applications
 gtk3-engines-oxygen. Oxygen widget theme for GTK3+-based applications (Debian Wheezy) 
 
+Restore my KDE Plasma desktop to default
+----------------------------------------
+
+$ mv ~/.config/plasma-org.kde.plasma.desktop-appletsrc ~/.config/plasma-org.kde.plasma.desktop-appletsrc-old
+
+Log out of KDE and log back in.
+
 To install the Wayland support:
 -------------------------------
 

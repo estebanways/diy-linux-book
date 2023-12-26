@@ -1,5 +1,13 @@
 Installation:
 
-Resources:
+References:
 Web: https://wiki.debian.org/sway
 File: sway - Debian Wiki.pdf
+
+Topic: Sway Installation on Debian Bookworm.
+Web: https://www.youtube.com/watch?app=desktop&v=aZsRZgbrPxM
+
+Web: https://packages.debian.org/bookworm/sway
+File: Debian -- Details of package sway in bookworm.pdf
+
+Web: https://swaywm.org/
