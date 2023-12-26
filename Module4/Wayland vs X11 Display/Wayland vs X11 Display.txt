@@ -42,6 +42,14 @@
 
 In summary, the choice between Wayland and X Server depends on factors such as system requirements, compatibility with applications, and personal preferences. The Linux community continues to discuss and work on improving both display server options.
 
+References:
+Web: https://askubuntu.com/questions/904940/how-can-i-tell-if-i-am-running-wayland
+File: Wayland - Debian Wiki.pdf
+Web: https://wiki.debian.org/Wayland
+File: xorg - How can I tell if I am running Wayland.pdf
+Web: https://www.if-not-true-then-false.com/2021/debian-ubuntu-linux-mint-nvidia-guide/4/#google_vignette
+File: Xwayland on Debian Ubuntu 23.10 22.04 and Gnome 45_44_43_42.pdf
+
 # List of Window Managers and Desktop Environments Supporting Wayland
 
 ## Desktop Environments:
