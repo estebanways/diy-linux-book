@@ -84,7 +84,7 @@ Running a command like firefox from within the chroot environment will launch th
 
 Some visual applications will work only if they are run using a non root user.
 
-$ adduser username
+# adduser username
 $ export DISPLAY=:0
 $ audacious
 
