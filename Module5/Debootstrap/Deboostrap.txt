@@ -82,6 +82,14 @@ Open any graphical application installed in the Chroot.
 
 Running a command like firefox from within the chroot environment will launch the Firefox instance that is installed within the chroot, not the one from your main system. The chroot environment operates in isolation and has its own set of installed programs and libraries.
 
+Some visual applications will work only if they are run using a non root user.
+
+# adduser username
+$ export DISPLAY=:0
+$ audacious
+
+Some visual applications and sound applications will not run at all or require different configurations or workarounds to work.
+
 - Is `xhost` considered dangerous?
 
 I've been using it so I can run programs with graphical user interfaces within docker containers in linux. Should I worry? I usually do it as follows:

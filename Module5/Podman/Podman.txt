@@ -1,6 +1,16 @@
 
 References:
 
+Topic: Installation and configuration in Debian.
+Web: https://wiki.debian.org/Podman
+File: Podman - Debian Wiki.pdf
+
+Topic: Podman search does not return results unless registry specified
+Web: https://github.com/containers/podman/issues/8896
+
+Topic: Podman Tutorial Zero to Hero | Full 1 Hour Course
+Web: https://m.youtube.com/watch?v=YXfA5O5Mr18
+
 Topic: A quick guide to podman and toolbox in Debian (and maybe Ubuntu)
 Web: https://dev.to/bureado/a-quick-guide-to-podman-and-toolbox-in-debian-5672
 File: A quick guide to podman and toolbox in Debian and maybe Ubuntu - DEV Community.pdf
@@ -13,7 +23,12 @@ Topic: Podman and Toolbox in Debian (and Potentially Ubuntu): An Efficient Guide
 Web: https://copyprogramming.com/howto/a-quick-guide-to-podman-and-toolbox-in-debian-and-maybe-ubuntu
 File: Debian Podman and Toolbox in Debian and Potentially Ubuntu An Efficient Guide.pdf
 
-Topic: oolbox - Tool for containerized command line environments on Linux
+Topic: Toolbox - Tool for containerized command line environments on Linux
 Web: https://manpages.debian.org/unstable/podman-toolbox/toolbox.1.en.html
 File: toolbox podman-toolbox Debian unstable Debian Manpages.pdf
 
+Topic: Packaging of Podman, the application containers engine (an alternative to Docker)
+Web: https://salsa.debian.org/debian/libpod
+
+Topic: Podman vs. Docker
+Web: https://m.youtube.com/watch?v=Xx588nbshlM&pp=ygUHUG9kbWFuIA%3D%3D
