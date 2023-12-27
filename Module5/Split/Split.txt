@@ -1,1 +1,5 @@
- 
+In Debian-based systems, the coreutils package contains the split command. You can install it using the package manager, typically with the following command:
+
+$ sudo apt-get install coreutils
+
+Once the coreutils package is installed, you should have access to the split command and other core utilities it provides.
