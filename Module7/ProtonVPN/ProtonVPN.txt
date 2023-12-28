@@ -1,5 +1,3 @@
-The explanatory scripts can be executed on any type of host, servers, or routers running a ProtonVPN installation.
-
-I did not setup OpenVPN at all, neither separately, to get ProtonVPN connected, except for the update required (Check out the ProtonVPN documentation) for the ProtonVPN configuration.
+The OpenVPN configuration is not touched, except for the configuration to up and run ProtonVPN. Everything is explained in the Proton VPN documentation.
 References:
 OpenVPN
