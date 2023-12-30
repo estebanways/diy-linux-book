@@ -1,0 +1,10 @@
+References:
+Topic: How to Install Anaconda Python on Debian 12
+Web: https://linuxhint.com/install-anaconda-python-debian-12/
+File: How to Install Anaconda Python on Debian 12.pdf
+
+Web: https://docs.anaconda.com/free/anaconda/install/linux/
+File: Installing on Linux. Anaconda documentation.pdf
+
+Web: https://docs.conda.io/projects/miniconda/en/latest/
+File: Miniconda. miniconda documentation.pdf
