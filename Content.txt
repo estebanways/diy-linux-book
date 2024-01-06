@@ -46,7 +46,7 @@ Package Management:
 [X] Static, shared dynamic and loadable libraries
 [✔] System Package Managers: Synaptic, Aptitude, DPKG, APT, Gdebi, Complementary
 [X] Download files with Wget and Curl
-[✔] Verify download integrity, PGP, GPG, GNUPG, Seahorse
+[X] Downloads integrity, gnome-keyring, gpg, gnupg, pgp, seahorse, Passwords and Keys
 [X] Check if an upgraded package has already received its security patch
 [✔] Software installation table
 Repositories:
