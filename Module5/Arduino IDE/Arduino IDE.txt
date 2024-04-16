@@ -1,0 +1,192 @@
+
+Content:
+- IDE Installation
+- Hardware Detection
+- Use your Arduino Nano on the Arduino Desktop IDE
+- Troubleshooting
+
+
+- IDE Installation.
+
+Installation methods:
+
+1. Install the latest version of Arduino IDE from its official website.
+2. Install Arduino IDE from Debian package archive (Current version is 1.8.19).
+3. Install Arduino IDE from the Snap store. (Current version is 1.8.19).
+4. Install Arduino IDE from Flathub store. (Current version is 2.x).
+
+Choose the option 3. Install Arduino IDE from the Snap store (Current version is 1.8.19).
+
+Once the Arduino is connected and snap running, Install the Arduino IDE.
+
+Refresh versions:
+
+$ sudo snap refresh arduino
+
+Display a list of versions:
+
+$ snap info arduino
+
+Installed a specific/old version:
+
+$ snap install arduino --channel=latest/stable
+
+To install the latest version available:
+
+$ sudo snap install arduino
+
+Verify the Snap app version installed:
+$ snap list | grep arduino
+
+By default, snap keeps two previous versions of every package cached on your system. Thanks to that, the answer to your problem of returning the snap code to its previous working version is as simple as this:
+
+$ snap revert arduino
+
+References:
+
+Topic: How to Install Arduino IDE on Debian 10
+https://vitux.com/how-to-install-arduino-ide-on-debian-10/
+File: How to Install Arduino IDE on Debian 10 - VITUX.pdf
+
+Topic: Install Arduino from the Snap store. Contains important information regarding the Python 3 support.
+Web: https://snapcraft.io/install/arduino/debian
+File: Install Arduino IDE on Debian using the Snap Store - Snapcraft.pdf
+
+Topic: Arduino IDE v2
+Web: https://flathub.org/apps/cc.arduino.IDE2
+File: Install Arduino IDE v2 on Linux - Flathub.pdf
+
+- Hardware Detection.
+
+In order to let the software play with the Arduino Board, it's necessary to open few permissions to the current user. If you have just connected the card to your computer, you should look at the last kernel messages:
+
+$ su
+
+# dmesg | tail
+
+And you should see something like that:
+
+[38340.713494] IPv6: ADDRCONF(NETDEV_CHANGE): wlp2s0: link becomes ready
+[38340.810269] wlp2s0: Limiting TX power to 30 (30 - 0) dBm as advertised by 80:b5:75:a5:b1:dc
+[41937.392353] wlp2s0: disassociated from 80:b5:75:a5:b1:dc (Reason: 2=PREV_AUTH_NOT_VALID)
+[41937.616590] wlp2s0: authenticate with 80:b5:75:a5:b1:dc
+[41937.618227] wlp2s0: send auth to 80:b5:75:a5:b1:dc (try 1/3)
+[41937.620793] wlp2s0: authenticated
+[41937.625406] wlp2s0: associate with 80:b5:75:a5:b1:dc (try 1/3)
+[41937.631587] wlp2s0: RX AssocResp from 80:b5:75:a5:b1:dc (capab=0x1431 status=0 aid=4)
+[41937.634192] wlp2s0: associated
+[41937.786346] wlp2s0: Limiting TX power to 30 (30 - 0) dBm as advertised by 80:b5:75:a5:b1:dc
+root@commbase:/home/commbase# dmesg | tail
+[42010.016790] usb 3-1: USB disconnect, device number 2
+[42196.482093] usb 3-1: new full-speed USB device number 4 using xhci_hcd
+[42196.631621] usb 3-1: New USB device found, idVendor=2341, idProduct=0058, bcdDevice= 1.00
+[42196.631635] usb 3-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[42196.631640] usb 3-1: Product: Arduino Nano Every
+[42196.631643] usb 3-1: Manufacturer: Arduino LLC
+[42196.631646] usb 3-1: SerialNumber: 235D58FE51444E6450207720FF11230A
+[42396.658284] cdc_acm 3-1:1.0: ttyACM0: USB ACM device
+[42196.676315] usbcore: registered new interface driver cdc_acm
+[42196.676316] cdc_acm: USB Abstract Control Model driver for USB modems and ISDN adapters
+
+In this case, the board appears under the name ttyACM0 in the /dev folder, and if you list its content, you can see that the card own by the dialout group. You may see on your side USB based adapters (e.g. ttyUSB0 or similar), this depends on the USB adapter and the used chipset on your Arduino board. This makes no difference for the following section and possible required action to being able to get the Arduino IDE work with your Arduino board.
+
+$ ls -l /dev/tty*
+
+crw-rw----+ 1 root dialout 166,  0 Apr 16 01:14 /dev/ttyACM0
+
+You need to add your user to the group dialout in order to use the card directly from the arduino software without using root or sudo. The Debian packaged Arduino IDE will detect some possible required action on this and will open a dialog which you can follow. Note you will needed to at least log out and log in again to the user session to make the modifications work!
+
+Or you do the modification of the user access rights manually on the CLI. You need to be root (or have at least sudo rights) for running the following command.
+
+# usermod -a -G dialout My_User_Name
+
+Some cards could need other groups like tty or uucp.
+
+
+You can Add your user as member to groups dialout, tty and uucp with the following command:
+
+$ users-admin
+
+This will open a GUI to manage system groups.
+
+Once that done, at the next reboot, you should see your board in "Tools > Serial Port", in the IDE.
+
+References:
+Topic: Arduino IDE. Follow the steps in the section "Hardware detection", regardless of the installation method used.
+Web: https://wiki.debian.org/Arduino
+File: Arduino - Debian Wiki.pdf
+
+- Use your Arduino Nano on the Arduino Desktop IDE
+
+References:
+Web: https://wiki-content.arduino.cc/en/Guide/NANOEvery
+File: Getting started with the Arduino Nano Every - Arduino.pdf
+
+- Troubleshooting.
+
+Issue:
+Message errors when compiling the code: avr-g++: error: device-specs/specs-...: No such file or directory
+Possible Solution:
+For MS Windows (not Linux). Follow the steps.
+Resolution:
+It worked after replacing the IDE installation from the official Debian repositories with the Snap package.
+References:
+Web: https://per1234.github.io/ino-troubleshooting/compiling.html
+File: Compiling Troubleshooting Guide For Arduino.pdf
+
+Issue:
+Message errors when compiling the code: Arduino / ESP32 Issue SOLVED | avr-g++: no such file or directory avr g
+Possible Solution:
+Delete all the files except preferences.txt in the preferences.txt directory (/home/<user>/.arduino15/).
+Resolution:
+It worked after replacing the IDE installation from the official Debian repositories with the Snap package.
+References:
+Video: https://www.youtube.com/watch?v=d1D83G-PpqM
+Image: Arduino preferences (Arduino IDE version from the official Debian repositories, installed but unused).png
+
+Issue:
+Message errors when compiling the code, similar to: Warning: platform.txt from core 'megaTinyCore' contains deprecated compiler.path={runtime.tools.avr-gcc.path}/bin/, automatically converted to compiler.path=/usr/bin/. Consider upgrading this core.
+Possible Solution:
+Change the value of compiler.path={runtime.tools.avr-gcc.path}/bin/ in the file /home/commbase/.arduino15/packages/arduino/hardware/megaavr/1.8.8/platform.txt to according to what is explained in the references.
+Resolution:
+It worked after replacing the IDE installation from the official Debian repositories with the Snap package.
+References:
+Topic: Deprecated compiler.path={runtime.tools.avr-gcc.path}/bin/ - what to replace it with?
+Web: https://forum.arduino.cc/t/deprecated-compiler-path-runtime-tools-avr-gcc-path-bin-what-to-replace-it-with/1083628
+File: Deprecated compiler.path - Using Arduino - IDE 1.x - Arduino Forum.pdf
+Topic: arduino-builder/hardware/platform.keys.rewrite.txt on GitHub.com.
+Web: https://github.com/arduino/arduino-builder/blob/1.5.4/hardware/platform.keys.rewrite.txt
+
+Issue:
+Message errors when uploading the code: avrdude: jtagmkII_initialize(): Cannot locate 'flash' and 'boot' memories in description
+Resolution:
+It is often a spurious warning (not an error) which can be safely ignored. It does not indicate any problem with the uploaded sketch as long as it was successfully compiled and uploaded to the board. However, if there is an error while compiling and uploading a sketch, it is unrelated to this warning.
+References:
+Web: https://support.arduino.cc/hc/en-us/articles/4405239282578-avrdude-jtagmkII-initialize-Cannot-locate-flash-and-boot-memories-in-description
+File: avrdude_ jtagmkII_initialize(). Cannot locate flash and boot memories in description - Arduino Help Center.pdf
+
+Issue:
+Message errors when uploading the code: avrdude: jtagmkII_getsync(): sign-on command: status -1
+I was trying to upload a sketch to the Arduino Nano Every.
+Resolution:
+1. Disconnect the board.
+2. Restart the Arduino IDE.
+3. Connect the board.
+4. Open Tools -> Serial Monitor.
+5. Set baud rate to 1200.
+6. Leave the Serial Monitor open.
+7. Go back to Arduino IDE, press "Upload", it should successfully upload now.
+References:
+Web: https://roboremo.app/blog/2024/03/12/workaround-avrdude-jtagmkii_getsync-sign-on-command-status--1-arduino-nano-every
+
+Issue:
+Arduino not working with 5v pins supply.
+Resolution:
+Verify the 5v output pin with the tester/volt meter wires connected to the 5v and GND. Otherwise, connect a suitable resistor and a LED circuit to verify (that) the output works.
+References:
+Web: https://forum.arduino.cc/t/arduino-not-working-with-5v-pins-supply/335660
+File: Arduino not working with 5v pins supply - Using Arduino - IDE 1.x - Arduino Forum.pdf
+
+References:
+Topic: Explore or ask Arduino questions.
+Web: https://arduino.stackexchange.com/
