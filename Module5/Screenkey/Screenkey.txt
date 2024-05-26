@@ -1,0 +1,9 @@
+
+Installation:
+
+$ sudo apt-get update
+$ sudo apt-get install screenkey
+
+Resources:
+Web: https://gitlab.com/screenkey/screenkey
+

@@ -359,6 +359,7 @@ Synced Storage and Cloud Storage:
 [X] Seafile [web server]
 Teaching:
 [X] Key-mon
+[X] Screenkey
 Text-To-Speech Synthesis:
 [✔] Festival
 Torrent:
