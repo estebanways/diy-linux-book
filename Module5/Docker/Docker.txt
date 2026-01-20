@@ -9,6 +9,7 @@ Run the Docker daemon as a non-root user (Rootless mode)
 Install Docker Gordon AI in Linux
 Change Docker Context
 Troubleshooting
+Security
 
 **This document contains the steps to install Debian Linux + Docker on Windows 10 with WSL. In case that you do not use WSL on Windows, install Debian on your hpst machine and follow the steps from the topic:
 Install Docker on Debian
@@ -584,3 +585,12 @@ $ docker logout
 $ docker login
 
 Go to the Docker Desktop Dashboard and it should work and login normally.
+
+Security
+--------
+
+References:
+
+Topic: Docker security.
+Guide: Basic Docker Security
+
