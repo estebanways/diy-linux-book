@@ -140,9 +140,101 @@ sudo dockershield doctor
 
 Runs a detailed analysis of Docker exposures and Linux hardening issues.
 
+You need to have at least a container for the scanning process to begin. With a running container, you get much more information.
+
 ```shell
 sudo dockershield scan
 ```
+
+You can get the next error when executing this command:
+
+```output
+Connecting to Docker... ✗
+Error: failed to connect to Docker: failed to connect to Docker daemon (is Docker running?): Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+failed to connect to Docker: failed to connect to Docker daemon (is Docker running?): Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```
+
+In that case, you are probably using a Docker context, such as `desktop-linux` which is used by **Docker Desktop**.
+
+```shell
+docker context ls  # or run with `sudo`
+```
+
+```output
+NAME              DESCRIPTION                               DOCKER ENDPOINT                                    ERROR
+default           Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                        
+desktop-linux *   Docker Desktop                            unix:///home/esteban/.docker/desktop/docker.sock   
+rootless          Rootless mode                             unix:///run/user/1000/docker.sock  
+```
+
+**Docker Desktop** does not use the system `docker.service`.
+
+That’s why `systemctl` shows Docker as `inactive`/`disabled`, even though Docker actually works.
+
+```shell
+systemctl status docker.service
+```
+
+```bash
+systemctl status docker.service
+○ docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; disabled; preset: enabled)
+     Active: inactive (dead)
+TriggeredBy: ○ docker.socket
+       Docs: https://docs.docker.com
+```
+
+Remember that on Linux there are two different Docker setups:
+
+- Docker Engine (system service)
+
+- Docker Desktop (does NOT rely on docker.service)
+
+DockerShield expects `unix:///var/run/docker.sock`, but Docker Desktop uses a user-level socket, usually `unix://$HOME/.docker/desktop/docker.sock`. As a result, DockerShield cannot find Docker via systemd.
+
+**How to fix DockerShield with Docker Desktop**
+
+Option 1 (recommended): set DOCKER_HOST
+
+To do not change your configuration with **Docker Desktop** you can make **DockerShield** work like this:
+
+```shell
+export DOCKER_HOST=unix://$HOME/.docker/desktop/docker.sock
+```
+
+Test:
+
+```shell
+docker ps  # or run with `sudo`
+```
+
+And then run DockerShield:
+
+```shell
+dockershield scan
+```
+
+Or, with `sudo`:
+
+```shell
+sudo dockershield scan
+```
+
+If it works, you can persist it:
+
+```shell
+echo 'export DOCKER_HOST=unix://$HOME/.docker/desktop/docker.sock' >> ~/.bashrc
+```
+
+Option 2: use Docker Engine instead of Desktop
+
+If DockerShield requires system Docker:
+
+```shell
+sudo systemctl enable --now docker
+```
+
+And stop Docker Desktop to avoid conflicts.
 
 ### Other commands
 
@@ -153,7 +245,7 @@ sudo dockershield check ports
 sudo dockershield check networks
 ```
 
-  ** Valid options: ports, networks, firewall, containers, all.
+** Valid options: ports, networks, firewall, containers, all.
 
 #### Verbose output with network info
 
@@ -232,3 +324,14 @@ Hardening is not a one-time task. DockerShield supports an **iterative security 
 5. Rescan and reassess
 
 This loop ensures improvements are measurable and sustainable.
+
+## References
+
+Security Module from the book: DIY Linux.  
+<https://github.com/estebantechdev/diy-linux-book/tree/main/Module7>
+
+Linux Enterprise Sci-Fi book and video course.  
+<https://github.com/estebantechdev/Linux-Enterprise-Sci-Fi-book>
+
+Docker installation, from the book: DIY Linux.  
+<https://github.com/estebantechdev/diy-linux-book/tree/main/Module5/Docker>
