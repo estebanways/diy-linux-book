@@ -465,6 +465,7 @@ Improve the system security on local:
 Improve the security of the system over the networks and Internet:
 [✔] Ad blockers
 [X] AppArmor
+[✔] Basic Docker Security
 [X] Bastille
 [X] Buttercup
 [X] Darkstat
