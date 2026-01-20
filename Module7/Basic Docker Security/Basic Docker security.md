@@ -64,9 +64,9 @@ Rather than replacing firewalls or intrusion detection systems, DockerShield com
 
 For anyone running Docker on a VPS, home server, or production environment, DockerShield is a practical first step toward safer container deployments.
 
-References:
-
-- Official repository: <https://github.com/adrian13508/dockershield>
+References:  
+Official DockerShield repository.  
+<https://github.com/adrian13508/dockershield>
 
 #### Key Characteristics
 
@@ -208,16 +208,10 @@ Test:
 docker ps  # or run with `sudo`
 ```
 
-And then run DockerShield:
+And then run DockerShield (no `sudo` required; runs in user space):
 
 ```shell
 dockershield scan
-```
-
-Or, with `sudo`:
-
-```shell
-sudo dockershield scan
 ```
 
 If it works, you can persist it:
