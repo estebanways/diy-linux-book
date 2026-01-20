@@ -592,5 +592,4 @@ Security
 References:
 
 Topic: Docker security.
-Guide: Basic Docker Security
-
+Guide: Basic Docker Security.
