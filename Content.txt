@@ -479,6 +479,7 @@ Improve the security of the system over the networks and Internet:
 [✔] Nmap
 [X] Ntopng
 [✔] OpenSSH server
+[✔] SSH to Debian WSL
 [X] OpenVPN
 [✔] Ping
 [✔] ProtonVPN
